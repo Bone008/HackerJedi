@@ -9,8 +9,6 @@ public class Master : MonoBehaviour {
     public Transform masterEye;
     public LayerMask raycastLayermask;
 
-    public float rotationSpeed;
-
     [Header("Movement")]
     public Transform movementMin;
     public Transform movementMax;
@@ -49,14 +47,7 @@ public class Master : MonoBehaviour {
             createEnemyOnClick = false;
         }
 
-        // rotate eye to point to raycast hit
-        if (objectHit)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(hit.point - masterEye.position);
-            masterEye.rotation = Quaternion.Slerp(masterEye.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
-
-        // move eye
+        // move master
         float input = Input.GetAxis(movementInputAxis);
         if(input != 0)
         {
