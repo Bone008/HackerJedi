@@ -42,9 +42,9 @@ public class Master : MonoBehaviour {
 
         // move eye with A / D buttons
         // TODO nice to have: accelerate
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.W) && transform.position.z < movementMax.position.z)
             transform.position +=new Vector3(0, 0, movementSpeed * Time.deltaTime);
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.S) && transform.position.z > movementMin.position.z)
             transform.position -= new Vector3(0, 0, movementSpeed * Time.deltaTime);
         
     }
