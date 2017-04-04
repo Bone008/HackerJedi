@@ -7,12 +7,15 @@ public class Enemy : MonoBehaviour
 {
     public float newTargetPosThreshhold, stopRange;
     public float hitRange;
+    public float fireDelay = 0.6f;
 
     private Transform goal;
     private Vector3 oldPos;
     private NavMeshAgent agent;
     private bool following = true;
     private Gun gun;
+
+    private Coroutine firingCoroutine = null;
 
 
     void Start()
@@ -50,10 +53,26 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        // fire if in range
+        // fire while in range
         if ((goal.position - transform.position).sqrMagnitude <= hitRange * hitRange)
         {
-            gun.Fire();
+            if(firingCoroutine == null)
+                firingCoroutine = StartCoroutine(FireWhenReady());
+        }
+        else if(firingCoroutine != null)
+        {
+            StopCoroutine(firingCoroutine);
+            firingCoroutine = null;
         }
     }
+
+    private IEnumerator FireWhenReady()
+    {
+        while (true)
+        {
+            gun.Fire();
+            yield return new WaitForSeconds(fireDelay);
+        }
+    }
+
 }

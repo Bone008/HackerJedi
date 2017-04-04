@@ -24,8 +24,6 @@ public class Master : MonoBehaviour {
     private bool createEnemyOnClick = false;
 
 	void Start () {
-        // for easier testing: create enemies from the start
-        OnButtonEnemyCreate();
 	}
 	
 	void Update () {
@@ -42,7 +40,12 @@ public class Master : MonoBehaviour {
         if (objectHit != null && Input.GetMouseButtonDown(0) && createEnemyOnClick)
         {
             // spawn enemy
-            Instantiate(enemyPrefab, hit.point, Quaternion.Euler(0, Random.Range(0, 360), 0));
+            var enemyCollider = enemyPrefab.GetComponent<Collider>();
+            float offsetY = 0;
+            if (enemyCollider != null)
+                offsetY = -enemyCollider.bounds.min.y;
+
+            Instantiate(enemyPrefab, hit.point + Vector3.up * offsetY, Quaternion.Euler(0, Random.Range(0, 360), 0));
             createEnemyOnClick = false;
         }
 
