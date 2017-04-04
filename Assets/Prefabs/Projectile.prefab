@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4915804946071132}
   - component: {fileID: 33197418285848364}
   - component: {fileID: 136916492442752868}
+  - component: {fileID: 54888812613434332}
   - component: {fileID: 23067645311516744}
   - component: {fileID: 114597843114971016}
-  - component: {fileID: 54888812613434332}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -52,12 +52,12 @@ MeshRenderer:
   m_GameObject: {fileID: 1072651022596434}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a79a0243c92285342a71e88d4d64ded0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,7 +96,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &114597843114971016
 MonoBehaviour:
@@ -116,7 +116,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1072651022596434}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2

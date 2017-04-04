@@ -20,8 +20,9 @@ public class Gun : MonoBehaviour {
     public void Fire()
     {
         var shootingDirection = nozzle.transform.TransformDirection(Vector3.forward).normalized;
-        var position = nozzle.position + shootingDirection * 0.6f * projectilePrefab.transform.localScale.y;
+        var position = nozzle.position + shootingDirection * 1.1f * projectilePrefab.transform.localScale.y;
         var rotation = Quaternion.LookRotation(shootingDirection) * Quaternion.Euler(90, 0, 0);
+        
 
         GameObject projectile = GameObject.Instantiate(projectilePrefab, position, rotation);
         projectile.GetComponent<Rigidbody>().velocity = shootingDirection * projectileSpeed;
