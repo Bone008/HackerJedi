@@ -7,6 +7,8 @@ public class Master : MonoBehaviour {
     public Camera masterCamera;
     public Transform masterEye;
 
+    public float rotationSpeed;
+
     [Header("Movement")]
     public Transform movementMin;
     public Transform movementMax;
@@ -36,8 +38,8 @@ public class Master : MonoBehaviour {
         // rotate eye to point to raycast hit
         if (objectHit)
         {
-            // TODO nice to have: interpolate
-            masterEye.LookAt(hit.point);
+            Quaternion targetRotation = Quaternion.LookRotation(hit.point - masterEye.position);
+            masterEye.rotation = Quaternion.Slerp(masterEye.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
         // move eye with A / D buttons
