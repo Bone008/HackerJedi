@@ -19,6 +19,10 @@ public class Master : MonoBehaviour {
     [Header("Spawning")]
     public GameObject enemyPrefab;
 
+    [Header("Block Moving")]
+    public float blockMinYValue = 0;
+    public float blockMaxYValue = 6;
+
 
     private Transform selected;
 
@@ -38,6 +42,21 @@ public class Master : MonoBehaviour {
                 selected = null;
         }
 
+        // move blocks
+        float scrollAmount = -Input.GetAxis("Mouse ScrollWheel");
+        if (selected && scrollAmount != 0)
+        {
+            Transform parent = selected.parent.transform;
+            float y = parent.position.y + scrollAmount;
+            y = Mathf.Max(blockMinYValue, y);
+            y = Mathf.Min(blockMaxYValue, y);
+            parent.position = new Vector3(
+                parent.position.x, 
+                y,
+                parent.position.z
+            );
+        }
+
         // move master
         float input = Input.GetAxis(movementInputAxis);
         if(input != 0)
@@ -53,6 +72,7 @@ public class Master : MonoBehaviour {
         // spawn enemy
         if (selected != null)
         {
+            // TODO this gets done by the navagent
             var enemyCollider = enemyPrefab.GetComponent<Collider>();
             float offsetY = 0;
             if (enemyCollider != null)
