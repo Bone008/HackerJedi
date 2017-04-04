@@ -249,4 +249,4 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1072651022596434, guid: bc6415566563d784791acac02bf9a97d,
     type: 2}
   nozzle: {fileID: 4254166129595500}
-  projectileSpeed: 6
+  projectileSpeed: 40
