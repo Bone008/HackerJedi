@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour {
 
     public GameObject block;
+    public float blockSize;
 
     public int rows;
     public int lines;
@@ -12,11 +13,14 @@ public class LevelGenerator : MonoBehaviour {
 
     void createWorldPlane()
     {
+        Vector3 centerOffset = new Vector3((rows-1) / 2f, 0, (lines-1) / 2f) * blockSize;
+
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < lines; j++)
             {
-                world[i, j] = Instantiate(block, new Vector3(i, 0, j), Quaternion.identity);
+                world[i, j] = Instantiate(block, new Vector3(i * blockSize, 0, j * blockSize) - centerOffset, Quaternion.identity);
+                world[i, j].transform.SetParent(transform, false);
             }
         }
     }
@@ -29,7 +33,7 @@ public class LevelGenerator : MonoBehaviour {
             {
                 Debug.Log(i + ":" + j);
                 if (Random.Range(0, 10) == 5)
-                    world[i, j].transform.position.Set(world[i, j].transform.position.x, Random.Range(0, 3), world[i, j].transform.position.z);
+                    world[i, j].transform.localPosition += new Vector3(0, Random.Range(0, 3), 0);
 
             }
         }
