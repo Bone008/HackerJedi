@@ -7,6 +7,11 @@ public class Master : MonoBehaviour {
     public Camera masterCamera;
     public Transform masterEye;
 
+    [Header("Movement")]
+    public Transform movementMin;
+    public Transform movementMax;
+    public float movementSpeed;
+
 	void Start () {
 		
 	}
@@ -29,11 +34,19 @@ public class Master : MonoBehaviour {
         }
 
         // rotate eye to point to raycast hit
-        if(objectHit)
+        if (objectHit)
         {
-            // TODO interpolate
+            // TODO nice to have: interpolate
             masterEye.LookAt(hit.point);
         }
+
+        // move eye with A / D buttons
+        // TODO nice to have: accelerate
+        if (Input.GetKey(KeyCode.A))
+            transform.position +=new Vector3(0, 0, movementSpeed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.D))
+            transform.position -= new Vector3(0, 0, movementSpeed * Time.deltaTime);
+        
     }
     
 }
