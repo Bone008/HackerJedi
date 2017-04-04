@@ -21,6 +21,10 @@ public class LevelGenerator : MonoBehaviour {
             {
                 world[i, j] = Instantiate(block, new Vector3(i * blockSize, 0, j * blockSize) - centerOffset, Quaternion.identity);
                 world[i, j].transform.SetParent(transform, false);
+                foreach (Transform t in world[i, j].transform)
+                {
+                    t.gameObject.tag = "RoomBlock";
+                }
             }
         }
     }

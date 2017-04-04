@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Master : MonoBehaviour {
@@ -19,32 +20,22 @@ public class Master : MonoBehaviour {
     public GameObject enemyPrefab;
 
 
-    private bool createEnemyOnClick = false;
+    private Transform selected;
 
 	void Start () {
 	}
 	
 	void Update () {
-        // get aimed-for object via Raycast
-        Transform objectHit = null;
-        RaycastHit hit;
-        Ray ray = masterCamera.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out hit, Mathf.Infinity, raycastLayermask.value))
-        {
-            objectHit = hit.transform;
-        }
-
         // left mouse button down
-        if (objectHit != null && Input.GetMouseButtonDown(0) && createEnemyOnClick)
+        if (Input.GetMouseButtonDown(0))
         {
-            // spawn enemy
-            var enemyCollider = enemyPrefab.GetComponent<Collider>();
-            float offsetY = 0;
-            if (enemyCollider != null)
-                offsetY = -enemyCollider.bounds.min.y;
-
-            Instantiate(enemyPrefab, hit.point + Vector3.up * offsetY, Quaternion.Euler(0, Random.Range(0, 360), 0));
-            createEnemyOnClick = false;
+            // get aimed-for object via Raycast, prevent onclick when pressing buton
+            RaycastHit hit;
+            Ray ray = masterCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, raycastLayermask.value) && hit.transform.tag.Equals("RoomBlock"))
+                selected = hit.transform;
+            else if(!EventSystem.current.IsPointerOverGameObject())
+                selected = null;
         }
 
         // move master
@@ -59,7 +50,16 @@ public class Master : MonoBehaviour {
 
     public void OnButtonEnemyCreate()
     {
-        createEnemyOnClick = true;        
+        // spawn enemy
+        if (selected != null)
+        {
+            var enemyCollider = enemyPrefab.GetComponent<Collider>();
+            float offsetY = 0;
+            if (enemyCollider != null)
+                offsetY = -enemyCollider.bounds.min.y;
+
+            Instantiate(enemyPrefab, selected.position + Vector3.up * offsetY, Quaternion.Euler(0, Random.Range(0, 360), 0));
+        }
     }
 
 
