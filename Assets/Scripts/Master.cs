@@ -15,11 +15,17 @@ public class Master : MonoBehaviour {
     public Transform movementMin;
     public Transform movementMax;
     public float movementSpeed;
+    public string movementInputAxis;
+
+    [Header("Spawning")]
+    public GameObject enemyPrefab;
+
 
     private bool createEnemyOnClick = false;
 
 	void Start () {
-
+        // for easier testing: create enemies from the start
+        OnButtonEnemyCreate();
 	}
 	
 	void Update () {
@@ -35,8 +41,8 @@ public class Master : MonoBehaviour {
         // left mouse button down
         if (objectHit != null && Input.GetMouseButtonDown(0) && createEnemyOnClick)
         {
-            // TODO spawn enemy
-            objectHit.GetComponent<Renderer>().material.color = new Color(1, 0, 0);
+            // spawn enemy
+            Instantiate(enemyPrefab, hit.point, Quaternion.Euler(0, Random.Range(0, 360), 0));
             createEnemyOnClick = false;
         }
 
@@ -47,13 +53,14 @@ public class Master : MonoBehaviour {
             masterEye.rotation = Quaternion.Slerp(masterEye.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
 
-        // move eye with A / D buttons
-        // TODO nice to have: accelerate
-        if (Input.GetKey(KeyCode.W) && transform.position.z < movementMax.position.z)
-            transform.position +=new Vector3(0, 0, movementSpeed * Time.deltaTime);
-        if (Input.GetKey(KeyCode.S) && transform.position.z > movementMin.position.z)
-            transform.position -= new Vector3(0, 0, movementSpeed * Time.deltaTime);
-        
+        // move eye
+        float input = Input.GetAxis(movementInputAxis);
+        if(input != 0)
+        {
+            var newPosition = transform.position + input * Vector3.forward * movementSpeed;
+            newPosition.z = Mathf.Clamp(newPosition.z, movementMin.position.z, movementMax.position.z);
+            transform.position = newPosition;
+        }
     }
 
     public void OnButtonEnemyCreate()

@@ -6,9 +6,9 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public float newTargetPosThreshhold, stopRange;
-    public Transform goal;
     public float hitRange;
 
+    private Transform goal;
     private Vector3 oldPos;
     private NavMeshAgent agent;
     private bool following = true;
@@ -17,6 +17,9 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        // locate player
+        goal = GameObject.FindGameObjectWithTag("Player").transform;
+
         oldPos = goal.position;
         agent = GetComponent<NavMeshAgent>();
         agent.destination = goal.position;
@@ -48,7 +51,7 @@ public class Enemy : MonoBehaviour
         }
 
         // fire if in range
-        if ((goal.position - transform.position).magnitude <= hitRange)
+        if ((goal.position - transform.position).sqrMagnitude <= hitRange * hitRange)
         {
             gun.Fire();
         }
