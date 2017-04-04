@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Master : MonoBehaviour {
 
     public Camera masterCamera;
     public Transform masterEye;
+    public LayerMask raycastLayermask;
 
     public float rotationSpeed;
 
@@ -14,8 +16,10 @@ public class Master : MonoBehaviour {
     public Transform movementMax;
     public float movementSpeed;
 
+    private bool createEnemyOnClick = false;
+
 	void Start () {
-		
+
 	}
 	
 	void Update () {
@@ -23,16 +27,17 @@ public class Master : MonoBehaviour {
         Transform objectHit = null;
         RaycastHit hit;
         Ray ray = masterCamera.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out hit))
+        if(Physics.Raycast(ray, out hit, Mathf.Infinity, raycastLayermask.value))
         {
             objectHit = hit.transform;
         }
 
         // left mouse button down
-        if (objectHit != null && Input.GetMouseButtonDown(0))
+        if (objectHit != null && Input.GetMouseButtonDown(0) && createEnemyOnClick)
         {
-            // TODO
+            // TODO spawn enemy
             objectHit.GetComponent<Renderer>().material.color = new Color(1, 0, 0);
+            createEnemyOnClick = false;
         }
 
         // rotate eye to point to raycast hit
@@ -50,5 +55,11 @@ public class Master : MonoBehaviour {
             transform.position -= new Vector3(0, 0, movementSpeed * Time.deltaTime);
         
     }
-    
+
+    public void OnButtonEnemyCreate()
+    {
+        createEnemyOnClick = true;        
+    }
+
+
 }
