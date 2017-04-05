@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
 
     private Coroutine firingCoroutine = null;
 
-
     void Start()
     {
         // locate player
@@ -56,10 +55,10 @@ public class Enemy : MonoBehaviour
         // fire while in range
         if ((goal.position - transform.position).sqrMagnitude <= hitRange * hitRange)
         {
-            if(firingCoroutine == null)
+            if (firingCoroutine == null)
                 firingCoroutine = StartCoroutine(FireWhenReady());
         }
-        else if(firingCoroutine != null)
+        else if (firingCoroutine != null)
         {
             StopCoroutine(firingCoroutine);
             firingCoroutine = null;
@@ -74,5 +73,4 @@ public class Enemy : MonoBehaviour
             yield return new WaitForSeconds(fireDelay);
         }
     }
-
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class Projectile : MonoBehaviour {
     
@@ -13,7 +14,9 @@ public class Projectile : MonoBehaviour {
     {
         Debug.Log("collided with " + collider.gameObject.name);
 
-        // TODO damage enemies once we have them
+        // for now: kill enemies instantly
+        if (collider.gameObject.GetComponent<Enemy>() != null)
+            Destroy(collider.gameObject);
 
         Destroy(this.gameObject);
     }

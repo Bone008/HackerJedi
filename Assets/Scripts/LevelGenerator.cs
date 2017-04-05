@@ -31,6 +31,8 @@ public class LevelGenerator : MonoBehaviour
             {
                 track[i, j] = Instantiate(railBlock, new Vector3(i * blockSize, 0, j * blockSize) - centerOffset + Vector3.down, Quaternion.identity);
                 track[i, j].transform.SetParent(transform, false);
+                foreach (Transform t in track[i, j].transform)
+                    t.gameObject.tag = "RailBlock";
                 track[i, j].SetActive(false);
 
                 world[i, j] = Instantiate(block, new Vector3(i * blockSize, 0, j * blockSize) - centerOffset, Quaternion.identity);
