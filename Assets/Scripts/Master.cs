@@ -26,14 +26,17 @@ public class Master : MonoBehaviour {
     private bool currentlyDragging;
     private float mouseDragStartY;
 
+    [Header("Laser Beam")]
+    public LineRenderer laserBeam;
+    public Transform laserStart;
+    private LookAtMouse lookAtMouseScript;
+
     private Transform selected;
-
     
-    
-
-
 	void Start () {
-	}
+        laserBeam.enabled = false;
+        lookAtMouseScript = ((LookAtMouse)masterEye.GetComponent("LookAtMouse"));
+    }
 
     void Update()
     {
@@ -83,6 +86,26 @@ public class Master : MonoBehaviour {
             newPosition.z = Mathf.Clamp(newPosition.z, movementMin.position.z, movementMax.position.z);
             transform.position = newPosition;
         }
+
+        // move laser
+        if (selected != null && currentlyDragging)
+        {
+            laserBeam.SetPosition(0, laserStart.position);
+            laserBeam.SetPosition(1, selected.position);
+            if(!laserBeam.enabled)
+            {
+                laserBeam.enabled = true;
+                lookAtMouseScript.rotationSpeed *= 10.0f;
+            }            
+        }
+        else
+        {
+            if(laserBeam.enabled)
+            {
+                laserBeam.enabled = false;
+                lookAtMouseScript.rotationSpeed /= 10.0f;
+            }            
+        }
     }
 
     public void OnButtonEnemyCreate()
@@ -99,6 +122,5 @@ public class Master : MonoBehaviour {
             Instantiate(enemyPrefab, selected.position + Vector3.up * offsetY, Quaternion.Euler(0, Random.Range(0, 360), 0));
         }
     }
-
-
+    
 }
