@@ -4,7 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Enemy
+=======
+  - RoomBlock
+  - RailBlock
+>>>>>>> f6168b300e8016b455584b7faa48f39101ecfbc0
   layers:
   - Default
   - TransparentFX
