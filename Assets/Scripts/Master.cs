@@ -22,36 +22,54 @@ public class Master : MonoBehaviour {
     [Header("Block Moving")]
     public float blockMinYValue = 0;
     public float blockMaxYValue = 6;
-
+    public float blockSpeed = 30.0f;
+    private bool currentlyDragging;
+    private float mouseDragStartY;
 
     private Transform selected;
 
+    
+    
+
+
 	void Start () {
 	}
-	
-	void Update () {
-        // left mouse button down
+
+    void Update()
+    {
+        // select cube and start dragging
         if (Input.GetMouseButtonDown(0))
         {
             // get aimed-for object via Raycast, prevent onclick when pressing buton
             RaycastHit hit;
             Ray ray = masterCamera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, raycastLayermask.value) && hit.transform.tag.Equals("RoomBlock"))
+            {
                 selected = hit.transform;
-            else if(!EventSystem.current.IsPointerOverGameObject())
+                currentlyDragging = true;
+            }
+            else if (!EventSystem.current.IsPointerOverGameObject()) // if no button was pressed
+            {
                 selected = null;
+            }
+        }
+
+        // stop dragging
+        if (Input.GetMouseButtonUp(0))
+        {
+            currentlyDragging = false;
         }
 
         // move blocks
-        float scrollAmount = -Input.GetAxis("Mouse ScrollWheel");
-        if (selected && scrollAmount != 0)
+        float mouseDragDiff = blockSpeed * Input.GetAxis("Mouse Y") * Time.deltaTime;
+        if (selected && currentlyDragging && (mouseDragDiff > 0.0001f || -0.0001f > mouseDragDiff))
         {
             Transform parent = selected.parent.transform;
-            float y = parent.position.y + scrollAmount;
+            float y = parent.position.y + mouseDragDiff;
             y = Mathf.Max(blockMinYValue, y);
             y = Mathf.Min(blockMaxYValue, y);
             parent.position = new Vector3(
-                parent.position.x, 
+                parent.position.x,
                 y,
                 parent.position.z
             );
@@ -59,7 +77,7 @@ public class Master : MonoBehaviour {
 
         // move master
         float input = Input.GetAxis(movementInputAxis);
-        if(input != 0)
+        if (input != 0)
         {
             var newPosition = transform.position + input * Vector3.forward * movementSpeed;
             newPosition.z = Mathf.Clamp(newPosition.z, movementMin.position.z, movementMax.position.z);
