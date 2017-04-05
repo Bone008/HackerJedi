@@ -1,48 +1,3 @@
-<<<<<<< HEAD
-%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!78 &1
-TagManager:
-  serializedVersion: 2
-  tags: []
-  layers:
-  - Default
-  - TransparentFX
-  - Ignore Raycast
-  - 
-  - Water
-  - UI
-  - 
-  - 
-  - NotVisibleToMaster
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
-=======
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
@@ -50,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - RoomBlock
+  - RailBlock
   layers:
   - Default
   - TransparentFX
@@ -87,4 +43,3 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
->>>>>>> af2f6f64c4f1480a804037c71e7fa28610097a0e

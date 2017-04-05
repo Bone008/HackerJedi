@@ -123,17 +123,23 @@ public class LevelGenerator : MonoBehaviour {
         {
             prevDirection = direction;
             world[p, i].transform.Translate(Vector3.down * .5f * blockSize);
+            foreach (Transform t in world[p, i].transform)
+                t.gameObject.tag = "RailBlock";
             track[p, i] = true;
             direction = Random.Range(0, 3);
             if (direction == 1 && prevDirection != 2 && p >= 1 && i < lines - 2)
             {
                 world[p, i + 1].transform.Translate(Vector3.down * .5f * blockSize);
+                foreach (Transform t in world[p, i + 1].transform)
+                    t.gameObject.tag = "RailBlock";
                 track[p, i + 1] = true;
                 p--;
             }
             else if (direction == 2 && prevDirection != 1 && p < (rows - 1) && i < lines - 2)
             {
                 world[p, i + 1].transform.Translate(Vector3.down * .5f * blockSize);
+                foreach (Transform t in world[p, i + 1].transform)
+                    t.gameObject.tag = "RailBlock";
                 track[p, i + 1] = true;
                 p++;
             }
