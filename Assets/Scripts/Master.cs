@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Master : MonoBehaviour {
@@ -9,56 +10,76 @@ public class Master : MonoBehaviour {
     public Transform masterEye;
     public LayerMask raycastLayermask;
 
-    public float rotationSpeed;
-
     [Header("Movement")]
     public Transform movementMin;
     public Transform movementMax;
     public float movementSpeed;
+    public string movementInputAxis;
 
-    private bool createEnemyOnClick = false;
+    [Header("Spawning")]
+    public GameObject enemyPrefab;
+
+    [Header("Block Moving")]
+    public float blockMinYValue = 0;
+    public float blockMaxYValue = 6;
+
+
+    private Transform selected;
 
 	void Start () {
-
 	}
 	
 	void Update () {
-        // get aimed-for object via Raycast
-        Transform objectHit = null;
-        RaycastHit hit;
-        Ray ray = masterCamera.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out hit, Mathf.Infinity, raycastLayermask.value))
-        {
-            objectHit = hit.transform;
-        }
-
         // left mouse button down
-        if (objectHit != null && Input.GetMouseButtonDown(0) && createEnemyOnClick)
+        if (Input.GetMouseButtonDown(0))
         {
-            // TODO spawn enemy
-            objectHit.GetComponent<Renderer>().material.color = new Color(1, 0, 0);
-            createEnemyOnClick = false;
+            // get aimed-for object via Raycast, prevent onclick when pressing buton
+            RaycastHit hit;
+            Ray ray = masterCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, raycastLayermask.value) && hit.transform.tag.Equals("RoomBlock"))
+                selected = hit.transform;
+            else if(!EventSystem.current.IsPointerOverGameObject())
+                selected = null;
         }
 
-        // rotate eye to point to raycast hit
-        if (objectHit)
+        // move blocks
+        float scrollAmount = -Input.GetAxis("Mouse ScrollWheel");
+        if (selected && scrollAmount != 0)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(hit.point - masterEye.position);
-            masterEye.rotation = Quaternion.Slerp(masterEye.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            Transform parent = selected.parent.transform;
+            float y = parent.position.y + scrollAmount;
+            y = Mathf.Max(blockMinYValue, y);
+            y = Mathf.Min(blockMaxYValue, y);
+            parent.position = new Vector3(
+                parent.position.x, 
+                y,
+                parent.position.z
+            );
         }
 
-        // move eye with A / D buttons
-        // TODO nice to have: accelerate
-        if (Input.GetKey(KeyCode.W) && transform.position.z < movementMax.position.z)
-            transform.position +=new Vector3(0, 0, movementSpeed * Time.deltaTime);
-        if (Input.GetKey(KeyCode.S) && transform.position.z > movementMin.position.z)
-            transform.position -= new Vector3(0, 0, movementSpeed * Time.deltaTime);
-        
+        // move master
+        float input = Input.GetAxis(movementInputAxis);
+        if(input != 0)
+        {
+            var newPosition = transform.position + input * Vector3.forward * movementSpeed;
+            newPosition.z = Mathf.Clamp(newPosition.z, movementMin.position.z, movementMax.position.z);
+            transform.position = newPosition;
+        }
     }
 
     public void OnButtonEnemyCreate()
     {
-        createEnemyOnClick = true;        
+        // spawn enemy
+        if (selected != null)
+        {
+            // TODO this gets done by the navagent
+            var enemyCollider = enemyPrefab.GetComponent<Collider>();
+            float offsetY = 0;
+            if (enemyCollider != null)
+                offsetY = -enemyCollider.bounds.min.y;
+
+            Instantiate(enemyPrefab, selected.position + Vector3.up * offsetY, Quaternion.Euler(0, Random.Range(0, 360), 0));
+        }
     }
 
 
