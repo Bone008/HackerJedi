@@ -68,4 +68,9 @@ public class Platform : MonoBehaviour {
         railLength = level.railLength;
     }
 
+    public Vector3 getVelocity()
+    {
+        return (endPoint.position - startPoint.position).normalized * velocity;
+    }
+
 }
