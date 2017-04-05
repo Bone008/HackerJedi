@@ -108,7 +108,8 @@ GameObject:
   - component: {fileID: 4087157620151764}
   - component: {fileID: 20046377273622324}
   - component: {fileID: 124731880001699920}
-  - component: {fileID: 114779557743743646}
+  - component: {fileID: 114477060992811162}
+  - component: {fileID: 114324617637760442}
   m_Layer: 0
   m_Name: Camera (eye)
   m_TagString: MainCamera
@@ -592,6 +593,8 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -626,6 +629,8 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -660,6 +665,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23147199606287196
 MeshRenderer:
@@ -691,6 +697,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23359207208158112
 MeshRenderer:
@@ -722,6 +729,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23593850322137814
 MeshRenderer:
@@ -753,6 +761,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23919660358876332
 MeshRenderer:
@@ -784,6 +793,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33010591806280616
 MeshFilter:
@@ -982,16 +992,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04fbdf3173fc9464fa4a8ee0304e1504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handGameObjects:
+  - {fileID: 1761215752952578}
+  - {fileID: 1067001103506064}
   abilitySelectionPrefab: {fileID: 1116825199492942, guid: df34eb406a2371a48b3d30ddbb86d728,
     type: 2}
   abilityPrefabs:
   - {fileID: 1592527875849472, guid: 68921e643628709439a17ba67b7906c2, type: 2}
   - {fileID: 1592527875849472, guid: 7dd2836027cb0024ea1e56281b83a9d8, type: 2}
-  handGameObjects:
-  - {fileID: 1761215752952578}
-  - {fileID: 1067001103506064}
   initialAbilityLeft: 1
   initialAbilityRight: 1
+--- !u!114 &114324617637760442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1172365516312362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bca9ccf900ccc84c887d783321d27e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _head: {fileID: 4728077981315754}
+  _ears: {fileID: 4381576039582240}
+  wireframe: 0
 --- !u!114 &114362741296900436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1056,6 +1080,17 @@ MonoBehaviour:
   right: {fileID: 1067001103506064}
   objects: []
   assignAllBeforeIdentified: 0
+--- !u!114 &114477060992811162
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1172365516312362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b61cd59d8f02e454186a61a5f55c21b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114551921278918600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1147,20 +1182,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vrcam: {fileID: 0}
---- !u!114 &114779557743743646
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1172365516312362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bca9ccf900ccc84c887d783321d27e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _head: {fileID: 4728077981315754}
-  _ears: {fileID: 4381576039582240}
-  wireframe: 0
 --- !u!114 &114829305575014356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1257,7 +1278,7 @@ Canvas:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1480236697501744}
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
@@ -1266,6 +1287,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
