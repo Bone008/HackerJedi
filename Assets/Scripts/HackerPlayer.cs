@@ -16,6 +16,9 @@ public class HackerPlayer : MonoBehaviour
     public Gun leftGun;
     public Gun rightGun;
 
+    public float maxHealth = 100.0f;
+    private float currentHealth;
+
     private GameObject[] selectionWheels = { null, null };
 
     private GameObject GetHandGO(HackerHand hand)
@@ -26,7 +29,7 @@ public class HackerPlayer : MonoBehaviour
 
     void Start()
     {
-
+        currentHealth = maxHealth;
     }
 
     void Update()
@@ -71,5 +74,16 @@ public class HackerPlayer : MonoBehaviour
     public void ConfirmAbilitySelection(HackerHand hand)
     {
         // TODO
+    }
+
+    public void OnDamage(float damageAmount)
+    {
+        currentHealth -= damageAmount;
+
+        if(currentHealth < 0)
+        {
+            Debug.Log("You Died!");
+            // TODO
+        }
     }
 }

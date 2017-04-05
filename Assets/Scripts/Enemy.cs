@@ -8,12 +8,14 @@ public class Enemy : MonoBehaviour
     public float newTargetPosThreshhold, stopRange;
     public float hitRange;
     public float fireDelay = 0.6f;
+    public float initialHealth = 100f;
 
     private Transform goal;
     private Vector3 oldPos;
     private NavMeshAgent agent;
     private bool following = true;
     private Gun gun;
+    private float currentHealth;
 
     private Coroutine firingCoroutine = null;
 
@@ -28,6 +30,9 @@ public class Enemy : MonoBehaviour
 
         // get gun component from children
         gun = GetComponentInChildren<Gun>();
+
+        // set current health
+        currentHealth = initialHealth;
     }
 
     void FixedUpdate()
@@ -62,6 +67,17 @@ public class Enemy : MonoBehaviour
         {
             StopCoroutine(firingCoroutine);
             firingCoroutine = null;
+        }
+    }
+
+    public void OnDamage(float damageAmount)
+    {
+        currentHealth -= damageAmount;
+
+        if(currentHealth < 0)
+        {
+            Destroy(gameObject);
+            return;
         }
     }
 
