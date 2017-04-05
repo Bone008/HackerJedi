@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelGenerator : MonoBehaviour {
+public class LevelGenerator : MonoBehaviour
+{
 
     public GameObject block;
+    public GameObject railBlock;
+
     public float blockSize;
+
+    public List<Transform> rail;
+    public int railLength;
 
     // 1:randomPresetBlock Wahrscheinlichkeit dass ein Block versetzt wird; 0 keine Blöcke werden versetzt
     public int randomPresetBlock;
@@ -13,16 +19,20 @@ public class LevelGenerator : MonoBehaviour {
     public int rows;
     public int lines;
     private GameObject[,] world;
-    public bool[,] track;
+    public GameObject[,] track;
 
     void createWorldPlane()
     {
-        Vector3 centerOffset = new Vector3((rows-1) / 2f, 0, (lines-1) / 2f) * blockSize;
+        Vector3 centerOffset = new Vector3((rows - 1) / 2f, 0, (lines - 1) / 2f) * blockSize;
 
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < lines; j++)
             {
+                track[i, j] = Instantiate(railBlock, new Vector3(i * blockSize, 0, j * blockSize) - centerOffset + Vector3.down, Quaternion.identity);
+                track[i, j].transform.SetParent(transform, false);
+                track[i, j].SetActive(false);
+
                 world[i, j] = Instantiate(block, new Vector3(i * blockSize, 0, j * blockSize) - centerOffset, Quaternion.identity);
                 world[i, j].transform.SetParent(transform, false);
                 foreach (Transform t in world[i, j].transform)
@@ -35,6 +45,8 @@ public class LevelGenerator : MonoBehaviour {
 
     void flattenWorld()
     {
+        rail.Clear();
+
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < lines; j++)
@@ -47,10 +59,10 @@ public class LevelGenerator : MonoBehaviour {
                 {
                     world[i, j].transform.Translate(Vector3.down * blockSize);
                 }
-                else if (world[i, j].transform.position.y == -.5 * blockSize)
+                else if (!world[i, j].activeSelf)
                 {
-                    track[i, j] = false;
-                    world[i, j].transform.Translate(Vector3.up * .5f * blockSize);
+                    track[i, j].SetActive(false);
+                    world[i, j].SetActive(true);
                 }
             }
         }
@@ -67,7 +79,7 @@ public class LevelGenerator : MonoBehaviour {
         {
             for (int j = 0; j < lines; j++)
             {
-                if (Random.Range(0, r) == 0 && !track[i, j])
+                if (Random.Range(0, r) == 0 && !track[i, j].activeSelf)
                 {
                     if (world[i, j].transform.position.y == 0)
                     {
@@ -122,19 +134,25 @@ public class LevelGenerator : MonoBehaviour {
         for (int i = 0; i < lines; i++)
         {
             prevDirection = direction;
-            world[p, i].transform.Translate(Vector3.down * .5f * blockSize);
-            track[p, i] = true;
+            rail.Add(world[p, i].transform);
+            railLength++;
+            world[p, i].SetActive(false);
+            track[p, i].SetActive(true);
             direction = Random.Range(0, 3);
-            if (direction == 1 && prevDirection != 2 && p >= 1 && i < lines - 2)
+            if (direction == 1 && prevDirection != 2 && p > 1 && i < lines - 2)
             {
-                world[p, i + 1].transform.Translate(Vector3.down * .5f * blockSize);
-                track[p, i + 1] = true;
+                rail.Add(world[p, i + 1].transform);
+                railLength++;
+                world[p, i + 1].SetActive(false);
+                track[p, i + 1].SetActive(true);
                 p--;
             }
-            else if (direction == 2 && prevDirection != 1 && p < (rows - 1) && i < lines - 2)
+            else if (direction == 2 && prevDirection != 1 && p < (rows - 2) && i < lines - 2)
             {
-                world[p, i + 1].transform.Translate(Vector3.down * .5f * blockSize);
-                track[p, i + 1] = true;
+                rail.Add(world[p, i + 1].transform);
+                railLength++;
+                world[p, i + 1].SetActive(false);
+                track[p, i + 1].SetActive(true);
                 p++;
             }
         }
@@ -144,7 +162,7 @@ public class LevelGenerator : MonoBehaviour {
     void Start()
     {
         world = new GameObject[rows, lines];
-        track = new bool[rows, lines];
+        track = new GameObject[rows, lines];
         createWorldPlane();
         randomizeWorld(randomPresetBlock);
     }
