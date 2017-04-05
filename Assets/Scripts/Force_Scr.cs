@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class Force_Scr : MonoBehaviour {
 
@@ -10,7 +11,7 @@ public class Force_Scr : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        selPoint = gameObject.transform.FindChild("SelPoint").gameObject;
 	}
 	
 	// Update is called once per frame
@@ -20,6 +21,7 @@ public class Force_Scr : MonoBehaviour {
         {
             force();
         }
+        grabAndThrow();
 	}
     public void force()
     {
@@ -42,7 +44,7 @@ public class Force_Scr : MonoBehaviour {
         }
     }
 
-    public void grabIt()
+    public void grabAndThrow()
     {
         //bei Klick wird mit Raycast Selection gesetzt (Klicküberprüfung in Update)(Noch mit Mousecontrol)
         //Selectionspunkt wird von Controller geparented
@@ -51,9 +53,11 @@ public class Force_Scr : MonoBehaviour {
 	        RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                selPoint = Instantiate(new GameObject(), hit.point, transform.rotation);
-                selPoint.transform.SetParent(gameObject.transform);
+                selPoint.transform.position = hit.collider.bounds.center;
+                
                 selection = hit.collider.gameObject;
+                selection.GetComponent<Throwable_OBJ>().setGrabed();
+                Debug.Log("Grabed!");
             }
         }
 
@@ -61,13 +65,12 @@ public class Force_Scr : MonoBehaviour {
         if (selection&&selection.tag == "Enemy")
         {
             selection.GetComponent<Rigidbody>().MovePosition(selPoint.transform.position);
-            selection.GetComponent<Rigidbody>().useGravity = false; //Sollte nur einmal gesetz werden
-
+            if (Input.GetButtonDown("Fire2"))
+            {
+                selection.GetComponent<Throwable_OBJ>().setFree();
+                selection = null;
+                Debug.Log("Fallen gelassen!");
+            }
         }
-    }
-    public void throwIt()
-    {
-        selection.GetComponent<Rigidbody>().useGravity = true;
-
     }
 }
