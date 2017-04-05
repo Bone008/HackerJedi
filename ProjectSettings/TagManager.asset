@@ -6,7 +6,14 @@ TagManager:
   tags:
   - Enemy
   - RoomBlock
-  - RailBlock  layers:
+  - "\v"
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Water
+  - UI
+  - RailBlock
+  layers:
   - Default
   - TransparentFX
   - Ignore Raycast
@@ -15,7 +22,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - NotVisibleToMaster
   - 
   - 
   - 
