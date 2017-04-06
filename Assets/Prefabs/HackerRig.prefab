@@ -73,11 +73,9 @@ GameObject:
   - component: {fileID: 114601216256881632}
   - component: {fileID: 20269471111188440}
   - component: {fileID: 92002170303011454}
-  - component: {fileID: 136246703195838770}
-  - component: {fileID: 114459715335974188}
   m_Layer: 0
   m_Name: Camera (head)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -650,7 +648,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 2.821654e-37
+  field of view: 1
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -1094,25 +1092,6 @@ MonoBehaviour:
   right: {fileID: 1067001103506064}
   objects: []
   assignAllBeforeIdentified: 0
---- !u!114 &114459715335974188
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1120896299160374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04fbdf3173fc9464fa4a8ee0304e1504, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handGameObjects:
-  - {fileID: 1761215752952578}
-  - {fileID: 1067001103506064}
-  abilitySelectionPrefab: {fileID: 1116825199492942, guid: df34eb406a2371a48b3d30ddbb86d728,
-    type: 2}
-  initialAbilityLeft: 1
-  initialAbilityRight: 1
-  maxHealth: 100
 --- !u!114 &114477060992811162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1231,7 +1210,6 @@ MonoBehaviour:
   - {fileID: 1067001103506064}
   abilitySelectionPrefab: {fileID: 1116825199492942, guid: ff62253a71ba39e4d84ce97f0e437f79,
     type: 2}
-  abilityPrefabs: []
   initialAbilityLeft: 1
   initialAbilityRight: 1
   maxHealth: 100
@@ -1289,7 +1267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c5c1fd620850944b85d769db9645f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head: {fileID: 4728077981315754}
+  head: {fileID: 4087157620151764}
   overHeadOffset: 0.2
 --- !u!114 &114999693930850188
 MonoBehaviour:
@@ -1325,19 +1303,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1172365516312362}
   m_Enabled: 1
---- !u!136 &136246703195838770
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1120896299160374}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.7
-  m_Direction: 1
-  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!136 &136694615311121704
 CapsuleCollider:
   m_ObjectHideFlags: 1
