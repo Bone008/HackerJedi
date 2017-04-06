@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4e71dd86e6c7c44bf0ea8c1a110960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aimingFOV: 45
+  aimingFOV: 65
   bulletVelocity: 40
 --- !u!114 &114478584218646370
 MonoBehaviour:
