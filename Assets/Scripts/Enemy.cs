@@ -42,9 +42,14 @@ public class Enemy : MonoBehaviour
             oldPos = goal.position;
         }
 
-        //Debug.Log("Vec3 " + Vector3.Distance(transform.position, goal.position));
-        //Debug.Log("agent " + agent.remainingDistance);
-        //agent.destination = goal.position;
+        if (agent.velocity.x >= -0.05f && agent.velocity.x <= 0.05f
+            && agent.velocity.z >= -0.1f && agent.velocity.z <= 0.1f)
+        {
+            Debug.Log("test");
+            transform.LookAt(goal);
+        }
+
+        Debug.Log(agent.velocity);
 
         // fire while in range
         if ((goal.position - transform.position).sqrMagnitude <= hitRange * hitRange)
