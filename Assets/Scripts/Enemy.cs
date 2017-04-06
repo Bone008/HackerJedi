@@ -21,8 +21,15 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         // locate player
-        goal = GameObject.FindGameObjectWithTag("Player").transform;
+        var player = GameObject.FindGameObjectWithTag("Player");
+        // if there is no player, there is no meaning to our life
+        if (player == null)
+        {
+            enabled = false;
+            return;
+        }
 
+        goal = player.transform;
         oldPos = goal.position;
         agent = GetComponent<NavMeshAgent>();
 

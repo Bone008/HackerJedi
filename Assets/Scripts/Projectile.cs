@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("collided with " + collider.gameObject.name);
+        //Debug.Log("collided with " + collider.gameObject.name);
 
         // dont hit gun itself
         if (collider.GetComponentInParent<Gun>() != null)
