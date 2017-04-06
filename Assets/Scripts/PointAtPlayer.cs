@@ -13,7 +13,14 @@ public class PointAtPlayer : MonoBehaviour
 	void Start ()
 	{
         player = GameObject.FindWithTag("Player");
-	    parent = transform.parent.gameObject;
+        // if there is no player, there is no meaning to our life
+        if (player == null)
+        {
+            enabled = false;
+            return;
+        }
+
+        parent = transform.parent.gameObject;
 	    platform = GameObject.Find("Platform");
         //platformVelocity = platform.GetComponent<Platform>().getVelocity();
 	}
