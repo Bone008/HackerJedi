@@ -13,7 +13,14 @@ public class PointAtPlayer : MonoBehaviour
 	void Start ()
 	{
         player = GameObject.FindWithTag("Player");
-	    parent = transform.parent.gameObject;
+        // if there is no player, there is no meaning to our life
+        if (player == null)
+        {
+            enabled = false;
+            return;
+        }
+
+        parent = transform.parent.gameObject;
 	    platform = GameObject.Find("Platform");
         //platformVelocity = platform.GetComponent<Platform>().getVelocity();
 	}
@@ -24,7 +31,9 @@ public class PointAtPlayer : MonoBehaviour
 
 	    float dist = Vector3.Distance(transform.position, player.transform.position);
 	    float timeOffset = dist/bulletVelocity;
-        float overHeadOffset = player.GetComponent<AdjustVRCollider>().overHeadOffset;
+
+        var vrCollider = player.GetComponent<AdjustVRCollider>();
+        float overHeadOffset = (vrCollider != null ? vrCollider.overHeadOffset : 0);
 	    Vector3 aimPosition = player.transform.position - new Vector3(0, overHeadOffset, 0) + timeOffset * platform.GetComponent<Platform>().getVelocity();
         
 	    if (Vector3.Angle(parent.transform.forward, (player.transform.position - parent.transform.position)) < aimingFOV)

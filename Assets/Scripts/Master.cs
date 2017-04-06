@@ -93,6 +93,9 @@ public class Master : MonoBehaviour {
         {
             currentlyDragging = false;
 
+            if (selected == null || selected.parent == null)
+                return;
+
             if (snapCoroutines.ContainsKey(selected.parent))
             {
                 Coroutine existing = snapCoroutines[selected.parent];

@@ -176,11 +176,11 @@ public class LevelGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("l"))
         {
             flattenWorld();
         }
-        if (Input.GetKeyUp("space"))
+        if (Input.GetKeyUp("l"))
             randomizeWorld(randomPresetBlock);
     }
 }

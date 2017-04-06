@@ -15,6 +15,7 @@ TagManager:
   - RailBlock
   - EndMarker
   - HackArea
+  - Platform
   layers:
   - Default
   - TransparentFX
