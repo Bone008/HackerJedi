@@ -108,10 +108,9 @@ public class Master : MonoBehaviour {
         // snap blocks to grid
         if (selected && currentlySnappingToGrid)
         {
-            float vec = targetY - selected.parent.transform.position.y;
-            float direction = Mathf.Sign(vec);
-            float distance = Mathf.Min(Mathf.Abs(vec), Time.deltaTime);
-            selected.parent.transform.position += new Vector3(0, distance * direction * snappingSpeed, 0);
+            Vector3 pos = selected.parent.transform.position;
+            pos.y = Mathf.MoveTowards(pos.y, targetY, Time.deltaTime * snappingSpeed);
+            selected.parent.transform.position = pos;
 
             if (selected.parent.transform.position.y == targetY)
                 currentlySnappingToGrid = false;
