@@ -91,8 +91,7 @@ public class Master : MonoBehaviour {
         // move blocks
         Vector2 newMousePosition = Input.mousePosition;
         float mouseDragDiff = blockSpeed * (newMousePosition.y - oldMousePosition.y) * Time.deltaTime;
-        if (selected && currentlyDragging)
-        {
+        if (selected && currentlyDragging)        {
             Transform parent = selected.parent.transform;
             float y = parent.position.y + mouseDragDiff;
             y = Mathf.Max(blockMinYValue, y);
