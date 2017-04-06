@@ -13,7 +13,7 @@ public class Master : MonoBehaviour {
     [Header("Movement")]
     public Transform movementMin;
     public Transform movementMax;
-    public float movementSpeed;
+    public float maxMovementDelta;
     public string movementInputAxis;
 
     [Header("Spawning")]
@@ -112,9 +112,8 @@ public class Master : MonoBehaviour {
         float input = Input.GetAxis(movementInputAxis);
         if (input != 0)
         {
-            var newPosition = transform.position + input * Vector3.forward * movementSpeed;
-            newPosition.z = Mathf.Clamp(newPosition.z, movementMin.position.z, movementMax.position.z);
-            transform.position = newPosition;
+            Transform target = input < 0 ? movementMin : movementMax;
+            transform.position = Vector3.MoveTowards(transform.position, target.position, maxMovementDelta);
         }
 
         // move laser

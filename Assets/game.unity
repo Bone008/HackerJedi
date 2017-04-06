@@ -2378,7 +2378,7 @@ MonoBehaviour:
     m_Bits: 4294967039
   movementMin: {fileID: 772468925}
   movementMax: {fileID: 1003542860}
-  movementSpeed: 1
+  maxMovementDelta: 0.3
   movementInputAxis: Vertical
   enemyPrefab: {fileID: 1766478273696298, guid: 252bb4741bf35b84791379d539ff286d,
     type: 2}
