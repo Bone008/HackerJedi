@@ -154,7 +154,7 @@ public class Master : MonoBehaviour {
             //if (enemyCollider != null)
             //    offsetY = -enemyCollider.bounds.min.y;
 
-            Instantiate(enemyPrefab, selected.position + new Vector3(0, selected.GetComponent<Renderer>().bounds.size.y, 0) + Vector3.up * offsetY, Quaternion.Euler(0, Random.Range(0, 360), 0));
+            Instantiate(enemyPrefab, selected.position + new Vector3(0, selected.GetComponent<Renderer>().bounds.size.y, 0) /*+ Vector3.up * offsetY*/, Quaternion.Euler(0, Random.Range(0, 360), 0));
         }
     }
     
