@@ -123,11 +123,12 @@ GameObject:
   - component: {fileID: 33741696213756246}
   - component: {fileID: 136183739407472826}
   - component: {fileID: 23938162948718472}
+  - component: {fileID: 54307457951544872}
   - component: {fileID: 114478584218646370}
   - component: {fileID: 195880091860757720}
   m_Layer: 9
   m_Name: SuperEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -385,6 +386,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1184431634682896}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &54307457951544872
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1766478273696298}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 2
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &65261862784711552
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -434,7 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newTargetPosThreshhold: 1
-  hitRange: 5
+  hitRange: 6
   fireDelay: 0.6
   initialHealth: 100
 --- !u!114 &114731796967347384

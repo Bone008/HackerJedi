@@ -73,9 +73,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4695183106430682}
-  - component: {fileID: 114403906263952586}
+  - component: {fileID: 114708525834626778}
   m_Layer: 0
-  m_Name: ForceHand
+  m_Name: ForcePushHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -495,7 +495,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1865475409461818}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114403906263952586
+--- !u!114 &114708525834626778
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -503,15 +503,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1237343732971958}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 604661955c7fa16408eb40ae52df3f68, type: 3}
+  m_Script: {fileID: 11500000, guid: 3109ba7efef01a241a26480e04ced010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityType: 3
-  projectilePrefab: {fileID: 1072651022596434, guid: bc6415566563d784791acac02bf9a97d,
-    type: 2}
-  nozzle: {fileID: 4999043423783370}
-  projectileSpeed: 5
-  damageAmount: 25
+  forceStrength: 25
+  forceLift: 10
+  range: 20
 --- !u!136 &136059860543297224
 CapsuleCollider:
   m_ObjectHideFlags: 1
