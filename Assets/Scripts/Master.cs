@@ -18,6 +18,8 @@ public class Master : MonoBehaviour {
 
     [Header("Spawning")]
     private GameObject enemyPrefab = null;
+    private GameObject obstaclePrefab = null;
+    public LevelGenerator level;
 
     [Header("Block Moving")]
     public float blockMinYValue = 0;
@@ -57,7 +59,7 @@ public class Master : MonoBehaviour {
                 // get aimed-for object via Raycast, prevent onclick when pressing buton
                 RaycastHit hit;
                 Ray ray = masterCamera.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, raycastLayermask.value) && hit.transform.tag.Equals("RoomBlock"))
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, raycastLayermask.value))
                 {
                     selected = hit.transform;
                 }
@@ -66,7 +68,12 @@ public class Master : MonoBehaviour {
 
         // spawn enemy
         if (selected != null && Input.GetMouseButtonDown(0))
-            CreateEnemyAbove(selected.gameObject);
+        {
+            if (selected.tag.Equals("RoomBlock"))
+                CreateEnemyAbove(selected.gameObject);
+            else if (selected.tag.Equals("RailBlock"))
+                CreateObstacleOn(selected);
+        }
 
         // start dragging
         if (Input.GetMouseButtonDown(1) && selected != null)
@@ -153,6 +160,11 @@ public class Master : MonoBehaviour {
         this.enemyPrefab = enemyPrefab;
     }
 
+    public void SelectObstacle(GameObject obstaclePrefab)
+    {
+        this.obstaclePrefab = obstaclePrefab;
+    }
+
     private void CreateEnemyAbove(GameObject ground)
     {
         //var enemyCollider = enemyPrefab.GetComponent<Collider>();
@@ -162,6 +174,19 @@ public class Master : MonoBehaviour {
 
         if(enemyPrefab != null)
             Instantiate(enemyPrefab, ground.transform.position + new Vector3(0, ground.GetComponent<Renderer>().bounds.size.y, 0) /*+ Vector3.up * offsetY*/, Quaternion.Euler(0, Random.Range(0, 360), 0));
+    }
+
+    private void CreateObstacleOn(Transform rail)
+    {
+        // get direction between rail blocks
+        int clickedIndex = level.rail.FindIndex(t => t.position.x == rail.position.x && t.position.z == rail.position.z);
+        Vector3 currentPosition = level.rail[clickedIndex].transform.position;
+        Vector3 lastPosition = level.rail[clickedIndex - 1].transform.position;
+        Quaternion platformDirection = Quaternion.LookRotation(currentPosition - lastPosition);
+        
+        // instantiate prefab
+        if (obstaclePrefab != null)
+            Instantiate(obstaclePrefab, rail.transform.position, platformDirection);
     }
 
 }
