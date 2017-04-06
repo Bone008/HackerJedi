@@ -52,6 +52,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   block: {fileID: 1369675270313828, guid: d1d8e52480823694e8bc2d95e8750f47, type: 2}
-  blockSize: 2
-  rows: 10
-  lines: 10
+  railBlock: {fileID: 1369675270313828, guid: d1d8e52480823694e8bc2d95e8750f47, type: 2}
+  blockSize: 1.5
+  rail: []
+  railLength: 10
+  randomPresetBlock: 0
+  rows: 14
+  lines: 14

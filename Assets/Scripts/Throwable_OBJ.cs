@@ -36,6 +36,7 @@ namespace Valve.VR.InteractionSystem
         public void setGrabed()
         {
             velocityEstimator.BeginEstimatingVelocity();
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
             //evtl bool grabed? For Movementdeaktivation (grabed=true)
         }
 
@@ -44,6 +45,7 @@ namespace Valve.VR.InteractionSystem
             velocityEstimator.FinishEstimatingVelocity();
             gameObject.GetComponent<Rigidbody>().velocity = velocityEstimator.GetVelocityEstimate();
             gameObject.GetComponent<Rigidbody>().position = velocityEstimator.transform.position;
+            gameObject.GetComponent<Rigidbody>().useGravity = true;
             //(grabed=false)
         }
     }

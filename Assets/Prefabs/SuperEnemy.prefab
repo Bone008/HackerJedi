@@ -244,7 +244,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7e539721d5d69c843a65f04ab1f39a79, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -323,6 +323,7 @@ MonoBehaviour:
   stopRange: 4
   hitRange: 5
   fireDelay: 0.6
+  initialHealth: 100
 --- !u!114 &114731796967347384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -338,6 +339,7 @@ MonoBehaviour:
     type: 2}
   nozzle: {fileID: 4033100525822738}
   projectileSpeed: 40
+  damageAmount: 25
 --- !u!136 &136183739407472826
 CapsuleCollider:
   m_ObjectHideFlags: 1

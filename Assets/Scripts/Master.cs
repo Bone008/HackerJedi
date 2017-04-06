@@ -24,7 +24,13 @@ public class Master : MonoBehaviour {
     public float blockMaxYValue = 6;
     public float blockSpeed = 30.0f;
     private bool currentlyDragging;
-    private float mouseDragStartY;
+
+    [Header("Block Snapping To Grid")]
+    public float snappingSpeed = 1.0f;
+    public float snappingGround = 0.0f;
+    public float snappingGridSize = 2.0f;
+    private bool currentlySnappingToGrid;
+    private float targetY;
 
     [Header("Laser Beam")]
     public LineRenderer laserBeam;
@@ -35,7 +41,7 @@ public class Master : MonoBehaviour {
     
 	void Start () {
         laserBeam.enabled = false;
-        lookAtMouseScript = ((LookAtMouse)masterEye.GetComponent("LookAtMouse"));
+        lookAtMouseScript = masterEye.GetComponent<LookAtMouse>();
     }
 
     void Update()
@@ -50,6 +56,7 @@ public class Master : MonoBehaviour {
             {
                 selected = hit.transform;
                 currentlyDragging = true;
+                currentlySnappingToGrid = false;
             }
             else if (!EventSystem.current.IsPointerOverGameObject()) // if no button was pressed
             {
@@ -61,11 +68,22 @@ public class Master : MonoBehaviour {
         if (Input.GetMouseButtonUp(0))
         {
             currentlyDragging = false;
+            currentlySnappingToGrid = true;
+
+            // determine where to move to clip to grid
+            float currentY = selected.parent.transform.position.y;
+            int currentGridIndex = Mathf.FloorToInt((currentY - snappingGround) / snappingGridSize);
+            float midY = snappingGround + (currentGridIndex * snappingGridSize) + (snappingGridSize / 2.0f);
+            
+            if(currentY < midY)
+                targetY = snappingGround + (currentGridIndex * snappingGridSize);
+            else
+                targetY = snappingGround + ((currentGridIndex + 1) * snappingGridSize);
         }
 
         // move blocks
-        float mouseDragDiff = blockSpeed * Input.GetAxis("Mouse Y") * Time.deltaTime;
-        if (selected && currentlyDragging && (mouseDragDiff > 0.0001f || -0.0001f > mouseDragDiff))
+        float mouseDragDiff = blockSpeed * Input.GetAxis("Mouse Y") * Time.deltaTime / Screen.height;
+        if (selected && currentlyDragging)
         {
             Transform parent = selected.parent.transform;
             float y = parent.position.y + mouseDragDiff;
@@ -76,6 +94,18 @@ public class Master : MonoBehaviour {
                 y,
                 parent.position.z
             );
+        }
+
+        // snap blocks to grid
+        if (selected && currentlySnappingToGrid)
+        {
+            float vec = targetY - selected.parent.transform.position.y;
+            float direction = Mathf.Sign(vec);
+            float distance = Mathf.Min(Mathf.Abs(vec), Time.deltaTime);
+            selected.parent.transform.position += new Vector3(0, distance * direction * snappingSpeed, 0);
+
+            if (selected.parent.transform.position.y == targetY)
+                currentlySnappingToGrid = false;
         }
 
         // move master
