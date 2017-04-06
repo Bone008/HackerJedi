@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public float newTargetPosThreshhold;
+    public float newTargetPosThreshhold = 1;
     public float hitRange;
     public float fireDelay = 0.6f;
     public float initialHealth = 100f;
@@ -41,8 +41,10 @@ public class Enemy : MonoBehaviour
             agent.destination = goal.position;
             oldPos = goal.position;
         }
-           
-        
+
+        //Debug.Log("Vec3 " + Vector3.Distance(transform.position, goal.position));
+        //Debug.Log("agent " + agent.remainingDistance);
+        //agent.destination = goal.position;
 
         // fire while in range
         if ((goal.position - transform.position).sqrMagnitude <= hitRange * hitRange)
@@ -72,7 +74,7 @@ public class Enemy : MonoBehaviour
     {
         while (true)
         {
-            gun.Fire();
+            gun.FireOnce();
             yield return new WaitForSeconds(fireDelay);
         }
     }

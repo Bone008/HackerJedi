@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour, IAbility {
+public class Gun : AbstractAbility {
 
     public AbilityType abilityType = AbilityType.SimpleGun;
 
@@ -12,18 +12,9 @@ public class Gun : MonoBehaviour, IAbility {
     public float projectileSpeed = 1.0f;
     public float damageAmount = 25.0f;
 
-    public AbilityType Type { get { return abilityType; } }
+    public override AbilityType Type { get { return abilityType; } }
 
-    void Start () {
-		
-	}
-	
-	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space))
-            Fire();
-	}
-
-    public void Fire()
+    protected override void OnTriggerDown()
     {
         var shootingDirection = nozzle.transform.TransformDirection(Vector3.forward).normalized;
         var position = nozzle.position + shootingDirection * 1.1f * projectilePrefab.transform.localScale.y;
@@ -35,4 +26,5 @@ public class Gun : MonoBehaviour, IAbility {
         // store damage amount of gun in projectile
         projectile.GetComponent<Projectile>().damageAmount = damageAmount;
     }
+
 }
