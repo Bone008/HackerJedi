@@ -32,8 +32,7 @@ public class Master : MonoBehaviour {
     public float snappingSpeed = 1.0f;
     public float snappingGround = 0.0f;
     public float snappingGridSize = 2.0f;
-    private bool currentlySnappingToGrid;
-    private float targetY;
+    private Dictionary<Transform, Coroutine> snapCoroutines = new Dictionary<Transform, Coroutine>();
 
     [Header("Laser Beam")]
     public LineRenderer laserBeam;
@@ -79,24 +78,30 @@ public class Master : MonoBehaviour {
         if (Input.GetMouseButtonDown(1) && selected != null)
         {
             currentlyDragging = true;
-            currentlySnappingToGrid = false;
+
+            if(snapCoroutines.ContainsKey(selected.parent))
+            {
+                Coroutine existing = snapCoroutines[selected.parent];
+                if(existing != null)
+                    StopCoroutine(existing);
+                snapCoroutines.Remove(selected.parent);
+            }
         }
 
         // stop dragging
         if (Input.GetMouseButtonUp(1))
         {
             currentlyDragging = false;
-            currentlySnappingToGrid = true;
 
-            // determine where to move to clip to grid
-            float currentY = selected.parent.transform.position.y;
-            int currentGridIndex = Mathf.FloorToInt((currentY - snappingGround) / snappingGridSize);
-            float midY = snappingGround + (currentGridIndex * snappingGridSize) + (snappingGridSize / 2.0f);
-            
-            if(currentY < midY)
-                targetY = snappingGround + (currentGridIndex * snappingGridSize);
-            else
-                targetY = snappingGround + ((currentGridIndex + 1) * snappingGridSize);
+            if (snapCoroutines.ContainsKey(selected.parent))
+            {
+                Coroutine existing = snapCoroutines[selected.parent];
+                if (existing != null)
+                    StopCoroutine(existing);
+                snapCoroutines.Remove(selected.parent);
+            }
+
+            snapCoroutines.Add(selected.parent, StartCoroutine(SnapToGrid(selected.parent)));
         }
 
         // move blocks
@@ -114,18 +119,7 @@ public class Master : MonoBehaviour {
             );
         }
         oldMousePosition = newMousePosition;
-
-        // snap blocks to grid
-        if (selected && currentlySnappingToGrid)
-        {
-            Vector3 pos = selected.parent.transform.position;
-            pos.y = Mathf.MoveTowards(pos.y, targetY, Time.deltaTime * snappingSpeed);
-            selected.parent.transform.position = pos;
-
-            if (selected.parent.transform.position.y == targetY)
-                currentlySnappingToGrid = false;
-        }
-
+        
         // move master
         float input = Input.GetAxis(movementInputAxis);
         if (input != 0)
@@ -157,6 +151,32 @@ public class Master : MonoBehaviour {
                 lookAtMouseScript.rotationSpeed /= 10.0f;
             }            
         }
+    }
+
+    private IEnumerator SnapToGrid(Transform box)
+    {
+        Transform target = box;
+
+        // determine where to move to clip to grid
+        float currentY = target.transform.position.y;
+        int currentGridIndex = Mathf.FloorToInt((currentY - snappingGround) / snappingGridSize);
+        float midY = snappingGround + (currentGridIndex * snappingGridSize) + (snappingGridSize / 2.0f);
+
+        float targetY;
+        if (currentY < midY)
+            targetY = snappingGround + (currentGridIndex * snappingGridSize);
+        else
+            targetY = snappingGround + ((currentGridIndex + 1) * snappingGridSize);
+
+        while (target.transform.position.y != targetY)
+        {
+            Vector3 pos = target.transform.position;
+            pos.y = Mathf.MoveTowards(pos.y, targetY, Time.deltaTime * snappingSpeed);
+            target.transform.position = pos;
+            yield return null;
+        }
+
+        snapCoroutines.Remove(target);
     }
 
     public void SelectEnemy(GameObject enemyPrefab)
