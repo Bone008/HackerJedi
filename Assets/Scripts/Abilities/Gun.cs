@@ -14,6 +14,9 @@ public class Gun : AbstractAbility {
 
     public override AbilityType Type { get { return abilityType; } }
 
+    [HideInInspector]
+    public int layer = 0;
+
     protected override void OnTriggerDown()
     {
         var shootingDirection = nozzle.transform.TransformDirection(Vector3.forward).normalized;
@@ -25,6 +28,9 @@ public class Gun : AbstractAbility {
 
         // store damage amount of gun in projectile
         projectile.GetComponent<Projectile>().damageAmount = damageAmount;
+
+        // store layer
+        projectile.layer = layer;
     }
 
 }

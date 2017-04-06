@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4033100525822738}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Nozzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 33517241733731110}
   - component: {fileID: 65598051052588690}
   - component: {fileID: 23844496088902154}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 33913933803537042}
   - component: {fileID: 65261862784711552}
   - component: {fileID: 23544856651342044}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 33312800726615976}
   - component: {fileID: 136809606329979282}
   - component: {fileID: 23117212245533014}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4673269951843566}
   - component: {fileID: 114731796967347384}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4545166947857762}
   - component: {fileID: 114035870511357954}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 23938162948718472}
   - component: {fileID: 114478584218646370}
   - component: {fileID: 195880091860757720}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SuperEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,6 +454,7 @@ MonoBehaviour:
   nozzle: {fileID: 4033100525822738}
   projectileSpeed: 40
   damageAmount: 25
+  layer: 0
 --- !u!136 &136183739407472826
 CapsuleCollider:
   m_ObjectHideFlags: 1
