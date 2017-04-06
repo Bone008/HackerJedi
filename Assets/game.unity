@@ -2374,13 +2374,13 @@ MonoBehaviour:
     m_Bits: 4294967039
   movementMin: {fileID: 772468925}
   movementMax: {fileID: 1003542860}
-  movementSpeed: 20
+  movementSpeed: 1
   movementInputAxis: Vertical
   enemyPrefab: {fileID: 1766478273696298, guid: 252bb4741bf35b84791379d539ff286d,
     type: 2}
   blockMinYValue: 0
   blockMaxYValue: 4.5
-  blockSpeed: 30
+  blockSpeed: 200
   snappingSpeed: 1
   snappingGround: 0
   snappingGridSize: 1.5
