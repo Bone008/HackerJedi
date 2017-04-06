@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
     public float fireDelay = 0.6f;
     public float initialHealth = 100f;
 
+    public GameObject explo;
+
     private Transform goal;
     private Vector3 oldPos;
     private NavMeshAgent agent;
@@ -71,6 +73,7 @@ public class Enemy : MonoBehaviour
 
         if(currentHealth < 0)
         {
+            Instantiate(explo, transform.position, transform.rotation);
             Destroy(gameObject);
             return;
         }
