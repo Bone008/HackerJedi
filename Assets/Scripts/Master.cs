@@ -75,7 +75,7 @@ public class Master : MonoBehaviour {
         }
 
         // start dragging
-        if (Input.GetMouseButtonDown(1) && selected != null)
+        if (Input.GetMouseButtonDown(1) && selected != null && selected.tag.Equals("RoomBlock"))
         {
             currentlyDragging = true;
 
