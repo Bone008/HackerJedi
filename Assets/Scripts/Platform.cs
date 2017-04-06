@@ -88,4 +88,16 @@ public class Platform : MonoBehaviour {
     {
         return (endPoint.position - startPoint.position).normalized * velocity;
     }
+
+    public void DisableForSec(float seconds)
+    {
+        StartCoroutine(TemporaryDisablePlatform(seconds));
+    }
+
+    private IEnumerator TemporaryDisablePlatform(float seconds)
+    {
+        running = false;
+        yield return new WaitForSeconds(seconds);
+        running = true;
+    }
 }

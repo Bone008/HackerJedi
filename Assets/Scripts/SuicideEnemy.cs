@@ -8,7 +8,7 @@ public class SuicideEnemy : MonoBehaviour {
     public float blinkRange;
     public float hitRange;
     public float initialHealth = 100f;
-    public Transform goal;
+    private Transform goal;
     public Color color1;
     public Color color2;
 
@@ -20,6 +20,7 @@ public class SuicideEnemy : MonoBehaviour {
 
     void Start()
     {
+        goal = GameObject.FindGameObjectWithTag("Platform").transform;
         oldPos = goal.position;
         agent = GetComponent<NavMeshAgent>();
 
@@ -51,14 +52,14 @@ public class SuicideEnemy : MonoBehaviour {
             if (sqDist <= hitRange * hitRange)
             {
                 StopCoroutine(blinkCoroutine);
-                StartCoroutine(TemporaryDisablePlatform(goal.GetComponent<Platform>()));
+                goal.GetComponent<Platform>().DisableForSec(2.0f);
                 Destroy(gameObject);
                 return;
             }
         }
         else
         {
-            if(blinkCoroutine == null)
+            if(blinkCoroutine != null)
             {
                 StopCoroutine(blinkCoroutine);
                 blinkCoroutine = null;
@@ -76,14 +77,7 @@ public class SuicideEnemy : MonoBehaviour {
             return;
         }
     }
-
-    private IEnumerator TemporaryDisablePlatform(Platform pf)
-    {
-        pf.enabled = false;
-        yield return new WaitForSeconds(5);
-        pf.enabled = true;
-    }
-
+    
     private IEnumerator StartBlinking()
     {
         Renderer r = GetComponent<Renderer>();
