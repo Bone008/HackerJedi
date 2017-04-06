@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public float newTargetPosThreshhold, stopRange;
+    public float newTargetPosThreshhold = 1;
     public float hitRange;
     public float fireDelay = 0.6f;
     public float initialHealth = 100f;
@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
     private Transform goal;
     private Vector3 oldPos;
     private NavMeshAgent agent;
-    private bool following = true;
     private Gun gun;
     private float currentHealth;
 
@@ -30,6 +29,7 @@ public class Enemy : MonoBehaviour
 
         // get gun component from children
         gun = GetComponentInChildren<Gun>();
+        gun.layer = LayerMask.NameToLayer("Hacker");
 
         // set current health
         currentHealth = initialHealth;
@@ -37,25 +37,15 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Vector3.Distance(transform.position, goal.transform.position) > stopRange)
+        if (Vector3.Distance(oldPos, goal.position) > newTargetPosThreshhold)
         {
-            if (Vector3.Distance(oldPos, goal.position) > newTargetPosThreshhold)
-            {
-                agent.destination = goal.position;
-                oldPos = goal.position;
-            }
-            following = true;
+            agent.destination = goal.position;
+            oldPos = goal.position;
         }
-        else
-        {
-            if (following)
-            {
-                Debug.Log("telling him to stop");
-                Debug.Log(Vector3.Distance(transform.position, goal.transform.position));
-                agent.destination = transform.position;
-                following = false;
-            }
-        }
+
+        //Debug.Log("Vec3 " + Vector3.Distance(transform.position, goal.position));
+        //Debug.Log("agent " + agent.remainingDistance);
+        //agent.destination = goal.position;
 
         // fire while in range
         if ((goal.position - transform.position).sqrMagnitude <= hitRange * hitRange)
@@ -85,7 +75,7 @@ public class Enemy : MonoBehaviour
     {
         while (true)
         {
-            gun.Fire();
+            gun.FireOnce();
             yield return new WaitForSeconds(fireDelay);
         }
     }

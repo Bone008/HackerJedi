@@ -13,6 +13,7 @@ TagManager:
   - Water
   - UI
   - RailBlock
+  - EndMarker
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - 
   - 
   - NotVisibleToMaster
-  - 
-  - 
+  - Enemies
+  - Hacker
   - 
   - 
   - 
