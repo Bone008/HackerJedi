@@ -130,8 +130,12 @@ public class Master : MonoBehaviour {
         float input = Input.GetAxis(movementInputAxis);
         if (input != 0)
         {
-            Transform target = input < 0 ? movementMin : movementMax;
-            transform.position = Vector3.MoveTowards(transform.position, target.position, maxMovementDelta);
+            // rotate on axis between two targets
+            //Transform target = input < 0 ? movementMin : movementMax;
+            //transform.position = Vector3.MoveTowards(transform.position, target.position, maxMovementDelta);
+
+            // rotate around the center of the map
+            transform.RotateAround(new Vector3(0, 0, 0), new Vector3(0, 1, 0), -input);
         }
 
         // move laser
