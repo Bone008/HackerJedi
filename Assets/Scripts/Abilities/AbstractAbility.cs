@@ -31,4 +31,14 @@ public abstract class AbstractAbility : MonoBehaviour
         SetTriggerDown(true);
         SetTriggerDown(false);
     }
+
+
+    /// <summary>Utility function for ability scripts to get a ray in the direction the hand is aiming</summary>
+    public Ray GetAimRay(Transform nozzle = null)
+    {
+        Transform trans = nozzle ?? transform; // use own transform if no nozzle is defined
+
+        var aimDirection = trans.TransformDirection(Vector3.forward).normalized;
+        return new Ray(trans.position, aimDirection);
+    }
 }

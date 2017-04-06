@@ -33,8 +33,12 @@ public class Platform : MonoBehaviour {
 
     void Update()
     {
+        // abort if stopped by a obstacle. add deltaTime to have correct Lerp after re-activating
         if (!running)
+        {
+            startTime += Time.deltaTime;
             return;
+        }
 
         float distCovered = (Time.time - startTime) * velocity;
         float fracJourney = distCovered / journeyLength;
