@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Platform : MonoBehaviour {
 
     private List<Transform> rail;
-    private int railLength;
     private int railPointer = 0;
     public LevelGenerator level;
 
@@ -44,7 +43,7 @@ public class Platform : MonoBehaviour {
 
     void nextRailPart()
     {
-        if (railPointer >= railLength - 2 && forward)
+        if (railPointer >= rail.Count - 2 && forward)
             forward = false;
         else if (railPointer < 1 && !forward)
             forward = true;
@@ -68,7 +67,6 @@ public class Platform : MonoBehaviour {
     void setupRail()
     {
         rail = level.rail;
-        railLength = level.railLength;
     }
 
     public Vector3 getVelocity()
