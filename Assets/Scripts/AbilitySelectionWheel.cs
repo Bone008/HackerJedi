@@ -18,7 +18,7 @@ public class AbilitySelectionWheel : MonoBehaviour {
 
     public void SetPreviewPosition(Vector2 position)
     {
-        selectionPreview.transform.localPosition = position * 12;
+        selectionPreview.transform.localPosition = position * 0.1f;
     }
 
     // returns the selected AbilityType, or null when the selector is not in contact with any button
