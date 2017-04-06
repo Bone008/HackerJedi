@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Platform : MonoBehaviour {
 
@@ -13,7 +14,7 @@ public class Platform : MonoBehaviour {
     private Transform endPoint;
     public float velocity;
 
-    private Vector3 platformOffset = Vector3.up * 1.5f /*+ (Vector3.right * .75f) + (Vector3.forward * .75f)*/;
+    private Vector3 platformOffset = Vector3.up * 1.6f /*+ (Vector3.right * .75f) + (Vector3.forward * .75f)*/;
 
     bool forward;
 
@@ -38,11 +39,12 @@ public class Platform : MonoBehaviour {
         {
             nextRailPart();
         }
+        
     }
 
     void nextRailPart()
     {
-        if (railPointer > railLength - 2 && forward)
+        if (railPointer >= railLength - 2 && forward)
             forward = false;
         else if (railPointer < 1 && !forward)
             forward = true;
@@ -72,6 +74,15 @@ public class Platform : MonoBehaviour {
     public Vector3 getVelocity()
     {
         return (endPoint.position - startPoint.position).normalized * velocity;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.name.Equals("Matrix_Particle"))
+        {
+            Debug.Log("won");
+            SceneManager.LoadScene(1);
+        }
     }
 
 }

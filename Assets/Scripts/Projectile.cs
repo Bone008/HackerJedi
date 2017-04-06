@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviour {
         Debug.Log("collided with " + collider.gameObject.name);
 
         // dont hit gun itself
-        if (GetComponentInParent<Gun>() != null)
+        if (collider.GetComponentInParent<Gun>() != null)
             return;
 
         // damage enemies

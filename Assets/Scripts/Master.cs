@@ -17,7 +17,7 @@ public class Master : MonoBehaviour {
     public string movementInputAxis;
 
     [Header("Spawning")]
-    public GameObject enemyPrefab;
+    private GameObject enemyPrefab = null;
 
     [Header("Block Moving")]
     public float blockMinYValue = 0;
@@ -48,21 +48,25 @@ public class Master : MonoBehaviour {
 
     void Update()
     {
-        // select cube and start dragging
+        // select cube
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
-            // get aimed-for object via Raycast, prevent onclick when pressing buton
-            RaycastHit hit;
-            Ray ray = masterCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, raycastLayermask.value) && hit.transform.tag.Equals("RoomBlock"))
+            selected = null;
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                selected = hit.transform;
-            }
-            else if (!EventSystem.current.IsPointerOverGameObject()) // if no button was pressed
-            {
-                selected = null;
+                // get aimed-for object via Raycast, prevent onclick when pressing buton
+                RaycastHit hit;
+                Ray ray = masterCamera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, raycastLayermask.value) && hit.transform.tag.Equals("RoomBlock"))
+                {
+                    selected = hit.transform;
+                }
             }
         }
+
+        // spawn enemy
+        if (selected != null && Input.GetMouseButtonDown(0))
+            CreateEnemyAbove(selected.gameObject);
 
         // start dragging
         if (Input.GetMouseButtonDown(1) && selected != null)
@@ -144,19 +148,20 @@ public class Master : MonoBehaviour {
         }
     }
 
-    public void OnButtonEnemyCreate()
+    public void SelectEnemy(GameObject enemyPrefab)
     {
-        // spawn enemy
-        if (selected != null)
-        {
-            // TODO this gets done by the navagent
-            var enemyCollider = enemyPrefab.GetComponent<Collider>();
-            float offsetY = 0;
-            if (enemyCollider != null)
-                offsetY = -enemyCollider.bounds.min.y;
-
-            Instantiate(enemyPrefab, selected.position + Vector3.up * offsetY, Quaternion.Euler(0, Random.Range(0, 360), 0));
-        }
+        this.enemyPrefab = enemyPrefab;
     }
-    
+
+    private void CreateEnemyAbove(GameObject ground)
+    {
+        //var enemyCollider = enemyPrefab.GetComponent<Collider>();
+        //float offsetY = 0;
+        //if (enemyCollider != null)
+        //    offsetY = -enemyCollider.bounds.min.y;
+
+        if(enemyPrefab != null)
+            Instantiate(enemyPrefab, ground.transform.position + new Vector3(0, ground.GetComponent<Renderer>().bounds.size.y, 0) /*+ Vector3.up * offsetY*/, Quaternion.Euler(0, Random.Range(0, 360), 0));
+    }
+
 }
