@@ -20,6 +20,9 @@ public class Platform : MonoBehaviour {
     private float startTime;
     private float journeyLength;
 
+    [HideInInspector]
+    public bool running = true;
+
     void Start ()
     {
         setupRail();
@@ -30,6 +33,9 @@ public class Platform : MonoBehaviour {
 
     void Update()
     {
+        if (!running)
+            return;
+
         float distCovered = (Time.time - startTime) * velocity;
         float fracJourney = distCovered / journeyLength;
         transform.position = Vector3.Lerp(startPoint.position + platformOffset, endPoint.position + platformOffset, fracJourney);

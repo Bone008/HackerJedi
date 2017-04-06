@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: {fileID: 1252225517}
   velocity: 1
+  running: 1
 --- !u!1 &134484253
 GameObject:
   m_ObjectHideFlags: 0
