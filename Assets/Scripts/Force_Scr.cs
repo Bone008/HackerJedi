@@ -21,20 +21,20 @@ public class Force_Scr : MonoBehaviour {
 	void Update () {
 
         //Testcode
-        if (Input.GetButtonDown("Fire1"))
-        {
+        //if (Input.GetButtonDown("Fire1"))
+        //{
             //force(Vector3.zero);//Shockwave "Gandalf"
-            force(Vector3.forward);//Machtschlag
-        }
-        if (Input.GetButtonDown("Fire2"))
-        {
-            grabIt();
-        }
-        if (Input.GetButtonDown("Fire3"))
-        {
-            throwIt();
-        }
-        gameObject.transform.Rotate(new Vector3(2, 0, 0));
+        //    force(Vector3.forward);//Machtschlag
+        //}
+        //if (Input.GetButtonDown("Fire2"))
+        //{
+        //    grabIt();
+        //}
+        //if (Input.GetButtonDown("Fire3"))
+        //{
+        //    throwIt();
+        //}
+        //gameObject.transform.Rotate(new Vector3(2, 0, 0));
         //Ende Testcode
 
         //hold/move Item
