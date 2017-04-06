@@ -48,11 +48,12 @@ public class SuicideEnemy : MonoBehaviour {
             if (blinkCoroutine == null)
                 blinkCoroutine = StartCoroutine(StartBlinking());
 
+            Platform pf = goal.GetComponent<Platform>();
             // fire while in range
-            if (sqDist <= hitRange * hitRange)
+            if (sqDist <= hitRange * hitRange && pf.running)
             {
                 StopCoroutine(blinkCoroutine);
-                goal.GetComponent<Platform>().DisableForSec(2.0f);
+                pf.DisableForSec(2.0f);
                 Destroy(gameObject);
                 return;
             }
