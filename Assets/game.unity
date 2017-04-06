@@ -1128,11 +1128,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1983452648}
-        m_MethodName: OnButtonEnemyCreate
-        m_Mode: 1
+        m_MethodName: SelectEnemy
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1766478273696298, guid: 252bb4741bf35b84791379d539ff286d,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2383,8 +2384,6 @@ MonoBehaviour:
   movementMax: {fileID: 1003542860}
   maxMovementDelta: 0.3
   movementInputAxis: Vertical
-  enemyPrefab: {fileID: 1766478273696298, guid: 252bb4741bf35b84791379d539ff286d,
-    type: 2}
   blockMinYValue: 0
   blockMaxYValue: 6
   blockSpeed: 5
