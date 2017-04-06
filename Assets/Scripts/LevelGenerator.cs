@@ -170,15 +170,14 @@ public class LevelGenerator : MonoBehaviour
         endMarker.SetActive(true);
     }
 
-    // Use this for initialization
-    void Start()
+    private void Awake()
     {
         world = new GameObject[rows, lines];
         track = new GameObject[rows, lines];
         createWorldPlane();
         randomizeWorld(randomPresetBlock);
     }
-
+    
     // Update is called once per frame
     void Update()
     {

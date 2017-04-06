@@ -17,13 +17,14 @@ public class Master : MonoBehaviour {
     public string movementInputAxis;
 
     [Header("Spawning")]
-    public GameObject enemyPrefab;
+    private GameObject enemyPrefab = null;
 
     [Header("Block Moving")]
     public float blockMinYValue = 0;
     public float blockMaxYValue = 6;
     public float blockSpeed = 30.0f;
     private bool currentlyDragging;
+    private Vector2 oldMousePosition;
 
     [Header("Block Snapping To Grid")]
     public float snappingSpeed = 1.0f;
@@ -42,30 +43,40 @@ public class Master : MonoBehaviour {
 	void Start () {
         laserBeam.enabled = false;
         lookAtMouseScript = masterEye.GetComponent<LookAtMouse>();
+        oldMousePosition = Input.mousePosition;
     }
 
     void Update()
     {
-        // select cube and start dragging
-        if (Input.GetMouseButtonDown(0))
+        // select cube
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
-            // get aimed-for object via Raycast, prevent onclick when pressing buton
-            RaycastHit hit;
-            Ray ray = masterCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, raycastLayermask.value) && hit.transform.tag.Equals("RoomBlock"))
+            selected = null;
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                selected = hit.transform;
-                currentlyDragging = true;
-                currentlySnappingToGrid = false;
-            }
-            else if (!EventSystem.current.IsPointerOverGameObject()) // if no button was pressed
-            {
-                selected = null;
+                // get aimed-for object via Raycast, prevent onclick when pressing buton
+                RaycastHit hit;
+                Ray ray = masterCamera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, raycastLayermask.value) && hit.transform.tag.Equals("RoomBlock"))
+                {
+                    selected = hit.transform;
+                }
             }
         }
 
+        // spawn enemy
+        if (selected != null && Input.GetMouseButtonDown(0))
+            CreateEnemyAbove(selected.gameObject);
+
+        // start dragging
+        if (Input.GetMouseButtonDown(1) && selected != null)
+        {
+            currentlyDragging = true;
+            currentlySnappingToGrid = false;
+        }
+
         // stop dragging
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(1))
         {
             currentlyDragging = false;
             currentlySnappingToGrid = true;
@@ -82,9 +93,9 @@ public class Master : MonoBehaviour {
         }
 
         // move blocks
-        float mouseDragDiff = blockSpeed * Input.GetAxis("Mouse Y") * Time.deltaTime / Screen.height;
-        if (selected && currentlyDragging)
-        {
+        Vector2 newMousePosition = Input.mousePosition;
+        float mouseDragDiff = blockSpeed * (newMousePosition.y - oldMousePosition.y) * Time.deltaTime;
+        if (selected && currentlyDragging)        {
             Transform parent = selected.parent.transform;
             float y = parent.position.y + mouseDragDiff;
             y = Mathf.Max(blockMinYValue, y);
@@ -95,14 +106,14 @@ public class Master : MonoBehaviour {
                 parent.position.z
             );
         }
+        oldMousePosition = newMousePosition;
 
         // snap blocks to grid
         if (selected && currentlySnappingToGrid)
         {
-            float vec = targetY - selected.parent.transform.position.y;
-            float direction = Mathf.Sign(vec);
-            float distance = Mathf.Min(Mathf.Abs(vec), Time.deltaTime);
-            selected.parent.transform.position += new Vector3(0, distance * direction * snappingSpeed, 0);
+            Vector3 pos = selected.parent.transform.position;
+            pos.y = Mathf.MoveTowards(pos.y, targetY, Time.deltaTime * snappingSpeed);
+            selected.parent.transform.position = pos;
 
             if (selected.parent.transform.position.y == targetY)
                 currentlySnappingToGrid = false;
@@ -137,19 +148,20 @@ public class Master : MonoBehaviour {
         }
     }
 
-    public void OnButtonEnemyCreate()
+    public void SelectEnemy(GameObject enemyPrefab)
     {
-        // spawn enemy
-        if (selected != null)
-        {
-            // TODO this gets done by the navagent
-            var enemyCollider = enemyPrefab.GetComponent<Collider>();
-            float offsetY = 0;
-            if (enemyCollider != null)
-                offsetY = -enemyCollider.bounds.min.y;
-
-            Instantiate(enemyPrefab, selected.position + Vector3.up * offsetY, Quaternion.Euler(0, Random.Range(0, 360), 0));
-        }
+        this.enemyPrefab = enemyPrefab;
     }
-    
+
+    private void CreateEnemyAbove(GameObject ground)
+    {
+        //var enemyCollider = enemyPrefab.GetComponent<Collider>();
+        //float offsetY = 0;
+        //if (enemyCollider != null)
+        //    offsetY = -enemyCollider.bounds.min.y;
+
+        if(enemyPrefab != null)
+            Instantiate(enemyPrefab, ground.transform.position + new Vector3(0, ground.GetComponent<Renderer>().bounds.size.y, 0) /*+ Vector3.up * offsetY*/, Quaternion.Euler(0, Random.Range(0, 360), 0));
+    }
+
 }

@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
 
         // get gun component from children
         gun = GetComponentInChildren<Gun>();
+        gun.layer = LayerMask.NameToLayer("Hacker");
 
         // set current health
         currentHealth = initialHealth;

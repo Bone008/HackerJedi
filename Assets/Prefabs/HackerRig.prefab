@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 224766249259091392}
   - component: {fileID: 222528035195531998}
   - component: {fileID: 114086753034403174}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 114699334308317684}
   - component: {fileID: 114243985227716036}
   - component: {fileID: 114855985474844724}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Controller (right)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4438142307407854}
   - component: {fileID: 114580247532927126}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,11 +73,9 @@ GameObject:
   - component: {fileID: 114601216256881632}
   - component: {fileID: 20269471111188440}
   - component: {fileID: 92002170303011454}
-  - component: {fileID: 136246703195838770}
-  - component: {fileID: 114459715335974188}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Camera (head)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +91,7 @@ GameObject:
   - component: {fileID: 33999224732061176}
   - component: {fileID: 65398661433359834}
   - component: {fileID: 23359207208158112}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +110,7 @@ GameObject:
   - component: {fileID: 124731880001699920}
   - component: {fileID: 114477060992811162}
   - component: {fileID: 114324617637760442}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Camera (eye)
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -127,7 +125,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4694056066014996}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Nozzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +142,7 @@ GameObject:
   - component: {fileID: 224689246533769774}
   - component: {fileID: 222735409452002388}
   - component: {fileID: 114999693930850188}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Panel (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4242616416220028}
   - component: {fileID: 114362741296900436}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun_st
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +177,7 @@ GameObject:
   - component: {fileID: 23147199606287196}
   - component: {fileID: 33010591806280616}
   - component: {fileID: 114122392495690734}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HackerRig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +195,7 @@ GameObject:
   - component: {fileID: 223292900119099820}
   - component: {fileID: 114577542070764164}
   - component: {fileID: 114829305575014356}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: UI Stats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +212,7 @@ GameObject:
   - component: {fileID: 4381576039582240}
   - component: {fileID: 81082146660073410}
   - component: {fileID: 114731922855900016}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Camera (ears)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4416078510169664}
   - component: {fileID: 114411105103909408}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun_st
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +246,7 @@ GameObject:
   - component: {fileID: 33946988513253778}
   - component: {fileID: 65847104170313480}
   - component: {fileID: 23593850322137814}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +261,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4918204565946538}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Nozzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +279,7 @@ GameObject:
   - component: {fileID: 114930166804486656}
   - component: {fileID: 114242668890186562}
   - component: {fileID: 114551921278918600}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Controller (left)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4186112315348438}
   - component: {fileID: 114407335616859014}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +313,7 @@ GameObject:
   - component: {fileID: 136694615311121704}
   - component: {fileID: 114740182320473880}
   - component: {fileID: 114940441282489298}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -333,7 +331,7 @@ GameObject:
   - component: {fileID: 33876268349125810}
   - component: {fileID: 65177715830392292}
   - component: {fileID: 23055656496700794}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +349,7 @@ GameObject:
   - component: {fileID: 33685038811799870}
   - component: {fileID: 65037623110391610}
   - component: {fileID: 23919660358876332}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,7 +648,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 2.821654e-37
+  field of view: 1
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -1045,6 +1043,7 @@ MonoBehaviour:
   nozzle: {fileID: 4918204565946538}
   projectileSpeed: 40
   damageAmount: 25
+  layer: 0
 --- !u!114 &114407335616859014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1079,6 +1078,7 @@ MonoBehaviour:
   nozzle: {fileID: 4694056066014996}
   projectileSpeed: 40
   damageAmount: 25
+  layer: 0
 --- !u!114 &114438248692242766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1094,25 +1094,6 @@ MonoBehaviour:
   right: {fileID: 1067001103506064}
   objects: []
   assignAllBeforeIdentified: 0
---- !u!114 &114459715335974188
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1120896299160374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04fbdf3173fc9464fa4a8ee0304e1504, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handGameObjects:
-  - {fileID: 1761215752952578}
-  - {fileID: 1067001103506064}
-  abilitySelectionPrefab: {fileID: 1116825199492942, guid: df34eb406a2371a48b3d30ddbb86d728,
-    type: 2}
-  initialAbilityLeft: 1
-  initialAbilityRight: 1
-  maxHealth: 100
 --- !u!114 &114477060992811162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1231,7 +1212,6 @@ MonoBehaviour:
   - {fileID: 1067001103506064}
   abilitySelectionPrefab: {fileID: 1116825199492942, guid: ff62253a71ba39e4d84ce97f0e437f79,
     type: 2}
-  abilityPrefabs: []
   initialAbilityLeft: 1
   initialAbilityRight: 1
   maxHealth: 100
@@ -1289,7 +1269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01c5c1fd620850944b85d769db9645f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  head: {fileID: 4728077981315754}
+  head: {fileID: 4087157620151764}
   overHeadOffset: 0.2
 --- !u!114 &114999693930850188
 MonoBehaviour:
@@ -1325,19 +1305,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1172365516312362}
   m_Enabled: 1
---- !u!136 &136246703195838770
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1120896299160374}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.7
-  m_Direction: 1
-  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!136 &136694615311121704
 CapsuleCollider:
   m_ObjectHideFlags: 1
