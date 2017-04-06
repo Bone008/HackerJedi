@@ -29,6 +29,25 @@ public class HackerPlayer : MonoBehaviour
         //return (hand == HackerHand.Left ? leftHand : rightHand);
     }
 
+    private GameObject GetEquippedAbilityGO(HackerHand hand)
+    {
+        GameObject go;
+        if (allAbilityGOs[(int)hand].TryGetValue(equippedAbilities[(int)hand], out go))
+            return go;
+        else
+            return null;
+    }
+
+    private AbstractAbility GetEquippedAbilityScript(HackerHand hand)
+    {
+        GameObject go = GetEquippedAbilityGO(hand);
+        if (go != null)
+            return go.GetComponent<AbstractAbility>(); // may also return null if the ability has no script (yet)
+        else
+            return null;
+    }
+
+
     private void Start()
     {
         Debug.Assert(handGameObjects.Length == 2);
@@ -54,7 +73,7 @@ public class HackerPlayer : MonoBehaviour
                 go.SetActive(false);
                 go.transform.SetParent(GetHandGO(hand).transform, false);
 
-                allAbilityGOs[i].Add(go.GetComponent<IAbility>().Type, go);
+                allAbilityGOs[i].Add(go.GetComponent<AbstractAbility>().Type, go);
             }
         }
     }
@@ -76,6 +95,8 @@ public class HackerPlayer : MonoBehaviour
         // disable old equipment
         if (allAbilityGOs[i].ContainsKey(equippedAbilities[i]))
         {
+            var script = GetEquippedAbilityScript(hand);
+            if (script != null) script.SetTriggerDown(false); // make sure that we stop firing before disabling
             allAbilityGOs[i][equippedAbilities[i]].SetActive(false);
         }
 
@@ -84,13 +105,15 @@ public class HackerPlayer : MonoBehaviour
         equippedAbilities[i] = type;
     }
 
-    public void Fire(HackerHand hand)
+    // called by the concrete input handler when the trigger state has changed
+    public void SetTriggerDown(HackerHand hand, bool state)
     {
-        allAbilityGOs[(int)hand][equippedAbilities[(int)hand]].SendMessage("Fire", SendMessageOptions.DontRequireReceiver);
+        var abilityScript = GetEquippedAbilityScript(hand);
+        if(abilityScript != null)
+            abilityScript.SetTriggerDown(state);
     }
 
-
-
+    
     public void OpenAbilitySelectionWheel(HackerHand hand)
     {
         if (selectionWheels[(int)hand] != null)

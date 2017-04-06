@@ -19,6 +19,7 @@ public class ControllerInputHandler : MonoBehaviour {
     void OnEnable()
     {
         controller.TriggerClicked += Controller_TriggerClicked;
+        controller.TriggerUnclicked += Controller_TriggerUnclicked;
         controller.PadClicked += Controller_PadClicked;
         controller.PadTouched += Controller_PadTouched;
         controller.PadUntouched += Controller_PadUntouched;
@@ -29,6 +30,7 @@ public class ControllerInputHandler : MonoBehaviour {
     void OnDisable()
     {
         controller.TriggerClicked -= Controller_TriggerClicked;
+        controller.TriggerUnclicked -= Controller_TriggerUnclicked;
         controller.PadClicked -= Controller_PadClicked;
         controller.PadTouched -= Controller_PadTouched;
         controller.PadUntouched -= Controller_PadUntouched;
@@ -62,7 +64,12 @@ public class ControllerInputHandler : MonoBehaviour {
 
     private void Controller_TriggerClicked(object sender, ClickedEventArgs e)
     {
-        player.Fire(GetCurrentHand());
+        player.SetTriggerDown(GetCurrentHand(), true);
+    }
+
+    private void Controller_TriggerUnclicked(object sender, ClickedEventArgs e)
+    {
+        player.SetTriggerDown(GetCurrentHand(), false);
     }
 
     private void Controller_PadTouched(object sender, ClickedEventArgs e)
