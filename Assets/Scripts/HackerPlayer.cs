@@ -10,7 +10,6 @@ public class HackerPlayer : MonoBehaviour
     public GameObject[] handGameObjects = new GameObject[2];
 
     public GameObject abilitySelectionPrefab;
-    public GameObject[] abilityPrefabs;
     public AbilityType initialAbilityLeft;
     public AbilityType initialAbilityRight;
 
@@ -33,7 +32,6 @@ public class HackerPlayer : MonoBehaviour
     private void Start()
     {
         Debug.Assert(handGameObjects.Length == 2);
-        Debug.Assert(abilityPrefabs != null && abilityPrefabs.Length > 0, "no ability prefabs configured", gameObject);
 
         currentHealth = maxHealth;
         SpawnAbilityInstances();
@@ -49,6 +47,7 @@ public class HackerPlayer : MonoBehaviour
         {
             HackerHand hand = (HackerHand)i;
 
+            var abilityPrefabs = abilitySelectionPrefab.GetComponent<AbilitySelectionWheel>().abilityPrefabs;
             foreach (var prefab in abilityPrefabs)
             {
                 var go = Instantiate(prefab);

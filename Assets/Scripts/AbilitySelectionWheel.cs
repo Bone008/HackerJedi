@@ -6,8 +6,15 @@ using UnityEngine;
 public class AbilitySelectionWheel : MonoBehaviour {
 
     public Transform selectionPreview;
+    public GameObject[] abilityPrefabs;
 
+    // this is updated automatically by the selectionPreview by its collider trigger
     public AbilitySelectionElement SelectedElement { get; set; }
+
+    void Awake()
+    {
+        Debug.Assert(abilityPrefabs != null && abilityPrefabs.Length > 0, "no ability prefabs configured", gameObject);
+    }
 
     public void SetPreviewPosition(Vector2 position)
     {
