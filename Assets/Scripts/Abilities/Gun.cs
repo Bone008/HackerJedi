@@ -15,7 +15,12 @@ public class Gun : AbstractAbility {
     public override AbilityType Type { get { return abilityType; } }
 
     [HideInInspector]
-    public int layer = 0;
+    public int layer;
+
+    private void Start()
+    {
+        layer = gameObject.layer;
+    }
 
     protected override void OnTriggerDown()
     {
