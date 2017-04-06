@@ -13,6 +13,7 @@ public class HackerPlayer : MonoBehaviour
     public AbilityType initialAbilityLeft;
     public AbilityType initialAbilityRight;
 
+    public RectTransform healthBarPanel;
 
     public float maxHealth = 100.0f;
     private float currentHealth;
@@ -56,6 +57,8 @@ public class HackerPlayer : MonoBehaviour
         SpawnAbilityInstances();
         EquipAbility(HackerHand.Left, initialAbilityLeft);
         EquipAbility(HackerHand.Right, initialAbilityRight);
+
+        healthBarPanel.transform.localScale = new Vector3(1, 1, 1);
     }
 
     // instantiates all ability GOs (disabled) for each hand and stores them in allAbilityGOs
@@ -169,10 +172,13 @@ public class HackerPlayer : MonoBehaviour
     {
         currentHealth -= damageAmount;
 
-        if(currentHealth < 0)
+        healthBarPanel.transform.localScale = new Vector3(Mathf.Max(0, currentHealth) / maxHealth, 1, 1);
+
+        if (currentHealth < 0)
         {
             Debug.Log("You Died!");
             // TODO
         }
+
     }
 }
