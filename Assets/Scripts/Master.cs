@@ -82,8 +82,8 @@ public class Master : MonoBehaviour {
         }
 
         // move blocks
-        float mouseDragDiff = blockSpeed * Input.GetAxis("Mouse Y") * Time.deltaTime;
-        if (selected && currentlyDragging && (mouseDragDiff > 0.0001f || -0.0001f > mouseDragDiff))
+        float mouseDragDiff = blockSpeed * Input.GetAxis("Mouse Y") * Time.deltaTime / Screen.height;
+        if (selected && currentlyDragging)
         {
             Transform parent = selected.parent.transform;
             float y = parent.position.y + mouseDragDiff;

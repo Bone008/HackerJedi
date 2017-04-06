@@ -384,6 +384,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 272539176}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &343896367 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1761215752952578, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+    type: 2}
+  m_PrefabInternal: {fileID: 808373011}
 --- !u!1 &362393826
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,7 +1021,20 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 1657334492}
-    m_RemovedComponents: []
+    - target: {fileID: 1420807209672550, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1120896299160374, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728077981315754, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114270915495998250, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &889347948
@@ -2267,6 +2285,46 @@ Transform:
   m_Father: {fileID: 1702663981}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1880046033 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1120896299160374, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+    type: 2}
+  m_PrefabInternal: {fileID: 808373011}
+--- !u!136 &1880046034
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1880046033}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.7
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.5, z: 0}
+--- !u!114 &1880046035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1880046033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04fbdf3173fc9464fa4a8ee0304e1504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handGameObjects:
+  - {fileID: 343896367}
+  - {fileID: 2066571153}
+  abilitySelectionPrefab: {fileID: 1116825199492942, guid: df34eb406a2371a48b3d30ddbb86d728,
+    type: 2}
+  abilityPrefabs:
+  - {fileID: 1592527875849472, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+  - {fileID: 1592527875849472, guid: 7dd2836027cb0024ea1e56281b83a9d8, type: 2}
+  initialAbilityLeft: 1
+  initialAbilityRight: 1
+  maxHealth: 100
 --- !u!1 &1884081627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2374,18 +2432,23 @@ MonoBehaviour:
     m_Bits: 4294967039
   movementMin: {fileID: 772468925}
   movementMax: {fileID: 1003542860}
-  movementSpeed: 20
+  movementSpeed: 1
   movementInputAxis: Vertical
   enemyPrefab: {fileID: 1766478273696298, guid: 252bb4741bf35b84791379d539ff286d,
     type: 2}
   blockMinYValue: 0
   blockMaxYValue: 4.5
-  blockSpeed: 30
+  blockSpeed: 200
   snappingSpeed: 1
   snappingGround: 0
   snappingGridSize: 1.5
   laserBeam: {fileID: 389935120}
   laserStart: {fileID: 1215232310}
+--- !u!1 &2066571153 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1067001103506064, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+    type: 2}
+  m_PrefabInternal: {fileID: 808373011}
 --- !u!1 &2139980299
 GameObject:
   m_ObjectHideFlags: 0

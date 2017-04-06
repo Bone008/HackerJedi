@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 92002170303011454}
   m_Layer: 0
   m_Name: Camera (head)
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,10 +177,9 @@ GameObject:
   - component: {fileID: 23147199606287196}
   - component: {fileID: 33010591806280616}
   - component: {fileID: 114122392495690734}
-  - component: {fileID: 114270915495998250}
   m_Layer: 0
   m_Name: HackerRig
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,6 +302,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1860755945617448
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4804656118949712}
+  - component: {fileID: 136694615311121704}
+  - component: {fileID: 114740182320473880}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1887236631071590
 GameObject:
   m_ObjectHideFlags: 1
@@ -348,7 +364,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4804656118949712}
   m_Father: {fileID: 4728077981315754}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -505,6 +522,19 @@ Transform:
   - {fileID: 4381576039582240}
   m_Father: {fileID: 4525036898235174}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4804656118949712
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860755945617448}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4087157620151764}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4915258379871234
 Transform:
@@ -981,27 +1011,6 @@ MonoBehaviour:
   padPressed: 0
   padTouched: 0
   gripped: 0
---- !u!114 &114270915495998250
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1420807209672550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04fbdf3173fc9464fa4a8ee0304e1504, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handGameObjects:
-  - {fileID: 1761215752952578}
-  - {fileID: 1067001103506064}
-  abilitySelectionPrefab: {fileID: 1116825199492942, guid: df34eb406a2371a48b3d30ddbb86d728,
-    type: 2}
-  abilityPrefabs:
-  - {fileID: 1592527875849472, guid: 68921e643628709439a17ba67b7906c2, type: 2}
-  - {fileID: 1592527875849472, guid: 7dd2836027cb0024ea1e56281b83a9d8, type: 2}
-  initialAbilityLeft: 1
-  initialAbilityRight: 1
 --- !u!114 &114324617637760442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1032,6 +1041,7 @@ MonoBehaviour:
     type: 2}
   nozzle: {fileID: 4918204565946538}
   projectileSpeed: 40
+  damageAmount: 25
 --- !u!114 &114407335616859014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1065,6 +1075,7 @@ MonoBehaviour:
     type: 2}
   nozzle: {fileID: 4694056066014996}
   projectileSpeed: 40
+  damageAmount: 25
 --- !u!114 &114438248692242766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1102,7 +1113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0edbcef86e7a645ae0f6b8810c738c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 114270915495998250}
+  player: {fileID: 114740182320473880}
   hand: 0
 --- !u!114 &114577542070764164
 MonoBehaviour:
@@ -1182,6 +1193,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vrcam: {fileID: 0}
+--- !u!114 &114740182320473880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860755945617448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04fbdf3173fc9464fa4a8ee0304e1504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handGameObjects:
+  - {fileID: 1761215752952578}
+  - {fileID: 1067001103506064}
+  abilitySelectionPrefab: {fileID: 1116825199492942, guid: df34eb406a2371a48b3d30ddbb86d728,
+    type: 2}
+  initialAbilityLeft: 1
+  initialAbilityRight: 1
+  maxHealth: 100
 --- !u!114 &114829305575014356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1209,7 +1239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0edbcef86e7a645ae0f6b8810c738c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 114270915495998250}
+  player: {fileID: 114740182320473880}
   hand: 1
 --- !u!114 &114930166804486656
 MonoBehaviour:
@@ -1259,6 +1289,19 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1172365516312362}
   m_Enabled: 1
+--- !u!136 &136694615311121704
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860755945617448}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.7
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!222 &222528035195531998
 CanvasRenderer:
   m_ObjectHideFlags: 1

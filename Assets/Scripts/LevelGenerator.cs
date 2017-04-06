@@ -7,6 +7,7 @@ public class LevelGenerator : MonoBehaviour
 
     public GameObject block;
     public GameObject railBlock;
+    public GameObject endMarker;
 
     public float blockSize;
 
@@ -29,7 +30,7 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int j = 0; j < lines; j++)
             {
-                track[i, j] = Instantiate(railBlock, new Vector3(i * blockSize, 0, j * blockSize) - centerOffset + Vector3.down, Quaternion.identity);
+                track[i, j] = Instantiate(railBlock, new Vector3(i * blockSize, 0, j * blockSize) - centerOffset + (Vector3.down * 0.5f), Quaternion.identity);
                 track[i, j].transform.SetParent(transform, false);
                 foreach (Transform t in track[i, j].transform)
                     t.gameObject.tag = "RailBlock";
@@ -48,6 +49,7 @@ public class LevelGenerator : MonoBehaviour
     void flattenWorld()
     {
         rail.Clear();
+        endMarker.SetActive(false);
 
         for (int i = 0; i < rows; i++)
         {
@@ -140,6 +142,8 @@ public class LevelGenerator : MonoBehaviour
             railLength++;
             world[p, i].SetActive(false);
             track[p, i].SetActive(true);
+            //world[p+1, i].SetActive(false);
+            //track[p+1, i].SetActive(true);
             direction = Random.Range(0, 3);
             if (direction == 1 && prevDirection != 2 && p > 1 && i < lines - 2)
             {
@@ -147,6 +151,8 @@ public class LevelGenerator : MonoBehaviour
                 railLength++;
                 world[p, i + 1].SetActive(false);
                 track[p, i + 1].SetActive(true);
+                //world[p+1, i + 1].SetActive(false);
+                //track[p+1, i + 1].SetActive(true);
                 p--;
             }
             else if (direction == 2 && prevDirection != 1 && p < (rows - 2) && i < lines - 2)
@@ -155,9 +161,13 @@ public class LevelGenerator : MonoBehaviour
                 railLength++;
                 world[p, i + 1].SetActive(false);
                 track[p, i + 1].SetActive(true);
+                //world[p+1, i + 1].SetActive(false);
+                //track[p+1, i + 1].SetActive(true);
                 p++;
             }
         }
+        endMarker.transform.position = track[p, lines - 1].transform.position;
+        endMarker.SetActive(true);
     }
 
     // Use this for initialization
