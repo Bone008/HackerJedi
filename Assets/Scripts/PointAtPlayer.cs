@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class PointAtPlayer : MonoBehaviour
 {
     
-    public float bulletVelocity;
+    public float aimingFOV = 45, bulletVelocity = 40;
     private float platformSpeed;
     private GameObject parent, player, platform;
 
@@ -27,11 +26,7 @@ public class PointAtPlayer : MonoBehaviour
 	    float offset = dist/bulletVelocity;
 	    Vector3 aimPosition = player.transform.position + offset * (new Vector3(0,0,1*platformSpeed));  //platform move vector.
         
-        //Debug
-	    Debug.Log("angle to player" + Vector3.Angle(parent.transform.forward, (player.transform.position - parent.transform.position)));
-	    Debug.Log("Vec to player" + (player.transform.position - parent.transform.position));
-
-	    if (Vector3.Angle(parent.transform.forward, (player.transform.position - parent.transform.position)) < 45)
+	    if (Vector3.Angle(parent.transform.forward, (player.transform.position - parent.transform.position)) < aimingFOV)
 	    {
 	        transform.LookAt(aimPosition);
 	    }
@@ -39,8 +34,5 @@ public class PointAtPlayer : MonoBehaviour
 	    {
 	        transform.forward = parent.transform.forward;
 	    }
-        
-	    Debug.Log("player pos: " + player.transform.position);
-        Debug.Log("aiming pos: " + aimPosition);
 	}
 }

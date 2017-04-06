@@ -41,8 +41,10 @@ public class Enemy : MonoBehaviour
             agent.destination = goal.position;
             oldPos = goal.position;
         }
-           
-        
+
+        Debug.Log("Vec3 " + Vector3.Distance(transform.position, goal.position));
+        Debug.Log("agent " + agent.remainingDistance);
+        //agent.destination = goal.position;
 
         // fire while in range
         if ((goal.position - transform.position).sqrMagnitude <= hitRange * hitRange)
