@@ -2151,7 +2151,7 @@ MonoBehaviour:
         m_MethodName: SelectObstacle
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1769608942743280, guid: 602571d73300bdc4f859f372ccb1b219,
+          m_ObjectArgument: {fileID: 1779480695237420, guid: 602571d73300bdc4f859f372ccb1b219,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
