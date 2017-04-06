@@ -150,13 +150,12 @@ public class Master : MonoBehaviour {
         // spawn enemy
         if (selected != null)
         {
-            // TODO this gets done by the navagent
-            var enemyCollider = enemyPrefab.GetComponent<Collider>();
-            float offsetY = 0;
-            if (enemyCollider != null)
-                offsetY = -enemyCollider.bounds.min.y;
+            //var enemyCollider = enemyPrefab.GetComponent<Collider>();
+            //float offsetY = 0;
+            //if (enemyCollider != null)
+            //    offsetY = -enemyCollider.bounds.min.y;
 
-            Instantiate(enemyPrefab, selected.position + Vector3.up * offsetY, Quaternion.Euler(0, Random.Range(0, 360), 0));
+            Instantiate(enemyPrefab, selected.position + new Vector3(0, selected.GetComponent<Renderer>().bounds.size.y, 0) + Vector3.up * offsetY, Quaternion.Euler(0, Random.Range(0, 360), 0));
         }
     }
     
