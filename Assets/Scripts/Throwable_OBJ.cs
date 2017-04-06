@@ -1,52 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Valve.VR.InteractionSystem;
 using UnityEngine;
 
-namespace Valve.VR.InteractionSystem
+//for throwing the enemy
+[RequireComponent(typeof(VelocityEstimator))]
+[RequireComponent(typeof(Rigidbody))]
+//end
+public class Throwable_OBJ : MonoBehaviour
 {
-    //for throwing the enemy
-    [RequireComponent(typeof(VelocityEstimator))]
-    [RequireComponent(typeof(Rigidbody))]
-    //end
 
-    public class Throwable_OBJ : MonoBehaviour
+    private VelocityEstimator velocityEstimator; //for throwing the enemy
+    private new Rigidbody rigidbody;
+
+    void Awake()
     {
+        velocityEstimator = GetComponent<VelocityEstimator>();
+        rigidbody = GetComponent<Rigidbody>();
+    }
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //Throwing-Functionality
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    public void setGrabbed()
+    {
+        velocityEstimator.BeginEstimatingVelocity();
+        rigidbody.useGravity = false;
+        //evtl bool grabed? For Movementdeaktivation (grabed=true)
+    }
 
-        private VelocityEstimator velocityEstimator; //for throwing the enemy
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
-        void Awake()
-        {
-            velocityEstimator = GetComponent<VelocityEstimator>();
-        }
-        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        //Throwing-Functionality
-        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        public void setGrabed()
-        {
-            velocityEstimator.BeginEstimatingVelocity();
-            gameObject.GetComponent<Rigidbody>().useGravity = false;
-            //evtl bool grabed? For Movementdeaktivation (grabed=true)
-        }
-
-        public void setFree()
-        {
-            velocityEstimator.FinishEstimatingVelocity();
-            gameObject.GetComponent<Rigidbody>().velocity = velocityEstimator.GetVelocityEstimate();
-            gameObject.GetComponent<Rigidbody>().position = velocityEstimator.transform.position;
-            gameObject.GetComponent<Rigidbody>().useGravity = true;
-            //(grabed=false)
-        }
+    public void setFree()
+    {
+        velocityEstimator.FinishEstimatingVelocity();
+        rigidbody.velocity = velocityEstimator.GetVelocityEstimate();
+        rigidbody.useGravity = true;
+        //(grabed=false)
     }
 }
