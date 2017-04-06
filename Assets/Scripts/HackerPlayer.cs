@@ -146,14 +146,22 @@ public class HackerPlayer : MonoBehaviour
 
     public void ConfirmAbilitySelection(HackerHand hand, Vector2 position)
     {
+        StartCoroutine(_ConfirmCoroutineHelper(hand, position));
+    }
+
+    private IEnumerator _ConfirmCoroutineHelper(HackerHand hand, Vector2 position)
+    {
+        yield return null; // delay by one frame
+
         AbilitySelectionWheel wheel = selectionWheels[(int)hand];
         if (wheel == null)
-            return; // not open
+            yield break; // not open
 
         AbilityType? newAbility = wheel.ConfirmSelection(position);
         if(newAbility != null)
         {
             EquipAbility(hand, newAbility.Value);
+            //CloseAbilitySelectionWheel(hand);
         }
     }
 

@@ -85,6 +85,8 @@ public class ControllerInputHandler : MonoBehaviour {
 
     private void Controller_PadClicked(object sender, ClickedEventArgs e)
     {
+        // make sure it is open (sometimes, clicked may be fired before touched)
+        player.OpenAbilitySelectionWheel(GetCurrentHand());
         player.ConfirmAbilitySelection(GetCurrentHand(), new Vector2(e.padX, e.padY));
     }
 
