@@ -2397,8 +2397,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1766478273696298, guid: 252bb4741bf35b84791379d539ff286d,
     type: 2}
   blockMinYValue: 0
-  blockMaxYValue: 4.5
-  blockSpeed: 20000
+  blockMaxYValue: 6
+  blockSpeed: 5
   snappingSpeed: 2
   snappingGround: 0
   snappingGridSize: 3

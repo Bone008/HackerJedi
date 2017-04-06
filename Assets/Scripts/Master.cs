@@ -24,6 +24,7 @@ public class Master : MonoBehaviour {
     public float blockMaxYValue = 6;
     public float blockSpeed = 30.0f;
     private bool currentlyDragging;
+    private Vector2 oldMousePosition;
 
     [Header("Block Snapping To Grid")]
     public float snappingSpeed = 1.0f;
@@ -42,12 +43,13 @@ public class Master : MonoBehaviour {
 	void Start () {
         laserBeam.enabled = false;
         lookAtMouseScript = masterEye.GetComponent<LookAtMouse>();
+        oldMousePosition = Input.mousePosition;
     }
 
     void Update()
     {
         // select cube and start dragging
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
             // get aimed-for object via Raycast, prevent onclick when pressing buton
             RaycastHit hit;
@@ -55,8 +57,6 @@ public class Master : MonoBehaviour {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, raycastLayermask.value) && hit.transform.tag.Equals("RoomBlock"))
             {
                 selected = hit.transform;
-                currentlyDragging = true;
-                currentlySnappingToGrid = false;
             }
             else if (!EventSystem.current.IsPointerOverGameObject()) // if no button was pressed
             {
@@ -64,8 +64,15 @@ public class Master : MonoBehaviour {
             }
         }
 
+        // start dragging
+        if (Input.GetMouseButtonDown(1) && selected != null)
+        {
+            currentlyDragging = true;
+            currentlySnappingToGrid = false;
+        }
+
         // stop dragging
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(1))
         {
             currentlyDragging = false;
             currentlySnappingToGrid = true;
@@ -82,7 +89,8 @@ public class Master : MonoBehaviour {
         }
 
         // move blocks
-        float mouseDragDiff = blockSpeed * Input.GetAxis("Mouse Y") * Time.deltaTime / Screen.height;
+        Vector2 newMousePosition = Input.mousePosition;
+        float mouseDragDiff = blockSpeed * (newMousePosition.y - oldMousePosition.y) * Time.deltaTime;
         if (selected && currentlyDragging)
         {
             Transform parent = selected.parent.transform;
@@ -95,6 +103,7 @@ public class Master : MonoBehaviour {
                 parent.position.z
             );
         }
+        oldMousePosition = newMousePosition;
 
         // snap blocks to grid
         if (selected && currentlySnappingToGrid)
