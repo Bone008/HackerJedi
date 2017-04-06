@@ -29,7 +29,7 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int j = 0; j < lines; j++)
             {
-                track[i, j] = Instantiate(railBlock, new Vector3(i * blockSize, 0, j * blockSize) - centerOffset + (Vector3.down * 0.5f), Quaternion.identity);
+                track[i, j] = Instantiate(railBlock, new Vector3(i * blockSize, 0, j * blockSize) - centerOffset + (Vector3.up), Quaternion.identity);
                 track[i, j].transform.SetParent(transform, false);
                 track[i, j].tag = "RailBlock";
                 track[i, j].SetActive(false);
