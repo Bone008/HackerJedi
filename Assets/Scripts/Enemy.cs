@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
     {
         while (true)
         {
-            gun.Fire();
+            gun.FireOnce();
             yield return new WaitForSeconds(fireDelay);
         }
     }
