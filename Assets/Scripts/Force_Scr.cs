@@ -6,12 +6,12 @@ using Valve.VR.InteractionSystem;
 public class Force_Scr : MonoBehaviour {
 
     //Variablen
-    private GameObject selPoint;
+    public GameObject selPoint;
     private GameObject selection;
 
 	// Use this for initialization
 	void Start () {
-        selPoint = gameObject.transform.FindChild("SelPoint").gameObject;
+        //selPoint = gameObject.transform.FindChild("SelPoint").gameObject;
 	}
 	
 	// Update is called once per frame
@@ -21,6 +21,7 @@ public class Force_Scr : MonoBehaviour {
         {
             force();
         }
+        gameObject.transform.Rotate(new Vector3(2, 0, 0));
         grabAndThrow();
 	}
     public void force()
