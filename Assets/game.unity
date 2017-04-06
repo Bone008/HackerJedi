@@ -1699,6 +1699,7 @@ GameObject:
   - component: {fileID: 1271081443}
   - component: {fileID: 1271081442}
   - component: {fileID: 1271081445}
+  - component: {fileID: 1271081446}
   m_Layer: 8
   m_Name: Eye
   m_TagString: Untagged
@@ -1784,6 +1785,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   raycastOrigin: {fileID: 1076524487}
   rotationSpeed: 1
+--- !u!114 &1271081446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1271081440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d8eb0a60381a764a87add251a7dfae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1000
 --- !u!1 &1322127208
 GameObject:
   m_ObjectHideFlags: 0

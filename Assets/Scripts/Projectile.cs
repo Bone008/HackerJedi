@@ -31,6 +31,11 @@ public class Projectile : MonoBehaviour {
         if (player != null)
             player.OnDamage(damageAmount);
 
+        // damage master
+        MasterEye masterEye = collider.gameObject.GetComponentInParent<MasterEye>();
+        if (masterEye != null)
+            masterEye.OnDamage(damageAmount);
+
         Destroy(this.gameObject);
     }
 
