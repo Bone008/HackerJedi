@@ -1,14 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour {
+public class Gun : MonoBehaviour, IAbility {
+
+    public AbilityType abilityType = AbilityType.SimpleGun;
 
     public GameObject projectilePrefab;
     public Transform nozzle;
     public float projectileSpeed = 1.0f;
+    public float damageAmount = 25.0f;
 
-	void Start () {
+    public AbilityType Type { get { return abilityType; } }
+
+    void Start () {
 		
 	}
 	
@@ -23,8 +29,10 @@ public class Gun : MonoBehaviour {
         var position = nozzle.position + shootingDirection * 1.1f * projectilePrefab.transform.localScale.y;
         var rotation = Quaternion.LookRotation(shootingDirection) * Quaternion.Euler(90, 0, 0);
         
-
         GameObject projectile = GameObject.Instantiate(projectilePrefab, position, rotation);
         projectile.GetComponent<Rigidbody>().velocity = shootingDirection * projectileSpeed;
+
+        // store damage amount of gun in projectile
+        projectile.GetComponent<Projectile>().damageAmount = damageAmount;
     }
 }
