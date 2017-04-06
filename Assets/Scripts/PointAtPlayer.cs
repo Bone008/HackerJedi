@@ -25,9 +25,6 @@ public class PointAtPlayer : MonoBehaviour
 	    float dist = Vector3.Distance(transform.position, player.transform.position);
 	    float timeOffset = dist/bulletVelocity;
 	    Vector3 aimPosition = player.transform.position + timeOffset * platform.GetComponent<Platform>().getVelocity();
-
-        Debug.Log("Player pos " + player.transform.position + " timeDelta " + timeOffset + " platV " + platform.GetComponent<Platform>().getVelocity());
-	    Debug.Log("predicted pos " + aimPosition);
         
 	    if (Vector3.Angle(parent.transform.forward, (player.transform.position - parent.transform.position)) < aimingFOV)
 	    {
