@@ -24,8 +24,9 @@ public class Gun : AbstractAbility {
 
     protected override void OnTriggerDown()
     {
-        var shootingDirection = nozzle.transform.TransformDirection(Vector3.forward).normalized;
-        var position = nozzle.position + shootingDirection * 1.1f * projectilePrefab.transform.localScale.y;
+        var aimRay = GetAimRay(nozzle);
+        var shootingDirection = aimRay.direction;
+        var position = aimRay.origin + shootingDirection * 1.1f * projectilePrefab.transform.localScale.y;
         var rotation = Quaternion.LookRotation(shootingDirection) * Quaternion.Euler(90, 0, 0);
         
         GameObject projectile = GameObject.Instantiate(projectilePrefab, position, rotation);

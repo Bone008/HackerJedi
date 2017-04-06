@@ -125,6 +125,8 @@ GameObject:
   - component: {fileID: 23938162948718472}
   - component: {fileID: 54307457951544872}
   - component: {fileID: 114478584218646370}
+  - component: {fileID: 114028523999061396}
+  - component: {fileID: 114658416570954914}
   - component: {fileID: 195880091860757720}
   m_Layer: 9
   m_Name: SuperEnemy
@@ -425,6 +427,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114028523999061396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1766478273696298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 783750eec4c41da428b7651515146d14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocityAverageFrames: 5
+  angularVelocityAverageFrames: 11
+  estimateOnAwake: 0
 --- !u!114 &114035870511357954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -453,6 +469,17 @@ MonoBehaviour:
   hitRange: 6
   fireDelay: 0.6
   initialHealth: 100
+--- !u!114 &114658416570954914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1766478273696298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 907c55da2ac305b46b9e1fbc247e17bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114731796967347384
 MonoBehaviour:
   m_ObjectHideFlags: 1

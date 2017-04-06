@@ -108,7 +108,7 @@ public class Force_Scr : MonoBehaviour {
                 {
                     selection = hit.collider.gameObject;
                     selection.transform.SetParent(transform);//Test
-                    selection.GetComponent<Throwable_OBJ>().setGrabed();
+                    selection.GetComponent<Throwable_OBJ>().setGrabbed();
                     Debug.Log("Grabed!");
                 }
             }
