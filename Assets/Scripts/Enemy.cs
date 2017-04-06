@@ -25,7 +25,9 @@ public class Enemy : MonoBehaviour
 
         oldPos = goal.position;
         agent = GetComponent<NavMeshAgent>();
-        agent.destination = goal.position;
+
+        if(agent.isOnNavMesh)
+            agent.destination = goal.position;
 
         // get gun component from children
         gun = GetComponentInChildren<Gun>();
@@ -37,7 +39,7 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Vector3.Distance(oldPos, goal.position) > newTargetPosThreshhold)
+        if (agent.isOnNavMesh && Vector3.Distance(oldPos, goal.position) > newTargetPosThreshhold)
         {
             agent.destination = goal.position;
             oldPos = goal.position;

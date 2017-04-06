@@ -39,17 +39,22 @@ public class Platform : MonoBehaviour {
         float distCovered = (Time.time - startTime) * velocity;
         float fracJourney = distCovered / journeyLength;
         transform.position = Vector3.Lerp(startPoint.position + platformOffset, endPoint.position + platformOffset, fracJourney);
- 
-        if (transform.position == endPoint.position + platformOffset)
+
+        if (transform.position == endPoint.position + platformOffset && railPointer != rail.Count - 1)
         {
             nextRailPart();
+        } else
+
+        if (transform.position == endPoint.position + platformOffset && railPointer == rail.Count - 1)
+        {
+            SceneManager.LoadScene(1);
         }
         
     }
 
     void nextRailPart()
     {
-        if (railPointer >= rail.Count - 2 && forward)
+        if (railPointer > rail.Count - 2 && forward)
             forward = false;
         else if (railPointer < 1 && !forward)
             forward = true;
@@ -79,14 +84,4 @@ public class Platform : MonoBehaviour {
     {
         return (endPoint.position - startPoint.position).normalized * velocity;
     }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.name.Equals("Matrix_Particle"))
-        {
-            Debug.Log("won");
-            SceneManager.LoadScene(1);
-        }
-    }
-
 }
