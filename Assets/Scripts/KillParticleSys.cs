@@ -12,12 +12,12 @@ public class KillParticleSys : MonoBehaviour
 	void Start ()
 	{
 	    startTime = Time.time;
-	    parSys = gameObject.getComponent<ParticleSystem>();
+	    parSys = GetComponent<ParticleSystem>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(parSys.isAlive)
+		if(!parSys.IsAlive())
             Destroy(gameObject);
 	}
 
