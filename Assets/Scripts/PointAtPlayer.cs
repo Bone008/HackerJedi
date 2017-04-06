@@ -24,7 +24,8 @@ public class PointAtPlayer : MonoBehaviour
 
 	    float dist = Vector3.Distance(transform.position, player.transform.position);
 	    float timeOffset = dist/bulletVelocity;
-	    Vector3 aimPosition = player.transform.position + timeOffset * platform.GetComponent<Platform>().getVelocity();
+        float overHeadOffset = player.GetComponent<AdjustVRCollider>().overHeadOffset;
+	    Vector3 aimPosition = player.transform.position - new Vector3(0, overHeadOffset, 0) + timeOffset * platform.GetComponent<Platform>().getVelocity();
         
 	    if (Vector3.Angle(parent.transform.forward, (player.transform.position - parent.transform.position)) < aimingFOV)
 	    {
