@@ -13,6 +13,8 @@ public class Platform : MonoBehaviour {
     private Transform endPoint;
     public float velocity;
 
+    private Vector3 platformOffset = Vector3.up * 1.5f /*+ (Vector3.right * .75f) + (Vector3.forward * .75f)*/;
+
     bool forward;
 
     private float startTime;
@@ -22,7 +24,7 @@ public class Platform : MonoBehaviour {
     {
         setupRail();
         nextRailPart();
-        transform.position = startPoint.position;
+        transform.position = startPoint.position + platformOffset;
 
 	}
 
@@ -30,9 +32,9 @@ public class Platform : MonoBehaviour {
     {
         float distCovered = (Time.time - startTime) * velocity;
         float fracJourney = distCovered / journeyLength;
-        transform.position = Vector3.Lerp(startPoint.position, endPoint.position, fracJourney);
+        transform.position = Vector3.Lerp(startPoint.position + platformOffset, endPoint.position + platformOffset, fracJourney);
  
-        if (transform.position == endPoint.position)
+        if (transform.position == endPoint.position + platformOffset)
         {
             nextRailPart();
         }
@@ -40,7 +42,6 @@ public class Platform : MonoBehaviour {
 
     void nextRailPart()
     {
-
         if (railPointer > railLength - 2 && forward)
             forward = false;
         else if (railPointer < 1 && !forward)
