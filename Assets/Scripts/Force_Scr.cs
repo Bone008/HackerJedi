@@ -38,9 +38,9 @@ public class Force_Scr : MonoBehaviour {
         //Ende Testcode
 
         //hold/move Item
-        if(selection){
-            selection.GetComponent<Rigidbody>().MovePosition(selPoint.transform.position);
-        }
+        //if(selection){
+        //    selection.GetComponent<Rigidbody>().MovePosition(selPoint.transform.position);
+        //}
 	}
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -102,11 +102,12 @@ public class Force_Scr : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                selPoint.transform.position = hit.collider.bounds.center;
+                //selPoint.transform.position = hit.collider.bounds.center;
 
                 if (hit.collider.gameObject.tag == "Enemy")
                 {
                     selection = hit.collider.gameObject;
+                    selection.transform.SetParent(transform);//Test
                     selection.GetComponent<Throwable_OBJ>().setGrabed();
                     Debug.Log("Grabed!");
                 }
@@ -126,6 +127,7 @@ public class Force_Scr : MonoBehaviour {
         if (selection)
         {
             selection.GetComponent<Throwable_OBJ>().setFree();
+            selection.transform.SetParent(null);
             selection = null;
             Debug.Log("Fallen gelassen!");
         }
