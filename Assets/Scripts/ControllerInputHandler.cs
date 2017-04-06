@@ -26,13 +26,22 @@ public class ControllerInputHandler : MonoBehaviour {
         Debug.Log("now using controller " + controller.controllerIndex);
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         controller.TriggerClicked -= Controller_TriggerClicked;
         controller.PadClicked -= Controller_PadClicked;
         controller.PadTouched -= Controller_PadTouched;
         controller.PadUntouched -= Controller_PadUntouched;
         Debug.Log("no longer using controller " + controller.controllerIndex);
+    }
+
+    void Update()
+    {
+        if(controller.padTouched)
+        {
+            Vector2 touchPosition = SteamVR_Controller.Input((int)controller.controllerIndex).GetAxis();
+            player.SetAbilitySelectionPosition(hand, touchPosition);
+        }
     }
 
     private HackerHand GetCurrentHand()
@@ -69,7 +78,7 @@ public class ControllerInputHandler : MonoBehaviour {
 
     private void Controller_PadClicked(object sender, ClickedEventArgs e)
     {
-        player.ConfirmAbilitySelection(GetCurrentHand());
+        player.ConfirmAbilitySelection(GetCurrentHand(), new Vector2(e.padX, e.padY));
     }
 
 

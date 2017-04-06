@@ -1,15 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gun : MonoBehaviour {
+public class Gun : MonoBehaviour, IAbility {
+
+    public AbilityType abilityType = AbilityType.SimpleGun;
 
     public GameObject projectilePrefab;
     public Transform nozzle;
     public float projectileSpeed = 1.0f;
     public float damageAmount = 25.0f;
 
-	void Start () {
+    public AbilityType Type { get { return abilityType; } }
+
+    void Start () {
 		
 	}
 	
