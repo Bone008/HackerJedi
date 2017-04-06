@@ -12,7 +12,6 @@ public class LevelGenerator : MonoBehaviour
     public float blockSize;
 
     public List<Transform> rail;
-    public int railLength;
 
     // 1:randomPresetBlock Wahrscheinlichkeit dass ein Block versetzt wird; 0 keine Blöcke werden versetzt
     public int randomPresetBlock;
@@ -139,7 +138,6 @@ public class LevelGenerator : MonoBehaviour
         {
             prevDirection = direction;
             rail.Add(world[p, i].transform);
-            railLength++;
             world[p, i].SetActive(false);
             track[p, i].SetActive(true);
             //world[p+1, i].SetActive(false);
@@ -148,7 +146,6 @@ public class LevelGenerator : MonoBehaviour
             if (direction == 1 && prevDirection != 2 && p > 1 && i < lines - 2)
             {
                 rail.Add(world[p, i + 1].transform);
-                railLength++;
                 world[p, i + 1].SetActive(false);
                 track[p, i + 1].SetActive(true);
                 //world[p+1, i + 1].SetActive(false);
@@ -158,7 +155,6 @@ public class LevelGenerator : MonoBehaviour
             else if (direction == 2 && prevDirection != 1 && p < (rows - 2) && i < lines - 2)
             {
                 rail.Add(world[p, i + 1].transform);
-                railLength++;
                 world[p, i + 1].SetActive(false);
                 track[p, i + 1].SetActive(true);
                 //world[p+1, i + 1].SetActive(false);

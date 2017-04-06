@@ -46,11 +46,9 @@ public class Enemy : MonoBehaviour
         if (agent.velocity.x >= -0.05f && agent.velocity.x <= 0.05f
             && agent.velocity.z >= -0.1f && agent.velocity.z <= 0.1f)
         {
-            Debug.Log("test");
             transform.LookAt(goal);
         }
-
-        Debug.Log(agent.velocity);
+        
 
         // fire while in range
         if ((goal.position - transform.position).sqrMagnitude <= hitRange * hitRange)
