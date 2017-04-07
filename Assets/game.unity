@@ -350,6 +350,11 @@ Prefab:
       propertyPath: deathScreenElement
       value: 
       objectReference: {fileID: 1731512458}
+    - target: {fileID: 114857384911533394, guid: 8b0608f8fd3140d44ba973610d576ca0,
+        type: 2}
+      propertyPath: maxHealth
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b0608f8fd3140d44ba973610d576ca0, type: 2}
   m_IsPrefabParent: 0
@@ -577,6 +582,11 @@ Prefab:
       propertyPath: deathScreenElement
       value: 
       objectReference: {fileID: 1731512458}
+    - target: {fileID: 114740182320473880, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+        type: 2}
+      propertyPath: maxHealth
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
   m_IsPrefabParent: 0
