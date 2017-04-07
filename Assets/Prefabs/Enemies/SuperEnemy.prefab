@@ -469,6 +469,7 @@ MonoBehaviour:
   hitRange: 6
   fireDelay: 0.6
   initialHealth: 100
+  explo: {fileID: 1862322992109182, guid: 5f01c0a5d11e8034b9b6a7f008a4e490, type: 2}
 --- !u!114 &114658416570954914
 MonoBehaviour:
   m_ObjectHideFlags: 1

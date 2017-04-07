@@ -5,13 +5,11 @@ using UnityEngine;
 public class KillParticleSys : MonoBehaviour
 {
 
-    private float startTime;
     private ParticleSystem parSys;
 
 	// Use this for initialization
 	void Start ()
 	{
-	    startTime = Time.time;
 	    parSys = GetComponent<ParticleSystem>();
 	}
 	
