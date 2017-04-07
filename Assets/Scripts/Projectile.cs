@@ -25,6 +25,9 @@ public class Projectile : MonoBehaviour {
         Enemy enemy = collider.gameObject.GetComponent<Enemy>();
         if (enemy != null)
             enemy.OnDamage(damageAmount);
+        SuicideEnemy enemy2 = collider.gameObject.GetComponent<SuicideEnemy>();
+        if (enemy2 != null)
+            enemy2.OnDamage(damageAmount);
 
         // damage player
         HackerPlayer player = collider.gameObject.GetComponent<HackerPlayer>();
