@@ -74,6 +74,7 @@ LightmapSettings:
     m_MixedBakeMode: 3
     m_BakeBackend: 0
     m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
     m_PVRFiltering: 0
@@ -279,7 +280,8 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_CCT: 6500
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &134484255
@@ -636,7 +638,8 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_CCT: 6500
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &362393828
@@ -766,6 +769,11 @@ Transform:
   m_Father: {fileID: 1983452647}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &454069645 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1937537185997096, guid: 8b0608f8fd3140d44ba973610d576ca0,
+    type: 2}
+  m_PrefabInternal: {fileID: 170229306}
 --- !u!1 &468297406
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,48 +1006,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 574259670}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &690976110
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4403831709979696, guid: 602571d73300bdc4f859f372ccb1b219, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4403831709979696, guid: 602571d73300bdc4f859f372ccb1b219, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4403831709979696, guid: 602571d73300bdc4f859f372ccb1b219, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4403831709979696, guid: 602571d73300bdc4f859f372ccb1b219, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4403831709979696, guid: 602571d73300bdc4f859f372ccb1b219, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4403831709979696, guid: 602571d73300bdc4f859f372ccb1b219, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4403831709979696, guid: 602571d73300bdc4f859f372ccb1b219, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4403831709979696, guid: 602571d73300bdc4f859f372ccb1b219, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 602571d73300bdc4f859f372ccb1b219, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &749900212
 GameObject:
   m_ObjectHideFlags: 0
@@ -2564,6 +2530,23 @@ Prefab:
     - {fileID: 114751946947215162, guid: efaccc3edafe6c64eaf33a00224f69ad, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: efaccc3edafe6c64eaf33a00224f69ad, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1452487098 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1420807209672550, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+    type: 2}
+  m_PrefabInternal: {fileID: 272600035}
+--- !u!114 &1452487099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1452487098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba87cef0f0bec6469d42530006bcd9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonVRFallback: {fileID: 454069645}
 --- !u!4 &1467014580 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
@@ -3197,7 +3180,8 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_CCT: 6500
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1741447703
@@ -3716,7 +3700,8 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_CCT: 6500
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &2139980299
@@ -3767,7 +3752,8 @@ Light:
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_CCT: 6500
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &2139980301
