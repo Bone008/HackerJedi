@@ -2372,6 +2372,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
+  deathExplosion: {fileID: 1862322992109182, guid: 5f01c0a5d11e8034b9b6a7f008a4e490,
+    type: 2}
 --- !u!1 &1322127208
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ using UnityEngine;
 public class MasterEye : MonoBehaviour {
 
     public float maxHealth = 1000.0f;
+    public GameObject deathExplosion;
+
     private float currentHealth;
 
 	// Use this for initialization
@@ -20,6 +22,8 @@ public class MasterEye : MonoBehaviour {
         {
             Debug.Log("master deadeded");
             // TODO
+            currentHealth = maxHealth;
+            Instantiate(deathExplosion, transform.position, Quaternion.identity);
         }
 
         // TODO remove
