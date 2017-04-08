@@ -35,6 +35,9 @@ public class NonVRInputHandler : MonoBehaviour
     {
         // get own camera
         hackerCamera = GetComponent<Camera>();
+
+        // show initial perspective
+        ShowCharacterPerspective(currentPerspective);
     }
 
     void Update()
@@ -44,20 +47,22 @@ public class NonVRInputHandler : MonoBehaviour
         if (switchPerspective != null)
         {
             if (switchPerspective == true)
-                currentPerspective = currentPerspective.Next();
+                ShowCharacterPerspective(currentPerspective.Next());
             else
-                currentPerspective = currentPerspective.Previous();
-            ShowCharacterPerspective(currentPerspective);
+                ShowCharacterPerspective(currentPerspective.Previous());
         }
         
-        // rotate camera
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-        var angles = transform.localEulerAngles;
-        angles.y += h * rotationSpeed * Time.deltaTime;
-        angles.x -= v * rotationSpeed * Time.deltaTime;
-        transform.localEulerAngles = angles;
-
+        // rotate hacker camera
+        if (currentPerspective == Perspective.hacker || currentPerspective == Perspective.both)
+        {
+            float h = Input.GetAxis("Mouse X");
+            float v = Input.GetAxis("Mouse Y");
+            var angles = transform.localEulerAngles;
+            angles.y += h * rotationSpeed * Time.deltaTime;
+            angles.x -= v * rotationSpeed * Time.deltaTime;
+            transform.localEulerAngles = angles;
+        }
+        
         // trigger input
         if (Input.GetButtonDown("Fire1"))
             player.SetTriggerDown(HackerHand.Left, true);
@@ -103,6 +108,7 @@ public class NonVRInputHandler : MonoBehaviour
                 hackerCamera.enabled = true;
                 SetCamWidth(hackerCamera, 1);
                 masterHUD.enabled = false;
+                Cursor.lockState = CursorLockMode.Locked;
                 break;
 
             case Perspective.both:
@@ -111,6 +117,7 @@ public class NonVRInputHandler : MonoBehaviour
                 SetCamWidth(masterCamera, 0.5f);
                 SetCamWidth(hackerCamera, 0.5f, true);
                 masterHUD.enabled = true;
+                Cursor.lockState = CursorLockMode.None;
                 break;
 
             case Perspective.master:
@@ -118,8 +125,10 @@ public class NonVRInputHandler : MonoBehaviour
                 hackerCamera.enabled = false;
                 SetCamWidth(masterCamera, 1);
                 masterHUD.enabled = true;
+                Cursor.lockState = CursorLockMode.None;
                 break;            
-        }        
+        }
+        currentPerspective = perspective;
     }
 
     private void SetCamWidth(Camera cam, float newWidth, bool floatRight = false)
