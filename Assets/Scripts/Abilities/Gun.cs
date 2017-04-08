@@ -26,8 +26,8 @@ public class Gun : AbstractAbility {
     {
         var aimRay = GetAimRay(nozzle);
         var shootingDirection = aimRay.direction;
-        var position = aimRay.origin + shootingDirection * 1.1f * projectilePrefab.transform.localScale.y;
-        var rotation = Quaternion.LookRotation(shootingDirection) * Quaternion.Euler(90, 0, 0);
+        var position = aimRay.origin;
+        var rotation = Quaternion.LookRotation(shootingDirection);
         
         GameObject projectile = GameObject.Instantiate(projectilePrefab, position, rotation);
         projectile.GetComponent<Rigidbody>().velocity = shootingDirection * projectileSpeed;
