@@ -7,6 +7,7 @@ public class Gun : AbstractAbility {
 
     public AbilityType abilityType = AbilityType.SimpleGun;
 
+    public AudioClip shootSound;
     public GameObject projectilePrefab;
     public Transform nozzle;
     public float projectileSpeed = 1.0f;
@@ -37,6 +38,9 @@ public class Gun : AbstractAbility {
 
         // store layer
         projectile.layer = layer;
+
+        if(shootSound != null)
+            AudioSource.PlayClipAtPoint(shootSound, nozzle.position, 0.5f);
     }
 
 }

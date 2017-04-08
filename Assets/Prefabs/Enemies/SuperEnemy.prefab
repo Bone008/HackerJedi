@@ -626,6 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityType: 1
+  shootSound: {fileID: 8300000, guid: 94a041922bfdc4542b975785eb3ce57e, type: 3}
   projectilePrefab: {fileID: 1072651022596434, guid: d4ba919cba755544aab32a7f05819fea,
     type: 2}
   nozzle: {fileID: 4021406045574218}
