@@ -8,8 +8,11 @@ public class NonVRInputHandler : MonoBehaviour
 
     public HackerPlayer player;
     public Camera masterCamera;
+    public Canvas masterHUD;
 
     public float rotationSpeed = 180;
+
+    private Camera hackerCamera;
 
     private int[][] selectionPositions =
     {
@@ -20,15 +23,33 @@ public class NonVRInputHandler : MonoBehaviour
     };
     private int selectedWeaponIndex = 0;
 
+    private enum Perspective
+    {
+        hacker = 0,
+        both = 1,
+        master = 2
+    };
+    private Perspective currentPerspective = Perspective.hacker;
+
     void Start()
     {
-        var rect = masterCamera.rect;
-        rect.width = 0.5f;
-        masterCamera.rect = rect;
+        // get own camera
+        hackerCamera = GetComponent<Camera>();
     }
 
     void Update()
     {
+        // switch perspectives
+        bool? switchPerspective = Util.InputGetAxisDown("NonVR Switch Perspective");
+        if (switchPerspective != null)
+        {
+            if (switchPerspective == true)
+                currentPerspective = currentPerspective.Next();
+            else
+                currentPerspective = currentPerspective.Previous();
+            ShowCharacterPerspective(currentPerspective);
+        }
+        
         // rotate camera
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
@@ -71,5 +92,44 @@ public class NonVRInputHandler : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         player.CloseAbilitySelectionWheel(HackerHand.Left);
         player.CloseAbilitySelectionWheel(HackerHand.Right);
+    }
+
+    private void ShowCharacterPerspective(Perspective perspective)
+    {
+        switch(perspective)
+        {
+            case Perspective.hacker:
+                masterCamera.enabled = false;
+                hackerCamera.enabled = true;
+                SetCamWidth(hackerCamera, 1);
+                masterHUD.enabled = false;
+                break;
+
+            case Perspective.both:
+                masterCamera.enabled = true;
+                hackerCamera.enabled = true;
+                SetCamWidth(masterCamera, 0.5f);
+                SetCamWidth(hackerCamera, 0.5f, true);
+                masterHUD.enabled = true;
+                break;
+
+            case Perspective.master:
+                masterCamera.enabled = true;
+                hackerCamera.enabled = false;
+                SetCamWidth(masterCamera, 1);
+                masterHUD.enabled = true;
+                break;            
+        }        
+    }
+
+    private void SetCamWidth(Camera cam, float newWidth, bool floatRight = false)
+    {
+        var rect = cam.rect;
+        rect.width = newWidth;
+        if (floatRight)
+            rect.x = 1 - newWidth;
+        else
+            rect.x = 0;
+        cam.rect = rect;
     }
 }

@@ -355,6 +355,21 @@ Prefab:
       propertyPath: maxHealth
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 20940695998596248, guid: 8b0608f8fd3140d44ba973610d576ca0,
+        type: 2}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20940695998596248, guid: 8b0608f8fd3140d44ba973610d576ca0,
+        type: 2}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114716964781369810, guid: 8b0608f8fd3140d44ba973610d576ca0,
+        type: 2}
+      propertyPath: masterHUD
+      value: 
+      objectReference: {fileID: 749900216}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b0608f8fd3140d44ba973610d576ca0, type: 2}
   m_IsPrefabParent: 0
