@@ -15,36 +15,15 @@ public class LevelGenerator : MonoBehaviour
 
     // 1:randomPresetBlock Wahrscheinlichkeit dass ein Block versetzt wird; 0 keine Blöcke werden versetzt
     public int randomPresetBlock;
+    // trackRowOffset: freie blöcke neben dem track, minimal = 0 - maximal = row / 2
+    public int trackRowOffset;
 
     public int rows;
     public int lines;
     private GameObject[,] world;
     public GameObject[,] track;
-
-    void createWorldPlane()
-    {
-        Vector3 centerOffset = new Vector3((rows - 1) / 2f, 0, (lines - 1) / 2f) * blockSize;
-
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < lines; j++)
-            {
-                track[i, j] = Instantiate(railBlock, new Vector3(i * blockSize, 0, j * blockSize) - centerOffset + (Vector3.up), Quaternion.identity);
-                track[i, j].transform.SetParent(transform, false);
-                track[i, j].tag = "RailBlock";
-                track[i, j].SetActive(false);
-
-                world[i, j] = Instantiate(block, new Vector3(i * blockSize, 0, j * blockSize) - centerOffset, Quaternion.identity);
-                world[i, j].transform.SetParent(transform, false);
-                foreach (Transform t in world[i, j].transform)
-                {
-                    t.gameObject.tag = "RoomBlock";
-                }
-            }
-        }
-    }
-
-    void flattenWorld()
+    
+    public void clearWorld()
     {
         rail.Clear();
         endMarker.SetActive(false);
@@ -53,18 +32,24 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int j = 0; j < lines; j++)
             {
-                if (world[i, j].transform.position.y == 2 * blockSize)
+                Destroy(world[i, j]);
+            }
+        }
+    }
+
+    void fillWorldPlane()
+    {
+        Vector3 centerOffset = new Vector3((rows - 1) / 2f, 0, (lines - 1) / 2f) * blockSize;
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < lines; j++)
+            {
+                if(world[i, j] == null)
                 {
-                    world[i, j].transform.Translate(Vector3.down * 2 * blockSize);
-                }
-                else if (world[i, j].transform.position.y == 1 * blockSize)
-                {
-                    world[i, j].transform.Translate(Vector3.down * blockSize);
-                }
-                else if (!world[i, j].activeSelf)
-                {
-                    track[i, j].SetActive(false);
-                    world[i, j].SetActive(true);
+                    world[i, j] = Instantiate(block, new Vector3(i * blockSize, 0, j * blockSize) - centerOffset, Quaternion.identity);
+                    world[i, j].transform.SetParent(transform, false);
+                    world[i, j].tag = "RoomBlock";
                 }
             }
         }
@@ -72,8 +57,6 @@ public class LevelGenerator : MonoBehaviour
 
     void randomizeWorld(int r)
     {
-        createTrack();
-
         if (r == 0)
             return;
 
@@ -81,7 +64,7 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int j = 0; j < lines; j++)
             {
-                if (Random.Range(0, r) == 0 && !track[i, j].activeSelf)
+                if (Random.Range(0, r) == 0 && world[i, j].tag.Equals("RoomBlock"))
                 {
                     if (world[i, j].transform.position.y == 0)
                     {
@@ -127,50 +110,63 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    void createTrack()
+    public void createTrack()
     {
-        int p = Random.Range((rows / 4), (rows / 4) * 3);
+        int p = Random.Range(trackRowOffset, rows - trackRowOffset);
         int direction = 0;
         int prevDirection;
+        int sideway;
 
         for (int i = 0; i < lines; i++)
         {
             prevDirection = direction;
+            Vector3 centerOffset = new Vector3((rows - 1) / 2f, 0, (lines - 1) / 2f) * blockSize;
+
+            world[p, i] = Instantiate(railBlock, new Vector3(p * blockSize, 0, i * blockSize) - centerOffset + (Vector3.up), Quaternion.identity);
+            world[p, i].transform.SetParent(transform, false);
+            world[p, i].tag = "RailBlock";
             rail.Add(world[p, i].transform);
-            world[p, i].SetActive(false);
-            track[p, i].SetActive(true);
-            //world[p+1, i].SetActive(false);
-            //track[p+1, i].SetActive(true);
+
             direction = Random.Range(0, 3);
-            if (direction == 1 && prevDirection != 2 && p > 1 && i < lines - 2)
+
+            if (direction == 1 && prevDirection != 2 && p > trackRowOffset && i < lines - 2)
             {
-                rail.Add(world[p, i + 1].transform);
-                world[p, i + 1].SetActive(false);
-                track[p, i + 1].SetActive(true);
-                //world[p+1, i + 1].SetActive(false);
-                //track[p+1, i + 1].SetActive(true);
-                p--;
+                sideway = Random.Range(1, p - trackRowOffset);
+
+                for(int j = 0; j < sideway; j++)
+                {
+                    world[p, i + 1] = Instantiate(railBlock, new Vector3(p * blockSize, 0, (i + 1) * blockSize) - centerOffset + (Vector3.up), Quaternion.identity);
+                    world[p, i + 1].transform.SetParent(transform, false);
+                    world[p, i + 1].tag = "RailBlock";
+                    rail.Add(world[p, i + 1].transform);
+                    p--;
+                }
             }
-            else if (direction == 2 && prevDirection != 1 && p < (rows - 2) && i < lines - 2)
+            else if (direction == 2 && prevDirection != 1 && p < (rows - (1 + trackRowOffset)) && i < lines - 2)
             {
-                rail.Add(world[p, i + 1].transform);
-                world[p, i + 1].SetActive(false);
-                track[p, i + 1].SetActive(true);
-                //world[p+1, i + 1].SetActive(false);
-                //track[p+1, i + 1].SetActive(true);
-                p++;
+                sideway = Random.Range(1, rows - (p + (1 + trackRowOffset)));
+
+                for(int j = 0; j < sideway; j++)
+                {
+                    world[p, i + 1] = Instantiate(railBlock, new Vector3(p * blockSize, 0, (i + 1) * blockSize) - centerOffset + (Vector3.up), Quaternion.identity);
+                    world[p, i + 1].transform.SetParent(transform, false);
+                    world[p, i + 1].tag = "RailBlock";
+                    rail.Add(world[p, i + 1].transform);
+                    p++;
+                }
             }
         }
-        endMarker.transform.position = track[p, lines - 1].transform.position;
+        endMarker.transform.position = world[p, lines - 1].transform.position;
         endMarker.SetActive(true);
+        fillWorldPlane();
     }
 
     private void Awake()
     {
         world = new GameObject[rows, lines];
         track = new GameObject[rows, lines];
-        createWorldPlane();
-        randomizeWorld(randomPresetBlock);
+        createTrack();
+        randomizeWorld(GameData.Instance.randomizeWorldinProgress);
     }
     
     // Update is called once per frame
@@ -178,9 +174,9 @@ public class LevelGenerator : MonoBehaviour
     {
         if (Input.GetKeyDown("l"))
         {
-            flattenWorld();
+            clearWorld();
         }
         if (Input.GetKeyUp("l"))
-            randomizeWorld(randomPresetBlock);
+            createTrack();
     }
 }

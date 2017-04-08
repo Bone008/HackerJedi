@@ -195,6 +195,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23655135935529580
 MeshRenderer:
@@ -226,6 +227,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!23 &23743921057301744
 MeshRenderer:
@@ -257,6 +259,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33036557493421496
 MeshFilter:
@@ -303,10 +306,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityType: 2
-  projectilePrefab: {fileID: 1072651022596434, guid: bc6415566563d784791acac02bf9a97d,
+  shootSound: {fileID: 8300000, guid: 94a041922bfdc4542b975785eb3ce57e, type: 3}
+  projectilePrefab: {fileID: 1072651022596434, guid: d4ba919cba755544aab32a7f05819fea,
     type: 2}
   nozzle: {fileID: 4254166129595500}
   projectileSpeed: 5
+  damageAmount: 25
+  layer: 0
 --- !u!136 &136545121566104394
 CapsuleCollider:
   m_ObjectHideFlags: 1

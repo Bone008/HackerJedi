@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: 604661955c7fa16408eb40ae52df3f68
-timeCreated: 1491310053
+timeCreated: 1491669600
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - shootSound: {fileID: 8300000, guid: 94a041922bfdc4542b975785eb3ce57e, type: 3}
+  - projectilePrefab: {instanceID: 0}
+  - nozzle: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
