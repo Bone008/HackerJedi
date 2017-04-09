@@ -16,11 +16,12 @@ public class Gun : AbstractAbility {
     public override AbilityType Type { get { return abilityType; } }
 
     [HideInInspector]
-    public int layer;
+    public int? layer = null;
 
     private void Start()
     {
-        layer = gameObject.layer;
+        if(!layer.HasValue)
+            layer = gameObject.layer;
     }
 
     protected override void OnTriggerDown()
@@ -37,7 +38,8 @@ public class Gun : AbstractAbility {
         projectile.GetComponent<Projectile>().damageAmount = damageAmount;
 
         // store layer
-        projectile.layer = layer;
+        if(layer.HasValue)
+            projectile.layer = layer.Value;
 
         if(shootSound != null)
             AudioSource.PlayClipAtPoint(shootSound, nozzle.position, 0.5f);
