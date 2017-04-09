@@ -12,6 +12,7 @@ public class NonVRInputHandler : MonoBehaviour
 
     public float rotationSpeed = 180;
     public float movementSpeed = 5;
+    public float handMovementSpeed = 1;
     public float blockSize = 3;
 
     private Camera hackerCamera;
@@ -33,6 +34,8 @@ public class NonVRInputHandler : MonoBehaviour
     };
     private Perspective currentPerspective = Perspective.Hacker;
 
+    private HackerHand currentHand = HackerHand.Left;
+
     void Start()
     {
         // get own camera
@@ -53,9 +56,13 @@ public class NonVRInputHandler : MonoBehaviour
             else
                 ShowCharacterPerspective(currentPerspective.Previous());
         }
-        
+
+        // collect modifiers
+        bool altHandControl = (Input.GetAxis("NonVR Modify Hand Control") > 0);
+        bool altHandDirection = (Input.GetAxis("NonVR Modify Hand Direction") > 0);
+
         // rotate hacker camera
-        if (currentPerspective == Perspective.Hacker || currentPerspective == Perspective.Both)
+        if (!altHandControl && (currentPerspective == Perspective.Hacker || currentPerspective == Perspective.Both))
         {
             float x = Input.GetAxis("Mouse X");
             float y = Input.GetAxis("Mouse Y");
@@ -86,6 +93,45 @@ public class NonVRInputHandler : MonoBehaviour
             newPosition.z = Mathf.Clamp(newPosition.z, -hbs, hbs);
             newPosition.y = transform.localPosition.y;
             transform.localPosition = newPosition;            
+        }
+
+        // switch hacker hands
+        bool? nextHand = Util.InputGetAxisDown("NonVR Switch Active Hand");
+        if (nextHand == true)
+            currentHand = HackerHand.Right;
+        if (nextHand == false)
+            currentHand = HackerHand.Left;
+
+        // move hacker hands left/right/up/down
+        if (altHandControl && (currentPerspective == Perspective.Hacker || currentPerspective == Perspective.Both))
+        {
+            float x = Input.GetAxis("Mouse X");
+            float y = Input.GetAxis("Mouse Y");
+            GameObject handGO = player.GetHandGO(currentHand);
+            float oldDist = Vector3.Distance(handGO.transform.position, hackerCamera.transform.position);
+
+            // move
+            Vector3 newPosition = handGO.transform.position;
+            Vector3 baseDirection = altHandDirection ? transform.forward : transform.up;
+            newPosition += handMovementSpeed * baseDirection * Time.deltaTime * y;
+            newPosition += handMovementSpeed * handGO.transform.right * Time.deltaTime * x;
+            // only store, if weapon is still in sight
+            Vector3 viewportPoint = hackerCamera.WorldToViewportPoint(newPosition);
+            if (viewportPoint.x >= 0 && viewportPoint.x <= 1 && viewportPoint.y >= 0 && viewportPoint.y <= 1)
+                handGO.transform.position = newPosition;
+
+            // rotate away from camera to be able to aim
+            handGO.transform.rotation = Quaternion.LookRotation(handGO.transform.position - hackerCamera.transform.position);
+            handGO.transform.Rotate(-10, 0, 0); // to see shot lasers
+
+            // force hand to stay in same distance
+            if (!altHandDirection)
+            {
+                Vector3 direction = handGO.transform.position - hackerCamera.transform.position;
+                Vector3 directionNorm = direction.normalized;
+                directionNorm *= (oldDist - direction.magnitude);
+                handGO.transform.position += directionNorm;
+            }
         }
         
         // trigger input

@@ -26,7 +26,7 @@ public class HackerPlayer : MonoBehaviour
     private AbilitySelectionWheel[] selectionWheels = { null, null };
 
 
-    private GameObject GetHandGO(HackerHand hand)
+    public GameObject GetHandGO(HackerHand hand)
     {
         return handGameObjects[(int)hand];
         //return (hand == HackerHand.Left ? leftHand : rightHand);
