@@ -89,7 +89,7 @@ public class Master : MonoBehaviour {
         }
 
         // stop dragging
-        if (Input.GetMouseButtonUp(1))
+        if (currentlyDragging && Input.GetMouseButtonUp(1))
         {
             currentlyDragging = false;
 
