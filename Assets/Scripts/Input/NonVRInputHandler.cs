@@ -147,27 +147,23 @@ public class NonVRInputHandler : MonoBehaviour
         // switch weapon
         if (Input.GetButtonDown("Jump"))
         {
-            StartCoroutine(SwitchWeapon());
+            StartCoroutine(SwitchWeapon(currentHand));
         }
     }
 
-    private IEnumerator SwitchWeapon()
+    private IEnumerator SwitchWeapon(HackerHand hand)
     {
         selectedWeaponIndex = (selectedWeaponIndex + 1) % selectionPositions.Length;
         var touchPos = selectionPositions[selectedWeaponIndex];
         var touchPosVec = new Vector2(touchPos[0], touchPos[1]) * 0.8f;
         
-        player.OpenAbilitySelectionWheel(HackerHand.Left);
-        player.OpenAbilitySelectionWheel(HackerHand.Right);
+        player.OpenAbilitySelectionWheel(hand);
         yield return new WaitForFixedUpdate();
-        player.SetAbilitySelectionPosition(HackerHand.Left, touchPosVec);
-        player.SetAbilitySelectionPosition(HackerHand.Right, touchPosVec);
+        player.SetAbilitySelectionPosition(hand, touchPosVec);
         yield return new WaitForSeconds(0.2f);
-        player.ConfirmAbilitySelection(HackerHand.Left, touchPosVec);
-        player.ConfirmAbilitySelection(HackerHand.Right, touchPosVec);
+        player.ConfirmAbilitySelection(hand, touchPosVec);
         yield return new WaitForSeconds(0.1f);
-        player.CloseAbilitySelectionWheel(HackerHand.Left);
-        player.CloseAbilitySelectionWheel(HackerHand.Right);
+        player.CloseAbilitySelectionWheel(hand);
     }
 
     private void ShowCharacterPerspective(Perspective perspective)

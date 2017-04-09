@@ -731,7 +731,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1116825199492942}
-  m_LocalRotation: {x: 0.5735764, y: 0, z: 0, w: 0.8191521}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.109, z: -0.04999995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -742,7 +742,7 @@ Transform:
   - {fileID: 4169567229645044}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4226844684001516
 Transform:
   m_ObjectHideFlags: 1
@@ -2039,6 +2039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityType: 2
+  shootSound: {fileID: 0}
   projectilePrefab: {fileID: 1072651022596434, guid: bc6415566563d784791acac02bf9a97d,
     type: 2}
   nozzle: {fileID: 4614477866505768}
