@@ -133,21 +133,27 @@ public class NonVRInputHandler : MonoBehaviour
                 handGO.transform.position += directionNorm;
             }
         }
-        
+
         // trigger input
-        if (Input.GetButtonDown("Fire1"))
-            player.SetTriggerDown(HackerHand.Left, true);
-        if (Input.GetButtonUp("Fire1"))
-            player.SetTriggerDown(HackerHand.Left, false);
-        if (Input.GetButtonDown("Fire2"))
-            player.SetTriggerDown(HackerHand.Right, true);
-        if (Input.GetButtonUp("Fire2"))
-            player.SetTriggerDown(HackerHand.Right, false);
+        if (currentPerspective == Perspective.Hacker || currentPerspective == Perspective.Both)
+        {
+            if (Input.GetButtonDown("Fire1"))
+                player.SetTriggerDown(HackerHand.Left, true);
+            if (Input.GetButtonUp("Fire1"))
+                player.SetTriggerDown(HackerHand.Left, false);
+            if (Input.GetButtonDown("Fire2"))
+                player.SetTriggerDown(HackerHand.Right, true);
+            if (Input.GetButtonUp("Fire2"))
+                player.SetTriggerDown(HackerHand.Right, false);
+        }
 
         // switch weapon
-        if (Input.GetButtonDown("Jump"))
+        if (currentPerspective == Perspective.Hacker || currentPerspective == Perspective.Both)
         {
-            StartCoroutine(SwitchWeapon(currentHand));
+            if (Input.GetButtonDown("Jump"))
+            {
+                StartCoroutine(SwitchWeapon(currentHand));
+            }
         }
     }
 
