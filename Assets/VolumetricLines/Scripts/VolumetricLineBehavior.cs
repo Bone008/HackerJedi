@@ -198,6 +198,10 @@ namespace VolumetricLines
 				mesh.vertices = vertexPositions;
 				mesh.normals = other;
 			}
+
+            // from https://forum.unity3d.com/threads/released-volumetric-lines.299393/#post-2462327
+            //Update the mesh bounds to avoid frustum culling
+            mesh.RecalculateBounds();
 		}
 		
 		// Vertex data is updated only in Start() unless m_dynamic is set to true

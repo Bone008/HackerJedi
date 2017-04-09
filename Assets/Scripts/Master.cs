@@ -35,14 +35,14 @@ public class Master : MonoBehaviour {
     private Dictionary<Transform, Coroutine> snapCoroutines = new Dictionary<Transform, Coroutine>();
 
     [Header("Laser Beam")]
-    public LineRenderer laserBeam;
+    public VolumetricLines.VolumetricLineBehavior laserBeam;
     public Transform laserStart;
     private LookAtMouse lookAtMouseScript;
 
     private Transform selected;
     
 	void Start () {
-        laserBeam.enabled = false;
+        laserBeam.gameObject.SetActive(false);
         lookAtMouseScript = masterEye.GetComponent<LookAtMouse>();
         oldMousePosition = Input.mousePosition;
     }
@@ -138,19 +138,21 @@ public class Master : MonoBehaviour {
         // move laser
         if (selected != null && currentlyDragging)
         {
-            laserBeam.SetPosition(0, laserStart.position);
-            laserBeam.SetPosition(1, selected.position);
-            if(!laserBeam.enabled)
+            //laserBeam.SetPosition(0, laserStart.position);
+            //laserBeam.SetPosition(1, selected.position);
+            laserBeam.SetStartAndEndPoints(laserBeam.transform.InverseTransformPoint(laserStart.position), laserBeam.transform.InverseTransformPoint(selected.position));
+
+            if(!laserBeam.gameObject.activeSelf)
             {
-                laserBeam.enabled = true;
+                laserBeam.gameObject.SetActive(true);
                 lookAtMouseScript.rotationSpeed *= 10.0f;
             }            
         }
         else
         {
-            if(laserBeam.enabled)
+            if(laserBeam.gameObject.activeSelf)
             {
-                laserBeam.enabled = false;
+                laserBeam.gameObject.SetActive(false);
                 lookAtMouseScript.rotationSpeed /= 10.0f;
             }            
         }
