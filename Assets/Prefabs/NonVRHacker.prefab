@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 114716964781369810}
   - component: {fileID: 114422562792416884}
   - component: {fileID: 114088130453283092}
+  - component: {fileID: 114853150587969488}
   m_Layer: 10
   m_Name: NonVRHacker
   m_TagString: Player
@@ -220,12 +221,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01c61ace728c394ba02b99634dc3910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 500
-  onDeath:
+  _initialHealth: 500
+  onHealthChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114857384911533394}
-        m_MethodName: OnDeath
+        m_MethodName: OnHealthChanged
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 114088130453283092}
@@ -237,11 +238,16 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  onPostDamage:
+  onDamage:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onDeath:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114857384911533394}
-        m_MethodName: OnPostDamage
+        m_MethodName: OnDeath
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 114088130453283092}
@@ -388,6 +394,20 @@ MonoBehaviour:
   movementSpeed: 5
   handMovementSpeed: 1
   blockSize: 3
+--- !u!114 &114853150587969488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1937537185997096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a8621f6cfd99348b57934f45698387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitAfterDamageS: 2
+  intervalS: 0.5
+  healthAmountPerInterval: 5
 --- !u!114 &114857384911533394
 MonoBehaviour:
   m_ObjectHideFlags: 1

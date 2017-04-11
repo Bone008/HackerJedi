@@ -13,5 +13,11 @@ public class MasterEye : MonoBehaviour {
         deadEye.RestoreFullHealth();
         Instantiate(deathExplosion, transform.position, Quaternion.identity);
     }
+
+    public void OnHealthChanged(Damageable eye)
+    {
+        // TODO add healthbar
+        Debug.Log("Master at health " + eye.currentHealth);
+    }
     
 }

@@ -2211,6 +2211,7 @@ GameObject:
   - component: {fileID: 1271081445}
   - component: {fileID: 1271081446}
   - component: {fileID: 1271081447}
+  - component: {fileID: 1271081448}
   m_Layer: 8
   m_Name: Eye
   m_TagString: Untagged
@@ -2320,8 +2321,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01c61ace728c394ba02b99634dc3910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 1000
-  onPostDamage:
+  _initialHealth: 1000
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1271081446}
+        m_MethodName: OnHealthChanged
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1271081447}
+          m_ObjectArgumentAssemblyTypeName: Damageable, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onDamage:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
@@ -2342,6 +2359,20 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &1271081448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1271081440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a8621f6cfd99348b57934f45698387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitAfterDamageS: 5
+  intervalS: 1
+  healthAmountPerInterval: 5
 --- !u!1 &1322127208
 GameObject:
   m_ObjectHideFlags: 0

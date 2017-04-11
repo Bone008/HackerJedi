@@ -670,7 +670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01c61ace728c394ba02b99634dc3910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 100
+  _initialHealth: 100
   onPostDamage:
     m_PersistentCalls:
       m_Calls: []
