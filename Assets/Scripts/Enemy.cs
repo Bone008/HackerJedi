@@ -8,7 +8,6 @@ public class Enemy : MonoBehaviour
     public float newTargetPosThreshhold = 1;
     public float hitRange;
     public float fireDelay = 0.6f;
-    public float initialHealth = 100f;
 
     public GameObject explo;
 
@@ -16,7 +15,6 @@ public class Enemy : MonoBehaviour
     private Vector3 oldPos;
     private NavMeshAgent agent;
     private Gun gun;
-    private float currentHealth;
 
     private Coroutine firingCoroutine = null;
 
@@ -41,9 +39,6 @@ public class Enemy : MonoBehaviour
         // get gun component from children
         gun = GetComponentInChildren<Gun>();
         gun.layer = LayerMask.NameToLayer("Hacker");
-
-        // set current health
-        currentHealth = initialHealth;
     }
 
     void FixedUpdate()
@@ -74,16 +69,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void OnDamage(float damageAmount)
+    public void OnDeath()
     {
-        currentHealth -= damageAmount;
-
-        if(currentHealth < 0)
-        {
-            Instantiate(explo, transform.position, transform.rotation);
-            Destroy(gameObject);
-            return;
-        }
+        Instantiate(explo, transform.position, transform.rotation);
+        Destroy(gameObject);
     }
 
     private IEnumerator FireWhenReady()

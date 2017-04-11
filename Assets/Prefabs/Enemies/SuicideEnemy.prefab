@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114088130351801460}
   - component: {fileID: 195419599406628960}
   - component: {fileID: 114554841759199340}
+  - component: {fileID: 114152793400993310}
   m_Layer: 9
   m_Name: SuicideEnemy
   m_TagString: Enemy
@@ -112,6 +113,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907c55da2ac305b46b9e1fbc247e17bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114152793400993310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1003776771868634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01c61ace728c394ba02b99634dc3910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialHealth: 60
+  onPostDamage:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114554841759199340}
+        m_MethodName: OnDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114554841759199340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,8 +160,6 @@ MonoBehaviour:
   newTargetPosThreshhold: 1
   blinkRange: 10
   hitRange: 3
-  initialHealth: 100
-  goal: {fileID: 0}
   color1: {r: 0.7647059, g: 0.14057094, b: 0.14057094, a: 0}
   color2: {r: 0.022058845, g: 0.015084357, b: 0.015084357, a: 0}
 --- !u!114 &114885454486330694

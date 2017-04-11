@@ -21,6 +21,11 @@ public class Projectile : MonoBehaviour {
         if (collider.GetComponentInParent<Gun>() != null)
             return;
 
+        Damageable damageable = collider.gameObject.GetComponentInParent<Damageable>();
+        if (damageable != null)
+            damageable.OnDamage(damageAmount);
+
+        /*
         // damage enemies
         Enemy enemy = collider.gameObject.GetComponent<Enemy>();
         if (enemy != null)
@@ -38,6 +43,7 @@ public class Projectile : MonoBehaviour {
         MasterEye masterEye = collider.gameObject.GetComponentInParent<MasterEye>();
         if (masterEye != null)
             masterEye.OnDamage(damageAmount);
+        */
 
         Destroy(this.gameObject);
     }

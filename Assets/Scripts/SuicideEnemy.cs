@@ -7,14 +7,12 @@ public class SuicideEnemy : MonoBehaviour {
     public float newTargetPosThreshhold = 1;
     public float blinkRange;
     public float hitRange;
-    public float initialHealth = 100f;
     private Transform goal;
     public Color color1;
     public Color color2;
 
     private Vector3 oldPos;
     private NavMeshAgent agent;
-    private float currentHealth;
 
     private Coroutine blinkCoroutine;
 
@@ -26,9 +24,6 @@ public class SuicideEnemy : MonoBehaviour {
 
         if (agent.isOnNavMesh)
             agent.destination = goal.position;
-
-        // set current health
-        currentHealth = initialHealth;
 
         GetComponent<Renderer>().material.color = color1;
     }
@@ -68,17 +63,11 @@ public class SuicideEnemy : MonoBehaviour {
         }
     }
 
-    public void OnDamage(float damageAmount)
+    public void OnDeath()
     {
-        currentHealth -= damageAmount;
-
-        if (currentHealth < 0)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        Destroy(gameObject);
     }
-    
+
     private IEnumerator StartBlinking()
     {
         Renderer r = GetComponent<Renderer>();

@@ -12,13 +12,10 @@ public class HackerPlayer : MonoBehaviour
     public GameObject abilitySelectionPrefab;
     public AbilityType initialAbilityLeft;
     public AbilityType initialAbilityRight;
-    public float maxHealth = 100.0f;
 
     [Header("UI")]
     public RectTransform healthBarPanel;
     public GameObject deathScreenElement;
-
-    private float currentHealth;
 
     // one entry per hand
     private Dictionary<AbilityType, GameObject>[] allAbilityGOs = { new Dictionary<AbilityType, GameObject>(), new Dictionary<AbilityType, GameObject>() };
@@ -55,7 +52,6 @@ public class HackerPlayer : MonoBehaviour
     {
         Debug.Assert(handGameObjects.Length == 2);
 
-        currentHealth = maxHealth;
         SpawnAbilityInstances();
         EquipAbility(HackerHand.Left, initialAbilityLeft);
         EquipAbility(HackerHand.Right, initialAbilityRight);
@@ -171,19 +167,18 @@ public class HackerPlayer : MonoBehaviour
         }
     }
 
-    public void OnDamage(float damageAmount)
+    public void OnDeath(Damageable deadHacker)
     {
-        currentHealth -= damageAmount;
-
-        if (currentHealth < 0)
-        {
-            Debug.Log("You deaded!");
-            currentHealth = maxHealth;
-
-            deathScreenElement.SetActive(true);
-            this.Delayed(2.0f, () => deathScreenElement.SetActive(false));
-        }
+        // TODO
+        Debug.Log("You deaded!");
+        deadHacker.RestoreFullHealth();
         
-        healthBarPanel.transform.localScale = new Vector3(Mathf.Max(0, currentHealth) / maxHealth, 1, 1);
+        deathScreenElement.SetActive(true);
+        this.Delayed(2.0f, () => deathScreenElement.SetActive(false));
+    }
+
+    public void OnPostDamage(Damageable damagedHacker)
+    {
+        healthBarPanel.transform.localScale = new Vector3(damagedHacker.healthPercentage, 1, 1);
     }
 }

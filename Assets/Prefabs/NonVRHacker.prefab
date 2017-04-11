@@ -93,13 +93,15 @@ GameObject:
   - component: {fileID: 136166639978638922}
   - component: {fileID: 114857384911533394}
   - component: {fileID: 114716964781369810}
+  - component: {fileID: 114422562792416884}
+  - component: {fileID: 114088130453283092}
   m_Layer: 10
   m_Name: NonVRHacker
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1969470127809938
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,13 +123,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1969470127809938}
-  m_LocalRotation: {x: -0.46393764, y: -0, z: -0, w: 0.8858679}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.245, y: -0.061, z: 0.356}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4696882184290706}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -55.283, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4696882184290706
 Transform:
   m_ObjectHideFlags: 1
@@ -150,13 +152,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1790638233502038}
-  m_LocalRotation: {x: -0.46393764, y: -0, z: -0, w: 0.8858679}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.245, y: -0.06100011, z: 0.35600007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4696882184290706}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -55.283, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20940695998596248
 Camera:
   m_ObjectHideFlags: 1
@@ -169,9 +171,9 @@ Camera:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.5
+    x: 0
     y: 0
-    width: 0.5
+    width: 1
     height: 1
   near clip plane: 0.05
   far clip plane: 1000
@@ -207,6 +209,50 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1937537185997096}
   m_Enabled: 1
+--- !u!114 &114088130453283092
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1937537185997096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01c61ace728c394ba02b99634dc3910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialHealth: 500
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114857384911533394}
+        m_MethodName: OnDeath
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 114088130453283092}
+          m_ObjectArgumentAssemblyTypeName: Damageable, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onPostDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114857384911533394}
+        m_MethodName: OnPostDamage
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 114088130453283092}
+          m_ObjectArgumentAssemblyTypeName: Damageable, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114173167443829758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -298,6 +344,32 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114422562792416884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1937537185997096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87e4989c5e703e428df4339d59e2c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blurShader: {fileID: 4800000, guid: 1855d9636fad3914bacc4a543165c974, type: 3}
+  compositeShader: {fileID: 4800000, guid: e384de4389ba527479054baf0ddb1d3e, type: 3}
+  glowRenderShader: {fileID: 4800000, guid: c04b7cae8accdfb4e9c2648823ff39d7, type: 3}
+  glowLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  renderCamera: {fileID: 0}
+  showCutoutGlow: 0
+  showTransparentGlow: 1
+  glowType: 0
+  fullScreenGlowTint: {r: 1, g: 1, b: 1, a: 0}
+  blurSpread: 0.6
+  blurIterations: 0
+  glowIntensity: 0.57
+  samples: 2
 --- !u!114 &114716964781369810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -311,7 +383,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 114857384911533394}
   masterCamera: {fileID: 0}
+  masterHUD: {fileID: 0}
   rotationSpeed: 180
+  movementSpeed: 5
+  handMovementSpeed: 1
+  blockSize: 3
 --- !u!114 &114857384911533394
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -331,7 +407,7 @@ MonoBehaviour:
   initialAbilityLeft: 1
   initialAbilityRight: 1
   healthBarPanel: {fileID: 224075208957049764}
-  maxHealth: 100
+  deathScreenElement: {fileID: 0}
 --- !u!124 &124632186033654028
 Behaviour:
   m_ObjectHideFlags: 1

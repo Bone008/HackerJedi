@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 114601216256881632}
   - component: {fileID: 20269471111188440}
   - component: {fileID: 92002170303011454}
+  - component: {fileID: 114575063829796266}
   m_Layer: 10
   m_Name: Camera (head)
   m_TagString: Untagged
@@ -177,6 +178,7 @@ GameObject:
   - component: {fileID: 23147199606287196}
   - component: {fileID: 33010591806280616}
   - component: {fileID: 114122392495690734}
+  - component: {fileID: 114754560841430948}
   m_Layer: 10
   m_Name: HackerRig
   m_TagString: Untagged
@@ -313,6 +315,7 @@ GameObject:
   - component: {fileID: 136694615311121704}
   - component: {fileID: 114740182320473880}
   - component: {fileID: 114940441282489298}
+  - component: {fileID: 114087012830672056}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -950,6 +953,50 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114087012830672056
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1860755945617448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01c61ace728c394ba02b99634dc3910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialHealth: 500
+  onPostDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114740182320473880}
+        m_MethodName: OnPostDamage
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 114087012830672056}
+          m_ObjectArgumentAssemblyTypeName: Damageable, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114740182320473880}
+        m_MethodName: OnDeath
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 114087012830672056}
+          m_ObjectArgumentAssemblyTypeName: Damageable, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &114122392495690734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1038,12 +1085,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityType: 1
+  shootSound: {fileID: 0}
   projectilePrefab: {fileID: 1072651022596434, guid: bc6415566563d784791acac02bf9a97d,
     type: 2}
   nozzle: {fileID: 4918204565946538}
   projectileSpeed: 40
   damageAmount: 25
-  layer: 0
 --- !u!114 &114407335616859014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1073,12 +1120,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityType: 1
+  shootSound: {fileID: 0}
   projectilePrefab: {fileID: 1072651022596434, guid: bc6415566563d784791acac02bf9a97d,
     type: 2}
   nozzle: {fileID: 4694056066014996}
   projectileSpeed: 40
   damageAmount: 25
-  layer: 0
 --- !u!114 &114438248692242766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1118,6 +1165,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 114740182320473880}
   hand: 0
+--- !u!114 &114575063829796266
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1120896299160374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87e4989c5e703e428df4339d59e2c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blurShader: {fileID: 4800000, guid: 1855d9636fad3914bacc4a543165c974, type: 3}
+  compositeShader: {fileID: 4800000, guid: e384de4389ba527479054baf0ddb1d3e, type: 3}
+  glowRenderShader: {fileID: 4800000, guid: c04b7cae8accdfb4e9c2648823ff39d7, type: 3}
+  glowLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  renderCamera: {fileID: 0}
+  showCutoutGlow: 0
+  showTransparentGlow: 1
+  glowType: 0
+  fullScreenGlowTint: {r: 1, g: 1, b: 1, a: 0}
+  blurSpread: 0.6
+  blurIterations: 0
+  glowIntensity: 0.57
+  samples: 2
 --- !u!114 &114577542070764164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1215,7 +1288,19 @@ MonoBehaviour:
   initialAbilityLeft: 1
   initialAbilityRight: 1
   healthBarPanel: {fileID: 224689246533769774}
-  maxHealth: 100
+  deathScreenElement: {fileID: 0}
+--- !u!114 &114754560841430948
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1420807209672550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba87cef0f0bec6469d42530006bcd9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonVRFallback: {fileID: 0}
 --- !u!114 &114829305575014356
 MonoBehaviour:
   m_ObjectHideFlags: 1
