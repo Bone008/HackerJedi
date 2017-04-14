@@ -48,9 +48,7 @@ public class LocalNavMeshBuilder : MonoBehaviour
     {
         NavMeshSourceTag.Collect(ref m_Sources);
         var defaultBuildSettings = NavMesh.GetSettingsByID(0);
-        var bounds = QuantizedBounds();
-
-        Debug.Log("new Frame " + m_Sources.Count);        
+        var bounds = QuantizedBounds(); 
 
         if (asyncUpdate)
             m_Operation = NavMeshBuilder.UpdateNavMeshDataAsync(m_NavMesh, defaultBuildSettings, m_Sources, bounds);
