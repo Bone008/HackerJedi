@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33096509505954070}
   - component: {fileID: 65344073001932232}
   - component: {fileID: 23661090442756712}
-  - component: {fileID: 208192063562719396}
+  - component: {fileID: 114784715150544144}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -41,7 +41,6 @@ GameObject:
   - component: {fileID: 33852156395978768}
   - component: {fileID: 65553223314319846}
   - component: {fileID: 23521389858979280}
-  - component: {fileID: 208699608800847908}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -60,7 +59,6 @@ GameObject:
   - component: {fileID: 33675744130403720}
   - component: {fileID: 65590008105185912}
   - component: {fileID: 23105818109127292}
-  - component: {fileID: 208885667920175996}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -291,48 +289,14 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!208 &208192063562719396
-NavMeshObstacle:
+--- !u!114 &114784715150544144
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1015529422746904}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.1
---- !u!208 &208699608800847908
-NavMeshObstacle:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1134483547261212}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.1
---- !u!208 &208885667920175996
-NavMeshObstacle:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1368820994455946}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e038bf700cfa444fb16c6ef963be9f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
