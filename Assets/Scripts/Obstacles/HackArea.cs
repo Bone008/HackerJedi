@@ -16,6 +16,7 @@ public class HackArea : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         hackAreaRenderer = GetComponent<Renderer>();
+        hackAreaRenderer.material.color = defaultColor;
 	}
 	
 	// Update is called once per frame
@@ -30,7 +31,7 @@ public class HackArea : MonoBehaviour {
             hackAreaRenderer.material.color = hackedColor;
 
             // TODO cool animation
-            Destroy(gameObject.transform.parent.gameObject);
+            Destroy(gameObject.transform.parent.parent.gameObject);
             return;
         }
 	}
