@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public float newTargetPosThreshhold = 1;
-    public float hitRange;
+    public float hitRange, stoppingDistance;
     public float fireDelay = 0.6f;
 
     public GameObject explo;
@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     private Transform goal;
     private Vector3 oldPos;
     private NavMeshAgent agent;
-    private Gun gun;
+    private Gun gun;    
 
     private Coroutine firingCoroutine = null;
 
@@ -38,12 +38,18 @@ public class Enemy : MonoBehaviour
 
         // get gun component from children
         gun = GetComponentInChildren<Gun>();
-        gun.layer = LayerMask.NameToLayer("Hacker");
+        gun.layer = LayerMask.NameToLayer("Hacker");        
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        if (agent.isOnNavMesh && Vector3.Distance(oldPos, goal.position) > newTargetPosThreshhold)
+        if (Vector3.Distance(transform.position, goal.position) < stoppingDistance && !agent.isStopped)
+            agent.isStopped = true;
+
+        if (Vector3.Distance(transform.position, goal.position) > stoppingDistance && agent.isStopped)
+            agent.isStopped = false;
+
+        if (agent.isOnNavMesh && Vector3.Distance(oldPos, goal.position) > newTargetPosThreshhold && !agent.isStopped)
         {
             agent.destination = goal.position;
             oldPos = goal.position;

@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33768159431198588}
   - component: {fileID: 65824362995082096}
   - component: {fileID: 23326152313819942}
-  - component: {fileID: 208934316190421606}
   m_Layer: 0
   m_Name: Rail
   m_TagString: Untagged
@@ -94,18 +93,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!208 &208934316190421606
-NavMeshObstacle:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1918688535058414}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 5, y: 0.5, z: 5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0.1, z: 0}
-  m_TimeToStationary: 0.1
