@@ -10,7 +10,7 @@ public class HackArea : MonoBehaviour {
     public Color hackedColor = Color.yellow;
 
     private float timeRemaining;
-    private SteamVR_TrackedController hackerController;
+    private GameObject hackerController;
     private Renderer hackAreaRenderer;
 
 	// Use this for initialization
@@ -37,18 +37,27 @@ public class HackArea : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider)
     {
-        var other = collider.gameObject.GetComponentInParent<SteamVR_TrackedController>();
-        if (other != null)
+        // already a hand inside
+        if (hackerController != null)
+            return;
+
+        // get hand go
+        var hackerHand = collider.gameObject.GetGoInParentWithTag("HackerHand");
+
+        if (hackerHand != null)
         {
             timeRemaining = timeToHack;
-            hackerController = other;
+            hackerController = hackerHand;
             hackAreaRenderer.material.color = hackingColor;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if(other.GetComponentInParent<SteamVR_TrackedController>() == hackerController)
+        var hackerHand = other.gameObject.GetGoInParentWithTag("HackerHand");
+        
+        // test if current hand left the hacking area
+        if (hackerHand != null && hackerHand.Equals(hackerController))
         {
             hackerController = null;
             hackAreaRenderer.material.color = defaultColor;

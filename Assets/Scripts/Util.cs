@@ -129,4 +129,25 @@ public static class Util
         return result;
     }
     #endregion
+
+    /// <summary>
+    /// Searches for a GameObject with a specific tag in the current gameobject and its parents
+    /// </summary>
+    /// <param name="current">the current gameobject</param>
+    /// <param name="searchedTag">the name of the tag that is searched for</param>
+    /// <returns>the GameObject with the specified tag or null if the search was unsuccessful</returns>
+    public static GameObject GetGoInParentWithTag(this GameObject current, string searchedTag)
+    {
+        Transform currentParent = current.transform;
+
+        while(currentParent != null)
+        {
+            if (currentParent.tag.Equals(searchedTag))
+                return currentParent.gameObject;
+
+            currentParent = currentParent.parent;
+        }
+
+        return null;
+    }
 }

@@ -16,6 +16,7 @@ TagManager:
   - EndMarker
   - HackArea
   - Platform
+  - HackerHand
   layers:
   - Default
   - TransparentFX

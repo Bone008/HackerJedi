@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4325461465777932}
+  - component: {fileID: 65362909910603070}
   m_Layer: 10
   m_Name: RotationFixLeft
   m_TagString: Untagged
@@ -69,6 +70,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4642600064485578}
+  - component: {fileID: 65797519935838324}
   m_Layer: 10
   m_Name: RotationFixRight
   m_TagString: Untagged
@@ -103,7 +105,7 @@ GameObject:
   - component: {fileID: 4931633385616990}
   m_Layer: 10
   m_Name: Right Hand
-  m_TagString: Untagged
+  m_TagString: HackerHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,7 +145,7 @@ GameObject:
   - component: {fileID: 4313634732476694}
   m_Layer: 10
   m_Name: Left Hand
-  m_TagString: Untagged
+  m_TagString: HackerHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -254,6 +256,30 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!65 &65362909910603070
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1160405324495528}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: -0.05}
+--- !u!65 &65797519935838324
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1304622207084846}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: -0.05}
 --- !u!81 &81481009844305810
 AudioListener:
   m_ObjectHideFlags: 1
