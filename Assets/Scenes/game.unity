@@ -431,11 +431,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114857384911533394, guid: 8b0608f8fd3140d44ba973610d576ca0,
+    - target: {fileID: 114422562792416884, guid: 8b0608f8fd3140d44ba973610d576ca0,
         type: 2}
-      propertyPath: deathScreenElement
+      propertyPath: renderCamera
       value: 
-      objectReference: {fileID: 1731512458}
+      objectReference: {fileID: 1076524487}
     - target: {fileID: 114716964781369810, guid: 8b0608f8fd3140d44ba973610d576ca0,
         type: 2}
       propertyPath: masterCamera
@@ -446,15 +446,11 @@ Prefab:
       propertyPath: masterHUD
       value: 
       objectReference: {fileID: 749900216}
-    - target: {fileID: 114422562792416884, guid: 8b0608f8fd3140d44ba973610d576ca0,
+    - target: {fileID: 114857384911533394, guid: 8b0608f8fd3140d44ba973610d576ca0,
         type: 2}
-      propertyPath: renderCamera
+      propertyPath: deathScreenElement
       value: 
-      objectReference: {fileID: 1076524487}
-    - target: {fileID: 1937537185997096, guid: 8b0608f8fd3140d44ba973610d576ca0, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1731512458}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b0608f8fd3140d44ba973610d576ca0, type: 2}
   m_IsPrefabParent: 0
@@ -775,77 +771,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 272539176}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &272600035
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 115160091}
-    m_Modifications:
-    - target: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114740182320473880, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
-        type: 2}
-      propertyPath: deathScreenElement
-      value: 
-      objectReference: {fileID: 1731512458}
-    - target: {fileID: 23147199606287196, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 1968271057}
-    - target: {fileID: 33010591806280616, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1649020183}
-    - target: {fileID: 114575063829796266, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
-        type: 2}
-      propertyPath: renderCamera
-      value: 
-      objectReference: {fileID: 1076524487}
-    - target: {fileID: 114754560841430948, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
-        type: 2}
-      propertyPath: nonVRFallback
-      value: 
-      objectReference: {fileID: 454069645}
-    - target: {fileID: 1420807209672550, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &274223349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,6 +1333,73 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 574259670}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &647018394
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 115160091}
+    m_Modifications:
+    - target: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114754560841430948, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+        type: 2}
+      propertyPath: nonVRFallback
+      value: 
+      objectReference: {fileID: 454069645}
+    - target: {fileID: 114575063829796266, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+        type: 2}
+      propertyPath: renderCamera
+      value: 
+      objectReference: {fileID: 1076524487}
+    - target: {fileID: 33010591806280616, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1649020183}
+    - target: {fileID: 23147199606287196, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 1968271057}
+    - target: {fileID: 114740182320473880, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+        type: 2}
+      propertyPath: deathScreenElement
+      value: 
+      objectReference: {fileID: 1731512458}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &749900212
 GameObject:
   m_ObjectHideFlags: 0
@@ -3306,7 +3298,7 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 4525036898235174, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
     type: 2}
-  m_PrefabInternal: {fileID: 272600035}
+  m_PrefabInternal: {fileID: 647018394}
 --- !u!1 &1567711837
 GameObject:
   m_ObjectHideFlags: 0
