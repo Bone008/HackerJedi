@@ -4211,7 +4211,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1983452648}
-        m_MethodName: SelectEnemy
+        m_MethodName: SelectObstacle
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1779480695237420, guid: 602571d73300bdc4f859f372ccb1b219,
