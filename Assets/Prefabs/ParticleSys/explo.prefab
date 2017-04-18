@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 198227548240996466}
   - component: {fileID: 199239808081531370}
   - component: {fileID: 82339490647435386}
+  - component: {fileID: 114452262170892020}
   m_Layer: 0
   m_Name: explo
   m_TagString: Untagged
@@ -308,6 +309,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114452262170892020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1862322992109182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b5aedbbdd62c418c0e2a1c1c56107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198197780586834914
 ParticleSystem:
   m_ObjectHideFlags: 1
