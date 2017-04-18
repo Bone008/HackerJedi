@@ -13,6 +13,8 @@ public class CurvedText : BaseMeshEffect
     public float curveMultiplier = 1;
     private RectTransform rectTrans;
 
+    public bool invert = false;
+
 
 #if UNITY_EDITOR
 		protected override void OnValidate ()
@@ -84,7 +86,7 @@ public class CurvedText : BaseMeshEffect
         {
             var uiVertex = verts[index];
             //Debug.Log ();
-            uiVertex.position.y += curveForText.Evaluate(rectTrans.rect.width * rectTrans.pivot.x + uiVertex.position.x) * curveMultiplier;
+            uiVertex.position.z += curveForText.Evaluate(rectTrans.rect.width * rectTrans.pivot.x + (invert ? -1 : 1) * uiVertex.position.x) * curveMultiplier;
             verts[index] = uiVertex;
         }
     }
@@ -92,6 +94,9 @@ public class CurvedText : BaseMeshEffect
 
     protected override void OnRectTransformDimensionsChange()
     {
+        if (rectTrans == null)
+            rectTrans = GetComponent<RectTransform>();
+
         var tmpRect = curveForText[curveForText.length - 1];
         tmpRect.time = rectTrans.rect.width;
         curveForText.MoveKey(curveForText.length - 1, tmpRect);
