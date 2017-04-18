@@ -12,6 +12,7 @@ public class LevelGenerator : MonoBehaviour
     public float blockSize;
 
     public List<Transform> rail;
+    public int numPassedRails { get; set; }
 
     // 1:randomPresetBlock Wahrscheinlichkeit dass ein Block versetzt wird; 0 keine Blöcke werden versetzt
     public int randomPresetBlock;
@@ -167,6 +168,7 @@ public class LevelGenerator : MonoBehaviour
     {
         world = new GameObject[rows, lines];
         track = new GameObject[rows, lines];
+        numPassedRails = 0;
         createTrack();
         randomizeWorld(GameData.Instance.randomizeWorldinProgress);
     }

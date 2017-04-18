@@ -76,6 +76,7 @@ public class Platform : MonoBehaviour {
             startPoint = level.rail[railPointer];
             railPointer++;
             endPoint = level.rail[railPointer];
+            level.numPassedRails++;
         }
         //else
         //{

@@ -20,6 +20,7 @@ public class Master : MonoBehaviour {
     private GameObject enemyPrefab = null;
     private GameObject obstaclePrefab = null;
     public LevelGenerator level;
+    private Dictionary<int, GameObject> placedObstacles = new Dictionary<int, GameObject>();
 
     [Header("Block Moving")]
     public float blockMinYValue = 0;
@@ -207,15 +208,34 @@ public class Master : MonoBehaviour {
 
     private void CreateObstacleOn(Transform rail)
     {
-        // get direction between rail blocks
+        // index of the rail that was clicked
         int clickedIndex = level.rail.FindIndex(t => t.position.x == rail.position.x && t.position.z == rail.position.z);
+
+        // dont put obstacles behind or inside the platform
+        if (clickedIndex <= level.numPassedRails)
+            return;
+
+        // dont put obstacles on already existing obstacles
+        if (placedObstacles.ContainsKey(clickedIndex))
+        {
+            GameObject obstacle = placedObstacles[clickedIndex];
+            if (obstacle == null)
+                placedObstacles.Remove(clickedIndex); // stored obstacle has been destroyed
+            else
+                return;
+        }
+
+        // get direction between rail blocks
         Vector3 currentPosition = level.rail[clickedIndex].transform.position;
         Vector3 lastPosition = level.rail[clickedIndex - 1].transform.position;
         Quaternion platformDirection = Quaternion.LookRotation(currentPosition - lastPosition);
         
         // instantiate prefab
         if (obstaclePrefab != null)
-            Instantiate(obstaclePrefab, rail.transform.position, platformDirection);
+        {
+            GameObject placed = Instantiate(obstaclePrefab, rail.transform.position, platformDirection);
+            placedObstacles.Add(clickedIndex, placed);
+        }
     }
 
 }
