@@ -12,6 +12,9 @@ public class LookAtMouse : MonoBehaviour {
 	}
 	
 	void Update () {
+        if (!raycastOrigin.enabled)
+            return;
+
         // get aimed-for object via Raycast
         Transform objectHit = null;
         RaycastHit hit;

@@ -98,7 +98,12 @@ public class HackerPlayer : MonoBehaviour
         if (allAbilityGOs[i].ContainsKey(equippedAbilities[i]))
         {
             var script = GetEquippedAbilityScript(hand);
-            if (script != null) script.SetTriggerDown(false); // make sure that we stop firing before disabling
+            if (script != null)
+            {
+                // make sure that we stop firing before disabling
+                script.SetTriggerDown(false);
+                script.SetGripDown(false);
+            }
             allAbilityGOs[i][equippedAbilities[i]].SetActive(false);
         }
 
@@ -111,11 +116,19 @@ public class HackerPlayer : MonoBehaviour
     public void SetTriggerDown(HackerHand hand, bool state)
     {
         var abilityScript = GetEquippedAbilityScript(hand);
-        if(abilityScript != null)
+        if (abilityScript != null)
             abilityScript.SetTriggerDown(state);
     }
 
-    
+    // called by the concrete input handler when the grip state has changed
+    public void SetGripDown(HackerHand hand, bool state)
+    {
+        var abilityScript = GetEquippedAbilityScript(hand);
+        if (abilityScript != null)
+            abilityScript.SetGripDown(state);
+    }
+
+
     public void OpenAbilitySelectionWheel(HackerHand hand)
     {
         if (selectionWheels[(int)hand] != null)

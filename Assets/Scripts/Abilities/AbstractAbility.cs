@@ -4,25 +4,35 @@ using UnityEngine;
 public abstract class AbstractAbility : MonoBehaviour
 {
     public abstract AbilityType Type { get; }
-    
+
     protected bool isTriggerDown;
+    protected bool isGripDown;
 
     protected virtual void OnTriggerDown() { }
     protected virtual void OnTriggerUp() { }
+    protected virtual void OnGripDown() { }
+    protected virtual void OnGripUp() { }
 
     public void SetTriggerDown(bool value)
     {
-        try
-        {
-            if (value && !isTriggerDown)
-                OnTriggerDown();
-            else if (!value && isTriggerDown)
-                OnTriggerUp();
-        }
-        finally
-        {
-            isTriggerDown = value;
-        }
+        bool wasDown = isTriggerDown;
+        isTriggerDown = value;
+
+        if (value && !wasDown)
+            OnTriggerDown();
+        else if (!value && wasDown)
+            OnTriggerUp();
+    }
+
+    public void SetGripDown(bool value)
+    {
+        bool wasDown = isGripDown;
+        isGripDown = value;
+
+        if (value && !wasDown)
+            OnGripDown();
+        else if (!value && wasDown)
+            OnGripUp();
     }
 
     /// <summary>Simulates pressing and releasing the trigger instantaneously.</summary>
