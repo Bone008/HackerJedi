@@ -20,6 +20,8 @@ public class ControllerInputHandler : MonoBehaviour {
     {
         controller.TriggerClicked += Controller_TriggerClicked;
         controller.TriggerUnclicked += Controller_TriggerUnclicked;
+        controller.Gripped += Controller_Gripped;
+        controller.Ungripped += Controller_Ungripped;
         controller.PadClicked += Controller_PadClicked;
         controller.PadTouched += Controller_PadTouched;
         controller.PadUntouched += Controller_PadUntouched;
@@ -70,6 +72,16 @@ public class ControllerInputHandler : MonoBehaviour {
     private void Controller_TriggerUnclicked(object sender, ClickedEventArgs e)
     {
         player.SetTriggerDown(GetCurrentHand(), false);
+    }
+
+    private void Controller_Gripped(object sender, ClickedEventArgs e)
+    {
+        player.SetGripDown(GetCurrentHand(), true);
+    }
+
+    private void Controller_Ungripped(object sender, ClickedEventArgs e)
+    {
+        player.SetGripDown(GetCurrentHand(), false);
     }
 
     private void Controller_PadTouched(object sender, ClickedEventArgs e)
