@@ -33,8 +33,9 @@ public class Enemy : MonoBehaviour
         oldPos = goal.position;
         agent = GetComponent<NavMeshAgent>();
 
-        if(agent.isOnNavMesh)
+        if (agent.isOnNavMesh)
             agent.destination = goal.position;
+        
 
         // get gun component from children
         gun = GetComponentInChildren<Gun>();
@@ -43,15 +44,23 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (agent.isOnNavMesh)
-        {
-            if (Vector3.Distance(transform.position, goal.position) < stoppingDistance && !agent.isStopped)
+        //if (agent.isOnNavMesh)
+        //{
+            if (Vector3.Distance(transform.position, goal.position) < stoppingDistance /*&& !agent.isStopped*/)
+            {
                 agent.isStopped = true;
+                //agent.destination = transform.position;
+                agent.enabled = false;
+            }
 
-            if (Vector3.Distance(transform.position, goal.position) > stoppingDistance && agent.isStopped)
+            if (Vector3.Distance(transform.position, goal.position) > hitRange /*&& agent.isStopped*/)
+            {                
+                agent.enabled = true;
+                //agent.destination = goal.position;
                 agent.isStopped = false;
+            }
 
-            if (Vector3.Distance(oldPos, goal.position) > newTargetPosThreshhold && !agent.isStopped)
+            if (Vector3.Distance(oldPos, goal.position) > newTargetPosThreshhold /*&& !agent.isStopped*/)
             {
                 agent.destination = goal.position;
                 oldPos = goal.position;
@@ -62,7 +71,9 @@ public class Enemy : MonoBehaviour
             {
                 transform.LookAt(goal);
             }
-        }
+        //}
+        Debug.Log(agent.isStopped);
+        Debug.Log(Vector3.Distance(transform.position, goal.position));
         
 
         // fire while in range

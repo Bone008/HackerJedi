@@ -7,6 +7,7 @@ using System.Collections.Generic;
 // thanks to https://gist.github.com/MichaelProkofyev/ef4cb0612730fd516058e40d37b2229a
 
 [RequireComponent(typeof(RectTransform))]
+[System.Obsolete("This looks like shit. Use CurvedUI classes!")]
 public class CurvedText : BaseMeshEffect
 {
     public AnimationCurve curveForText = AnimationCurve.Linear(0, 0, 1, 10);
