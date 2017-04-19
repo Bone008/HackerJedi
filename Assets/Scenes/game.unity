@@ -1579,9 +1579,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5c82f8495a3934097bf8afe55da17e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_depth: 0
-  m_angle: 175
-  m_radius: 1
+  m_depth: 0.2
+  m_angle: 230
+  m_radius: 0.83
 --- !u!1 &781202178
 GameObject:
   m_ObjectHideFlags: 0
