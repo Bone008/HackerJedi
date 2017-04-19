@@ -43,22 +43,25 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (Vector3.Distance(transform.position, goal.position) < stoppingDistance && !agent.isStopped)
-            agent.isStopped = true;
-
-        if (Vector3.Distance(transform.position, goal.position) > stoppingDistance && agent.isStopped)
-            agent.isStopped = false;
-
-        if (agent.isOnNavMesh && Vector3.Distance(oldPos, goal.position) > newTargetPosThreshhold && !agent.isStopped)
+        if (agent.isOnNavMesh)
         {
-            agent.destination = goal.position;
-            oldPos = goal.position;
-        }
+            if (Vector3.Distance(transform.position, goal.position) < stoppingDistance && !agent.isStopped)
+                agent.isStopped = true;
 
-        if (agent.velocity.x >= -0.05f && agent.velocity.x <= 0.05f
-            && agent.velocity.z >= -0.1f && agent.velocity.z <= 0.1f)
-        {
-            transform.LookAt(goal);
+            if (Vector3.Distance(transform.position, goal.position) > stoppingDistance && agent.isStopped)
+                agent.isStopped = false;
+
+            if (Vector3.Distance(oldPos, goal.position) > newTargetPosThreshhold && !agent.isStopped)
+            {
+                agent.destination = goal.position;
+                oldPos = goal.position;
+            }
+
+            if (agent.velocity.x >= -0.05f && agent.velocity.x <= 0.05f
+                && agent.velocity.z >= -0.1f && agent.velocity.z <= 0.1f)
+            {
+                transform.LookAt(goal);
+            }
         }
         
 
