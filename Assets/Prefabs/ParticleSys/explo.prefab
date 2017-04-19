@@ -44,7 +44,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1376571023020070
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +78,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1705435500987062
 GameObject:
   m_ObjectHideFlags: 1
@@ -167,7 +167,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1862322992109182}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.3986807, y: 0.6772742, z: -6.91195}
+  m_LocalPosition: {x: 7.7, y: -1.1965209e-16, z: 5.388651}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4578963095084936}
@@ -235,7 +235,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1862322992109182}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 81006cee485538e4a9b962122e42fee0, type: 3}
@@ -375,7 +375,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1656517653
+  randomSeed: -1640771905
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -519,10 +519,10 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.08109864, g: 0.8497643, b: 0.9191176, a: 1}
+      maxColor: {r: 0.9191176, g: 0.5492334, b: 0.08109864, a: 1}
     startSize:
       minMaxState: 3
-      scalar: 0.4
+      scalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -540,7 +540,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 2
           time: 0
-          value: 0.25
+          value: 0.5
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -3300,7 +3300,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 732057065
+  randomSeed: 877826178
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3431,8 +3431,8 @@ ParticleSystem:
         m_Mode: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-      minColor: {r: 0.08499137, g: 0.8905528, b: 0.9632353, a: 1}
-      maxColor: {r: 0.22403635, g: 0, b: 0.6911765, a: 1}
+      minColor: {r: 0.034482956, g: 0, b: 1, a: 1}
+      maxColor: {r: 0.25513622, g: 0.8897059, b: 0.8634477, a: 1}
     startSize:
       minMaxState: 0
       scalar: 4
@@ -6267,7 +6267,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -2106314154
+  randomSeed: -710497967
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6410,8 +6410,8 @@ ParticleSystem:
         m_Mode: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-      minColor: {r: 0.54162705, g: 0.175173, b: 0.99264705, a: 1}
-      maxColor: {r: 0, g: 0.12170387, b: 0.7058823, a: 1}
+      minColor: {r: 0.99264705, g: 0.6656573, b: 0.175173, a: 1}
+      maxColor: {r: 0.7058823, g: 0, b: 0, a: 1}
     startSize:
       minMaxState: 0
       scalar: 30
@@ -12227,7 +12227,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -461707798
+  randomSeed: -1914382393
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -12358,8 +12358,8 @@ ParticleSystem:
         m_Mode: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
-      minColor: {r: 0.33595324, g: 0, b: 0.9191176, a: 0.5176471}
-      maxColor: {r: 0.18382353, g: 0.8311357, b: 1, a: 0.5019608}
+      minColor: {r: 0.9191176, g: 0, b: 0, a: 0.5176471}
+      maxColor: {r: 1, g: 0.7073023, b: 0.18382353, a: 0.5019608}
     startSize:
       minMaxState: 0
       scalar: 1
@@ -15194,7 +15194,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1324170681
+  randomSeed: -389575737
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -15338,7 +15338,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.24781062, g: 0.13927335, b: 0.8235294, a: 1}
+      maxColor: {r: 0.8235294, g: 0.18174459, b: 0.13927335, a: 1}
     startSize:
       minMaxState: 3
       scalar: 0.4
@@ -21085,7 +21085,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 660eb277f3530434eb07d681cbe6391c, type: 2}
+  - {fileID: 2100000, guid: 837f84f2cdcdc4e4abce66917054e9a6, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -21238,7 +21238,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 660eb277f3530434eb07d681cbe6391c, type: 2}
+  - {fileID: 2100000, guid: 837f84f2cdcdc4e4abce66917054e9a6, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -21289,7 +21289,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 660eb277f3530434eb07d681cbe6391c, type: 2}
+  - {fileID: 2100000, guid: 837f84f2cdcdc4e4abce66917054e9a6, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -21340,7 +21340,7 @@ ParticleSystemRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 2100000, guid: 660eb277f3530434eb07d681cbe6391c, type: 2}
+  - {fileID: 2100000, guid: 837f84f2cdcdc4e4abce66917054e9a6, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
