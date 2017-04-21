@@ -25,7 +25,6 @@ GameObject:
   - component: {fileID: 54230979090973782}
   - component: {fileID: 114885454486330694}
   - component: {fileID: 114088130351801460}
-  - component: {fileID: 195419599406628960}
   - component: {fileID: 114554841759199340}
   - component: {fileID: 114152793400993310}
   m_Layer: 9
@@ -97,7 +96,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 2
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -125,7 +124,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initialHealth: 60
-  onPostDamage:
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  onDamage:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
@@ -157,11 +161,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d2132fc7401d24c8e8b0ec74de2ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newTargetPosThreshhold: 1
   blinkRange: 10
   hitRange: 3
   color1: {r: 0.7647059, g: 0.14057094, b: 0.14057094, a: 0}
   color2: {r: 0.022058845, g: 0.015084357, b: 0.015084357, a: 0}
+  targetHeight: 15
+  movementSpeed: 0.15
+  startKamikazeDist: 9
 --- !u!114 &114885454486330694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,24 +195,3 @@ CapsuleCollider:
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: -0.25, z: 0}
---- !u!195 &195419599406628960
-NavMeshAgent:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1003776771868634}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 1
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1.5
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4

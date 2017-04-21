@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class SuicideEnemy : MonoBehaviour {
-    public float newTargetPosThreshhold = 1;
+    //public float newTargetPosThreshhold = 1;
+
+    
     public float blinkRange;
     public float hitRange;
-    private Transform goal;
+    private Transform platform;
     public Color color1;
     public Color color2;
 
@@ -16,51 +18,96 @@ public class SuicideEnemy : MonoBehaviour {
 
     private Coroutine blinkCoroutine;
 
+    private enum SuicideProgress
+    {
+        OnFloor,
+        GainingHeight,
+        MoveAbovePlatform,
+        Kamikaze
+    }
+    private SuicideProgress suicideProgress = SuicideProgress.OnFloor;
+    private Vector3 targetPosition;
+    public float targetHeight;
+    public float movementSpeed;
+    public float startKamikazeDist;
+
     void Start()
     {
-        goal = GameObject.FindGameObjectWithTag("Platform").transform;
-        oldPos = goal.position;
+        platform = GameObject.FindGameObjectWithTag("Platform").transform;
+        oldPos = platform.position;
         agent = GetComponent<NavMeshAgent>();
 
         if (agent.isOnNavMesh)
-            agent.destination = goal.position;
+            agent.destination = platform.position;
 
         GetComponent<Renderer>().material.color = color1;
     }
 
-    void FixedUpdate()
+    void Update()
     {
+        /*
         if (agent.isOnNavMesh && Vector3.Distance(oldPos, goal.position) > newTargetPosThreshhold)
         {
             agent.destination = goal.position;
             oldPos = goal.position;
         }
+        */
 
+        Debug.Log(suicideProgress.ToString());
 
-        float sqDist = (goal.position - transform.position).sqrMagnitude;
-        if (sqDist <= blinkRange * blinkRange)
+        switch (suicideProgress)
         {
-            if (blinkCoroutine == null)
-                blinkCoroutine = StartCoroutine(StartBlinking());
+            case SuicideProgress.OnFloor:
+                // set position above the enemy as target
+                targetPosition = new Vector3(transform.position.x, targetHeight, transform.position.z);
+                suicideProgress = SuicideProgress.GainingHeight;
 
-            Platform pf = goal.GetComponent<Platform>();
-            // fire while in range
-            if (sqDist <= hitRange * hitRange/* && pf.running*/)
-            {
-                StopCoroutine(blinkCoroutine);
-                pf.DisableForSec(2.0f);
-                Destroy(gameObject);
-                return;
-            }
+                break;
+
+            case SuicideProgress.GainingHeight:
+                // move towards target
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed);
+
+                // next move to platform
+                if (transform.position == targetPosition)
+                    suicideProgress = SuicideProgress.MoveAbovePlatform;
+
+                break;
+
+            case SuicideProgress.MoveAbovePlatform:
+                // move towards platform
+                targetPosition = new Vector3(platform.position.x, targetHeight, platform.position.z);
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed);
+
+                // next fuck shit up
+                if ((transform.position - targetPosition).sqrMagnitude <= startKamikazeDist * startKamikazeDist)
+                    suicideProgress = SuicideProgress.Kamikaze;
+
+                break;
+
+            case SuicideProgress.Kamikaze:
+                // start blinking
+                if (blinkCoroutine == null)
+                    blinkCoroutine = StartCoroutine(StartBlinking());
+
+                // fly towards player
+                targetPosition = platform.position;
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed);
+
+                // no next
+                float sqDist = (platform.position - transform.position).sqrMagnitude;
+                if (sqDist <= hitRange * hitRange)
+                {
+                    StopCoroutine(blinkCoroutine);
+                    platform.GetComponent<Platform>().DisableForSec(2.0f);
+                    Destroy(gameObject);
+                    return;
+                }
+
+                break;
+            
         }
-        else
-        {
-            if(blinkCoroutine != null)
-            {
-                StopCoroutine(blinkCoroutine);
-                blinkCoroutine = null;
-            }
-        }
+        
     }
 
     public void OnDeath()
