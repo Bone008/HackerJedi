@@ -14,10 +14,10 @@ public class FirewallPart : MonoBehaviour {
     
     public void OnDeath()
     {
-        if (transform.parent.childCount == 1)
-            Destroy(transform.parent.parent.gameObject);
+        if (transform.parent.parent.childCount == 1)
+            Destroy(transform.parent.parent.parent.gameObject); // sry
         else
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
     }
     
 }
