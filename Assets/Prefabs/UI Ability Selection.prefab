@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33385075428450688}
   - component: {fileID: 136577458747629530}
   - component: {fileID: 23608171925456504}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4320489400954704}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Nozzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4207961226469214}
   - component: {fileID: 114020731086085098}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI Ability Selection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 33274210785126926}
   - component: {fileID: 136580362143315850}
   - component: {fileID: 23821940218227244}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 33785183953609858}
   - component: {fileID: 136238316002122524}
   - component: {fileID: 23132142379063784}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 33995108058708346}
   - component: {fileID: 136026179045512200}
   - component: {fileID: 23708124268993022}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4160389364062920}
   - component: {fileID: 114078424649983594}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PulseGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 33959916344250554}
   - component: {fileID: 136264998812514180}
   - component: {fileID: 23597716318537828}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4722449644332774}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 33269867916680850}
   - component: {fileID: 136721642077823898}
   - component: {fileID: 23452641563683838}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 33908926757182948}
   - component: {fileID: 65789380630664396}
   - component: {fileID: 23850202209962820}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 33814678812636822}
   - component: {fileID: 136038546237361690}
   - component: {fileID: 23017700316278126}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +364,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4179360780317338}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Nozzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 33084506053092692}
   - component: {fileID: 136232441582465346}
   - component: {fileID: 23631763649549812}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4417793462696446}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 33852518424853974}
   - component: {fileID: 136841192040899056}
   - component: {fileID: 23011061417736228}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 33853729797410184}
   - component: {fileID: 136601310469722508}
   - component: {fileID: 23414862701645626}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +495,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4614477866505768}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Nozzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +513,7 @@ GameObject:
   - component: {fileID: 33416332045876030}
   - component: {fileID: 136386903410578456}
   - component: {fileID: 23345476319611344}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,7 +531,7 @@ GameObject:
   - component: {fileID: 33014805404150892}
   - component: {fileID: 136134371475058390}
   - component: {fileID: 23236210979885228}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -549,7 +549,7 @@ GameObject:
   - component: {fileID: 33557134139651844}
   - component: {fileID: 136071364651616932}
   - component: {fileID: 23203589840450168}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -567,7 +567,7 @@ GameObject:
   - component: {fileID: 33231569158018686}
   - component: {fileID: 136870040549443608}
   - component: {fileID: 23950685747335178}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cylinder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2045,7 +2045,6 @@ MonoBehaviour:
   nozzle: {fileID: 4614477866505768}
   projectileSpeed: 5
   damageAmount: 25
-  layer: 0
 --- !u!114 &114465409937450686
 MonoBehaviour:
   m_ObjectHideFlags: 1
