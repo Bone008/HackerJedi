@@ -28,6 +28,8 @@ public class Master : MonoBehaviour {
     public float blockSpeed = 30.0f;
     private bool currentlyDragging;
     private Vector2 oldMousePosition;
+    private Color defaultBlockColor;
+    public Color liftedBlockColor;
 
     [Header("Block Snapping To Grid")]
     public float snappingSpeed = 1.0f;
@@ -41,13 +43,17 @@ public class Master : MonoBehaviour {
     private LookAtMouse lookAtMouseScript;
 
     private Transform selected;
-    
-	void Start () {
+
+    void Start()
+    {
         laserBeam.gameObject.SetActive(false);
         lookAtMouseScript = masterEye.GetComponent<LookAtMouse>();
         oldMousePosition = Input.mousePosition;
-    }
 
+        // get default glow color of blocks from any block
+        defaultBlockColor = level.world[0, 0].GetComponentInChildren<Renderer>().material.GetColor("_MKGlowColor");
+    }
+    
     void Update()
     {
         // select cube
@@ -78,6 +84,8 @@ public class Master : MonoBehaviour {
         // start dragging
         if (Input.GetMouseButtonDown(1) && selected != null && selected.tag.Equals("RoomBlock"))
         {
+            SetBlockColor(selected.parent, liftedBlockColor);
+
             currentlyDragging = true;
 
             if(snapCoroutines.ContainsKey(selected.parent))
@@ -182,7 +190,16 @@ public class Master : MonoBehaviour {
             yield return null;
         }
 
+        if (targetY == blockMinYValue)
+            SetBlockColor(target, defaultBlockColor);
+        
         snapCoroutines.Remove(target);
+    }
+
+    private void SetBlockColor(Transform block, Color c)
+    {
+        foreach(Renderer r in block.GetComponentsInChildren<Renderer>())
+            r.material.SetColor("_MKGlowColor", c);
     }
 
     public void SelectEnemy(GameObject enemyPrefab)

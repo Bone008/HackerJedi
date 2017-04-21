@@ -21,7 +21,7 @@ public class LevelGenerator : MonoBehaviour
 
     public int rows;
     public int lines;
-    private GameObject[,] world;
+    public GameObject[,] world;
     public GameObject[,] track;
     
     public void clearWorld()
