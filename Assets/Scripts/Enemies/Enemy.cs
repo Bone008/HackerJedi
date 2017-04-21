@@ -7,16 +7,12 @@ public class Enemy : MonoBehaviour
 {
     public float newTargetPosThreshhold = 1;
     public float hitRange, stoppingDistance;
-    public float fireDelay = 0.6f;
 
     public GameObject explo;
 
     private Transform goal;
     private Vector3 oldPos;
     private NavMeshAgent agent;
-    private Gun gun;    
-
-    private Coroutine firingCoroutine = null;
 
     void Start()
     {
@@ -34,12 +30,7 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
 
         if (agent.isOnNavMesh)
-            agent.destination = goal.position;
-        
-
-        // get gun component from children
-        gun = GetComponentInChildren<Gun>();
-        gun.layer = LayerMask.NameToLayer("Hacker");        
+            agent.destination = goal.position;              
     }
 
     void Update()
@@ -73,20 +64,7 @@ public class Enemy : MonoBehaviour
             }
         //}
         Debug.Log(agent.isStopped);
-        Debug.Log(Vector3.Distance(transform.position, goal.position));
-        
-
-        // fire while in range
-        if ((goal.position - transform.position).sqrMagnitude <= hitRange * hitRange)
-        {
-            if (firingCoroutine == null)
-                firingCoroutine = StartCoroutine(FireWhenReady());
-        }
-        else if (firingCoroutine != null)
-        {
-            StopCoroutine(firingCoroutine);
-            firingCoroutine = null;
-        }
+        Debug.Log(Vector3.Distance(transform.position, goal.position));        
     }
 
     public void OnDeath()
@@ -94,13 +72,5 @@ public class Enemy : MonoBehaviour
         Instantiate(explo, transform.position, transform.rotation);
         Destroy(gameObject);
     }
-
-    private IEnumerator FireWhenReady()
-    {
-        while (true)
-        {
-            gun.FireOnce();
-            yield return new WaitForSeconds(fireDelay);
-        }
-    }
+    
 }
