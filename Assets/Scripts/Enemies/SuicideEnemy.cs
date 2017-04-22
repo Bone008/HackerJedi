@@ -13,7 +13,6 @@ public class SuicideEnemy : MonoBehaviour {
     public Color color1;
     public Color color2;
 
-    private Vector3 oldPos;
     private NavMeshAgent agent;
 
     private Coroutine blinkCoroutine;
@@ -34,27 +33,16 @@ public class SuicideEnemy : MonoBehaviour {
     void Start()
     {
         platform = GameObject.FindGameObjectWithTag("Platform").transform;
-        oldPos = platform.position;
-        agent = GetComponent<NavMeshAgent>();
+        //agent = GetComponent<NavMeshAgent>();
 
-        if (agent.isOnNavMesh)
-            agent.destination = platform.position;
+        //if (agent.isOnNavMesh)
+        //    agent.destination = platform.position;
 
         GetComponent<Renderer>().material.color = color1;
     }
 
     void Update()
     {
-        /*
-        if (agent.isOnNavMesh && Vector3.Distance(oldPos, goal.position) > newTargetPosThreshhold)
-        {
-            agent.destination = goal.position;
-            oldPos = goal.position;
-        }
-        */
-
-        Debug.Log(suicideProgress.ToString());
-
         switch (suicideProgress)
         {
             case SuicideProgress.OnFloor:

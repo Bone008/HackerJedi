@@ -15,12 +15,7 @@ public class Damageable : MonoBehaviour {
         private set { _initialHealth = value; }
     }
 
-    private float _currentHealth;
-    public float currentHealth
-    {
-        get { return _currentHealth; }
-        private set { _currentHealth = value; }
-    }
+    public float currentHealth { get; private set; }   
 
     public float healthPercentage
     {

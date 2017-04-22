@@ -63,8 +63,8 @@ public class Enemy : MonoBehaviour
                 transform.LookAt(goal);
             }
         //}
-        Debug.Log(agent.isStopped);
-        Debug.Log(Vector3.Distance(transform.position, goal.position));        
+        //Debug.Log(agent.isStopped);
+        //Debug.Log(Vector3.Distance(transform.position, goal.position));        
     }
 
     public void OnDeath()

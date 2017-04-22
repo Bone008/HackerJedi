@@ -17,7 +17,7 @@ public class MasterEye : MonoBehaviour {
     public void OnHealthChanged(Damageable eye)
     {
         // TODO add healthbar
-        Debug.Log("Master at health " + eye.currentHealth);
+        //Debug.Log("Master at health " + eye.currentHealth);
     }
     
 }
