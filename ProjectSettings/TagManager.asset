@@ -17,6 +17,7 @@ TagManager:
   - HackArea
   - Platform
   - HackerHand
+  - Master
   layers:
   - Default
   - TransparentFX
