@@ -190,10 +190,5 @@ public class HackerPlayer : MonoBehaviour
         deathScreenElement.SetActive(true);
         this.Delayed(2.0f, () => deathScreenElement.SetActive(false));
     }
-
-    public void OnHealthChanged(Damageable hacker)
-    {
-        healthBarPanel.transform.localScale = new Vector3(hacker.healthPercentage, 1, 1);
-    }
-    
+        
 }

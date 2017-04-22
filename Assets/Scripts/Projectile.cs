@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour {
 
         Damageable damageable = collider.gameObject.GetComponentInParent<Damageable>();
         if (damageable != null)
-            damageable.ChangeHealth(-damageAmount);
+            damageable.ChangeValue(-damageAmount);
 
         /*
         // damage enemies

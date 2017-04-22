@@ -4,25 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Damageable : MonoBehaviour {
-
-    // TODO better way of implementing get/private set/public in inspector?
-    [SerializeField]
-    private float _initialHealth;
-    public float initialHealth
-    {
-        get { return _initialHealth; }
-        private set { _initialHealth = value; }
-    }
-
-    public float currentHealth { get; private set; }   
-
-    public float healthPercentage
-    {
-        get { return Mathf.Max(0, currentHealth) / initialHealth; }
-    }
-
-    public UnityEvent onHealthChanged;
+public class Damageable : ResourceBase {
+    
     public UnityEvent onDamage;
     public UnityEvent onDeath;
 
@@ -32,24 +15,23 @@ public class Damageable : MonoBehaviour {
     
     public void RestoreFullHealth()
     {
-        currentHealth = initialHealth;
-
-        if (onHealthChanged != null)
-            onHealthChanged.Invoke();
+        ChangeValue(maxValue - currentValue);
     }
 
-    public void ChangeHealth(float amount)
+    public override void ChangeValue(float amount)
     {
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, initialHealth);
-        
-        if (onHealthChanged != null)
-            onHealthChanged.Invoke();
+        base.ChangeValue(amount);        
 
         if (onDamage != null && amount < 0)
             onDamage.Invoke();
 
-        if (onDeath != null && currentHealth <= 0)
+        if (onDeath != null && currentValue <= 0)
             onDeath.Invoke();
+    }
+
+    public override bool SafeChangeValue(float amount)
+    {
+        throw new InvalidOperationException("SafeChangeValue should not be needed™ for health!");
     }
 
 }

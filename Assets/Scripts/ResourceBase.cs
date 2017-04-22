@@ -37,7 +37,7 @@ public abstract class ResourceBase : MonoBehaviour
     /// Changes the value of the resource by amount. Clips between minValue and maxValue of resource.
     /// </summary>
     /// <param name="amount">the amount of the resource to add</param>
-    public void ChangeValue(float amount)
+    public virtual void ChangeValue(float amount)
     {
         // change value
         currentValue = Mathf.Clamp(currentValue + amount, minValue, maxValue);
@@ -52,7 +52,7 @@ public abstract class ResourceBase : MonoBehaviour
     /// </summary>
     /// <param name="amount">the amount of the resource to fully add</param>
     /// <returns>true if the value was changed, false otherwise</returns>
-    public bool SafeChangeValue(float amount)
+    public virtual bool SafeChangeValue(float amount)
     {
         // do nothing if cannot change value by full amount
         if (!CanChangeValue(amount))
@@ -67,7 +67,7 @@ public abstract class ResourceBase : MonoBehaviour
     /// </summary>
     /// <param name="amount">the amount of the resource to theoretically add</param>
     /// <returns>true if the amount fits, false otherwise</returns>
-    public bool CanChangeValue(float amount)
+    public virtual bool CanChangeValue(float amount)
     {
         float targetValue = currentValue + amount;
         return targetValue == Mathf.Clamp(targetValue, minValue, maxValue);

@@ -14,11 +14,5 @@ public class MasterEye : MonoBehaviour {
         deadEye.RestoreFullHealth();
         Instantiate(deathExplosion, transform.position, Quaternion.identity);
     }
-
-    public void OnHealthChanged(Damageable eye)
-    {
-        Debug.Log("test");
-        healthBarPanel.transform.localScale = new Vector3(eye.healthPercentage, 1, 1);
-    }
-
+    
 }

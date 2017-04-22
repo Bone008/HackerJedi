@@ -124,12 +124,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01c61ace728c394ba02b99634dc3910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialHealth: 60
-  onHealthChanged:
+  minValue: 0
+  maxValue: 60
+  _currentValue: 60
+  onChange:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  resourcePanel: {fileID: 0}
   onDamage:
     m_PersistentCalls:
       m_Calls: []

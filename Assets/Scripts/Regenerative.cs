@@ -44,12 +44,12 @@ public class Regenerative : MonoBehaviour {
             regenerate = false;
 
         // check if full health
-        if (damageable.currentHealth >= damageable.initialHealth)
+        if (damageable.currentValue >= damageable.maxValue)
             regenerate = false;
 
         if (regenerate)
         {
-            damageable.ChangeHealth(healthAmountPerInterval);
+            damageable.ChangeValue(healthAmountPerInterval);
             currentIntervalS = intervalS;
         }
     }

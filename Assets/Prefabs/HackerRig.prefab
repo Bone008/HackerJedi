@@ -653,23 +653,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01c61ace728c394ba02b99634dc3910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialHealth: 500
-  onHealthChanged:
+  minValue: 0
+  maxValue: 500
+  _currentValue: 500
+  onChange:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114740182320473880}
-        m_MethodName: OnHealthChanged
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 114087012830672056}
-          m_ObjectArgumentAssemblyTypeName: Damageable, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  resourcePanel: {fileID: 224918926611695356}
   onDamage:
     m_PersistentCalls:
       m_Calls: []
