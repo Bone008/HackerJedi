@@ -2,26 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Damageable))]
+[RequireComponent(typeof(ResourceBase))]
 public class Regenerative : MonoBehaviour {
-
-    [Tooltip("Wait this amount of secs after being damaged before restoring health")]
-    public float waitAfterDamageS;
-
+    
     [Tooltip("Wait this amount of secs after regeneration before regenerating again")]
     public float intervalS;
 
-    [Tooltip("When regenerating, this amount of health is restored")]
-    public float healthAmountPerInterval;
-    
-    private Damageable damageable;
+    [Tooltip("When regenerating, this amount is restored")]
+    public float amountPerInterval;
+
+    public ResourceBase resourceToRegenerate;
     private float currentWaitAfterDamageS;
     private float currentIntervalS;
     
 	void Start () {
         // get damageable for health stuff
-        damageable = GetComponent<Damageable>();
-        damageable.onDamage.AddListener(OnDamage);
+        resourceToRegenerate = GetComponent<ResourceBase>();
 
         // instant regeneration
         currentWaitAfterDamageS = 0;
@@ -44,18 +40,18 @@ public class Regenerative : MonoBehaviour {
             regenerate = false;
 
         // check if full health
-        if (damageable.currentValue >= damageable.maxValue)
+        if (resourceToRegenerate.currentValue >= resourceToRegenerate.maxValue)
             regenerate = false;
 
         if (regenerate)
         {
-            damageable.ChangeValue(healthAmountPerInterval);
+            resourceToRegenerate.ChangeValue(amountPerInterval);
             currentIntervalS = intervalS;
         }
     }
 
-    void OnDamage()
+    public void BlockForSecs(float blockTimeSec)
     {
-        currentWaitAfterDamageS = waitAfterDamageS;
+        currentWaitAfterDamageS = blockTimeSec;
     }
 }

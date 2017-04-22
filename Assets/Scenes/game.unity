@@ -2406,6 +2406,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114546992019984614, guid: 3c15011199362fe41a48b53db2e7a76e,
+        type: 2}
+      propertyPath: raycastOrigin
+      value: 
+      objectReference: {fileID: 1076524487}
     - target: {fileID: 114128137508167322, guid: 3c15011199362fe41a48b53db2e7a76e,
         type: 2}
       propertyPath: resourcePanel
@@ -2416,11 +2421,6 @@ Prefab:
       propertyPath: healthBarPanel
       value: 
       objectReference: {fileID: 288762381}
-    - target: {fileID: 114546992019984614, guid: 3c15011199362fe41a48b53db2e7a76e,
-        type: 2}
-      propertyPath: raycastOrigin
-      value: 
-      objectReference: {fileID: 1076524487}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c15011199362fe41a48b53db2e7a76e, type: 2}
   m_IsPrefabParent: 0
@@ -3494,9 +3494,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a8621f6cfd99348b57934f45698387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitAfterDamageS: 5
   intervalS: 1
-  healthAmountPerInterval: 5
+  amountPerInterval: 0
+  resourceToRegenerate: {fileID: 0}
 --- !u!1 &1278444584
 GameObject:
   m_ObjectHideFlags: 0
@@ -4884,6 +4884,7 @@ GameObject:
   - component: {fileID: 1983452648}
   - component: {fileID: 1983452649}
   - component: {fileID: 1983452650}
+  - component: {fileID: 1983452651}
   m_Layer: 0
   m_Name: Master
   m_TagString: Master
@@ -4973,6 +4974,20 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   resourcePanel: {fileID: 1051768173}
+--- !u!114 &1983452651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1983452646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a8621f6cfd99348b57934f45698387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intervalS: 1
+  amountPerInterval: 5
+  resourceToRegenerate: {fileID: 1983452650}
 --- !u!1 &2004106372
 GameObject:
   m_ObjectHideFlags: 0

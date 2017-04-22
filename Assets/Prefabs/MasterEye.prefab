@@ -367,9 +367,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a8621f6cfd99348b57934f45698387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitAfterDamageS: 5
   intervalS: 1
-  healthAmountPerInterval: 5
+  amountPerInterval: 5
+  resourceToRegenerate: {fileID: 114128137508167322}
 --- !u!114 &114128137508167322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -392,7 +392,18 @@ MonoBehaviour:
   resourcePanel: {fileID: 0}
   onDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114036691036064898}
+        m_MethodName: BlockForSecs
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 5
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   onDeath:
