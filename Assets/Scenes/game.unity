@@ -514,11 +514,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114422562792416884, guid: 8b0608f8fd3140d44ba973610d576ca0,
+    - target: {fileID: 114857384911533394, guid: 8b0608f8fd3140d44ba973610d576ca0,
         type: 2}
-      propertyPath: renderCamera
+      propertyPath: deathScreenElement
       value: 
-      objectReference: {fileID: 1076524487}
+      objectReference: {fileID: 1731512458}
     - target: {fileID: 114716964781369810, guid: 8b0608f8fd3140d44ba973610d576ca0,
         type: 2}
       propertyPath: masterCamera
@@ -529,11 +529,11 @@ Prefab:
       propertyPath: masterHUD
       value: 
       objectReference: {fileID: 749900216}
-    - target: {fileID: 114857384911533394, guid: 8b0608f8fd3140d44ba973610d576ca0,
+    - target: {fileID: 114422562792416884, guid: 8b0608f8fd3140d44ba973610d576ca0,
         type: 2}
-      propertyPath: deathScreenElement
+      propertyPath: renderCamera
       value: 
-      objectReference: {fileID: 1731512458}
+      objectReference: {fileID: 1076524487}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8b0608f8fd3140d44ba973610d576ca0, type: 2}
   m_IsPrefabParent: 0
@@ -1677,31 +1677,31 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114754560841430948, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
-        type: 2}
-      propertyPath: nonVRFallback
-      value: 
-      objectReference: {fileID: 454069645}
-    - target: {fileID: 114575063829796266, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
-        type: 2}
-      propertyPath: renderCamera
-      value: 
-      objectReference: {fileID: 1076524487}
-    - target: {fileID: 33010591806280616, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1649020183}
-    - target: {fileID: 23147199606287196, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 1968271057}
     - target: {fileID: 114740182320473880, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
         type: 2}
       propertyPath: deathScreenElement
       value: 
       objectReference: {fileID: 1731512458}
+    - target: {fileID: 23147199606287196, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 1968271057}
+    - target: {fileID: 33010591806280616, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1649020183}
+    - target: {fileID: 114575063829796266, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+        type: 2}
+      propertyPath: renderCamera
+      value: 
+      objectReference: {fileID: 1076524487}
+    - target: {fileID: 114754560841430948, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+        type: 2}
+      propertyPath: nonVRFallback
+      value: 
+      objectReference: {fileID: 454069645}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
   m_IsPrefabParent: 0

@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 195634217747942572}
   - component: {fileID: 114172323635980704}
   - component: {fileID: 114842019041414612}
+  - component: {fileID: 114770140306308432}
   m_Layer: 9
   m_Name: SniperEnemy
   m_TagString: Enemy
@@ -682,6 +683,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aimingFOV: 80
   bulletVelocity: 100
+--- !u!114 &114770140306308432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1781432793721940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce223109937141458afde5ba5814298, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 20
 --- !u!114 &114794549506494426
 MonoBehaviour:
   m_ObjectHideFlags: 1
