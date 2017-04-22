@@ -21,9 +21,9 @@ public class Projectile : MonoBehaviour {
         if (collider.GetComponentInParent<Gun>() != null)
             return;
 
-        Damageable damageable = collider.gameObject.GetComponentInParent<Damageable>();
-        if (damageable != null)
-            damageable.ChangeValue(-damageAmount);
+        HealthResource health = collider.gameObject.GetComponentInParent<HealthResource>();
+        if (health != null)
+            health.ChangeValue(-damageAmount);
 
         /*
         // damage enemies
@@ -45,7 +45,7 @@ public class Projectile : MonoBehaviour {
             masterEye.OnDamage(damageAmount);
         */
 
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 
 
@@ -53,7 +53,7 @@ public class Projectile : MonoBehaviour {
         age += Time.deltaTime;
         if (age > 5)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
 	}

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Damageable : ResourceBase {
+public class HealthResource : ResourceBase {
     
     public UnityEvent onDamage;
     public UnityEvent onDeath;

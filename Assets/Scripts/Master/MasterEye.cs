@@ -7,11 +7,11 @@ public class MasterEye : MonoBehaviour {
     public GameObject deathExplosion;
     public RectTransform healthBarPanel;
     
-    public void OnDeath(Damageable deadEye)
+    public void OnDeath(HealthResource health)
     {
         // TODO
         Debug.Log("master deadeded");
-        deadEye.RestoreFullHealth();
+        health.RestoreFullHealth();
         Instantiate(deathExplosion, transform.position, Quaternion.identity);
     }
     

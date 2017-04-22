@@ -181,11 +181,11 @@ public class HackerPlayer : MonoBehaviour
         }
     }
 
-    public void OnDeath(Damageable deadHacker)
+    public void OnDeath(HealthResource health)
     {
         // TODO
         Debug.Log("You deaded!");
-        deadHacker.RestoreFullHealth();
+        health.RestoreFullHealth();
         
         deathScreenElement.SetActive(true);
         this.Delayed(2.0f, () => deathScreenElement.SetActive(false));

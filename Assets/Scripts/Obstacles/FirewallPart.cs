@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Damageable))]
+[RequireComponent(typeof(HealthResource))]
 public class FirewallPart : MonoBehaviour {
 
-    private Damageable damageable;
+    private HealthResource health;
 
 	void Start () {
-        damageable = GetComponent<Damageable>();
-        damageable.onDeath.AddListener(OnDeath);
+        health = GetComponent<HealthResource>();
+        health.onDeath.AddListener(OnDeath);
     }
     
     public void OnDeath()

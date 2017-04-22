@@ -12,7 +12,7 @@ public class FirewallCollider : MonoBehaviour {
 
         if (player != null)
         {
-            player.GetComponent<Damageable>().ChangeValue(-damageAmount);
+            player.GetComponent<HealthResource>().ChangeValue(-damageAmount);
 
             if (transform.parent.childCount == 1)
                 Destroy(transform.parent.parent.gameObject);

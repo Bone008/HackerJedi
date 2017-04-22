@@ -9,7 +9,7 @@ public class OnDeathFeedDataFragments : MonoBehaviour {
     void Start ()
     {
         // set ondeath listener
-        Damageable damageable = GetComponent<Damageable>();
+        HealthResource damageable = GetComponent<HealthResource>();
         damageable.onDeath.AddListener(FeedDataFragments);
 	}
     
