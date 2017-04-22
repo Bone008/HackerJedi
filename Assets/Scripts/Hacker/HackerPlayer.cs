@@ -195,9 +195,5 @@ public class HackerPlayer : MonoBehaviour
     {
         healthBarPanel.transform.localScale = new Vector3(hacker.healthPercentage, 1, 1);
     }
-
-    public void OnDataFragmentsChanged(DataFragmentResource resource)
-    {
-        dataFragmentsPanel.transform.localScale = new Vector3(resource.filledPercentage, 1, 1);
-    }
+    
 }

@@ -981,20 +981,10 @@ MonoBehaviour:
   _currentValue: 0
   onChange:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114740182320473880}
-        m_MethodName: OnDataFragmentsChanged
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 114670166429441358}
-          m_ObjectArgumentAssemblyTypeName: DataFragmentResource, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  resourcePanel: {fileID: 224689246533769774}
 --- !u!114 &114679632268255318
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,6 +5,7 @@ using UnityEngine;
 public class MasterEye : MonoBehaviour {
 
     public GameObject deathExplosion;
+    public RectTransform healthBarPanel;
     
     public void OnDeath(Damageable deadEye)
     {
@@ -16,8 +17,8 @@ public class MasterEye : MonoBehaviour {
 
     public void OnHealthChanged(Damageable eye)
     {
-        // TODO add healthbar
-        //Debug.Log("Master at health " + eye.currentHealth);
+        Debug.Log("test");
+        healthBarPanel.transform.localScale = new Vector3(eye.healthPercentage, 1, 1);
     }
-    
+
 }

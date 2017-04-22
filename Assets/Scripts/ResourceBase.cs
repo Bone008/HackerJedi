@@ -17,6 +17,15 @@ public abstract class ResourceBase : MonoBehaviour
 
     public UnityEvent onChange;
 
+    public RectTransform resourcePanel;
+
+    private void Awake()
+    {
+        // add listener to update the resource panel
+        if (resourcePanel != null)
+            onChange.AddListener(UpdateResourcePanel);
+    }
+
     void Start()
     {
         // notify listeners
@@ -60,8 +69,13 @@ public abstract class ResourceBase : MonoBehaviour
     /// <returns>true if the amount fits, false otherwise</returns>
     public bool CanChangeValue(float amount)
     {
-        float targetValue = currentValue - amount;
+        float targetValue = currentValue + amount;
         return targetValue == Mathf.Clamp(targetValue, minValue, maxValue);
     }
-    
+
+    private void UpdateResourcePanel()
+    {
+        resourcePanel.transform.localScale = new Vector3(filledPercentage, 1, 1);
+    }
+
 }

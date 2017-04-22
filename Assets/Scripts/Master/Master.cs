@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(SpawnResource))]
 public class Master : MonoBehaviour {
 
     public Camera masterCamera;
@@ -21,6 +22,7 @@ public class Master : MonoBehaviour {
     private GameObject obstaclePrefab = null;
     public LevelGenerator level;
     private Dictionary<int, GameObject> placedObstacles = new Dictionary<int, GameObject>();
+    private SpawnResource spawnResource;
 
     [Header("Block Moving")]
     public float blockMinYValue = 0;
@@ -52,6 +54,9 @@ public class Master : MonoBehaviour {
 
         // get default glow color of blocks from any block
         defaultBlockColor = level.world[0, 0].GetComponentInChildren<Renderer>().material.GetColor("_MKGlowColor");
+
+        // get spawn resource
+        spawnResource = GetComponent<SpawnResource>();
     }
     
     void Update()
@@ -219,7 +224,10 @@ public class Master : MonoBehaviour {
         //if (enemyCollider != null)
         //    offsetY = -enemyCollider.bounds.min.y;
 
-        if(enemyPrefab != null)
+        if (enemyPrefab == null)
+            return;
+
+        if (spawnResource.SafeChangeValue(-10)) // TODO find a way to specify cost per enemy
             Instantiate(enemyPrefab, ground.transform.position + new Vector3(0, ground.GetComponent<Renderer>().bounds.size.y, 0) /*+ Vector3.up * offsetY*/, Quaternion.Euler(0, Random.Range(0, 360), 0));
     }
 
@@ -246,9 +254,12 @@ public class Master : MonoBehaviour {
         Vector3 currentPosition = level.rail[clickedIndex].transform.position;
         Vector3 lastPosition = level.rail[clickedIndex - 1].transform.position;
         Quaternion platformDirection = Quaternion.LookRotation(currentPosition - lastPosition);
-        
+
         // instantiate prefab
-        if (obstaclePrefab != null)
+        if (obstaclePrefab == null)
+            return;
+
+        if (spawnResource.SafeChangeValue(-20)) // TODO find a way to specify cost per obstacle
         {
             GameObject placed = Instantiate(obstaclePrefab, rail.transform.position, platformDirection);
             placedObstacles.Add(clickedIndex, placed);
