@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 195880091860757720}
   - component: {fileID: 114837882208163166}
   m_Layer: 9
-  m_Name: SuperEnemy
+  m_Name: RangedGruntEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -659,6 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e31a5da26d4fcd48af917e8414e505a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placingCost: 60
   newTargetPosThreshhold: 1
   hitRange: 15
   stoppingDistance: 10

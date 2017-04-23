@@ -118,6 +118,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4634576000674614}
+  - component: {fileID: 114267576068504142}
   m_Layer: 0
   m_Name: Firewall
   m_TagString: Untagged
@@ -742,12 +743,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01c61ace728c394ba02b99634dc3910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialHealth: 100
-  onHealthChanged:
+  minValue: 0
+  maxValue: 100
+  _currentValue: 100
+  onChange:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  resourcePanel: {fileID: 0}
   onDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -755,7 +759,18 @@ MonoBehaviour:
       PublicKeyToken=null
   onDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114282506945101484}
+        m_MethodName: OnDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!114 &114146941468414808
@@ -780,6 +795,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373b5aedbbdd62c418c0e2a1c1c56107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114267576068504142
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1278520377011016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c72d30adf35d1114ba294595f7b98c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placingCost: 100
 --- !u!114 &114282506945101484
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -802,12 +829,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01c61ace728c394ba02b99634dc3910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialHealth: 100
-  onHealthChanged:
+  minValue: 0
+  maxValue: 100
+  _currentValue: 100
+  onChange:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  resourcePanel: {fileID: 0}
   onDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -815,7 +845,18 @@ MonoBehaviour:
       PublicKeyToken=null
   onDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114380362133351890}
+        m_MethodName: OnDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!114 &114321190515229094
@@ -852,12 +893,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01c61ace728c394ba02b99634dc3910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialHealth: 100
-  onHealthChanged:
+  minValue: 0
+  maxValue: 100
+  _currentValue: 100
+  onChange:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  resourcePanel: {fileID: 0}
   onDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -865,7 +909,18 @@ MonoBehaviour:
       PublicKeyToken=null
   onDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114004182030656208}
+        m_MethodName: OnDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!114 &114380362133351890
@@ -902,12 +957,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01c61ace728c394ba02b99634dc3910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialHealth: 100
-  onHealthChanged:
+  minValue: 0
+  maxValue: 100
+  _currentValue: 100
+  onChange:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  resourcePanel: {fileID: 0}
   onDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -915,7 +973,18 @@ MonoBehaviour:
       PublicKeyToken=null
   onDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114489272440494744}
+        m_MethodName: OnDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!114 &114489272440494744
@@ -1019,7 +1088,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1347087130
+  randomSeed: -651641179
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3981,7 +4050,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1574360548
+  randomSeed: -226615138
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6943,7 +7012,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -696461618
+  randomSeed: 1709053749
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9905,7 +9974,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1892983670
+  randomSeed: 1986626522
   InitialModule:
     serializedVersion: 3
     enabled: 1

@@ -227,7 +227,8 @@ public class Master : MonoBehaviour {
         if (enemyPrefab == null)
             return;
 
-        if (spawnResource.SafeChangeValue(-10)) // TODO find a way to specify cost per enemy
+        float cost = enemyPrefab.GetComponent<EnemyBase>().placingCost;
+        if (spawnResource.SafeChangeValue(-cost))
             Instantiate(enemyPrefab, ground.transform.position + new Vector3(0, ground.GetComponent<Renderer>().bounds.size.y, 0) /*+ Vector3.up * offsetY*/, Quaternion.Euler(0, Random.Range(0, 360), 0));
     }
 
@@ -259,7 +260,8 @@ public class Master : MonoBehaviour {
         if (obstaclePrefab == null)
             return;
 
-        if (spawnResource.SafeChangeValue(-20)) // TODO find a way to specify cost per obstacle
+        float cost = obstaclePrefab.GetComponent<ObstacleBase>().placingCost;
+        if (spawnResource.SafeChangeValue(-cost))
         {
             GameObject placed = Instantiate(obstaclePrefab, rail.transform.position, platformDirection);
             placedObstacles.Add(clickedIndex, placed);

@@ -723,6 +723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3209c164191b0e4499dfface911f172e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placingCost: 80
   explo: {fileID: 1862322992109182, guid: 5f01c0a5d11e8034b9b6a7f008a4e490, type: 2}
 --- !u!136 &136060676672883246
 CapsuleCollider:

@@ -1132,12 +1132,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 288762380}
---- !u!114 &331988618 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114128137508167322, guid: 3c15011199362fe41a48b53db2e7a76e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1019215906}
-  m_Script: {fileID: 11500000, guid: f01c61ace728c394ba02b99634dc3910, type: 3}
 --- !u!1 &404529394
 GameObject:
   m_ObjectHideFlags: 0
@@ -2427,11 +2421,6 @@ Prefab:
       propertyPath: healthBarPanel
       value: 
       objectReference: {fileID: 288762381}
-    - target: {fileID: 114036691036064898, guid: 3c15011199362fe41a48b53db2e7a76e,
-        type: 2}
-      propertyPath: resourceToRegenerate
-      value: 
-      objectReference: {fileID: 331988618}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c15011199362fe41a48b53db2e7a76e, type: 2}
   m_IsPrefabParent: 0

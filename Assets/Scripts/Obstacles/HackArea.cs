@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HackArea : MonoBehaviour {
+public class HackArea : ObstacleBase {
 
     public float timeToHack = 5.0f;
     public Color defaultColor = Color.green;

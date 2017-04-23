@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class RangedGruntEnemy : EnemyBase
 {
     public float newTargetPosThreshhold = 1;
     public float hitRange, stoppingDistance;

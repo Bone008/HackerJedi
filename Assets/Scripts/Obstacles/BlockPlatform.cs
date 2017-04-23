@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockPlatform : MonoBehaviour {
+public class BlockPlatform : ObstacleBase {
 
     private Platform blocked;
     

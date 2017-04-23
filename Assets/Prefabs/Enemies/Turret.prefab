@@ -518,6 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52c9bd376342d3d4a82193c476238a46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placingCost: 200
   turretActiveSec: 8
   barrel: {fileID: 4768267249093552}
   turretCamTarget: {fileID: 4508185635393266}

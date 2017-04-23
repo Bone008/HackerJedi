@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SniperEnemy : MonoBehaviour {
+public class SniperEnemy : EnemyBase {
 
     public GameObject explo;
 

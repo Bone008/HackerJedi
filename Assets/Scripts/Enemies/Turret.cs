@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Turret : EnemyBase
 {
     public float turretActiveSec = 5.0f;
 

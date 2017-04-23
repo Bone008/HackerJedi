@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SuicideEnemy : MonoBehaviour {
+public class SuicideEnemy : EnemyBase {
     //public float newTargetPosThreshhold = 1;
 
     

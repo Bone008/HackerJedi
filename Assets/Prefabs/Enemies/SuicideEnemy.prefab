@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2d2132fc7401d24c8e8b0ec74de2ff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placingCost: 30
   blinkRange: 10
   hitRange: 3
   color1: {r: 0.7647059, g: 0.14057094, b: 0.14057094, a: 0}
