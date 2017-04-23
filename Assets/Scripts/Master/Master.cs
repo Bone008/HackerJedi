@@ -61,6 +61,11 @@ public class Master : MonoBehaviour {
     
     void Update()
     {
+        // fill resource for testing purposes
+        // TODO remove
+        if (Input.GetKeyDown(KeyCode.C)) // C for Cheat
+            spawnResource.ChangeValue(spawnResource.maxValue);
+
         // select cube
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
