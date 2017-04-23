@@ -225,7 +225,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4160389364062920}
-  - component: {fileID: 114078424649983594}
   m_Layer: 5
   m_Name: PulseGun
   m_TagString: Untagged
@@ -2004,7 +2003,7 @@ BoxCollider:
   m_GameObject: {fileID: 1469417937549648}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2027,24 +2026,6 @@ MonoBehaviour:
   - {fileID: 1237343732971958, guid: db9215448347dee4e93205859e1ee831, type: 2}
   - {fileID: 1237343732971958, guid: cb14b63095959cb47b1e1251fc94c320, type: 2}
   initAnimationDuration: 0.15
---- !u!114 &114078424649983594
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1398705693946680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 604661955c7fa16408eb40ae52df3f68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  abilityType: 2
-  shootSound: {fileID: 0}
-  projectilePrefab: {fileID: 1072651022596434, guid: bc6415566563d784791acac02bf9a97d,
-    type: 2}
-  nozzle: {fileID: 4614477866505768}
-  projectileSpeed: 5
-  damageAmount: 25
 --- !u!114 &114465409937450686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2253,7 +2234,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1402447536471392}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -2305,7 +2286,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1683588473325292}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
