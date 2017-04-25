@@ -151,7 +151,7 @@ public class Master : MonoBehaviour {
             //transform.position = Vector3.MoveTowards(transform.position, target.position, maxMovementDelta);
 
             // rotate around the center of the map
-            transform.RotateAround(new Vector3(0, 0, 0), new Vector3(0, 1, 0), -input);
+            transform.RotateAround(new Vector3(0, 0, 0), new Vector3(0, 1, 0), -input * maxMovementDelta * Time.deltaTime);
         }
 
         // move laser
