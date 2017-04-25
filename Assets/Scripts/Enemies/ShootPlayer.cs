@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class ShootPlayer : MonoBehaviour {
 
+    public Gun gun;
     public float hitRange;
     public float fireDelay;
 
     private Transform target;
-    private Gun gun;
     private Coroutine firingCoroutine;
     
 	void Start ()
@@ -16,8 +16,7 @@ public class ShootPlayer : MonoBehaviour {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         target = player.transform;
         
-        // get gun component from children
-        gun = GetComponentInChildren<Gun>();
+        // make sure gun fires on the correct layer so it hits the hacker
         gun.layer = LayerMask.NameToLayer("Hacker");
     }
 	

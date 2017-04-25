@@ -35,8 +35,8 @@ public class RangedGruntEnemy : EnemyBase
 
     void Update()
     {
-        //if (agent.isOnNavMesh)
-        //{
+        if (agent.isOnNavMesh)
+        {
             if (Vector3.Distance(transform.position, goal.position) < stoppingDistance /*&& !agent.isStopped*/)
             {
                 agent.isStopped = true;
@@ -62,7 +62,7 @@ public class RangedGruntEnemy : EnemyBase
             {
                 transform.LookAt(goal);
             }
-        //}
+        }
         //Debug.Log(agent.isStopped);
         //Debug.Log(Vector3.Distance(transform.position, goal.position));        
     }

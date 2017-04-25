@@ -6,12 +6,22 @@ public class PointAtPlayer : MonoBehaviour
 {
     
     public float aimingFOV = 45, bulletVelocity = 40;
-    //private Vector3 platformVelocity;
-    private GameObject parent, player, platform;
+
+    /// <summary>Transform of the agent that this controller belongs to.</summary>
+    public Transform selfContext;
+    /// <summary>Axis in local space where "forward" should be.</summary>
+    public Vector3 forwardDirection;
+    
+    private GameObject player;
+    private Platform platform;
+
+    private Quaternion initialLocalRotation;
 
 	// Use this for initialization
 	void Start ()
 	{
+        initialLocalRotation = transform.localRotation;
+
         player = GameObject.FindWithTag("Player");
         // if there is no player, there is no meaning to our life
         if (player == null)
@@ -19,16 +29,13 @@ public class PointAtPlayer : MonoBehaviour
             enabled = false;
             return;
         }
-
-        parent = transform.parent.gameObject;
-	    platform = GameObject.Find("Platform");
-        //platformVelocity = platform.GetComponent<Platform>().getVelocity();
+        
+	    platform = GameObject.FindWithTag("Platform").GetComponent<Platform>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-
 	    float dist = Vector3.Distance(transform.position, player.transform.position);
 	    float timeOffset = dist/bulletVelocity;
 
@@ -36,13 +43,13 @@ public class PointAtPlayer : MonoBehaviour
         float overHeadOffset = (vrCollider != null ? vrCollider.overHeadOffset : 0);
 	    Vector3 aimPosition = player.transform.position - new Vector3(0, overHeadOffset, 0) + timeOffset * platform.GetComponent<Platform>().getVelocity();
         
-	    if (Vector3.Angle(parent.transform.forward, (player.transform.position - parent.transform.position)) < aimingFOV)
+	    if (Vector3.Angle(selfContext.forward, (player.transform.position - selfContext.position)) < aimingFOV)
 	    {
-	        transform.LookAt(aimPosition);
+            transform.rotation = Quaternion.LookRotation(aimPosition - transform.position) * Quaternion.LookRotation(-forwardDirection);
 	    }
 	    else
 	    {
-	        transform.forward = parent.transform.forward;
-	    }
+            transform.localRotation = initialLocalRotation;
+        }
 	}
 }

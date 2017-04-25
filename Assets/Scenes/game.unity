@@ -401,7 +401,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 115160090}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 60f751c3bea18924fac9b9c5124431d3, type: 3}
@@ -2056,7 +2056,7 @@ MonoBehaviour:
         m_MethodName: SelectEnemy
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1766478273696298, guid: 252bb4741bf35b84791379d539ff286d,
+          m_ObjectArgument: {fileID: 1918544432715482, guid: 70efab91ba193b8489773003a458bbbd,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -4928,7 +4928,7 @@ MonoBehaviour:
     m_Bits: 4294967039
   movementMin: {fileID: 0}
   movementMax: {fileID: 0}
-  maxMovementDelta: 0.3
+  maxMovementDelta: 60
   movementInputAxis: Horizontal
   level: {fileID: 1252225517}
   blockMinYValue: 0
@@ -4967,7 +4967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minValue: 0
   maxValue: 250
-  _currentValue: 50
+  _currentValue: 250
   onChange:
     m_PersistentCalls:
       m_Calls: []
