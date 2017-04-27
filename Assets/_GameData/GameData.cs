@@ -6,6 +6,10 @@ public class GameData
 {
     private static GameData instance;
 
+    public bool isPaused = false;
+    public bool hackerIsReady;
+    public bool masterIsReady;
+
     public int randomizeWorldinProgress = 0;
     public int levels = 3;
 
