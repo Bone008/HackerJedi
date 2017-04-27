@@ -13,9 +13,9 @@ public class SuicideEnemy : EnemyBase {
     public Color color1;
     public Color color2;
 
-    private NavMeshAgent agent;
+    private new Rigidbody rigidbody;
 
-    private Coroutine blinkCoroutine;
+    //private Coroutine blinkCoroutine;
 
     private enum SuicideProgress
     {
@@ -32,13 +32,27 @@ public class SuicideEnemy : EnemyBase {
 
     void Start()
     {
+        rigidbody = GetComponent<Rigidbody>();
+
         platform = GameObject.FindGameObjectWithTag("Platform").transform;
         //agent = GetComponent<NavMeshAgent>();
 
         //if (agent.isOnNavMesh)
         //    agent.destination = platform.position;
 
-        GetComponent<Renderer>().material.color = color1;
+        //GetComponent<Renderer>().material.color = color1;
+    }
+
+    private void MoveTowards(Vector3 target)
+    {
+        var newPos = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
+
+        rigidbody.MovePosition(newPos);
+
+        var dir = target - transform.position;
+        dir.y = 0; // always look horizontally
+        if(dir != Vector3.zero)
+            rigidbody.MoveRotation(Quaternion.LookRotation(dir));
     }
 
     void Update()
@@ -54,7 +68,7 @@ public class SuicideEnemy : EnemyBase {
 
             case SuicideProgress.GainingHeight:
                 // move towards target
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed);
+                MoveTowards(targetPosition);
 
                 // next move to platform
                 if (transform.position == targetPosition)
@@ -65,7 +79,7 @@ public class SuicideEnemy : EnemyBase {
             case SuicideProgress.MoveAbovePlatform:
                 // move towards platform
                 targetPosition = new Vector3(platform.position.x, targetHeight, platform.position.z);
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed);
+                MoveTowards(targetPosition);
 
                 // next fuck shit up
                 if ((transform.position - targetPosition).sqrMagnitude <= startKamikazeDist * startKamikazeDist)
@@ -75,18 +89,18 @@ public class SuicideEnemy : EnemyBase {
 
             case SuicideProgress.Kamikaze:
                 // start blinking
-                if (blinkCoroutine == null)
-                    blinkCoroutine = StartCoroutine(StartBlinking());
+                //if (blinkCoroutine == null)
+                //    blinkCoroutine = StartCoroutine(StartBlinking());
 
                 // fly towards player
                 targetPosition = platform.position;
-                transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed);
+                MoveTowards(targetPosition);
 
                 // no next
                 float sqDist = (platform.position - transform.position).sqrMagnitude;
                 if (sqDist <= hitRange * hitRange)
                 {
-                    StopCoroutine(blinkCoroutine);
+                    //StopCoroutine(blinkCoroutine);
                     platform.GetComponent<Platform>().DisableForSec(2.0f);
                     Destroy(gameObject);
                     return;
@@ -103,15 +117,15 @@ public class SuicideEnemy : EnemyBase {
         Destroy(gameObject);
     }
 
-    private IEnumerator StartBlinking()
-    {
-        Renderer r = GetComponent<Renderer>();
-        while (true)
-        {
-            r.material.color = color2;
-            yield return new WaitForSeconds(0.4f);
-            r.material.color = color1;
-            yield return new WaitForSeconds(0.4f);
-        }
-    }
+    //private IEnumerator StartBlinking()
+    //{
+    //    Renderer r = GetComponent<Renderer>();
+    //    while (true)
+    //    {
+    //        r.material.color = color2;
+    //        yield return new WaitForSeconds(0.4f);
+    //        r.material.color = color1;
+    //        yield return new WaitForSeconds(0.4f);
+    //    }
+    //}
 }
