@@ -137,14 +137,20 @@ public class NonVRInputHandler : MonoBehaviour
         // trigger input
         if (currentPerspective == Perspective.Hacker || currentPerspective == Perspective.Both)
         {
+            Action<HackerHand, bool> setInputFunc;
+            if (Input.GetKey(KeyCode.LeftShift))
+                setInputFunc = player.SetGripDown;
+            else
+                setInputFunc = player.SetTriggerDown;
+
             if (Input.GetButtonDown("Fire1"))
-                player.SetTriggerDown(HackerHand.Left, true);
+                setInputFunc(HackerHand.Left, true);
             if (Input.GetButtonUp("Fire1"))
-                player.SetTriggerDown(HackerHand.Left, false);
+                setInputFunc(HackerHand.Left, false);
             if (Input.GetButtonDown("Fire2"))
-                player.SetTriggerDown(HackerHand.Right, true);
+                setInputFunc(HackerHand.Right, true);
             if (Input.GetButtonUp("Fire2"))
-                player.SetTriggerDown(HackerHand.Right, false);
+                setInputFunc(HackerHand.Right, false);
         }
 
         // switch weapon
