@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForcePush : AbstractAbility {
+public class ForcePushGrab : AbstractAbility {
     
     public override AbilityType Type { get { return AbilityType.JediForcePush; } }
 
@@ -130,8 +130,11 @@ public class ForcePush : AbstractAbility {
             }
             else
             {
+                var collider = target.GetComponent<Collider>();
+                Vector3 pos = (collider != null ? collider.bounds.center : target.transform.position);
+
                 aimPreview.sharedMaterial = aimPreviewHighlightMaterial;
-                aimPreview.SetPosition(1, target.transform.position);
+                aimPreview.SetPosition(1, pos);
                 //Debug.Log("aiming at " + hit.Value.point, hit.Value.collider.gameObject);
             }
         }
