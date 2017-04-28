@@ -37,7 +37,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4695723373876256}
-  - component: {fileID: 114862385317893524}
+  - component: {fileID: 114653701328384912}
   m_Layer: 0
   m_Name: PulseGun
   m_TagString: Untagged
@@ -364,7 +364,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114862385317893524
+--- !u!114 &114653701328384912
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -372,16 +372,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 1592527875849472}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 604661955c7fa16408eb40ae52df3f68, type: 3}
+  m_Script: {fileID: 11500000, guid: a81549c892791ad4890986272b260641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   abilityType: 2
   shootSound: {fileID: 8300000, guid: 94a041922bfdc4542b975785eb3ce57e, type: 3}
-  projectilePrefab: {fileID: 1072651022596434, guid: d4ba919cba755544aab32a7f05819fea,
-    type: 2}
+  particlePrefab: {fileID: 0}
   nozzle: {fileID: 4254166129595500}
-  projectileSpeed: 5
-  damageAmount: 25
+  totalAngle: 60
+  maxRange: 8
+  maxDamageAmount: 75
+  damageFalloff:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0.19302368
+      inSlope: -1.8030323
+      outSlope: -1.8030323
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  hitLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  volumetricLineMaterial: {fileID: 2100000, guid: 123af45927adbb14fa7f12821c8bbee6,
+    type: 2}
 --- !u!136 &136545121566104394
 CapsuleCollider:
   m_ObjectHideFlags: 1
