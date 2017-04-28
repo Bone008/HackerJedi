@@ -41,8 +41,18 @@ public class Gun : AbstractAbility {
         if(layer.HasValue)
             projectile.layer = layer.Value;
 
-        if(shootSound != null)
-            AudioSource.PlayClipAtPoint(shootSound, nozzle.position, 0.5f);
+        if (shootSound != null)
+        {
+            //AudioSource.PlayClipAtPoint(shootSound, nozzle.position, 0.5f);
+            var go = new GameObject("Shoot sound");
+            go.transform.position = nozzle.position;
+            var audio = go.AddComponent<AudioSource>();
+            audio.clip = shootSound;
+            audio.volume = 0.3f;
+            audio.pitch = UnityEngine.Random.Range(0.95f, 1.05f);
+            audio.Play();
+            this.Delayed(shootSound.length + 0.5f, () => Destroy(go));
+        }
     }
 
 }
