@@ -2,39 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HackArea : ObstacleBase {
+public class HackArea : MonoBehaviour {
 
     public float timeToHack = 5.0f;
     public Color defaultColor = Color.green;
     public Color hackingColor = Color.red;
-    public Color hackedColor = Color.yellow;
+    private Color targetColor;
+    public float colorTransitionMultiplier;
 
+    public Animator noiceAnimator;
+    
     private float timeRemaining;
     private GameObject hackerController;
     private Renderer hackAreaRenderer;
 
-	// Use this for initialization
+    private Coroutine deathCoroutine;
+
 	void Start () {
+        // get renderer and set default color
         hackAreaRenderer = GetComponent<Renderer>();
-        hackAreaRenderer.material.color = defaultColor;
+        targetColor = defaultColor;
 	}
 	
-	// Update is called once per frame
 	void Update () {
+        // show hack area when animation has finished
+        if(!hackAreaRenderer.enabled)
+        {
+            if (noiceAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1 || noiceAnimator.IsInTransition(0))
+                return;
+
+            hackAreaRenderer.enabled = true;
+        }
+
+        // decrease hacking counter
 		if(hackerController != null)
-        {
             timeRemaining -= Time.deltaTime;
-        }
 
-        if(timeRemaining < 0)
+        // interpolate color
+        hackAreaRenderer.material.color = Color.Lerp(hackAreaRenderer.material.color, targetColor, Time.deltaTime * colorTransitionMultiplier);
+
+        // hackarea deaded
+        if (timeRemaining < 0)
         {
-            hackAreaRenderer.material.color = hackedColor;
+            targetColor = hackingColor;
+            targetColor.a = 0;
 
-            // TODO cool animation
-            Destroy(gameObject.transform.parent.parent.gameObject);
-            return;
-        }
-	}
+            if (deathCoroutine == null)
+                deathCoroutine = StartCoroutine(Deathded());
+        }        
+    }
 
     void OnTriggerEnter(Collider collider)
     {
@@ -49,7 +65,7 @@ public class HackArea : ObstacleBase {
         {
             timeRemaining = timeToHack;
             hackerController = hackerHand;
-            hackAreaRenderer.material.color = hackingColor;
+            targetColor = hackingColor;
         }
     }
 
@@ -61,8 +77,40 @@ public class HackArea : ObstacleBase {
         if (hackerHand != null && hackerHand.Equals(hackerController))
         {
             hackerController = null;
-            hackAreaRenderer.material.color = defaultColor;
+            targetColor = defaultColor;
         }
+    }
+
+    // this should be set as callback in BlockPlatform script
+    public void OnPlatformBlocked()
+    {
+        // start noice animation
+        noiceAnimator.enabled = true;
+        hackAreaRenderer.enabled = true;
+    }
+
+    private IEnumerator Deathded()
+    {
+        // start animation
+        noiceAnimator.Play("Reverse");
+
+        // wait for animation end
+        yield return new WaitWhile(() => noiceAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1 || noiceAnimator.IsInTransition(0));
+
+        // move terminal into ground
+        Vector3 oldPosition = transform.parent.position;
+        Vector3 targetPosition = transform.parent.position - new Vector3(0, 9, 0);
+        float progress = 0;
+
+        while (transform.parent.position != targetPosition)
+        {
+            transform.parent.position = Vector3.Slerp(oldPosition, targetPosition, progress);
+            progress += Time.deltaTime / 4;
+            yield return 0;
+        }
+
+        // destroy gameobject to free platform
+        Destroy(gameObject.transform.parent.gameObject);
     }
 
 }

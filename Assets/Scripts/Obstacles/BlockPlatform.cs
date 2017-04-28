@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class BlockPlatform : ObstacleBase {
+public class BlockPlatform : MonoBehaviour {
 
+    public UnityEvent onPlatformBlocked;
     private Platform blocked;
     
     void OnTriggerEnter(Collider other)
@@ -13,6 +15,8 @@ public class BlockPlatform : ObstacleBase {
         {
             platform.running = false;
             blocked = platform;
+            if (onPlatformBlocked != null)
+                onPlatformBlocked.Invoke();
         }
     }
 
