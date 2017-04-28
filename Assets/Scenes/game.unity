@@ -6026,7 +6026,7 @@ MonoBehaviour:
   movementMin: {fileID: 0}
   movementMax: {fileID: 0}
   maxMovementDelta: 60
-  movementInputAxis: Horizontal
+  movementInputAxis: Master Movement Horizontal
   level: {fileID: 1252225517}
   blockMinYValue: 0
   blockMaxYValue: 6
