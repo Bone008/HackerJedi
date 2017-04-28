@@ -113,7 +113,7 @@ public class ForcePushGrab : AbstractAbility {
         return null;
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (selection == null)
         {
