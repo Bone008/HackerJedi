@@ -519,6 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placingCost: 200
+  minPlatformSpawnDist: 21
   turretActiveSec: 8
   barrel: {fileID: 4768267249093552}
   turretCamTarget: {fileID: 4508185635393266}

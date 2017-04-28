@@ -9254,6 +9254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placingCost: 30
+  minPlatformSpawnDist: 24
   blinkRange: 10
   hitRange: 3
   color1: {r: 0.7647059, g: 0.14057094, b: 0.14057094, a: 0}

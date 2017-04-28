@@ -10,6 +10,7 @@ public class Master : MonoBehaviour {
     public Camera masterCamera;
     public Transform masterEye;
     public LayerMask raycastLayermask;
+    private Platform platform;
 
     [Header("Movement")]
     public Transform movementMin;
@@ -51,6 +52,7 @@ public class Master : MonoBehaviour {
         laserBeam.gameObject.SetActive(false);
         lookAtMouseScript = masterEye.GetComponent<LookAtMouse>();
         oldMousePosition = Input.mousePosition;
+        platform = GameObject.FindWithTag("Platform").GetComponent<Platform>();
 
         // get default glow color of blocks from any block
         defaultBlockColor = level.world[0, 0].GetComponentInChildren<Renderer>().material.GetColor("_MKGlowColor");
@@ -232,7 +234,16 @@ public class Master : MonoBehaviour {
         if (enemyPrefab == null)
             return;
 
-        float cost = enemyPrefab.GetComponent<EnemyBase>().placingCost;
+        // get enemy base script
+        EnemyBase enemyBase = enemyPrefab.GetComponent<EnemyBase>();
+        Debug.Assert(enemyBase != null);
+
+        // check if too close to platform
+        if ((platform.transform.position - ground.transform.position).sqrMagnitude < enemyBase.minPlatformSpawnDist * enemyBase.minPlatformSpawnDist)
+            return;
+
+        // buy enemy
+        float cost = enemyBase.placingCost;
         if (spawnResource.SafeChangeValue(-cost))
             Instantiate(enemyPrefab, ground.transform.position + new Vector3(0, ground.GetComponent<Renderer>().bounds.size.y, 0) /*+ Vector3.up * offsetY*/, Quaternion.Euler(0, Random.Range(0, 360), 0));
     }
@@ -261,14 +272,22 @@ public class Master : MonoBehaviour {
         Vector3 lastPosition = level.rail[clickedIndex - 1].transform.position;
         Quaternion platformDirection = Quaternion.LookRotation(currentPosition - lastPosition);
 
-        // instantiate prefab
         if (obstaclePrefab == null)
             return;
 
-        float cost = obstaclePrefab.GetComponent<ObstacleBase>().placingCost;
+        // get obstacle base
+        ObstacleBase obstacleBase = obstaclePrefab.GetComponent<ObstacleBase>();
+        Debug.Assert(obstacleBase != null);
+
+        // check if too close to platform
+        if ((clickedIndex - level.numPassedRails) < obstacleBase.minPlatformSpawnDist)
+            return;
+
+        // buy obstacle
+        float cost = obstacleBase.placingCost;
         if (spawnResource.SafeChangeValue(-cost))
         {
-            GameObject placed = Instantiate(obstaclePrefab, rail.transform.position, platformDirection);
+            GameObject placed = Instantiate(obstaclePrefab, rail.position, platformDirection);
             placedObstacles.Add(clickedIndex, placed);
         }
     }

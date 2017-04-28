@@ -5354,6 +5354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placingCost: 60
+  minPlatformSpawnDist: 15
   newTargetPosThreshhold: 1
   hitRange: 15
   stoppingDistance: 10
