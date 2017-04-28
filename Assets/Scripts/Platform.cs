@@ -55,10 +55,10 @@ public class Platform : MonoBehaviour {
             {
                 GameData.Instance.randomizeWorldinProgress = GameData.Instance.levels * (level.rows + level.lines);
                 GameData.Instance.levels--;
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(1);
             }
             else if (transform.position == endPoint.position + platformOffset && railPointer == level.rail.Count - 1 && GameData.Instance.levels == 0)
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(2);
         }
         
     }
