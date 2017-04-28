@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -182,5 +182,18 @@ public class LevelGenerator : MonoBehaviour
         }
         if (Input.GetKeyUp("l"))
             createTrack();
+
+
+
+        // TODO here is the blinking
+        //for (int i = 0; i < rows; i++)
+        //{
+        //    for (int j = 0; j < lines; j++)
+        //    {
+        //        float t = (Time.time * 2.2f);
+        //        Color c = (((int)t % 2) == 0 ? Color.red : Color.cyan);
+        //        world[i, j].GetComponentInChildren<Renderer>().sharedMaterial.SetColor("_MKGlowColor", Color.Lerp(c, Color.blue, t % 1.0f));
+        //    }
+        //}
     }
 }
