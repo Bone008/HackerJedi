@@ -23,6 +23,8 @@ public class HackerPlayer : MonoBehaviour
     private AbilityType[] equippedAbilities = { AbilityType.None, AbilityType.None };
     private AbilitySelectionWheel[] selectionWheels = { null, null };
 
+    private DataFragmentResource dataFragments;
+    private bool ultimateMode;
 
     public GameObject GetHandGO(HackerHand hand)
     {
@@ -59,6 +61,7 @@ public class HackerPlayer : MonoBehaviour
 
         healthBarPanel.transform.localScale = new Vector3(1, 1, 1);
         deathScreenElement.SetActive(false);
+        dataFragments=gameObject.GetComponent<DataFragmentResource>();
     }
 
     // instantiates all ability GOs (disabled) for each hand and stores them in allAbilityGOs
@@ -190,5 +193,40 @@ public class HackerPlayer : MonoBehaviour
         deathScreenElement.SetActive(true);
         this.Delayed(2.0f, () => deathScreenElement.SetActive(false));
     }
-        
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+//Utimate-Behaviour
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //[veraltet] returns if a ultimate-move can be activated
+    public bool ultimateEnabled()
+    {
+        return (equippedAbilities[0] == equippedAbilities[1] && dataFragments.filledPercentage >= 1);
+    }
+
+    /*Activates the ultimate-move-ability
+     * Should be called in SetTriggerDown
+     */
+    private void activateUltimateTracking()
+    {
+        if (equippedAbilities[0] == equippedAbilities[1] && dataFragments.filledPercentage >= 1)
+        {
+            if (GetEquippedAbilityScript(HackerHand.Left).getTriggerInfo() && GetEquippedAbilityScript(HackerHand.Right).getTriggerInfo())
+            {
+                ultimateMode = true;
+            }
+            else if (GetEquippedAbilityScript(HackerHand.Left).getGripInfo() && GetEquippedAbilityScript(HackerHand.Right).getGripInfo())
+            {
+                ultimateMode = true;
+            }
+        }
+    }
+
+    public void resetUltimateMode()
+    {
+        ultimateMode = false;
+    }
+    public bool getUltimateMode()
+    {
+        return ultimateMode;
+    }
 }

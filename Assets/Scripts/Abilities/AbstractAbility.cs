@@ -51,4 +51,16 @@ public abstract class AbstractAbility : MonoBehaviour
         var aimDirection = trans.TransformDirection(Vector3.forward).normalized;
         return new Ray(trans.position, aimDirection);
     }
+
+    //returns if trigger is pressed
+    public bool getTriggerInfo()
+    {
+        return isTriggerDown;
+    }
+
+    //returns if grip is pressed
+    public bool getGripInfo()
+    {
+        return isGripDown;
+    }
 }
