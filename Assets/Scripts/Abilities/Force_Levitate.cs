@@ -17,7 +17,7 @@ public class Force_Levitate : MonoBehaviour {
         }
 	}
     //-------------------------------------------------------------------------------------------------------------------------------------------------------
-    public abstract AbilityType Type { get; }
+    //public abstract AbilityType Type { get; }
 
     protected bool bothTriggersDown;
     protected bool bothGripsDown;
