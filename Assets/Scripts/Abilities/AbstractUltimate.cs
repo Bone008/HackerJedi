@@ -20,4 +20,23 @@ public abstract class AbstractUltimate : AbstractAbility
         this.rightHand = rightHand;
     }
 
+
+    /// <summary>
+    /// Attempts to consume <code>dataFragmentsCost</code> from the hacker's resources.
+    /// </summary>
+    /// <returns>true if successful</returns>
+    protected bool TryConsumeDataFragments()
+    {
+        return hackerPlayer.GetComponent<DataFragmentResource>().SafeChangeValue(-dataFragmentsCost);
+    }
+
+    /// <summary>
+    /// Attempts to consume a specified amount of data fragments from the hacker's resources.
+    /// </summary>
+    /// <returns>true if successful</returns>
+    protected bool TryConsumeDataFragments(float amount)
+    {
+        return hackerPlayer.GetComponent<DataFragmentResource>().SafeChangeValue(-amount);
+    }
+
 }

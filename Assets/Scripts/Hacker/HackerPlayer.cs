@@ -27,14 +27,10 @@ public class HackerPlayer : MonoBehaviour
     private Dictionary<AbilityType, GameObject> allUltimateGOs = new Dictionary<AbilityType, GameObject>();
     private AbstractUltimate activeUltimate = null; // the ultimate script that is currently active, or null if none are
 
-    private DataFragmentResource dataFragments;
-
 
     private void Start()
     {
         Debug.Assert(handGameObjects.Length == 2);
-
-        dataFragments = GetComponent<DataFragmentResource>();
 
         SpawnAbilityInstances();
         SpawnUltimateInstances();
@@ -148,7 +144,7 @@ public class HackerPlayer : MonoBehaviour
     }
 
 
-    // needs to be called whenever a prerequisite for ultimate activation changes (equipped ability, current data fragments, unlocked abilities)
+    // needs to be called whenever a prerequisite for ultimate activation changes (equipped ability, unlocked abilities)
     public void UpdateActiveUltimate()
     {
         activeUltimate = null;
@@ -160,8 +156,7 @@ public class HackerPlayer : MonoBehaviour
             var ultimate = ultimateGO.GetComponent<AbstractUltimate>();
 
             bool active = equippedAbilities[0] == ability && equippedAbilities[1] == ability
-                            && HackerProgression.Instance.IsUltimateUnlocked(ability)
-                            && dataFragments.currentValue >= ultimate.dataFragmentsCost;
+                            && HackerProgression.Instance.IsUltimateUnlocked(ability);
 
             if (!active && ultimateGO.activeSelf)
             {
