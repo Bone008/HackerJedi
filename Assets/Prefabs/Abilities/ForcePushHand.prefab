@@ -8991,6 +8991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3109ba7efef01a241a26480e04ced010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityType: 3
   forceStrength: 25
   forceLift: 10
   range: 20

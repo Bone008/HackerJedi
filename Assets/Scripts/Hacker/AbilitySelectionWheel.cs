@@ -9,8 +9,9 @@ public class AbilitySelectionWheel : MonoBehaviour
 
     public AbilitySelectionTrigger selectionSphere;
     public float selectionSphereMultiplier;
-    public GameObject[] abilityPrefabs;
     public float initAnimationDuration;
+    public GameObject[] abilityPrefabs;
+    public GameObject[] ultimatePrefabs;
 
     // this is updated automatically by the selectionPreview by its collider trigger
     public AbilitySelectionElement SelectedElement { get; set; }

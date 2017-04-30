@@ -1536,11 +1536,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionSphere: {fileID: 114957682309887542}
   selectionSphereMultiplier: 0.1
+  initAnimationDuration: 0.15
   abilityPrefabs:
   - {fileID: 1592527875849472, guid: 68921e643628709439a17ba67b7906c2, type: 2}
   - {fileID: 1592527875849472, guid: 7dd2836027cb0024ea1e56281b83a9d8, type: 2}
   - {fileID: 1237343732971958, guid: db9215448347dee4e93205859e1ee831, type: 2}
-  initAnimationDuration: 0.15
+  ultimatePrefabs:
+  - {fileID: 1586267167299042, guid: 2067441e4b2cb904d9701d99cca49939, type: 2}
 --- !u!114 &114465409937450686
 MonoBehaviour:
   m_ObjectHideFlags: 1

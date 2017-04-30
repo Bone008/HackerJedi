@@ -3,20 +3,30 @@ using UnityEngine;
 
 public abstract class AbstractAbility : MonoBehaviour
 {
-    public abstract AbilityType Type { get; }
+    public AbilityType abilityType; // to be set by inspector
 
-    protected bool isTriggerDown;
-    protected bool isGripDown;
+    /// <summary>The transform of the main player (the head camera of the hacker, also the GO tagged "Player").</summary>
+    protected Transform hackerPlayer;
+
+    public AbilityType Type { get { return abilityType; } }
+
+    public bool IsTriggerDown { get; private set; }
+    public bool IsGripDown { get; private set; }
 
     protected virtual void OnTriggerDown() { }
     protected virtual void OnTriggerUp() { }
     protected virtual void OnGripDown() { }
     protected virtual void OnGripUp() { }
 
+    public void InitHackerPlayer(Transform hackerPlayer)
+    {
+        this.hackerPlayer = hackerPlayer;
+    }
+
     public void SetTriggerDown(bool value)
     {
-        bool wasDown = isTriggerDown;
-        isTriggerDown = value;
+        bool wasDown = IsTriggerDown;
+        IsTriggerDown = value;
 
         if (value && !wasDown)
             OnTriggerDown();
@@ -26,8 +36,8 @@ public abstract class AbstractAbility : MonoBehaviour
 
     public void SetGripDown(bool value)
     {
-        bool wasDown = isGripDown;
-        isGripDown = value;
+        bool wasDown = IsGripDown;
+        IsGripDown = value;
 
         if (value && !wasDown)
             OnGripDown();
@@ -52,15 +62,4 @@ public abstract class AbstractAbility : MonoBehaviour
         return new Ray(trans.position, aimDirection);
     }
 
-    //returns if trigger is pressed
-    public bool getTriggerInfo()
-    {
-        return isTriggerDown;
-    }
-
-    //returns if grip is pressed
-    public bool getGripInfo()
-    {
-        return isGripDown;
-    }
 }

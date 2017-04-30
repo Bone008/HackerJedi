@@ -14,7 +14,7 @@ public class HackerPlayer : MonoBehaviour
     public AbilityType initialAbilityRight;
 
     [Header("UI")]
-    public RectTransform healthBarPanel;
+    public RectTransform healthBarPanel; // TODO is this obsolete?!
     public RectTransform dataFragmentsPanel;
     public GameObject deathScreenElement;
 
@@ -23,8 +23,28 @@ public class HackerPlayer : MonoBehaviour
     private AbilityType[] equippedAbilities = { AbilityType.None, AbilityType.None };
     private AbilitySelectionWheel[] selectionWheels = { null, null };
 
+    // one entry for both hands
+    private Dictionary<AbilityType, GameObject> allUltimateGOs = new Dictionary<AbilityType, GameObject>();
+    private AbstractUltimate activeUltimate = null; // the ultimate script that is currently active, or null if none are
+
     private DataFragmentResource dataFragments;
-    private bool ultimateMode;
+
+
+    private void Start()
+    {
+        Debug.Assert(handGameObjects.Length == 2);
+
+        dataFragments = GetComponent<DataFragmentResource>();
+
+        SpawnAbilityInstances();
+        SpawnUltimateInstances();
+        EquipAbility(HackerHand.Left, initialAbilityLeft);
+        EquipAbility(HackerHand.Right, initialAbilityRight);
+
+        healthBarPanel.transform.localScale = new Vector3(1, 1, 1);
+        deathScreenElement.SetActive(false);
+    }
+
 
     public GameObject GetHandGO(HackerHand hand)
     {
@@ -51,19 +71,6 @@ public class HackerPlayer : MonoBehaviour
     }
 
 
-    private void Start()
-    {
-        Debug.Assert(handGameObjects.Length == 2);
-
-        SpawnAbilityInstances();
-        EquipAbility(HackerHand.Left, initialAbilityLeft);
-        EquipAbility(HackerHand.Right, initialAbilityRight);
-
-        healthBarPanel.transform.localScale = new Vector3(1, 1, 1);
-        deathScreenElement.SetActive(false);
-        dataFragments=gameObject.GetComponent<DataFragmentResource>();
-    }
-
     // instantiates all ability GOs (disabled) for each hand and stores them in allAbilityGOs
     private void SpawnAbilityInstances()
     {
@@ -75,12 +82,34 @@ public class HackerPlayer : MonoBehaviour
             var abilityPrefabs = abilitySelectionPrefab.GetComponent<AbilitySelectionWheel>().abilityPrefabs;
             foreach (var prefab in abilityPrefabs)
             {
-                var go = Instantiate(prefab);
+                var go = Instantiate(prefab, GetHandGO(hand).transform);
                 go.SetActive(false);
-                go.transform.SetParent(GetHandGO(hand).transform, false);
 
-                allAbilityGOs[i].Add(go.GetComponent<AbstractAbility>().Type, go);
+                var abilityScript = go.GetComponent<AbstractAbility>();
+                abilityScript.InitHackerPlayer(transform);
+
+                allAbilityGOs[i].Add(abilityScript.Type, go);
             }
+        }
+    }
+
+    // instantiates ultimate GOs (disabled) and stores them in allUltimateGOs
+    private void SpawnUltimateInstances()
+    {
+        var ultimateRoot = new GameObject("Ultimates");
+        ultimateRoot.transform.SetParent(transform);
+
+        var ultimatePrefabs = abilitySelectionPrefab.GetComponent<AbilitySelectionWheel>().ultimatePrefabs;
+        foreach (var prefab in ultimatePrefabs)
+        {
+            var go = Instantiate(prefab, Vector3.zero, Quaternion.identity, ultimateRoot.transform);
+            go.SetActive(false);
+
+            var ult = go.GetComponent<AbstractUltimate>();
+            ult.InitHackerPlayer(transform);
+            ult.InitHands(GetHandGO(HackerHand.Left).transform, GetHandGO(HackerHand.Right).transform);
+
+            allUltimateGOs.Add(ult.Type, go);
         }
     }
 
@@ -114,7 +143,41 @@ public class HackerPlayer : MonoBehaviour
         // enable new equipment
         allAbilityGOs[i][type].SetActive(true);
         equippedAbilities[i] = type;
+
+        UpdateActiveUltimate();
     }
+
+
+    // needs to be called whenever a prerequisite for ultimate activation changes (equipped ability, current data fragments, unlocked abilities)
+    public void UpdateActiveUltimate()
+    {
+        activeUltimate = null;
+
+        foreach (var kvp in allUltimateGOs)
+        {
+            AbilityType ability = kvp.Key;
+            GameObject ultimateGO = kvp.Value;
+            var ultimate = ultimateGO.GetComponent<AbstractUltimate>();
+
+            bool active = equippedAbilities[0] == ability && equippedAbilities[1] == ability
+                            && HackerProgression.Instance.IsUltimateUnlocked(ability)
+                            && dataFragments.currentValue >= ultimate.dataFragmentsCost;
+
+            if (!active && ultimateGO.activeSelf)
+            {
+                // make sure to stop triggering
+                ultimate.SetTriggerDown(false);
+                ultimate.SetGripDown(false);
+            }
+            else if(active)
+            {
+                activeUltimate = ultimate;
+            }
+
+            ultimateGO.SetActive(active);
+        }
+    }
+
 
     // called by the concrete input handler when the trigger state has changed
     public void SetTriggerDown(HackerHand hand, bool state)
@@ -122,6 +185,13 @@ public class HackerPlayer : MonoBehaviour
         var abilityScript = GetEquippedAbilityScript(hand);
         if (abilityScript != null)
             abilityScript.SetTriggerDown(state);
+
+        if(activeUltimate != null)
+        {
+            var otherScript = GetEquippedAbilityScript(hand.Next());
+            bool both = (abilityScript != null && otherScript != null && abilityScript.IsTriggerDown && otherScript.IsTriggerDown);
+            activeUltimate.SetTriggerDown(both);
+        }
     }
 
     // called by the concrete input handler when the grip state has changed
@@ -130,6 +200,13 @@ public class HackerPlayer : MonoBehaviour
         var abilityScript = GetEquippedAbilityScript(hand);
         if (abilityScript != null)
             abilityScript.SetGripDown(state);
+
+        if (activeUltimate != null)
+        {
+            var otherScript = GetEquippedAbilityScript(hand.Next());
+            bool both = (abilityScript != null && otherScript != null && abilityScript.IsGripDown && otherScript.IsGripDown);
+            activeUltimate.SetGripDown(both);
+        }
     }
 
 
@@ -193,40 +270,5 @@ public class HackerPlayer : MonoBehaviour
         deathScreenElement.SetActive(true);
         this.Delayed(2.0f, () => deathScreenElement.SetActive(false));
     }
-
-//------------------------------------------------------------------------------------------------------------------------------------------------------------
-//Utimate-Behaviour
-//------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //[veraltet] returns if a ultimate-move can be activated
-    public bool ultimateEnabled()
-    {
-        return (equippedAbilities[0] == equippedAbilities[1] && dataFragments.filledPercentage >= 1);
-    }
-
-    /*Activates the ultimate-move-ability
-     * Should be called in SetTriggerDown
-     */
-    private void activateUltimateTracking()
-    {
-        if (equippedAbilities[0] == equippedAbilities[1] && dataFragments.filledPercentage >= 1)
-        {
-            if (GetEquippedAbilityScript(HackerHand.Left).getTriggerInfo() && GetEquippedAbilityScript(HackerHand.Right).getTriggerInfo())
-            {
-                ultimateMode = true;
-            }
-            else if (GetEquippedAbilityScript(HackerHand.Left).getGripInfo() && GetEquippedAbilityScript(HackerHand.Right).getGripInfo())
-            {
-                ultimateMode = true;
-            }
-        }
-    }
-
-    public void resetUltimateMode()
-    {
-        ultimateMode = false;
-    }
-    public bool getUltimateMode()
-    {
-        return ultimateMode;
-    }
+    
 }
