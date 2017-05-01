@@ -17,6 +17,7 @@ public class Throwable_OBJ : MonoBehaviour
     private new Rigidbody rigidbody;
     private NavMeshAgent navAgent;
 
+    private bool isGrabbed = false;
     //private float recoveryStartTime = 0;
     //private bool isRecoveringFromThrow = false;
 
@@ -45,6 +46,7 @@ public class Throwable_OBJ : MonoBehaviour
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void setGrabbed()
     {
+        isGrabbed = true;
         /*
         if (isRecoveringFromThrow)
             isRecoveringFromThrow = false;
@@ -60,6 +62,8 @@ public class Throwable_OBJ : MonoBehaviour
 
     public void setFree()
     {
+        isGrabbed = false;
+
         velocityEstimator.FinishEstimatingVelocity();
         rigidbody.velocity = velocityEstimator.GetVelocityEstimate();
         rigidbody.useGravity = true;
@@ -67,5 +71,10 @@ public class Throwable_OBJ : MonoBehaviour
 
         //recoveryStartTime = Time.time;
         //isRecoveringFromThrow = true;
+    }
+
+    public bool IsGrabbed()
+    {
+        return isGrabbed;
     }
 }

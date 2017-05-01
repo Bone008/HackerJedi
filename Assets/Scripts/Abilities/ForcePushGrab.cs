@@ -153,6 +153,9 @@ public class ForcePushGrab : AbstractAbility {
             if (hit == null)
                 return;
 
+            if (target.IsGrabbed())
+                return; // do not grab twice
+
             selection = target;
             selection.transform.SetParent(transform, true);
             selection.setGrabbed();

@@ -81,6 +81,10 @@ public class HackerPlayer : MonoBehaviour
                 var abilityScript = go.GetComponent<AbstractAbility>();
                 abilityScript.InitHackerPlayer(transform);
 
+                if (abilityScript.needsMirroring && hand == HackerHand.Left)
+                    // mirror along X axis
+                    go.transform.localScale = new Vector3(-go.transform.localScale.x, go.transform.localScale.y, go.transform.localScale.z);
+
                 allAbilityGOs[i].Add(abilityScript.Type, go);
             }
         }

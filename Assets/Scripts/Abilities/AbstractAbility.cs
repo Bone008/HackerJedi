@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class AbstractAbility : MonoBehaviour
 {
     public AbilityType abilityType; // to be set by inspector
+    public bool needsMirroring;
 
     /// <summary>The transform of the main player (the head camera of the hacker, also the GO tagged "Player").</summary>
     protected Transform hackerPlayer;
