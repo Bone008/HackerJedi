@@ -211,7 +211,8 @@ namespace MKGlowSystem
                 return;
             }
 
-            if(!SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.Default) || !SystemInfo.supportsImageEffects || !SystemInfo.supportsRenderTextures)
+            // MODIFICATION - no need to check SystemInfo.supportsRenderTextures in Unity 5.6 any more
+            if(!SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.Default) || !SystemInfo.supportsImageEffects /* || !SystemInfo.supportsRenderTextures*/)
             {
                 enabled = false;
                 Debug.LogWarning("Glow not supported by platform");

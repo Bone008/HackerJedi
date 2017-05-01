@@ -13,8 +13,8 @@ public class Master : MonoBehaviour {
     private Platform platform;
 
     [Header("Movement")]
-    public Transform movementMin;
-    public Transform movementMax;
+    //public Transform movementMin;
+    //public Transform movementMax;
     public float maxMovementDelta;
     public string movementInputAxis;
 

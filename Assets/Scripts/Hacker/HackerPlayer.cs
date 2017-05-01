@@ -14,8 +14,6 @@ public class HackerPlayer : MonoBehaviour
     public AbilityType initialAbilityRight;
 
     [Header("UI")]
-    public RectTransform healthBarPanel; // TODO is this obsolete?!
-    public RectTransform dataFragmentsPanel;
     public GameObject deathScreenElement;
 
     // one entry per hand
@@ -36,8 +34,7 @@ public class HackerPlayer : MonoBehaviour
         SpawnUltimateInstances();
         EquipAbility(HackerHand.Left, initialAbilityLeft);
         EquipAbility(HackerHand.Right, initialAbilityRight);
-
-        healthBarPanel.transform.localScale = new Vector3(1, 1, 1);
+        
         deathScreenElement.SetActive(false);
     }
 

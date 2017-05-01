@@ -17,8 +17,8 @@ public class Throwable_OBJ : MonoBehaviour
     private new Rigidbody rigidbody;
     private NavMeshAgent navAgent;
 
-    private float recoveryStartTime = 0;
-    private bool isRecoveringFromThrow = false;
+    //private float recoveryStartTime = 0;
+    //private bool isRecoveringFromThrow = false;
 
     void Awake()
     {
