@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -51,40 +52,46 @@ public class Platform : MonoBehaviour {
             {
                 nextRailPart();
             }
-            else if (transform.position == endPoint + platformOffset && railPointer == level.rail.Count - 1 && GameData.Instance.levels != 0)
+            else if (transform.position == endPoint + platformOffset && railPointer == level.rail.Count - 1)
             {
-                GameData.Instance.randomizeWorldinProgress = GameData.Instance.levels * (level.rows + level.lines);
-                GameData.Instance.levels--;
-                SceneManager.LoadScene(1);
+                FinishLevel();
             }
-            else if (transform.position == endPoint + platformOffset && railPointer == level.rail.Count - 1 && GameData.Instance.levels == 0)
-                SceneManager.LoadScene(2);
         }
         
     }
 
     void nextRailPart()
     {
-        //if (railPointer > level.rail.Count - 2 && forward)
-        //    forward = false;
-        //else if (railPointer < 1 && !forward)
-        //    forward = true;
-
         startTime = Time.time;
-        if (/*forward*/ railPointer < level.rail.Count - 1)
-        {
-            startPoint = level.rail[railPointer].position;
-            railPointer++;
-            endPoint = level.rail[railPointer].position;
-            level.numPassedRails++;
-        }
-        //else
-        //{
-        //    startPoint = level.rail[railPointer];
-        //    railPointer--;
-        //    endPoint = level.rail[railPointer];
-        //}
+        startPoint = level.rail[railPointer].position;
+        railPointer++;
+        endPoint = level.rail[railPointer].position;
         journeyLength = Vector3.Distance(startPoint, endPoint);
+
+        level.numPassedRails++;
+
+        // close entrance gate when reaching 4th rail piece
+        if(railPointer == 3)
+            level.startMarker.GetComponent<EntranceExitRoomController>().CloseGate();
+    }
+
+    private void FinishLevel()
+    {
+        level.endMarker.GetComponent<EntranceExitRoomController>().CloseGate(() =>
+        {
+            if (GameData.Instance.levels > 0)
+            {
+                GameData.Instance.randomizeWorldinProgress = GameData.Instance.levels * (level.rows + level.lines);
+                GameData.Instance.levels--;
+                SteamVR_LoadLevel.Begin("inbetween_game");
+            }
+            else
+            {
+                SteamVR_LoadLevel.Begin("win_screen");
+            }
+        });
+
+        this.enabled = false;
     }
 
     public Vector3 getVelocity()

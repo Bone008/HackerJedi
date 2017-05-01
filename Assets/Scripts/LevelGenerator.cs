@@ -12,6 +12,7 @@ public class LevelGenerator : MonoBehaviour
 
     public float blockSize;
 
+    [HideInInspector]
     public List<Transform> rail;
     public int numPassedRails { get; set; }
 
@@ -135,9 +136,9 @@ public class LevelGenerator : MonoBehaviour
 
             direction = Random.Range(0, 3);
 
-            if (direction == 1 && prevDirection != 2 && p > trackRowOffset && i < lines - 2)
+            if (direction == 1 && prevDirection != 2 && p > trackRowOffset && i < lines - 3 && i > 0)
             {
-                sideway = Random.Range(1, p - trackRowOffset);
+                sideway = Random.Range(2, p - trackRowOffset);
 
                 for(int j = 0; j < sideway; j++)
                 {
@@ -148,9 +149,9 @@ public class LevelGenerator : MonoBehaviour
                     p--;
                 }
             }
-            else if (direction == 2 && prevDirection != 1 && p < (rows - (1 + trackRowOffset)) && i < lines - 2)
+            else if (direction == 2 && prevDirection != 1 && p < (rows - (1 + trackRowOffset)) && i < lines - 3 && i > 0)
             {
-                sideway = Random.Range(1, rows - (p + (1 + trackRowOffset)));
+                sideway = Random.Range(2, rows - (p + (1 + trackRowOffset)));
 
                 for(int j = 0; j < sideway; j++)
                 {
