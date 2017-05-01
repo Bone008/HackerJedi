@@ -2,11 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum HackerHand { Left = 0, Right = 1 }
 
 public class HackerPlayer : MonoBehaviour
 {
+    public GameObject fullHacker;
+
     public GameObject[] handGameObjects = new GameObject[2];
 
     public GameObject abilitySelectionPrefab;
@@ -25,6 +28,10 @@ public class HackerPlayer : MonoBehaviour
     private Dictionary<AbilityType, GameObject> allUltimateGOs = new Dictionary<AbilityType, GameObject>();
     private AbstractUltimate activeUltimate = null; // the ultimate script that is currently active, or null if none are
 
+    // after death
+    public Texture viewBlocker;
+    private Coroutine afterDeathCoroutine = null;
+    private float fadeOutPercentage = 0;
 
     private void Start()
     {
@@ -259,12 +266,44 @@ public class HackerPlayer : MonoBehaviour
 
     public void OnDeath(HealthResource health)
     {
-        // TODO
-        Debug.Log("You deaded!");
-        health.RestoreFullHealth();
-        
-        deathScreenElement.SetActive(true);
-        this.Delayed(2.0f, () => deathScreenElement.SetActive(false));
+        //Debug.Log("You deaded!");
+        //health.RestoreFullHealth();
+
+        //deathScreenElement.SetActive(true);
+        //this.Delayed(2.0f, () => deathScreenElement.SetActive(false));
+
+        if (afterDeathCoroutine == null)
+            afterDeathCoroutine = StartCoroutine(AfterDeadedCoroutine());
     }
-    
+
+    private void OnGUI()
+    {
+        // fade out on death
+        if (afterDeathCoroutine != null)
+        {
+            GUI.color = new Color(0, 0, 0, fadeOutPercentage);
+            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), viewBlocker); // TODO i hope this also works with vive...
+        }
+    }
+    private IEnumerator AfterDeadedCoroutine()
+    {
+        // disable gui
+        foreach (Canvas c in fullHacker.GetComponentsInChildren<Canvas>())
+            c.enabled = false;
+
+        // move player above the map
+        Vector3 startPos = fullHacker.transform.position;
+        Vector3 goalPos = new Vector3(0, 50, 0);
+
+        while (fadeOutPercentage < 1.0f)
+        {
+            fadeOutPercentage += Time.deltaTime * 0.5f;
+            fullHacker.transform.position = Vector3.Slerp(startPos, goalPos, fadeOutPercentage);
+            yield return 0;
+        }
+
+        // load lose_screen scene
+        SceneManager.LoadScene(4);
+    }
+
 }
