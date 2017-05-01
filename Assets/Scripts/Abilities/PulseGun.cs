@@ -6,8 +6,6 @@ using VolumetricLines;
 
 public class PulseGun : AbstractAbility {
 
-    public AbilityType abilityType = AbilityType.SimpleGun;
-
     public AudioClip shootSound;
     public GameObject particlePrefab;
     public Transform nozzle;
@@ -19,8 +17,6 @@ public class PulseGun : AbstractAbility {
 
     //public Color volumetricLineColor;
     public Material volumetricLineMaterial;
-
-    public override AbilityType Type { get { return abilityType; } }
 
     [HideInInspector]
     public int? layer = null;

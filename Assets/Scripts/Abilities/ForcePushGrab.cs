@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ForcePushGrab : AbstractAbility {
-    
-    public override AbilityType Type { get { return AbilityType.JediForcePush; } }
-
 
     // ==== Force push ====
 
@@ -19,7 +16,7 @@ public class ForcePushGrab : AbstractAbility {
 
     private void Start()
     {
-        relationObject = GameObject.FindGameObjectWithTag("Player").transform;
+        relationObject = hackerPlayer;
     }
 
     protected override void OnTriggerDown()

@@ -5,15 +5,11 @@ using UnityEngine;
 
 public class Gun : AbstractAbility {
 
-    public AbilityType abilityType = AbilityType.SimpleGun;
-
     public AudioClip shootSound;
     public GameObject projectilePrefab;
     public Transform nozzle;
     public float projectileSpeed = 1.0f;
     public float damageAmount = 25.0f;
-
-    public override AbilityType Type { get { return abilityType; } }
 
     [HideInInspector]
     public int? layer = null;
