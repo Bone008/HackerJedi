@@ -2,52 +2,62 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
-public class TessellationVertexEffect : MonoBehaviour
+public class TessellationVertexEffect : BaseMeshEffect
 {
     #region BaseMeshEffect
 
-    public void ModifyVertices(Mesh verts)
+    // adapted for Unity 5.2 and later
+    public override void ModifyMesh(VertexHelper vh)
     {
-        List<UIVertex> list = new List<UIVertex>();
-        using (VertexHelper vertexHelper = new VertexHelper(verts))
-        {
-            vertexHelper.GetUIVertexStream(list);
-        }
-        if (verts.vertexCount == 0)
+        if (!IsActive())
+            return;
+
+        List<UIVertex> vertexList = new List<UIVertex>();
+        vh.GetUIVertexStream(vertexList);
+        
+
+        if (vertexList.Count == 0)
         {
             // Nothing to do...
             return;
         }
 
-        // Assume we are getting quads
-        if ((verts.vertexCount % 4) != 0)
+        // Assume we are getting triangle pairs
+        if ((vertexList.Count % 6) != 0)
         {
-            Debug.LogError("Modifier expects vertices to be arranged as quads");
+            Debug.LogError("Modifier expects vertices to be arranged as pairs of triangles");
             return;
         }
 
         // Tessellate
-        int startingVertexCount = verts.vertexCount;
-        for (int i = 0; i < startingVertexCount; i += 4)
+        vh.Clear();
+
+        int startingVertexCount = vertexList.Count;
+        for (int i = 0; i < vertexList.Count; i += 6)
         {
-            TessellateQuad(list, i);
+            // what we get is 2 triangles for each quad, which we reassemble into a single quad:
+            //  1 **** 2/3
+            //  *     * *
+            //  *    *  *
+            //  *   *   *
+            //  *  *    *
+            //  * *     *
+            // 0/5 **** 4
+            TessellateQuad(vertexList[i+0], vertexList[i+1], vertexList[i+2], vertexList[i+4], vh);
         }
 
-        // Remove old quads from the start of the list
-        list.RemoveRange(0, startingVertexCount);
+        //Debug.Log(gameObject.name + ": " + vh.currentVertCount, gameObject);
+        vertexList.Clear();
     }
 
     #endregion
 
-    void TessellateQuad(List<UIVertex> verts, int vertexIndex)
-    {
-        // Read the existing quad vertices
-        UIVertex v0 = verts[vertexIndex];
-        UIVertex v1 = verts[vertexIndex + 1];
-        UIVertex v2 = verts[vertexIndex + 2];
-        UIVertex v3 = verts[vertexIndex + 3];
+    private UIVertex[] quadVerts = new UIVertex[4];
 
+    void TessellateQuad(UIVertex v0, UIVertex v1, UIVertex v2, UIVertex v3, VertexHelper vh)
+    {
         // Position deltas, A and B are the local quad up and right axes
         Vector3 dPdA = v2.position - v1.position;
         Vector3 dPdB = v1.position - v0.position;
@@ -69,11 +79,12 @@ public class TessellationVertexEffect : MonoBehaviour
             {
                 float endAProp = (float)(a + 1) * rcpAQuads;
 
-                // Append new quad to list
-                verts.Add(Bilerp(v0, v1, v2, v3, startAProp, startBProp));
-                verts.Add(Bilerp(v0, v1, v2, v3, startAProp, endBProp));
-                verts.Add(Bilerp(v0, v1, v2, v3, endAProp, endBProp));
-                verts.Add(Bilerp(v0, v1, v2, v3, endAProp, startBProp));
+                // Append new quad to vertex helper
+                quadVerts[0] = Bilerp(v0, v1, v2, v3, startAProp, startBProp);
+                quadVerts[1] = Bilerp(v0, v1, v2, v3, startAProp, endBProp);
+                quadVerts[2] = Bilerp(v0, v1, v2, v3, endAProp, endBProp);
+                quadVerts[3] = Bilerp(v0, v1, v2, v3, endAProp, startBProp);
+                vh.AddUIVertexQuad(quadVerts);
 
                 startAProp = endAProp;
             }
