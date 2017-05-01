@@ -7,6 +7,7 @@ public class LevelGenerator : MonoBehaviour
 
     public GameObject block;
     public GameObject railBlock;
+    public GameObject startMarker;
     public GameObject endMarker;
 
     public float blockSize;
@@ -27,6 +28,7 @@ public class LevelGenerator : MonoBehaviour
     public void clearWorld()
     {
         rail.Clear();
+        startMarker.SetActive(false);
         endMarker.SetActive(false);
 
         for (int i = 0; i < rows; i++)
@@ -115,7 +117,8 @@ public class LevelGenerator : MonoBehaviour
 
     public void createTrack()
     {
-        int p = Random.Range(trackRowOffset, rows - trackRowOffset);
+        int initialP = Random.Range(trackRowOffset, rows - trackRowOffset);
+        int p = initialP;
         int direction = 0;
         int prevDirection;
         int sideway;
@@ -159,8 +162,12 @@ public class LevelGenerator : MonoBehaviour
                 }
             }
         }
+
+        startMarker.transform.position = world[initialP, 0].transform.position;
+        startMarker.SetActive(true);
         endMarker.transform.position = world[p, lines - 1].transform.position;
         endMarker.SetActive(true);
+
         fillWorldPlane();
     }
 
