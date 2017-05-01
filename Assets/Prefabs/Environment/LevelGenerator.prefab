@@ -148,6 +148,7 @@ MonoBehaviour:
   blockSize: 3
   rail: []
   randomPresetBlock: 0
+  trackRowOffset: 0
   rows: 14
   lines: 14
 --- !u!198 &198698264993355314
