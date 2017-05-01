@@ -10,7 +10,7 @@ public class MappedGraphicRaycaster : GraphicRaycaster
 	protected override void Awake()
 	{
 		base.Awake();
-		m_mapping = GetComponent<CanvasMapping>();
+		m_mapping = GetComponent<CylinderMapping>();//CanvasMapping
 	}
 
 	public override void Raycast(PointerEventData eventData, List<RaycastResult> resultAppendList)
@@ -30,5 +30,5 @@ public class MappedGraphicRaycaster : GraphicRaycaster
 		base.Raycast(eventData, resultAppendList);
 	}
 
-	CanvasMapping m_mapping;
+    CylinderMapping m_mapping;//CanvasMapping
 }
