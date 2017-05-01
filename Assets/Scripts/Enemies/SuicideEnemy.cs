@@ -4,10 +4,8 @@ using UnityEngine;
 using UnityEngine.AI;
 
 public class SuicideEnemy : EnemyBase {
-    //public float newTargetPosThreshhold = 1;
 
-    
-    public float blinkRange;
+    public GameObject explo;
     public float hitRange;
     private Transform platform;
     public Color color1;
@@ -114,6 +112,7 @@ public class SuicideEnemy : EnemyBase {
 
     public void OnDeath()
     {
+        Instantiate(explo, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 
