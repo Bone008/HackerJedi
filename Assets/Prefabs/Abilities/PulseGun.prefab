@@ -524,11 +524,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityType: 2
+  needsMirroring: 0
   shootSound: {fileID: 8300000, guid: 94a041922bfdc4542b975785eb3ce57e, type: 3}
   particlePrefab: {fileID: 0}
   nozzle: {fileID: 4254166129595500}
-  totalAngle: 60
-  maxRange: 8
+  shootCooldown: 1
+  totalAngle: 50
+  maxRange: 10
   maxDamageAmount: 75
   damageFalloff:
     serializedVersion: 2

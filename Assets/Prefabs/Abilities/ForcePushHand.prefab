@@ -8993,6 +8993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 3
   needsMirroring: 1
+  cooldown: 2
   forceStrength: 25
   forceLift: 10
   range: 20

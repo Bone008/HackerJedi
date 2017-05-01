@@ -407,10 +407,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityType: 1
+  needsMirroring: 0
   shootSound: {fileID: 8300000, guid: 94a041922bfdc4542b975785eb3ce57e, type: 3}
   projectilePrefab: {fileID: 1072651022596434, guid: d4ba919cba755544aab32a7f05819fea,
     type: 2}
   nozzle: {fileID: 4254166129595500}
+  magazineEmptyCooldown: 1
+  magazineSize: 5
   projectileSpeed: 40
   damageAmount: 25
-  layer: 0

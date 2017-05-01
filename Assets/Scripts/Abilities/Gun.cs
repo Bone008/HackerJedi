@@ -8,11 +8,16 @@ public class Gun : AbstractAbility {
     public AudioClip shootSound;
     public GameObject projectilePrefab;
     public Transform nozzle;
-    public float projectileSpeed = 1.0f;
-    public float damageAmount = 25.0f;
+    public float magazineEmptyCooldown;
+    public int magazineSize;
+    public float projectileSpeed;
+    public float damageAmount;
 
     [HideInInspector]
     public int? layer = null;
+
+    private float lastShotFired = 0.0f;
+    private int shotsFired = 0; // how many rounds have been fired in the current magazine?
 
     private void Start()
     {
@@ -20,8 +25,28 @@ public class Gun : AbstractAbility {
             layer = gameObject.layer;
     }
 
+    private void Update()
+    {
+        // if the "magazine" has been partially emptied and no shots have been fired for one entire cooldown duration, reset magazine
+        if(shotsFired > 0 && Time.timeSinceLevelLoad - lastShotFired >= magazineEmptyCooldown)
+        {
+            shotsFired = 0;
+        }
+    }
+
     protected override void OnTriggerDown()
     {
+        if (IsCoolingDown)
+            return;
+
+        lastShotFired = Time.timeSinceLevelLoad;
+        shotsFired++;
+        if(shotsFired >= magazineSize)
+        {
+            CooldownFor(magazineEmptyCooldown);
+            shotsFired = 0;
+        }
+
         var aimRay = GetAimRay(nozzle);
         var shootingDirection = aimRay.direction;
         var position = aimRay.origin;

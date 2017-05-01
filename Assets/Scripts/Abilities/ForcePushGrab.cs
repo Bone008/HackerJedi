@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ForcePushGrab : AbstractAbility {
 
+    public float cooldown; // for both
+
     // ==== Force push ====
 
     [Header("Force push")]
@@ -12,6 +14,7 @@ public class ForcePushGrab : AbstractAbility {
     public float range;
 
     private Transform relationObject; //Headcam-Object for example
+    private bool isPushing = false;
     private Vector3 posePosBegin; // in coordinate space of relationObject
 
     private void Start()
@@ -21,11 +24,19 @@ public class ForcePushGrab : AbstractAbility {
 
     protected override void OnTriggerDown()
     {
+        if (IsCoolingDown || grabbedTarget != null) // don't allow push while grabbing
+            return;
+
+        isPushing = true;
         posePosBegin = relationObject.InverseTransformPoint(transform.position);
     }
 
     protected override void OnTriggerUp()
     {
+        if (!isPushing)
+            return;
+        isPushing = false;
+
         Vector3 posePosEnd = relationObject.InverseTransformPoint(transform.position);
         Vector3 pushDirection = relationObject.TransformDirection(posePosEnd - posePosBegin);
         Vector3 origin = relationObject.TransformPoint(posePosBegin);
@@ -39,12 +50,14 @@ public class ForcePushGrab : AbstractAbility {
         // if the movement was towards the head, don't accept it
         //if (posePosBegin.sqrMagnitude > posePosEnd.sqrMagnitude)
         //    return;
+        // ^--- note: disabled because I think you should also be able to pull enemies closer with the force
 
         force(origin, pushDirection);
+        CooldownFor(cooldown);
     }
 
     //Forceimpulse in every direction (targetDirection==Vector3.zero) or in a specified direction (targetDirection!=Vector3.zero)
-    public void force(Vector3 origin, Vector3 targetDirection)
+    private void force(Vector3 origin, Vector3 targetDirection)
     {
         //Gegner (noch untagged) in Reichweite (5) werden erkannt
         Collider[] cols = Physics.OverlapSphere(origin, range);
@@ -89,7 +102,7 @@ public class ForcePushGrab : AbstractAbility {
     /// <summary>How far off the aim is allowed to be to still register as a hit.</summary>
     public float grabRange;
     public float aimHitTolerance;
-    private Throwable_OBJ selection = null;
+    private Throwable_OBJ grabbedTarget = null;
 
     private Throwable_OBJ GetAimedAtTarget(out RaycastHit? hitOut)
     {
@@ -112,7 +125,7 @@ public class ForcePushGrab : AbstractAbility {
 
     void LateUpdate()
     {
-        if (selection == null)
+        if (grabbedTarget == null && !IsCoolingDown && !isPushing)
         {
             RaycastHit? hit;
             Throwable_OBJ target = GetAimedAtTarget(out hit);
@@ -144,8 +157,10 @@ public class ForcePushGrab : AbstractAbility {
 
     protected override void OnGripDown()
     {
-        Debug.Log("Grip down!");
-        if (selection == null)
+        if (IsCoolingDown || isPushing) // don't allow grab while pushing
+            return;
+
+        if (grabbedTarget == null)
         {
             RaycastHit? hit;
             Throwable_OBJ target = GetAimedAtTarget(out hit);
@@ -156,22 +171,19 @@ public class ForcePushGrab : AbstractAbility {
             if (target.IsGrabbed())
                 return; // do not grab twice
 
-            selection = target;
-            selection.transform.SetParent(transform, true);
-            selection.setGrabbed();
-            Debug.Log("Grabbed!");
+            grabbedTarget = target;
+            grabbedTarget.transform.SetParent(transform, true);
+            grabbedTarget.setGrabbed();
         }
     }
 
     protected override void OnGripUp()
     {
-        Debug.Log("Grip up!");
-        if (selection)
+        if (grabbedTarget != null)
         {
-            selection.setFree();
-            selection.transform.SetParent(null);
-            selection = null;
-            Debug.Log("Fallen gelassen!");
+            grabbedTarget.setFree();
+            grabbedTarget.transform.SetParent(null);
+            grabbedTarget = null;
         }
     }
 

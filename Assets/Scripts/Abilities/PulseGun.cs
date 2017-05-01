@@ -9,9 +9,10 @@ public class PulseGun : AbstractAbility {
     public AudioClip shootSound;
     public GameObject particlePrefab;
     public Transform nozzle;
-    public float totalAngle = 80.0f;
-    public float maxRange = 10.0f;
-    public float maxDamageAmount = 75.0f;
+    public float shootCooldown;
+    public float totalAngle;
+    public float maxRange;
+    public float maxDamageAmount;
     public AnimationCurve damageFalloff = AnimationCurve.Linear(0, 1.0f, 1, 0.2f);
     public LayerMask hitLayerMask;
 
@@ -29,8 +30,13 @@ public class PulseGun : AbstractAbility {
 
     protected override void OnTriggerDown()
     {
-        var aimRay = GetAimRay(nozzle);
+        if (IsCoolingDown)
+            return;
+        CooldownFor(shootCooldown);
 
+
+        // shooting
+        var aimRay = GetAimRay(nozzle);
         
         Collider[] colliders = Physics.OverlapSphere(nozzle.position, maxRange, hitLayerMask);
         foreach(var coll in colliders)

@@ -14,6 +14,9 @@ public abstract class AbstractAbility : MonoBehaviour
     public bool IsTriggerDown { get; private set; }
     public bool IsGripDown { get; private set; }
 
+    /// <summary>Needs to be manually checked by the ability script (if used). Set with CooldownFor(...).</summary>
+    public bool IsCoolingDown { get; private set; }
+
     protected virtual void OnTriggerDown() { }
     protected virtual void OnTriggerUp() { }
     protected virtual void OnGripDown() { }
@@ -53,7 +56,6 @@ public abstract class AbstractAbility : MonoBehaviour
         SetTriggerDown(false);
     }
 
-
     /// <summary>Utility function for ability scripts to get a ray in the direction the hand is aiming</summary>
     public Ray GetAimRay(Transform nozzle = null)
     {
@@ -61,6 +63,20 @@ public abstract class AbstractAbility : MonoBehaviour
 
         var aimDirection = trans.TransformDirection(Vector3.forward).normalized;
         return new Ray(trans.position, aimDirection);
+    }
+
+    protected void CooldownFor(float time, Action finishedCallback = null)
+    {
+        if (time > 0)
+        {
+            IsCoolingDown = true;
+            this.Delayed(time, () =>
+            {
+                IsCoolingDown = false;
+                if (finishedCallback != null)
+                    finishedCallback();
+            });
+        }
     }
 
 }
