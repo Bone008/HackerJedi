@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HackArea : MonoBehaviour {
 
@@ -11,7 +12,11 @@ public class HackArea : MonoBehaviour {
     public float colorTransitionMultiplier;
 
     public Animator noiceAnimator;
-    
+
+    [Header("Progress UI")]
+    public Text progressStatusText;
+    public RectTransform progressBar;
+
     private float timeRemaining;
     private GameObject hackerController;
     private Renderer hackAreaRenderer;
@@ -22,6 +27,10 @@ public class HackArea : MonoBehaviour {
         // get renderer and set default color
         hackAreaRenderer = GetComponent<Renderer>();
         targetColor = defaultColor;
+
+        timeRemaining = timeToHack;
+        progressStatusText.text = "Hack me!";
+        UpdateProgress();
 	}
 	
 	void Update () {
@@ -35,8 +44,11 @@ public class HackArea : MonoBehaviour {
         }
 
         // decrease hacking counter
-		if(hackerController != null)
+        if (hackerController != null)
+        {
             timeRemaining -= Time.deltaTime;
+            UpdateProgress();
+        }
 
         // interpolate color
         hackAreaRenderer.material.color = Color.Lerp(hackAreaRenderer.material.color, targetColor, Time.deltaTime * colorTransitionMultiplier);
@@ -46,6 +58,8 @@ public class HackArea : MonoBehaviour {
         {
             targetColor = hackingColor;
             targetColor.a = 0;
+
+            progressStatusText.text = "ACCESS GRANTED";
 
             if (deathCoroutine == null)
                 deathCoroutine = StartCoroutine(Deathded());
@@ -66,6 +80,9 @@ public class HackArea : MonoBehaviour {
             timeRemaining = timeToHack;
             hackerController = hackerHand;
             targetColor = hackingColor;
+
+            progressStatusText.text = "Hacking in progress ...";
+            UpdateProgress();
         }
     }
 
@@ -74,10 +91,14 @@ public class HackArea : MonoBehaviour {
         var hackerHand = other.gameObject.GetGoInParentWithTag("HackerHand");
         
         // test if current hand left the hacking area
-        if (hackerHand != null && hackerHand.Equals(hackerController))
+        if (hackerHand != null && hackerHand.Equals(hackerController) && timeRemaining > 0)
         {
             hackerController = null;
             targetColor = defaultColor;
+            timeRemaining = timeToHack;
+
+            progressStatusText.text = "Hack me!";
+            UpdateProgress();
         }
     }
 
@@ -104,13 +125,21 @@ public class HackArea : MonoBehaviour {
 
         while (transform.parent.position != targetPosition)
         {
-            transform.parent.position = Vector3.Slerp(oldPosition, targetPosition, progress);
-            progress += Time.deltaTime / 4;
+            transform.parent.position = Vector3.Lerp(oldPosition, targetPosition, progress * progress);
+            progress += Time.deltaTime / 3;
             yield return 0;
         }
 
         // destroy gameobject to free platform
         Destroy(gameObject.transform.parent.gameObject);
+    }
+
+
+    private void UpdateProgress()
+    {
+        Vector3 s = progressBar.localScale;
+        s.x = 1.0f - Mathf.Clamp01(timeRemaining / timeToHack);
+        progressBar.localScale = s;
     }
 
 }
