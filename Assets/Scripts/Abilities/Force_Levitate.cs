@@ -6,9 +6,9 @@ public class Force_Levitate : AbstractUltimate
 {
     private float startMoveHeight;
 
-    public override AbilityType Type { get { return AbilityType.JediForcePush; } }//Abändern!!!
+    //public override AbilityType Type { get { return AbilityType.JediForcePush; } }//Abändern!!!
 
-    protected override void OnGripsDown()
+    /*protected override void OnGripsDown()
     {
         //Check if controllers are ([distance] below the headposition) and nearly rotated 90/-90 degrees around their forward vector
         
@@ -33,10 +33,10 @@ public class Force_Levitate : AbstractUltimate
 
     public override bool CheckForStartpoint(Vector3 handLeft, Vector3 handRight)
     {
-        SetGripsDown(true);
+        //SetGripsDown(true);
         return true;
     }
-    
+  */  
 }
     /*HackerPlayer HackerScr;
 	// Use this for initialization
