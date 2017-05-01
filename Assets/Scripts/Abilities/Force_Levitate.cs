@@ -2,8 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Force_Levitate : MonoBehaviour {
-    HackerPlayer HackerScr;
+public class Force_Levitate : AbstractUltimate
+{
+    private float startMoveHeight;
+
+    public override AbilityType Type { get { return AbilityType.JediForcePush; } }//Abändern!!!
+
+    protected override void OnGripsDown()
+    {
+        //Check if controllers are ([distance] below the headposition) and nearly rotated 90/-90 degrees around their forward vector
+        
+        //--> set UltimateActive (moveHeightStart=transform.position.y)
+        //--> unselect selected Enemies
+    }
+
+    protected override void OnGripUp()
+    {
+        float moveHeightEnd = transform.position.y;
+        //Check if the controllers are [distance] higher as the position before OnGripsDown()
+        if (moveHeightEnd - startMoveHeight > 0.5)
+        {
+            //--> Do the Levitate! 
+        }
+        else
+        {
+            startMoveHeight = 100;
+        }
+        
+    }
+
+    public override bool CheckForStartpoint(Vector3 handLeft, Vector3 handRight)
+    {
+        SetGripsDown(true);
+        return true;
+    }
+    
+}
+    /*HackerPlayer HackerScr;
 	// Use this for initialization
 	void Start () {
 		//HackerScr setzen
@@ -16,39 +51,7 @@ public class Force_Levitate : MonoBehaviour {
 
         }
 	}
-    //-------------------------------------------------------------------------------------------------------------------------------------------------------
-    //public abstract AbilityType Type { get; }
-
-    protected bool bothTriggersDown;
-    protected bool bothGripsDown;
-
-    protected virtual void OnTriggerDown() { }
-    protected virtual void OnTriggerUp() { }
-    protected virtual void OnGripDown() { }
-    protected virtual void OnGripUp() { }
-
-    public void SetTriggersDown(bool value)
-    {
-        bool wasDown = bothTriggersDown;
-        bothTriggersDown = value;
-
-        if (value && !wasDown)
-            OnTriggerDown();
-        else if (!value && wasDown)
-            OnTriggerUp();
-    }
-
-    public void SetGripDown(bool value)
-    {
-        bool wasDown = bothGripsDown;
-        bothGripsDown = value;
-
-        if (value && !wasDown)
-            OnGripDown();
-        else if (!value && wasDown)
-            OnGripUp();
-    }
-    //-------------------------------------------------------------------------------------------------------------------------------------------------------
+    
     private void searchGestures()
     {
         //Für Gd Move muss dauerhaft überprüft werden, wo die Controller sind... Nicht besonders performant. Da sollten wir uns was anderes überlegen.
@@ -70,7 +73,7 @@ public class Force_Levitate : MonoBehaviour {
             //return true dass normal fortgesetzt wird
         
     }
-}
+}*/
 //Noch direkt in Forcepush einbauen?
 /*
  In Hackerplayer:
