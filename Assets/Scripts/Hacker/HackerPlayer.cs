@@ -285,6 +285,7 @@ public class HackerPlayer : MonoBehaviour
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), viewBlocker); // TODO i hope this also works with vive...
         }
     }
+
     private IEnumerator AfterDeadedCoroutine()
     {
         // disable gui
@@ -292,13 +293,16 @@ public class HackerPlayer : MonoBehaviour
             c.enabled = false;
 
         // move player above the map
-        Vector3 startPos = fullHacker.transform.position;
-        Vector3 goalPos = new Vector3(0, 50, 0);
+        float v = 1.0f;
 
         while (fadeOutPercentage < 1.0f)
         {
             fadeOutPercentage += Time.deltaTime * 0.5f;
-            fullHacker.transform.position = Vector3.Slerp(startPos, goalPos, fadeOutPercentage);
+
+            // accelerate and move upwards
+            v += 25.0f * Time.deltaTime;
+            fullHacker.transform.position += new Vector3(0, v * Time.deltaTime, 0);
+
             yield return 0;
         }
 
