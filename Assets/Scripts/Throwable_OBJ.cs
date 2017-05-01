@@ -30,12 +30,14 @@ public class Throwable_OBJ : MonoBehaviour
 
     void Update()
     {
-        if(isRecoveringFromThrow && Time.time - recoveryStartTime >= recoveryTotalTime && rigidbody.velocity.sqrMagnitude < 0.2f * 0.2f)
+        /*
+        if (isRecoveringFromThrow && Time.time - recoveryStartTime >= recoveryTotalTime && rigidbody.velocity.sqrMagnitude < 0.2f * 0.2f)
         {
             isRecoveringFromThrow = false;
             if (navAgent != null)
                 navAgent.enabled = true;
         }
+        */
     }
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -43,8 +45,10 @@ public class Throwable_OBJ : MonoBehaviour
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public void setGrabbed()
     {
+        /*
         if (isRecoveringFromThrow)
             isRecoveringFromThrow = false;
+        */
 
         velocityEstimator.BeginEstimatingVelocity();
         rigidbody.useGravity = false;
@@ -61,7 +65,7 @@ public class Throwable_OBJ : MonoBehaviour
         rigidbody.useGravity = true;
         //rigidbody.isKinematic = false;
 
-        recoveryStartTime = Time.time;
-        isRecoveringFromThrow = true;
+        //recoveryStartTime = Time.time;
+        //isRecoveringFromThrow = true;
     }
 }

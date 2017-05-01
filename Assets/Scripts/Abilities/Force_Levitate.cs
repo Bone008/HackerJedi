@@ -46,10 +46,10 @@ public class Force_Levitate : AbstractUltimate
 	
 	// Update is called once per frame
 	void Update () {
-        if (HackerScr.getUltimateMode())
-        {
+        //if (HackerScr.getUltimateMode())
+        //{
 
-        }
+        //}
 	}
     
     private void searchGestures()
