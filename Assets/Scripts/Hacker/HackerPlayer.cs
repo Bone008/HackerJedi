@@ -303,7 +303,7 @@ public class HackerPlayer : MonoBehaviour
         }
 
         // load lose_screen scene
-        SceneManager.LoadScene(4);
+        SteamVR_LoadLevel.Begin("lose_screen", false, 0.1f);
     }
 
 }
