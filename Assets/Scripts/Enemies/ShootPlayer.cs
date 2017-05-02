@@ -43,4 +43,11 @@ public class ShootPlayer : MonoBehaviour {
             yield return new WaitForSeconds(fireDelay);
         }
     }
+
+    private void OnDisable()
+    {
+        StopCoroutine(firingCoroutine);
+        firingCoroutine = null;
+    }
+
 }
