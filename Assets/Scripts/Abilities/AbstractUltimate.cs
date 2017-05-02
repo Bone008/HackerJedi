@@ -39,4 +39,13 @@ public abstract class AbstractUltimate : AbstractAbility
         return hackerPlayer.GetComponent<DataFragmentResource>().SafeChangeValue(-amount);
     }
 
+    protected void EnableUlti()
+    {
+        hackerPlayer.GetComponent<HackerPlayer>().EnableUlti();
+    }
+    protected void DisableUlti()
+    {
+        hackerPlayer.GetComponent<HackerPlayer>().DisableUlti();
+    }
+
 }
