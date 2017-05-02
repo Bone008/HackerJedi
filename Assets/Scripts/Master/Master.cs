@@ -50,6 +50,15 @@ public class Master : MonoBehaviour {
     public Transform laserStart;
     private LookAtMouse lookAtMouseScript;
 
+    [Header("Buttons")]
+    #region
+    public GameObject suicideRobot;
+    public GameObject sniper;
+    public GameObject turret;
+    public GameObject hackingArea;
+    public GameObject firewall;
+    #endregion
+
     private Transform selected;
 
     void Start()
@@ -66,8 +75,23 @@ public class Master : MonoBehaviour {
         spawnResource = GetComponent<SpawnResource>();
 
         defaultRailMaterial = level.rail[0].GetComponent<Renderer>().material;
+
+
+        // unlocked units and obstacles
+        #region
+        if (GameData.Instance.suicideRobotUnlocked && !suicideRobot.activeSelf)
+            suicideRobot.SetActive(true);
+        if (GameData.Instance.sniperUnlocked && !sniper.activeSelf)
+            sniper.SetActive(true);
+        if (GameData.Instance.turretUnlocked && !turret.activeSelf)
+            turret.SetActive(true);
+        if (GameData.Instance.hackingAreaUnlocked && !hackingArea.activeSelf)
+            hackingArea.SetActive(true);
+        if (GameData.Instance.firewallUnlocked && !firewall.activeSelf)
+            firewall.SetActive(true);
+        #endregion
     }
-    
+
     void Update()
     {
         // fill resource for testing purposes
