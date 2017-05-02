@@ -33,6 +33,10 @@ public class HackerPlayer : MonoBehaviour
     private Coroutine afterDeathCoroutine = null;
     private float fadeOutPercentage = 0;
 
+    // ulti
+    private bool ultiActive = false;
+    private AbilityType oldAbility = AbilityType.None;
+
     private void Start()
     {
         Debug.Assert(handGameObjects.Length == 2);
@@ -129,24 +133,12 @@ public class HackerPlayer : MonoBehaviour
             Debug.LogWarning("cannot equip ability type, no prefab configured: " + type);
             return;
         }
-
-
+        
         // disable old equipment
-        if (allAbilityGOs[i].ContainsKey(equippedAbilities[i]))
-        {
-            var script = GetEquippedAbilityScript(hand);
-            if (script != null)
-            {
-                // make sure that we stop firing before disabling
-                script.SetTriggerDown(false);
-                script.SetGripDown(false);
-            }
-            allAbilityGOs[i][equippedAbilities[i]].SetActive(false);
-        }
+        DisableEquippedAbility(hand);
 
         // enable new equipment
-        allAbilityGOs[i][type].SetActive(true);
-        equippedAbilities[i] = type;
+        EnableAbility(hand, type);
 
         UpdateActiveUltimate();
     }
@@ -185,6 +177,9 @@ public class HackerPlayer : MonoBehaviour
     // called by the concrete input handler when the trigger state has changed
     public void SetTriggerDown(HackerHand hand, bool state)
     {
+        if (ultiActive)
+            return;
+
         var abilityScript = GetEquippedAbilityScript(hand);
         if (abilityScript != null)
             abilityScript.SetTriggerDown(state);
@@ -200,6 +195,9 @@ public class HackerPlayer : MonoBehaviour
     // called by the concrete input handler when the grip state has changed
     public void SetGripDown(HackerHand hand, bool state)
     {
+        if (ultiActive)
+            return;
+
         var abilityScript = GetEquippedAbilityScript(hand);
         if (abilityScript != null)
             abilityScript.SetGripDown(state);
@@ -215,6 +213,9 @@ public class HackerPlayer : MonoBehaviour
 
     public void OpenAbilitySelectionWheel(HackerHand hand)
     {
+        if (ultiActive)
+            return;
+
         if (selectionWheels[(int)hand] != null)
             return; // already open
 
@@ -285,6 +286,7 @@ public class HackerPlayer : MonoBehaviour
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), viewBlocker); // TODO i hope this also works with vive...
         }
     }
+
     private IEnumerator AfterDeadedCoroutine()
     {
         // disable gui
@@ -292,18 +294,73 @@ public class HackerPlayer : MonoBehaviour
             c.enabled = false;
 
         // move player above the map
-        Vector3 startPos = fullHacker.transform.position;
-        Vector3 goalPos = new Vector3(0, 50, 0);
+        float v = 1.0f;
 
         while (fadeOutPercentage < 1.0f)
         {
             fadeOutPercentage += Time.deltaTime * 0.5f;
-            fullHacker.transform.position = Vector3.Slerp(startPos, goalPos, fadeOutPercentage);
+
+            // accelerate and move upwards
+            v += 25.0f * Time.deltaTime;
+            fullHacker.transform.position += new Vector3(0, v * Time.deltaTime, 0);
+
             yield return 0;
         }
 
         // load lose_screen scene
-        SceneManager.LoadScene(4);
+        SteamVR_LoadLevel.Begin("lose_screen", false, 0.1f);
+    }
+
+    private void Update()
+    {
+        // TODO remove
+        if (Input.GetKeyDown(KeyCode.C))
+            GetComponent<DataFragmentResource>().ChangeValue(100);
+    }
+
+    private void EnableAbility(HackerHand hand, AbilityType type)
+    {
+        int i = (int)hand;
+        allAbilityGOs[i][type].SetActive(true);
+        equippedAbilities[i] = type;
+    }
+
+    private void DisableEquippedAbility(HackerHand hand)
+    {
+        // disable old equipment
+        int i = (int)hand;
+        if (allAbilityGOs[i].ContainsKey(equippedAbilities[i]))
+        {
+            var script = GetEquippedAbilityScript(hand);
+            if (script != null)
+            {
+                // make sure that we stop firing before disabling
+                script.SetTriggerDown(false);
+                script.SetGripDown(false);
+            }
+            allAbilityGOs[i][equippedAbilities[i]].SetActive(false);
+        }
+    }
+
+    public void EnableUlti()
+    {
+        // ulti can only be enabled if same ability in both hands
+        Debug.Assert(equippedAbilities[(int)HackerHand.Left] == equippedAbilities[(int)HackerHand.Right]);
+
+        // store current ability to select it again in DisableUlti
+        oldAbility = equippedAbilities[(int)HackerHand.Left];
+
+        // disable current abilities
+        DisableEquippedAbility(HackerHand.Left);
+        DisableEquippedAbility(HackerHand.Right);
+        ultiActive = true;
+    }
+
+    public void DisableUlti()
+    {
+        EnableAbility(HackerHand.Left, oldAbility);
+        EnableAbility(HackerHand.Right, oldAbility);        
+        ultiActive = false;
     }
 
 }

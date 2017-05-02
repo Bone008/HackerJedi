@@ -5,19 +5,41 @@ using UnityEngine;
 
 public class GatlingUltimate : AbstractUltimate
 {
-    // TODO real gatling ultimate, so far this is only a proof of concept of the system in HackerProgression & HackerPlayer
-
     public float activationDuration = 10.0f;
+
+    // hacker has to hold triggers down this amount of time
+    public float triggerDownTime = 2.0f;
+    private float currentTriggerDownTime;
+    private bool triggerDown = false;
 
     private bool activated = false; // if the actual gun has been pulled out
 
     private void Update()
     {
-        Debug.Log("gatling ult is updating (trigger = " + IsTriggerDown + ")");
+        // decrease trigger down timer
+        if (!activated && triggerDown)
+            currentTriggerDownTime -= Time.deltaTime;
+
+        // pressed long enough -> activate && pay price
+        // TODO add gesture?
+        if (!activated && triggerDown && currentTriggerDownTime <= 0 && TryConsumeDataFragments())
+        {
+            SwitchActive(true);
+
+            // deactivate after x seconds
+            this.Delayed(activationDuration, () => SwitchActive(false));
+        }
+
+        // TODO
+        if (activated)
+        {
+            // shoot
+        }
     }
 
     private void LateUpdate()
     {
+        // adjust gatling between hands
         if(activated)
         {
             var t = transform.GetChild(0);
@@ -29,26 +51,36 @@ public class GatlingUltimate : AbstractUltimate
 
     protected override void OnTriggerDown()
     {
-        Debug.Log("gatling ult trigger down");
-
-        // initially: activate && pay price
-        if (!activated && TryConsumeDataFragments())
+        // mark trigger down && start timer
+        if (!activated)
         {
-            activated = true;
-            transform.GetChild(0).gameObject.SetActive(true);
-
-            // deactivate after x seconds
-            this.Delayed(activationDuration, () =>
-            {
-                activated = false;
-                transform.GetChild(0).gameObject.SetActive(false);
-            });
+            triggerDown = true;
+            currentTriggerDownTime = triggerDownTime;
         }
     }
 
     protected override void OnTriggerUp()
     {
-        Debug.Log("gatling ult trigger up");
+        // mark trigger up
+        triggerDown = false;
+    }
+
+    private void SwitchActive(bool active)
+    {
+        activated = active;
+        transform.GetChild(0).gameObject.SetActive(active);
+        triggerDown = active;
+
+        if (active)
+            EnableUlti();
+        else
+            DisableUlti();
+
+        // en/disable old weapons
+        // TODO fix and move to AbstractUltimate
+        // HackerPlayer hp = hackerPlayer.GetComponentInChildren<HackerPlayer>();
+        //hp.GetEquippedAbilityGO(HackerHand.Left).SetActive(!active);
+        //hp.GetEquippedAbilityGO(HackerHand.Right).SetActive(!active);
     }
 
 }

@@ -9255,6 +9255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placingCost: 30
   minPlatformSpawnDist: 24
+  explo: {fileID: 1862322992109182, guid: 5f01c0a5d11e8034b9b6a7f008a4e490, type: 2}
   blinkRange: 10
   hitRange: 3
   color1: {r: 0.7647059, g: 0.14057094, b: 0.14057094, a: 0}

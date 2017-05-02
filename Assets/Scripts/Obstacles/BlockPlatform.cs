@@ -6,23 +6,24 @@ using UnityEngine.Events;
 public class BlockPlatform : MonoBehaviour {
 
     public UnityEvent onPlatformBlocked;
-    private Platform blocked;
+    private Platform blockedPlatform;
+    private bool blocked;
     
     void OnTriggerEnter(Collider other)
     {
         Platform platform = other.GetComponentInParent<Platform>();
-        if (platform != null)
-        {
-            platform.running = false;
-            blocked = platform;
-            if (onPlatformBlocked != null)
-                onPlatformBlocked.Invoke();
-        }
-    }
+        if (platform == null)
+            return;
 
-    void OnDestroy()
+        blockedPlatform = platform;
+        blocked = true;
+        if (onPlatformBlocked != null)
+            onPlatformBlocked.Invoke();
+    }
+    
+    void Update()
     {
-        if(blocked != null)
-            blocked.running = true;
+        if (blocked)
+            blockedPlatform.DisableForSec(0.5f);
     }
 }

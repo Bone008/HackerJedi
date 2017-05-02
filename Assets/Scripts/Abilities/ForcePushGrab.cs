@@ -174,6 +174,10 @@ public class ForcePushGrab : AbstractAbility {
             grabbedTarget = target;
             grabbedTarget.transform.SetParent(transform, true);
             grabbedTarget.setGrabbed();
+            // prevent shooting
+            var shootPlayer = grabbedTarget.gameObject.GetComponent<ShootPlayer>();
+            if (shootPlayer != null)
+                shootPlayer.enabled = false;
         }
     }
 
@@ -183,6 +187,10 @@ public class ForcePushGrab : AbstractAbility {
         {
             grabbedTarget.setFree();
             grabbedTarget.transform.SetParent(null);
+            // let her shoot again
+            var shootPlayer = grabbedTarget.gameObject.GetComponent<ShootPlayer>();
+            if (shootPlayer != null)
+                shootPlayer.enabled = true;
             grabbedTarget = null;
         }
     }
