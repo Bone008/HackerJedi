@@ -5,11 +5,17 @@ using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour {
 
+    [Header("MasterUI")]
     public Text textMaster;
     public GameObject masterUI;
 
+    [Header("HackerUI_NonVR")]
     public Text textHacker;
     public GameObject hackerUI;
+
+    [Header("HackerUI_VR")]
+    public GameObject hackerUI_VR;
+    public Text text1, text2, text3, text4;
 
     // Update is called once per frame
     void Update () {
@@ -35,6 +41,7 @@ public class PauseManager : MonoBehaviour {
 
     public void hackerResumeGame()
     {
+        Debug.Log("Hacker ready");
         GameData.Instance.hackerIsReady = true;
     }
 
@@ -49,18 +56,51 @@ public class PauseManager : MonoBehaviour {
     {
         for (int i = 3; i >= 0; i--)
         {
-            textMaster.text = textHacker.text = "Game is going to pause in:\n" + i;
+            textMaster.text = textHacker.text = text1.text = text2.text = text3.text = text4.text = "Game is going to pause in:\n" + i;
+
             textMaster.CrossFadeAlpha(.75f, .45f, true);
-            textHacker.CrossFadeAlpha(.75f, .45f, true);
+            if (GameData.Instance.viveActive)
+            {
+                text1.CrossFadeAlpha(.75f, .45f, true);
+                text2.CrossFadeAlpha(.75f, .45f, true);
+                text3.CrossFadeAlpha(.75f, .45f, true);
+                text4.CrossFadeAlpha(.75f, .45f, true);
+            }
+            else
+                textHacker.CrossFadeAlpha(.75f, .45f, true);
+
             yield return new WaitForSeconds(.5f);
+
             textMaster.CrossFadeAlpha(1, .45f, true);
-            textHacker.CrossFadeAlpha(1, .45f, true);
+            if (GameData.Instance.viveActive)
+            {
+                text1.CrossFadeAlpha(1f, .45f, true);
+                text2.CrossFadeAlpha(1f, .45f, true);
+                text3.CrossFadeAlpha(1f, .45f, true);
+                text4.CrossFadeAlpha(1f, .45f, true);
+            }
+            else
+                textHacker.CrossFadeAlpha(1f, .45f, true);
+
             yield return new WaitForSeconds(.5f);
         }
         textMaster.CrossFadeAlpha(0, 1, true);
-        textHacker.CrossFadeAlpha(0, 1, true);
+        if (GameData.Instance.viveActive)
+        {
+            text1.CrossFadeAlpha(0, .45f, true);
+            text2.CrossFadeAlpha(0, .45f, true);
+            text3.CrossFadeAlpha(0, .45f, true);
+            text4.CrossFadeAlpha(0, .45f, true);
+        }
+        else
+            textHacker.CrossFadeAlpha(0, .45f, true);
+
         masterUI.SetActive(true);
-        hackerUI.SetActive(true);
+        if(GameData.Instance.viveActive)
+            hackerUI_VR.SetActive(true);
+        else
+            hackerUI.SetActive(true);
+
         Time.timeScale = 0;
         GameData.Instance.isPaused = true;
     }
@@ -68,26 +108,61 @@ public class PauseManager : MonoBehaviour {
     void unpauseGame()
     {
         textMaster.CrossFadeAlpha(1, 1, true);
-        textHacker.CrossFadeAlpha(1, 1, true);
+        if (GameData.Instance.viveActive)
+        {
+            text1.CrossFadeAlpha(1, .45f, true);
+            text2.CrossFadeAlpha(1, .45f, true);
+            text3.CrossFadeAlpha(1, .45f, true);
+            text4.CrossFadeAlpha(1, .45f, true);
+        }
+        else
+            textHacker.CrossFadeAlpha(1, .45f, true);
+
         if (!GameData.Instance.masterIsReady && !GameData.Instance.hackerIsReady)
         {
-            textMaster.text = textHacker.text = "pause";
+            textMaster.text = textHacker.text = text1.text = text2.text = text3.text = text4.text = "pause";
         }
         else if (!GameData.Instance.hackerIsReady || !GameData.Instance.masterIsReady)
         {
             if(!GameData.Instance.masterIsReady)
-                textHacker.text = "wait for the master";
+                textHacker.text = text1.text = text2.text = text3.text = text4.text = "wait for the master";
             else if (!GameData.Instance.hackerIsReady)
                 textMaster.text = "wait for the hacker";
         }
         else
         {
-            masterUI.SetActive(false);
-            hackerUI.SetActive(false);
-            textMaster.CrossFadeAlpha(0, 1, true);
-            textHacker.CrossFadeAlpha(0, 1, true);
-            Time.timeScale = 1;
-            GameData.Instance.isPaused = false;
+            StartCoroutine(continueWarning());
         }
+    }
+
+    IEnumerator continueWarning()
+    {
+        masterUI.SetActive(false);
+        if (!GameData.Instance.viveActive)
+            hackerUI.SetActive(false);
+
+        for (int i = 3; i >= 0; i--)
+        {
+            textMaster.text = textHacker.text = text1.text = text2.text = text3.text = text4.text = "Game continues in:\n" + i;
+            yield return StartCoroutine(CorutineUtil.WaitForRealSeconds(1f));
+        }
+        textMaster.CrossFadeAlpha(0, 1, true);
+        textHacker.CrossFadeAlpha(0, 1, true);
+        if (GameData.Instance.viveActive)
+            hackerUI_VR.SetActive(false);
+
+        Time.timeScale = 1;
+
+        GameData.Instance.isPaused = false;
+    }
+}
+
+public static class CorutineUtil
+{
+    public static IEnumerator WaitForRealSeconds(float time)
+    {
+        float start = Time.realtimeSinceStartup;
+        while (Time.realtimeSinceStartup < start + time)
+            yield return null;
     }
 }
