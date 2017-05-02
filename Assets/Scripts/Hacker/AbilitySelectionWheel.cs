@@ -23,11 +23,11 @@ public class AbilitySelectionWheel : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SpawnAnimation());
+        StartSpawnAnimation();
     }
 
 
-    private IEnumerator SpawnAnimation()
+    private void StartSpawnAnimation()
     {
         var elements = GetComponentsInChildren<AbilitySelectionElement>();
         var animatedElements = elements.Select(e => new
@@ -37,9 +37,7 @@ public class AbilitySelectionWheel : MonoBehaviour
             initialPosition = e.transform.localPosition
         }).ToArray();
 
-
-        float t = 0;
-        while (t < initAnimationDuration)
+        this.Animate(initAnimationDuration, progress =>
         {
             foreach (var e in animatedElements)
             {
@@ -48,19 +46,10 @@ public class AbilitySelectionWheel : MonoBehaviour
                 inverseScale.y = 1 / inverseScale.y;
                 inverseScale.z = 1 / inverseScale.z;
 
-                e.transform.localPosition = (t / initAnimationDuration) * e.initialPosition;
-                e.collider.center = Vector3.Scale((1 - (t / initAnimationDuration)) * e.initialPosition, inverseScale);
+                e.transform.localPosition = progress * e.initialPosition;
+                e.collider.center = Vector3.Scale((1 - progress) * e.initialPosition, inverseScale);
             }
-
-            yield return null;
-            t += Time.deltaTime;
-        }
-
-        foreach (var e in animatedElements)
-        {
-            e.transform.localPosition = e.initialPosition;
-            e.collider.center = Vector3.zero;
-        }
+        });
     }
 
 

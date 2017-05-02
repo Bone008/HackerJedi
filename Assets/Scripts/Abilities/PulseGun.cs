@@ -103,29 +103,10 @@ public class PulseGun : AbstractAbility {
     private IEnumerator AnimateFX(VolumetricLineStripBehavior lineScript)
     {
         float maxLineWidth = lineScript.LineWidth;
-        float dur1 = 0.07f;
-        float dur2 = 0.15f;
 
-        float t = 0;
-        while (t < dur1)
-        {
-            lineScript.LineWidth = (t / dur1) * maxLineWidth;
-            yield return null;
-            t += Time.deltaTime;
-        }
-
-        t = 0;
-        while (t < dur2)
-        {
-            lineScript.LineWidth = (1 - t / dur2) * maxLineWidth;
-            yield return null;
-            t += Time.deltaTime;
-        }
-
-        // possible generalizations:
-        //Util.Interpolate(0.15f, t => Mathf.Lerp(0, 0.15f, t), x => lineScript.LineWidth = x);
-        //Util.Interpolate(maxLineWidth, 0, 0.15f, Mathf.Lerp, x => lineScript.LineWidth = x);
-
+        yield return this.AnimateScalar(0.07f, 0, maxLineWidth, v => lineScript.LineWidth = v);
+        yield return this.AnimateScalar(0.15f, maxLineWidth, 0, v => lineScript.LineWidth = v);
+        
         Destroy(lineScript.gameObject);
     }
 }

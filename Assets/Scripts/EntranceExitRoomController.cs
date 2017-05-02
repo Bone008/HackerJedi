@@ -29,15 +29,7 @@ public class EntranceExitRoomController : MonoBehaviour {
     {
         gate.gameObject.SetActive(true);
 
-        // animate position to closedPos
-        float t = 0;
-        while(t < gateCloseDuration)
-        {
-            gate.localPosition = Vector3.Lerp(gateOpenPos, gateClosedPos, gateCloseCurve.Evaluate(t / gateCloseDuration));
-            yield return null;
-            t += Time.deltaTime;
-        }
-        gate.localPosition = gateClosedPos;
+        yield return this.AnimateVector(gateCloseDuration, gateOpenPos, gateClosedPos, gateCloseCurve.Evaluate, p => gate.localPosition = p);
 
         if (finishCallback != null)
             finishCallback();
