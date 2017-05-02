@@ -27,7 +27,8 @@ public class Master : MonoBehaviour {
     private Dictionary<int, GameObject> placedObstacles = new Dictionary<int, GameObject>();
     private SpawnResource spawnResource;
     public GameObject noSpawnZone;
-    public Material noSpawnZoneMaterial;
+    public Material obstacleNoSpawnZoneMaterial;
+    private Material defaultRailMaterial;
 
     [Header("Block Moving")]
     public float blockMinYValue = 0;
@@ -63,6 +64,8 @@ public class Master : MonoBehaviour {
 
         // get spawn resource
         spawnResource = GetComponent<SpawnResource>();
+
+        defaultRailMaterial = level.rail[0].GetComponent<Renderer>().material;
     }
     
     void Update()
@@ -283,6 +286,17 @@ public class Master : MonoBehaviour {
             var lr = noSpawnZone.GetComponent<LineRenderer>();
             lr.positionCount = vertices.Length;
             lr.SetPositions(vertices);
+        }
+
+        // highlight no spawn zone of obstacles
+        if (obstaclePrefab != null)
+        {
+            ObstacleBase ob = obstaclePrefab.GetComponentInChildren<ObstacleBase>();
+            for (int i = 0; i < level.numPassedRails + ob.minPlatformSpawnDist; i++)
+                level.rail[i].GetComponent<Renderer>().material = obstacleNoSpawnZoneMaterial;
+
+            for (int i = level.numPassedRails + ob.minPlatformSpawnDist; i < level.rail.Count; i++)
+                level.rail[i].GetComponent<Renderer>().material = defaultRailMaterial;
         }
     }
 

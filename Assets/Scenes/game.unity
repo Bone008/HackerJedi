@@ -4764,7 +4764,8 @@ MonoBehaviour:
   movementInputAxis: Master Movement Horizontal
   level: {fileID: 1252225517}
   noSpawnZone: {fileID: 960314958}
-  noSpawnZoneMaterial: {fileID: 2100000, guid: 377cba15209b819418159e7a6d408b6f, type: 2}
+  obstacleNoSpawnZoneMaterial: {fileID: 2100000, guid: 11295538329642542a3a23323d0c3359,
+    type: 2}
   blockMinYValue: 0
   blockMaxYValue: 6
   blockSpeed: 5
