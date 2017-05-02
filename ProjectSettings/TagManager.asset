@@ -30,7 +30,7 @@ TagManager:
   - NotVisibleToMaster
   - Enemies
   - Hacker
-  - 
+  - NotVisibleToHacker
   - 
   - 
   - 

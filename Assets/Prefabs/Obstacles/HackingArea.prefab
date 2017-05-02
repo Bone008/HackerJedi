@@ -14464,7 +14464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placingCost: 150
-  minPlatformSpawnDist: 0
+  minPlatformSpawnDist: 1
 --- !u!114 &114687515017425222
 MonoBehaviour:
   m_ObjectHideFlags: 1
