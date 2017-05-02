@@ -528,7 +528,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294965247
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1117,6 +1117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04fbdf3173fc9464fa4a8ee0304e1504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fullHacker: {fileID: 1420807209672550}
   handGameObjects:
   - {fileID: 1583572426954880}
   - {fileID: 1449505342391492}
@@ -1124,9 +1125,8 @@ MonoBehaviour:
     type: 2}
   initialAbilityLeft: 1
   initialAbilityRight: 1
-  healthBarPanel: {fileID: 224918926611695356}
-  dataFragmentsPanel: {fileID: 224689246533769774}
   deathScreenElement: {fileID: 0}
+  viewBlocker: {fileID: 2800000, guid: 47208c23a3e5c604ebca03ec2e03bc10, type: 3}
 --- !u!114 &114754560841430948
 MonoBehaviour:
   m_ObjectHideFlags: 1

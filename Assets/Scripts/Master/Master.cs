@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -24,6 +26,8 @@ public class Master : MonoBehaviour {
     public LevelGenerator level;
     private Dictionary<int, GameObject> placedObstacles = new Dictionary<int, GameObject>();
     private SpawnResource spawnResource;
+    public GameObject noSpawnZone;
+    public Material noSpawnZoneMaterial;
 
     [Header("Block Moving")]
     public float blockMinYValue = 0;
@@ -177,6 +181,119 @@ public class Master : MonoBehaviour {
                 lookAtMouseScript.rotationSpeed /= 10.0f;
             }            
         }
+
+        // highlight blocks in no-spawn zone
+        if (enemyPrefab != null)
+        {
+            EnemyBase enemyBase = enemyPrefab.GetComponent<EnemyBase>();
+            float bs = level.blockSize;
+            float hs = level.blockSize / 2;
+            float targetY = hs + 0.2f;
+
+            // find blocks inside the no spawn zone and add its corners to the list
+            List<Vector3> noSpawnBlocks = new List<Vector3>(); // TODO maybe replace with set
+            for (int i = 0; i < level.world.GetLength(0); i++)
+            {
+                for (int u = 0; u < level.world.GetLength(1); u++)
+                {
+                    Transform block = level.world[i, u].transform;
+                    if (InNoSpawnZone(enemyBase, block.position))
+                    {
+                        noSpawnBlocks.Add(block.position);
+                    }
+                }
+            }
+
+            // filter for blocks that are in the middle and add corners
+            List<Vector3> noSpawnCorners = new List<Vector3>();
+            Vector3 minLevel = level.world[0, 0].transform.position;
+            Vector3 maxLevel = level.world[level.rows - 1, level.lines - 1].transform.position;
+
+            for (int i = 0; i < noSpawnBlocks.Count; i++)
+            {
+                Vector3 pos = noSpawnBlocks[i];
+
+                // get surrounding blocks
+                bool leftInZone = pos.x > minLevel.x && InNoSpawnZone(enemyBase, pos + new Vector3(-bs, 0, 0));
+                bool rightInZone = pos.x < maxLevel.x && InNoSpawnZone(enemyBase, pos + new Vector3(+bs, 0, 0));
+                bool upInZone = pos.z < maxLevel.z && InNoSpawnZone(enemyBase, pos + new Vector3(0, 0, +bs));
+                bool downInZone = pos.z > minLevel.z && InNoSpawnZone(enemyBase, pos + new Vector3(0, 0, -bs));
+
+                // exclude blocks in the middle
+                if (leftInZone && rightInZone && upInZone && downInZone)
+                    continue;
+
+                // add outer corners
+                if (!leftInZone)
+                {
+                    noSpawnCorners.Add(pos + new Vector3(-hs, -pos.y + targetY, +hs));
+                    noSpawnCorners.Add(pos + new Vector3(-hs, -pos.y + targetY, -hs));
+                }
+                if (!rightInZone)
+                {
+                    noSpawnCorners.Add(pos + new Vector3(+hs, -pos.y + targetY, +hs));
+                    noSpawnCorners.Add(pos + new Vector3(+hs, -pos.y + targetY, -hs));
+                }
+                if (!upInZone)
+                {
+                    noSpawnCorners.Add(pos + new Vector3(+hs, -pos.y + targetY, +hs));
+                    noSpawnCorners.Add(pos + new Vector3(-hs, -pos.y + targetY, +hs));
+                }
+                if (!downInZone)
+                {
+                    noSpawnCorners.Add(pos + new Vector3(+hs, -pos.y + targetY, -hs));
+                    noSpawnCorners.Add(pos + new Vector3(-hs, -pos.y + targetY, -hs));
+                }
+            }
+
+            noSpawnCorners = noSpawnCorners.Distinct().ToList();
+
+            // sort them to connect only adjacent corners
+            List<Vector3> sorted = new List<Vector3>();
+            sorted.Add(noSpawnCorners[0]);
+            noSpawnCorners.RemoveAt(0);
+            int initialCount = noSpawnCorners.Count;
+            for (int i = 0; i < initialCount; i++)
+            {
+                Vector3 last = sorted.Last();
+
+                // find adjacent corners
+                Vector3[] nexts = noSpawnCorners
+                    .FindAll(v => (v - last).sqrMagnitude == bs * bs)
+                    .OrderBy(v => v, new VecComparer() { platform = this.platform.transform.position })
+                    .ToArray();
+
+                if (nexts.Length == 0)
+                {
+                    // FIXME this should not happen
+                    //Debug.Log("nope" + last);
+                    continue;
+                }
+
+                Vector3 next = nexts[0];
+                sorted.Add(next);
+                noSpawnCorners.Remove(next);
+            }
+            
+            // finish circle
+            sorted.Add(sorted[0]);
+
+            // pass corners to line renderer
+            Vector3[] vertices = sorted.ToArray();            
+            var lr = noSpawnZone.GetComponent<LineRenderer>();
+            lr.positionCount = vertices.Length;
+            lr.SetPositions(vertices);
+        }
+    }
+
+    private class VecComparer : IComparer<Vector3>
+    {
+        public Vector3 platform;
+
+        public int Compare(Vector3 y, Vector3 x)
+        {
+            return (int)((platform - y).sqrMagnitude - (platform - x).sqrMagnitude);
+        }
     }
 
     private IEnumerator SnapToGrid(Transform box)
@@ -239,13 +356,13 @@ public class Master : MonoBehaviour {
         Debug.Assert(enemyBase != null);
 
         // check if too close to platform
-        if ((platform.transform.position - ground.transform.position).sqrMagnitude < enemyBase.minPlatformSpawnDist * enemyBase.minPlatformSpawnDist)
+        if (InNoSpawnZone(enemyBase, ground.transform.position))
             return;
 
         // buy enemy
         float cost = enemyBase.placingCost;
         if (spawnResource.SafeChangeValue(-cost))
-            Instantiate(enemyPrefab, ground.transform.position + new Vector3(0, ground.GetComponent<Renderer>().bounds.size.y, 0) /*+ Vector3.up * offsetY*/, Quaternion.Euler(0, Random.Range(0, 360), 0));
+            Instantiate(enemyPrefab, ground.transform.position + new Vector3(0, ground.GetComponent<Renderer>().bounds.size.y, 0) /*+ Vector3.up * offsetY*/, Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0));
     }
 
     private void CreateObstacleOn(Transform rail)
@@ -290,6 +407,11 @@ public class Master : MonoBehaviour {
             GameObject placed = Instantiate(obstaclePrefab, rail.position, platformDirection);
             placedObstacles.Add(clickedIndex, placed);
         }
+    }
+
+    private bool InNoSpawnZone(EnemyBase enemyBase, Vector3 position)
+    {
+        return ((platform.transform.position - position).sqrMagnitude < enemyBase.minPlatformSpawnDist * enemyBase.minPlatformSpawnDist);
     }
 
 }
