@@ -11,8 +11,8 @@ public abstract class AbstractAbility : MonoBehaviour
 
     public AbilityType Type { get { return abilityType; } }
 
-    public bool IsTriggerDown { get; private set; }
-    public bool IsGripDown { get; private set; }
+    public bool IsTriggerDown { get; protected set; }
+    public bool IsGripDown { get; protected set; }
 
     /// <summary>Needs to be manually checked by the ability script (if used). Set with CooldownFor(...).</summary>
     public bool IsCoolingDown { get; private set; }

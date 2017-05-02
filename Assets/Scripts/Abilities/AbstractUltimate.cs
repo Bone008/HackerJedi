@@ -13,13 +13,11 @@ public abstract class AbstractUltimate : AbstractAbility
     protected Transform leftHand;
     protected Transform rightHand;
 
-
     public void InitHands(Transform leftHand, Transform rightHand)
     {
         this.leftHand = leftHand;
         this.rightHand = rightHand;
     }
-
 
     /// <summary>
     /// Attempts to consume <code>dataFragmentsCost</code> from the hacker's resources.
