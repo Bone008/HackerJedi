@@ -20,8 +20,7 @@ public class Platform : MonoBehaviour {
     private float startTime;
     private float journeyLength;
 
-    [HideInInspector]
-    public bool running = true;
+    private float blockedTime;
 
     void Start ()
     {
@@ -32,8 +31,10 @@ public class Platform : MonoBehaviour {
 
     void Update()
     {
+        blockedTime -= Time.deltaTime;
+
         // abort if stopped by a obstacle. add deltaTime to have correct Lerp after re-activating
-        if (!running)
+        if (blockedTime > 0)
         {
             startTime += Time.deltaTime;
             return;
@@ -101,13 +102,8 @@ public class Platform : MonoBehaviour {
 
     public void DisableForSec(float seconds)
     {
-        StartCoroutine(TemporaryDisablePlatform(seconds));
+        Debug.Assert(seconds > 0);
+        blockedTime = seconds;
     }
-
-    private IEnumerator TemporaryDisablePlatform(float seconds)
-    {
-        running = false;
-        yield return new WaitForSeconds(seconds);
-        running = true;
-    }
+    
 }

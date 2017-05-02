@@ -369,7 +369,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: {fileID: 1252225517}
   velocity: 0.5
-  running: 1
 --- !u!82 &115160093
 AudioSource:
   m_ObjectHideFlags: 0
