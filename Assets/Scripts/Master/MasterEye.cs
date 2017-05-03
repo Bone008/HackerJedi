@@ -8,7 +8,6 @@ public class MasterEye : MonoBehaviour {
 
     public float signalLostDuration = 5.0f;
     public GameObject deathExplosion;
-    public LayerMask explosionLayer;
 
     public VideoPlayer signalLostPlayer;
     public GameObject signalLostBackground;
@@ -25,12 +24,12 @@ public class MasterEye : MonoBehaviour {
     {
         // explosion only visible to hacker
         GameObject explosion = Instantiate(deathExplosion, transform.position, Quaternion.identity);
-        explosion.layer = explosionLayer.value;
+        explosion.layer = LayerMask.NameToLayer("NotVisibleToMaster");
 
         // start video, enable black background, disable glow, disable health script (-> only 1 ondeath)
         signalLostPlayer.Play();
         signalLostBackground.SetActive(true);
-        mkGlow.enabled = false;
+        StartCoroutine(StopGlow());
         health.enabled = false;
 
         this.Delayed(signalLostDuration, () => 
@@ -44,5 +43,13 @@ public class MasterEye : MonoBehaviour {
             health.RestoreFullHealth();
         });
     }
-    
+
+    private IEnumerator StopGlow()
+    {
+        // has to be here because OnDeath gets called in OnTriggerEnter
+        // and disabling MKGlow destroys some GameObjects and that is not allowed in Collision functions
+        yield return new WaitForEndOfFrame();
+        mkGlow.enabled = false;
+    }
+
 }
