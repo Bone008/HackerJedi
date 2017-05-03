@@ -12,13 +12,14 @@ public abstract class AbstractUltimate : AbstractAbility
 
     protected Transform leftHand;
     protected Transform rightHand;
-    protected bool activated = false;
 
+    protected bool activated = false;
     public void InitHands(Transform leftHand, Transform rightHand)
     {
         this.leftHand = leftHand;
         this.rightHand = rightHand;
     }
+    
 
     /// <summary>
     /// Attempts to consume <code>dataFragmentsCost</code> from the hacker's resources.
@@ -45,6 +46,16 @@ public abstract class AbstractUltimate : AbstractAbility
     protected void DisableUlti()
     {
         hackerPlayer.GetComponent<HackerPlayer>().DisableUlti();
+    }
+
+
+    protected TScript ActivateEffect<TScript>(float duration) where TScript : MonoBehaviour
+    {
+        var go = new GameObject("Ultimate Effect");
+        TScript script = go.AddComponent<TScript>();
+        script.Delayed(duration, () => Destroy(go));
+
+        return script;
     }
 
 }

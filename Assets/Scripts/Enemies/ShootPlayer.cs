@@ -46,8 +46,11 @@ public class ShootPlayer : MonoBehaviour {
 
     private void OnDisable()
     {
-        StopCoroutine(firingCoroutine);
-        firingCoroutine = null;
+        if (firingCoroutine != null)
+        {
+            StopCoroutine(firingCoroutine);
+            firingCoroutine = null;
+        }
     }
 
 }
