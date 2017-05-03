@@ -17,10 +17,26 @@ public abstract class AbstractAbility : MonoBehaviour
     /// <summary>Needs to be manually checked by the ability script (if used). Set with CooldownFor(...).</summary>
     public bool IsCoolingDown { get; private set; }
 
+    private Coroutine cooldownCoroutine = null;
+    private Action cooldownFinishedCallback = null;
+
+
     protected virtual void OnTriggerDown() { }
     protected virtual void OnTriggerUp() { }
     protected virtual void OnGripDown() { }
     protected virtual void OnGripUp() { }
+
+
+    protected virtual void OnDisable()
+    {
+        if (cooldownCoroutine != null)
+        {
+            // abort cooldown
+            StopCoroutine(cooldownCoroutine);
+            ResetCooldown();
+        }
+    }
+
 
     public void InitHackerPlayer(Transform hackerPlayer)
     {
@@ -32,6 +48,9 @@ public abstract class AbstractAbility : MonoBehaviour
         bool wasDown = IsTriggerDown;
         IsTriggerDown = value;
 
+        if (!gameObject.activeSelf)
+            return;
+
         if (value && !wasDown)
             OnTriggerDown();
         else if (!value && wasDown)
@@ -42,6 +61,9 @@ public abstract class AbstractAbility : MonoBehaviour
     {
         bool wasDown = IsGripDown;
         IsGripDown = value;
+
+        if (!gameObject.activeSelf)
+            return;
 
         if (value && !wasDown)
             OnGripDown();
@@ -70,13 +92,26 @@ public abstract class AbstractAbility : MonoBehaviour
         if (time > 0)
         {
             IsCoolingDown = true;
-            this.Delayed(time, () =>
-            {
-                IsCoolingDown = false;
-                if (finishedCallback != null)
-                    finishedCallback();
-            });
+
+            if(cooldownCoroutine != null)
+                StopCoroutine(cooldownCoroutine);
+
+            cooldownFinishedCallback = finishedCallback;
+            cooldownCoroutine = this.Delayed(time, ResetCooldown);
         }
+        else if (finishedCallback != null)
+            finishedCallback();
+    }
+
+    private void ResetCooldown()
+    {
+        IsCoolingDown = false;
+
+        if (cooldownFinishedCallback != null)
+            cooldownFinishedCallback();
+
+        cooldownCoroutine = null;
+        cooldownFinishedCallback = null;
     }
 
 }

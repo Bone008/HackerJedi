@@ -8,7 +8,7 @@ public class FirewallCollider : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        HackerPlayer player = other.gameObject.GetComponent<HackerPlayer>();
+        HackerPlayer player = other.gameObject.GetComponentInParent<HackerPlayer>();
 
         if (player != null)
         {

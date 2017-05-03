@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114285260829783584}
   - component: {fileID: 114380362133351890}
   - component: {fileID: 54899901809417544}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TopRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 114361770921895250}
   - component: {fileID: 114004182030656208}
   - component: {fileID: 54405967932865626}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BottomLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4722587729811952}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 65639132830980010}
   - component: {fileID: 54147494547322582}
   - component: {fileID: 114398538248976002}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TopLeftFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 65324041857058142}
   - component: {fileID: 54120671309651292}
   - component: {fileID: 114656195189194418}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BottomLeftFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4634576000674614}
   - component: {fileID: 114267576068504142}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Firewall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 114422840550778738}
   - component: {fileID: 114489272440494744}
   - component: {fileID: 54483682287556402}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BottomRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 65797053221410316}
   - component: {fileID: 54628207012125586}
   - component: {fileID: 114344539025204608}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TopRightFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 65607539053369088}
   - component: {fileID: 54225584845526636}
   - component: {fileID: 114732716470843178}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BottomRightFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 114054077515315874}
   - component: {fileID: 114282506945101484}
   - component: {fileID: 54746861509838370}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TopLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}

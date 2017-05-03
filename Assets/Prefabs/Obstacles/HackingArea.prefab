@@ -623,13 +623,13 @@ GameObject:
   - component: {fileID: 23321224179565492}
   - component: {fileID: 54684409386637916}
   - component: {fileID: 114445804422112458}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: HackArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1156444439388100
 GameObject:
   m_ObjectHideFlags: 1
@@ -5079,7 +5079,7 @@ Transform:
   m_GameObject: {fileID: 1779480695237420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8745826, y: 0.87458265, z: 0.87458265}
   m_Children:
   - {fileID: 4657727889542556}
   - {fileID: 4584454451261208}
@@ -5536,8 +5536,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1155890340556270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.828, z: -0.644}
-  m_LocalScale: {x: 0.5706582, y: 0.38839844, z: 0.6694613}
+  m_LocalPosition: {x: 0, y: 1.828, z: -0.828}
+  m_LocalScale: {x: 0.5706582, y: 0.38839844, z: 0.96}
   m_Children: []
   m_Father: {fileID: 4403831709979696}
   m_RootOrder: 1

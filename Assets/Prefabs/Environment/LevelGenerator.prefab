@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4934638188112386}
   - component: {fileID: 114807295746605488}
-  - component: {fileID: 95418487394793910}
+  - component: {fileID: 114033404112131116}
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: Untagged
@@ -41,23 +41,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95418487394793910
-Animator:
-  serializedVersion: 3
+--- !u!114 &114033404112131116
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1377067610832716}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3b0ba684023b3c64f9d3d64d4c88bd82, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b8efefdeb22f7144a1af2a400745618, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: {fileID: 114807295746605488}
+  song: {fileID: 0}
+  songBPM: 131
 --- !u!114 &114807295746605488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -70,7 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   block: {fileID: 1369675270313828, guid: d1d8e52480823694e8bc2d95e8750f47, type: 2}
-  railBlock: {fileID: 1918688535058414, guid: 38c80b59dcfa16b4db7e456f20cf86fc, type: 2}
+  railBlock: {fileID: 1684045645622620, guid: 39c4a8c21e7b45947b298185958d0977, type: 2}
   startMarker: {fileID: 0}
   endMarker: {fileID: 0}
   blockSize: 3
