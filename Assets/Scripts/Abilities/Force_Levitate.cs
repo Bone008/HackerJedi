@@ -49,24 +49,8 @@ public class Force_Levitate : AbstractUltimate
         }
         IsGripDown = false;
     }
-
-    /*
-
-    public override bool CheckForStartpoint(Vector3 handLeft, Vector3 handRight)
-    {
-        //SetGripsDown(true);
-        return true;
-    }
-  */  
 }
     /*
-	// Update is called once per frame
-	void Update () {
-        //if (HackerScr.getUltimateMode())
-        //{
-
-        //}
-	}
     
     private void searchGestures()
     {
