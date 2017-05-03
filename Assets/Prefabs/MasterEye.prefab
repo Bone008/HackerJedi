@@ -414,7 +414,7 @@ MonoBehaviour:
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 114128137508167322}
-          m_ObjectArgumentAssemblyTypeName: Damageable, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: HealthResource, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -448,7 +448,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathExplosion: {fileID: 1862322992109182, guid: 5f01c0a5d11e8034b9b6a7f008a4e490,
     type: 2}
+  explosionLayer:
+    serializedVersion: 2
+    m_Bits: 256
   healthBarPanel: {fileID: 0}
+  signalLostPlayer: {fileID: 0}
+  signalLostBackground: {fileID: 0}
+  masterCamera: {fileID: 0}
 --- !u!135 &135638497619236618
 SphereCollider:
   m_ObjectHideFlags: 1
