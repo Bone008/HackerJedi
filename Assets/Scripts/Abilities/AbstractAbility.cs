@@ -27,9 +27,8 @@ public abstract class AbstractAbility : MonoBehaviour
     protected virtual void OnGripUp() { }
 
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
-        Debug.Log("disabling " + gameObject.name + cooldownCoroutine, gameObject);
         if (cooldownCoroutine != null)
         {
             // abort cooldown
