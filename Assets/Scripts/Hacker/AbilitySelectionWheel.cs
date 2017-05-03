@@ -36,6 +36,7 @@ public class AbilitySelectionWheel : MonoBehaviour
             collider = e.GetComponentInChildren<SphereCollider>(),
             initialPosition = e.transform.localPosition
         }).ToArray();
+        
 
         this.Animate(initAnimationDuration, progress =>
         {
@@ -49,7 +50,7 @@ public class AbilitySelectionWheel : MonoBehaviour
                 e.transform.localPosition = progress * e.initialPosition;
                 e.collider.center = Vector3.Scale((1 - progress) * e.initialPosition, inverseScale);
             }
-        });
+        }, useRealtime: true);
     }
 
 

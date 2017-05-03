@@ -18,6 +18,7 @@ public class ControllerInputHandler : MonoBehaviour {
 
     void OnEnable()
     {
+        controller.MenuButtonClicked += Controller_MenuButtonClicked;
         controller.TriggerClicked += Controller_TriggerClicked;
         controller.TriggerUnclicked += Controller_TriggerUnclicked;
         controller.Gripped += Controller_Gripped;
@@ -62,6 +63,11 @@ public class ControllerInputHandler : MonoBehaviour {
 
         //Debug.Log("no idea which hand i am! my index: " + controller.controllerIndex, this.gameObject);
         //return HackerHand.Right; // return right by default
+    }
+
+    private void Controller_MenuButtonClicked(object sender, ClickedEventArgs e)
+    {
+        GameData.Instance.hackerIsReady = true;
     }
 
     private void Controller_TriggerClicked(object sender, ClickedEventArgs e)

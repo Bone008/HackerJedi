@@ -17,6 +17,8 @@ public class PauseManager : MonoBehaviour {
     public GameObject hackerUI_VR;
     public Text text1, text2, text3, text4;
 
+    private bool transitioning = false;
+
     // Update is called once per frame
     void Update () {
 
@@ -28,7 +30,7 @@ public class PauseManager : MonoBehaviour {
                 masterResumeGame();
             unpauseGame();
         }
-        else if(Input.GetKeyDown(KeyCode.Escape))
+        else if(Input.GetKeyDown(KeyCode.Escape) || GameData.Instance.hackerIsReady)
         {
             pauseGame();
         }
@@ -47,8 +49,12 @@ public class PauseManager : MonoBehaviour {
 
     void pauseGame()
     {
+        if (transitioning)
+            return;
+
         GameData.Instance.hackerIsReady = false;
         GameData.Instance.masterIsReady = false;
+        transitioning = true;
         StartCoroutine(pauseWarning());
     }
 
@@ -103,6 +109,7 @@ public class PauseManager : MonoBehaviour {
 
         Time.timeScale = 0;
         GameData.Instance.isPaused = true;
+        transitioning = false;
     }
 
     void unpauseGame()
@@ -129,8 +136,9 @@ public class PauseManager : MonoBehaviour {
             else if (!GameData.Instance.hackerIsReady)
                 textMaster.text = "wait for the hacker";
         }
-        else
+        else if(!transitioning)
         {
+            transitioning = true;
             StartCoroutine(continueWarning());
         }
     }
@@ -144,7 +152,7 @@ public class PauseManager : MonoBehaviour {
         for (int i = 3; i >= 0; i--)
         {
             textMaster.text = textHacker.text = text1.text = text2.text = text3.text = text4.text = "Game continues in:\n" + i;
-            yield return StartCoroutine(CorutineUtil.WaitForRealSeconds(1f));
+            yield return new WaitForSecondsRealtime(1f);
         }
         textMaster.CrossFadeAlpha(0, 1, true);
         textHacker.CrossFadeAlpha(0, 1, true);
@@ -154,15 +162,6 @@ public class PauseManager : MonoBehaviour {
         Time.timeScale = 1;
 
         GameData.Instance.isPaused = false;
-    }
-}
-
-public static class CorutineUtil
-{
-    public static IEnumerator WaitForRealSeconds(float time)
-    {
-        float start = Time.realtimeSinceStartup;
-        while (Time.realtimeSinceStartup < start + time)
-            yield return null;
+        transitioning = false;
     }
 }

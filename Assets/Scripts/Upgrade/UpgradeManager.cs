@@ -27,6 +27,8 @@ public class UpgradeManager : MonoBehaviour {
         if (!GameData.Instance.viveActive)
             GameData.Instance.hackerIsReady = true;
 
+        hackerReady();
+
         #region
         if (GameData.Instance.suicideRobotUnlocked)
             suicideRobot.SetActive(false);
