@@ -218,12 +218,10 @@ public class RangedGruntEnemy : EnemyBase
         Transform initTrans = this.transform;
         float initDist = Vector3.Distance(initTrans.position, targetPos);
         Quaternion goalRot = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
-        Debug.Log("entered coroutine " + Time.time);
         rb.isKinematic = true;
 
         while(targetPos != transform.position || transform.rotation != goalRot)
         {
-            Debug.Log(Time.time);
             //move towards position
             float step = recoveryMovementSpeed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, targetPos, step);
@@ -237,7 +235,6 @@ public class RangedGruntEnemy : EnemyBase
             yield return null;
         }
 
-        Debug.Log("exited coroutine loop " + Time.time);
         recovering = false;
         agent.enabled = true;
         agent.isStopped = false;
