@@ -79,6 +79,7 @@ public class Master : MonoBehaviour {
         // get spawn resource
         spawnResource = GetComponent<SpawnResource>();
 
+        // get material of master rail
         defaultRailMaterial = level.rail[0].GetChild(1).GetComponent<Renderer>().material;
         
         // unlocked units and obstacles
