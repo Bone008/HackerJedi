@@ -48,7 +48,7 @@ public class Turret : EnemyBase
 
         // start time scale before movement finished
         this.Delayed(camTransitionTime - timeScaleTransitionTime,
-            () => this.Animate(timeScaleTransitionTime, p => Time.timeScale = Mathf.Lerp(1.0f, 0.2f, p))); // TODO use realtime
+            () => this.Animate(timeScaleTransitionTime, p => Time.timeScale = Mathf.Lerp(1.0f, 0.2f, p), true));
     }
 
     void Update()
@@ -124,7 +124,7 @@ public class Turret : EnemyBase
     {
         yield return new WaitForSecondsRealtime(turretActiveSec - timeScaleTransitionTime);
 
-        this.Animate(timeScaleTransitionTime, p => Time.timeScale = Mathf.Lerp(0.2f, 1.0f, p)); // TODO userealtime
+        this.Animate(timeScaleTransitionTime, p => Time.timeScale = Mathf.Lerp(0.2f, 1.0f, p), true);
         yield return new WaitForSecondsRealtime(2.0f);
 
         SwitchMasterScripts(false, false);
