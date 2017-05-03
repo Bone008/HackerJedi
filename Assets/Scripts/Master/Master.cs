@@ -20,24 +20,25 @@ public class Master : MonoBehaviour {
     public float maxMovementDelta;
     public string movementInputAxis;
 
-    private GameObject enemyPrefab = null;
-    private GameObject obstaclePrefab = null;
     [Header("Spawning")]
     public LevelGenerator level;
-    private Dictionary<int, GameObject> placedObstacles = new Dictionary<int, GameObject>();
-    private SpawnResource spawnResource;
     public GameObject noSpawnZone;
     public Material obstacleNoSpawnZoneMaterial;
+    private SpawnResource spawnResource;
+    private Dictionary<int, GameObject> placedObstacles = new Dictionary<int, GameObject>();
+    private GameObject enemyPrefab = null;
+    private GameObject obstaclePrefab = null;
     private Material defaultRailMaterial;
 
     [Header("Block Moving")]
     public float blockMinYValue = 0;
     public float blockMaxYValue = 6;
     public float blockSpeed = 30.0f;
+    public Color liftedBlockColor;
+    private Material defaultBlockMaterial;
+    private Material liftedBlockMaterial;
     private bool currentlyDragging;
     private Vector2 oldMousePosition;
-    private Color defaultBlockColor;
-    public Color liftedBlockColor;
 
     [Header("Block Snapping To Grid")]
     public float snappingSpeed = 1.0f;
@@ -69,7 +70,11 @@ public class Master : MonoBehaviour {
         platform = GameObject.FindWithTag("Platform").GetComponent<Platform>();
 
         // get default glow color of blocks from any block
-        defaultBlockColor = level.world[0, 0].GetComponentInChildren<Renderer>().material.GetColor("_MKGlowColor");
+        defaultBlockMaterial = level.world[0, 0].GetComponentInChildren<Renderer>().sharedMaterial;
+        // create lifted material (so it can be shared by all lifted blocks)
+        liftedBlockMaterial = new Material(defaultBlockMaterial);
+        liftedBlockMaterial.SetColor("_MKGlowColor", liftedBlockColor);
+        
 
         // get spawn resource
         spawnResource = GetComponent<SpawnResource>();
@@ -127,7 +132,7 @@ public class Master : MonoBehaviour {
         // start dragging
         if (Input.GetMouseButtonDown(1) && selected != null && selected.tag.Equals("RoomBlock"))
         {
-            SetBlockColor(selected.parent, liftedBlockColor);
+            SetBlockMaterial(selected.parent, liftedBlockMaterial);
 
             currentlyDragging = true;
 
@@ -317,10 +322,10 @@ public class Master : MonoBehaviour {
         {
             ObstacleBase ob = obstaclePrefab.GetComponentInChildren<ObstacleBase>();
             for (int i = 0; i < level.numPassedRails + ob.minPlatformSpawnDist; i++)
-                level.rail[i].GetComponent<Renderer>().material = obstacleNoSpawnZoneMaterial;
+                level.rail[i].GetComponent<Renderer>().sharedMaterial = obstacleNoSpawnZoneMaterial;
 
             for (int i = level.numPassedRails + ob.minPlatformSpawnDist; i < level.rail.Count; i++)
-                level.rail[i].GetComponent<Renderer>().material = defaultRailMaterial;
+                level.rail[i].GetComponent<Renderer>().sharedMaterial = defaultRailMaterial;
         }
     }
 
@@ -349,15 +354,15 @@ public class Master : MonoBehaviour {
         }
 
         if (targetY == blockMinYValue)
-            SetBlockColor(target, defaultBlockColor);
+            SetBlockMaterial(target, defaultBlockMaterial);
         
         snapCoroutines.Remove(target);
     }
 
-    private void SetBlockColor(Transform block, Color c)
+    private void SetBlockMaterial(Transform block, Material m)
     {
-        foreach(Renderer r in block.GetComponentsInChildren<Renderer>())
-            r.material.SetColor("_MKGlowColor", c);
+        foreach (Renderer r in block.GetComponentsInChildren<Renderer>())
+            r.sharedMaterial = m;
     }
 
     public void SelectEnemy(GameObject enemyPrefab)
