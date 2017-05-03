@@ -75,6 +75,7 @@ public class RangedGruntEnemy : EnemyBase
 
     public void OnDeath()
     {
+       
         Instantiate(explo, transform.position, transform.rotation);
         Destroy(gameObject);
     }

@@ -16,12 +16,14 @@ public class ForcePushGrab : AbstractAbility {
     private Transform relationObject; //Headcam-Object for example
     private bool isPushing = false;
     private Vector3 posePosBegin; // in coordinate space of relationObject
+    public AudioSource pushAudio;
 
     private void Start()
     {
         relationObject = hackerPlayer;
     }
 
+   
     protected override void OnTriggerDown()
     {
         if (IsCoolingDown || grabbedTarget != null) // don't allow push while grabbing
@@ -53,7 +55,13 @@ public class ForcePushGrab : AbstractAbility {
         // ^--- note: disabled because I think you should also be able to pull enemies closer with the force
 
         force(origin, pushDirection);
+        playPushAudio();
         CooldownFor(cooldown);
+    }
+
+    private void playPushAudio()
+    {
+        pushAudio.Play();
     }
 
     //Forceimpulse in every direction (targetDirection==Vector3.zero) or in a specified direction (targetDirection!=Vector3.zero)
@@ -87,6 +95,7 @@ public class ForcePushGrab : AbstractAbility {
                 }
             }
         }
+
     }
 
 
@@ -103,6 +112,7 @@ public class ForcePushGrab : AbstractAbility {
     public float grabRange;
     public float aimHitTolerance;
     private Throwable_OBJ grabbedTarget = null;
+    public AudioSource grabAudio;
 
     private Throwable_OBJ GetAimedAtTarget(out RaycastHit? hitOut)
     {
@@ -153,8 +163,12 @@ public class ForcePushGrab : AbstractAbility {
             // disable preview while grabbing
             aimPreview.enabled = false;
         }
-    }
 
+    }
+    private void playGrabAudio()
+    {
+        grabAudio.Play();
+    }
     protected override void OnGripDown()
     {
         if (IsCoolingDown || isPushing) // don't allow grab while pushing
@@ -172,6 +186,7 @@ public class ForcePushGrab : AbstractAbility {
                 return; // do not grab twice
 
             grabbedTarget = target;
+            playGrabAudio();
             grabbedTarget.transform.SetParent(transform, true);
             grabbedTarget.setGrabbed();
             // prevent shooting
@@ -194,6 +209,5 @@ public class ForcePushGrab : AbstractAbility {
             grabbedTarget = null;
         }
     }
-
 
 }
