@@ -4,6 +4,7 @@ using UnityEngine;
 public class Turret : EnemyBase
 {
     public float turretActiveSec = 5.0f;
+    public float timeScaleTransitionTime = 2.0f;
 
     // turret game objects
     public Transform barrel;
@@ -44,6 +45,10 @@ public class Turret : EnemyBase
 
         // stop master interaction during animation
         SwitchMasterScripts(false, false);
+
+        // start time scale before movement finished
+        this.Delayed(camTransitionTime - timeScaleTransitionTime,
+            () => this.Animate(timeScaleTransitionTime, p => Time.timeScale = Mathf.Lerp(1.0f, 0.2f, p))); // TODO use realtime
     }
 
     void Update()
@@ -117,7 +122,11 @@ public class Turret : EnemyBase
 
     private IEnumerator DisableMasterAgain()
     {
-        yield return new WaitForSeconds(turretActiveSec);
+        yield return new WaitForSecondsRealtime(turretActiveSec - timeScaleTransitionTime);
+
+        this.Animate(timeScaleTransitionTime, p => Time.timeScale = Mathf.Lerp(0.2f, 1.0f, p)); // TODO userealtime
+        yield return new WaitForSecondsRealtime(2.0f);
+
         SwitchMasterScripts(false, false);
         camMovementProgress = 0;
         camRotationProgress = 0;

@@ -180,7 +180,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1827913633718456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.93}
+  m_LocalPosition: {x: 0, y: 3, z: 2.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4860352210148174}
@@ -221,7 +221,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1828335955694318}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.105, y: 0.078, z: -0.075}
+  m_LocalPosition: {x: -0.105, y: -0.35, z: -0.075}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4768267249093552}
@@ -234,7 +234,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1925423070121340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.562, y: -0.012, z: -0.079}
+  m_LocalPosition: {x: -0.562, y: -0.557, z: -0.079}
   m_LocalScale: {x: 1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4453121188860434}
@@ -261,7 +261,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1440510287841408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.049, y: 0.385, z: 0.091}
+  m_LocalPosition: {x: 0.049, y: -0.22, z: 0.091}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4593701108787698}
@@ -276,7 +276,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1678193839743014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4170819090000946}
@@ -501,11 +501,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityType: 0
+  needsMirroring: 0
   shootSound: {fileID: 8300000, guid: 94a041922bfdc4542b975785eb3ce57e, type: 3}
   projectilePrefab: {fileID: 1072651022596434, guid: d4ba919cba755544aab32a7f05819fea,
     type: 2}
   nozzle: {fileID: 4453121188860434}
-  projectileSpeed: 5
+  magazineEmptyCooldown: 0
+  magazineSize: 0
+  projectileSpeed: 15
   damageAmount: 100
 --- !u!114 &114784065641063944
 MonoBehaviour:
@@ -521,6 +524,7 @@ MonoBehaviour:
   placingCost: 200
   minPlatformSpawnDist: 21
   turretActiveSec: 8
+  timeScaleTransitionTime: 2
   barrel: {fileID: 4768267249093552}
   turretCamTarget: {fileID: 4508185635393266}
   camTransitionTime: 1
