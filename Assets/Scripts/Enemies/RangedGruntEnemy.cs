@@ -128,7 +128,6 @@ public class RangedGruntEnemy : EnemyBase
         {           
             if (rb.velocity.sqrMagnitude < .1f)
             {
-                Debug.Log("test2 " + collisions);
                 if (!timerRunning && collisions > 0)
                 {
                     startTimeResting = Time.time;

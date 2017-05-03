@@ -5226,8 +5226,8 @@ Rigidbody:
   m_GameObject: {fileID: 1918544432715482}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 2
-  m_AngularDrag: 0.05
+  m_Drag: 0.8
+  m_AngularDrag: 0.3
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -5300,7 +5300,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -5421,7 +5421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 1
   needsMirroring: 0
-  shootSound: {fileID: 8300000, guid: 94a041922bfdc4542b975785eb3ce57e, type: 3}
+  shootSound: {fileID: 8300000, guid: 80c3d0b378cdcd94a9defe48f4bb0a83, type: 3}
   projectilePrefab: {fileID: 1072651022596434, guid: d4ba919cba755544aab32a7f05819fea,
     type: 2}
   nozzle: {fileID: 4110653267464652}
@@ -5471,7 +5471,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1918544432715482}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aca4e83e0da4579479fb580ddf619ad4, type: 3}
   m_Name: 
