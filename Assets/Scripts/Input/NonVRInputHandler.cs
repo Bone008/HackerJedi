@@ -26,13 +26,13 @@ public class NonVRInputHandler : MonoBehaviour
     };
     private int selectedWeaponIndex = 0;
 
-    private enum Perspective
+    public enum Perspective
     {
         Hacker = 0,
         Both = 1,
         Master = 2
     };
-    private Perspective currentPerspective = Perspective.Hacker;
+    public Perspective currentPerspective = Perspective.Hacker;
 
     private HackerHand currentHand = HackerHand.Left;
 
