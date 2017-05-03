@@ -13,6 +13,7 @@ public class NoViveFallback : MonoBehaviour {
         if(!SteamVR.active)
         {
             nonVRFallback.SetActive(true);
+            GameData.Instance.viveActive = false;
             gameObject.SetActive(false);
             return;
         }

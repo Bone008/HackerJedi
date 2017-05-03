@@ -5359,10 +5359,13 @@ MonoBehaviour:
   placingCost: 60
   minPlatformSpawnDist: 15
   newTargetPosThreshhold: 1
-  rotationSpeed: 3.5
+  rotationSpeed: 5
+  offset: {x: 1, y: 1.533333, z: 1}
   hitRange: 15
   stoppingDistance: 10
   floorTime: 2
+  recoveryMovementSpeed: 7
+  bounds: {x: 20, y: 0, z: 20}
   explo: {fileID: 1862322992109182, guid: 5f01c0a5d11e8034b9b6a7f008a4e490, type: 2}
 --- !u!114 &114833283124922252
 MonoBehaviour:
@@ -5399,7 +5402,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1918544432715482}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50

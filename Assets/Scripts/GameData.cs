@@ -10,6 +10,14 @@ public class GameData
     public bool hackerIsReady;
     public bool masterIsReady;
 
+    public bool suicideRobotUnlocked = false;
+    public bool sniperUnlocked = false;
+    public bool turretUnlocked = false;
+    public bool hackingAreaUnlocked = false;
+    public bool firewallUnlocked = false;
+
+    public bool viveActive = true;
+
     public int randomizeWorldinProgress = 0;
     public int levels = 3;
 
