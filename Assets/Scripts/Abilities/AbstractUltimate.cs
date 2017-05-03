@@ -12,7 +12,8 @@ public abstract class AbstractUltimate : AbstractAbility
 
     protected Transform leftHand;
     protected Transform rightHand;
-    
+
+    protected bool activated = false;
     public void InitHands(Transform leftHand, Transform rightHand)
     {
         this.leftHand = leftHand;
