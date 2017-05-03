@@ -347,6 +347,12 @@ public class HackerPlayer : MonoBehaviour
         // ulti can only be enabled if same ability in both hands
         Debug.Assert(equippedAbilities[(int)HackerHand.Left] == equippedAbilities[(int)HackerHand.Right]);
 
+        if (oldAbility != AbilityType.None)
+        {
+            Debug.LogWarning("tried to call EnableUlti(), but is already enabled");
+            return; // already enabled
+        }
+
         // store current ability to select it again in DisableUlti
         oldAbility = equippedAbilities[(int)HackerHand.Left];
 
@@ -358,8 +364,15 @@ public class HackerPlayer : MonoBehaviour
 
     public void DisableUlti()
     {
+        if (oldAbility == AbilityType.None)
+        {
+            Debug.LogWarning("tried to call DisableUlti() without EnableUlti() first");
+            return;
+        }
+
         EnableAbility(HackerHand.Left, oldAbility);
-        EnableAbility(HackerHand.Right, oldAbility);        
+        EnableAbility(HackerHand.Right, oldAbility);
+        oldAbility = AbilityType.None;
         ultiActive = false;
     }
 

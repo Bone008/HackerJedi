@@ -10,9 +10,9 @@ public class Force_Levitate : AbstractUltimate
     public float range;
 
     protected override void OnGripDown() {
-        
+
         //Check if controllers are ([distance] below the headposition and) nearly rotated 90/-90 degrees around their forward vector
-        if (!activated && leftHand.rotation.z <= 105 && leftHand.rotation.z >= 75 && rightHand.rotation.z <= -75 && rightHand.rotation.z >= -105)
+        if (!activated && Vector3.Angle(-leftHand.right, Vector3.down) <= 90 && Vector3.Angle(rightHand.right, Vector3.down) <= 90)
         {
             activated = true;
             startMoveHeight = (leftHand.position.y + rightHand.position.y) / 2;
@@ -52,12 +52,13 @@ public class Force_Levitate : AbstractUltimate
                 }
             }
             ActivateEffect<Force_Levitate>(10).StartCoroutine(Reset(behaviours));
+
+            DisableUlti();
         }
         else
         {
             Debug.Log("Ultimate-Tracking failed! #For_Lev OnGripUp()");
         }
-        DisableUlti();
         activated = false;
     }
     IEnumerator Reset(Throwable_OBJ[] levitated)
