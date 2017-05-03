@@ -79,9 +79,8 @@ public class Master : MonoBehaviour {
         // get spawn resource
         spawnResource = GetComponent<SpawnResource>();
 
-        defaultRailMaterial = level.rail[0].GetComponent<Renderer>().material;
-
-
+        defaultRailMaterial = level.rail[0].GetChild(1).GetComponent<Renderer>().material;
+        
         // unlocked units and obstacles
         #region
         if (GameData.Instance.suicideRobotUnlocked && !suicideRobot.activeSelf)
@@ -466,10 +465,10 @@ public class Master : MonoBehaviour {
         {
             ObstacleBase ob = obstaclePrefab.GetComponentInChildren<ObstacleBase>();
             for (int i = 0; i < level.numPassedRails + ob.minPlatformSpawnDist; i++)
-                level.rail[i].GetComponent<Renderer>().sharedMaterial = obstacleNoSpawnZoneMaterial;
+                level.rail[i].GetChild(1).GetComponent<Renderer>().sharedMaterial = obstacleNoSpawnZoneMaterial;
 
             for (int i = level.numPassedRails + ob.minPlatformSpawnDist; i < level.rail.Count; i++)
-                level.rail[i].GetComponent<Renderer>().sharedMaterial = defaultRailMaterial;
+                level.rail[i].GetChild(1).GetComponent<Renderer>().sharedMaterial = defaultRailMaterial;
         }
     }
 

@@ -70,7 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   block: {fileID: 1369675270313828, guid: d1d8e52480823694e8bc2d95e8750f47, type: 2}
-  railBlock: {fileID: 1918688535058414, guid: 38c80b59dcfa16b4db7e456f20cf86fc, type: 2}
+  railBlock: {fileID: 1684045645622620, guid: 39c4a8c21e7b45947b298185958d0977, type: 2}
   startMarker: {fileID: 0}
   endMarker: {fileID: 0}
   blockSize: 3
