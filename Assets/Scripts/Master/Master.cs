@@ -20,9 +20,9 @@ public class Master : MonoBehaviour {
     public float maxMovementDelta;
     public string movementInputAxis;
 
-    [Header("Spawning")]
     private GameObject enemyPrefab = null;
     private GameObject obstaclePrefab = null;
+    [Header("Spawning")]
     public LevelGenerator level;
     private Dictionary<int, GameObject> placedObstacles = new Dictionary<int, GameObject>();
     private SpawnResource spawnResource;
@@ -274,7 +274,7 @@ public class Master : MonoBehaviour {
             }
 
             noSpawnCorners = noSpawnCorners.Distinct().ToList();
-
+            
             // sort them to connect only adjacent corners
             List<Vector3> sorted = new List<Vector3>();
             sorted.Add(noSpawnCorners[0]);
@@ -284,20 +284,20 @@ public class Master : MonoBehaviour {
             {
                 Vector3 last = sorted.Last();
 
+                Vector3 platformPos = platform.transform.position;
                 // find adjacent corners
-                Vector3[] nexts = noSpawnCorners
-                    .FindAll(v => (v - last).sqrMagnitude == bs * bs)
-                    .OrderBy(v => v, new VecComparer() { platform = this.platform.transform.position })
-                    .ToArray();
+                Vector3 next = noSpawnCorners
+                    .Where(v => (v - last).sqrMagnitude == bs * bs)
+                    .OrderBy(v => (platformPos - v).sqrMagnitude)
+                    .FirstOrDefault();
 
-                if (nexts.Length == 0)
+                if (next == null)
                 {
                     // FIXME this should not happen
                     //Debug.Log("nope" + last);
                     continue;
                 }
-
-                Vector3 next = nexts[0];
+                
                 sorted.Add(next);
                 noSpawnCorners.Remove(next);
             }
@@ -324,15 +324,6 @@ public class Master : MonoBehaviour {
         }
     }
 
-    private class VecComparer : IComparer<Vector3>
-    {
-        public Vector3 platform;
-
-        public int Compare(Vector3 y, Vector3 x)
-        {
-            return (int)((platform - y).sqrMagnitude - (platform - x).sqrMagnitude);
-        }
-    }
 
     private IEnumerator SnapToGrid(Transform box)
     {
