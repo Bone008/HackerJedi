@@ -61,7 +61,7 @@ public class UpgradeManager : MonoBehaviour {
             GameData.Instance.masterIsReady = false;
             SteamVR_LoadLevel.Begin("game");
         }
-        text.text = "You still can spent " + points + " Points.";
+        text.text = "You still can spend " + points + " Points.";
     }
 
     public void suicideRobotUnlock()
