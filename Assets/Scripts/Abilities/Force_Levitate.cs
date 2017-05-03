@@ -5,7 +5,6 @@ using UnityEngine;
 public class Force_Levitate : AbstractUltimate
 {
     private float startMoveHeight;
-    private GameObject[] lavitatedObj;
     [Header("Ultimate force levitate")]
     public float forceStrength;
     public float range;
@@ -40,14 +39,19 @@ public class Force_Levitate : AbstractUltimate
             Debug.Log("Ultimate-Tracking successfull! #For_Lev OnGripUp()");
             //--> Do the Levitate! 
             Collider[] cols = Physics.OverlapSphere(transform.position, range);
+            Throwable_OBJ[] behaviours = new Throwable_OBJ[cols.Length];
+            int counter = 0;
             foreach (Collider col in cols)
             {
                 if (col.tag == "Enemy")
                 {
                     col.attachedRigidbody.AddForce(0, forceStrength, 0, ForceMode.Acceleration);
-                    //Enemy-Behaviours disablen?
+                    Throwable_OBJ obj=col.gameObject.GetComponent<Throwable_OBJ>();
+                    obj.setGrabbed();//Enemy-Behaviours disablen?
+                    behaviours[counter] = obj;
                 }
             }
+            ActivateEffect<Force_Levitate>(10).StartCoroutine(Reset(behaviours));
         }
         else
         {
@@ -55,6 +59,14 @@ public class Force_Levitate : AbstractUltimate
         }
         DisableUlti();
         activated = false;
+    }
+    IEnumerator Reset(Throwable_OBJ[] levitated)
+    {
+        yield return new WaitForSeconds(9);
+        foreach (Throwable_OBJ col in levitated)
+        {
+            col.setFree();
+        }
     }
 }
     /*
