@@ -238,7 +238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1969470127809938
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +669,7 @@ MonoBehaviour:
   glowRenderShader: {fileID: 4800000, guid: c04b7cae8accdfb4e9c2648823ff39d7, type: 3}
   glowLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294965247
   renderCamera: {fileID: 0}
   showCutoutGlow: 0
   showTransparentGlow: 1
