@@ -55,8 +55,12 @@ public class UpgradeManager : MonoBehaviour {
 
     public void Update()
     {
-        if(GameData.Instance.hackerIsReady && GameData.Instance.masterIsReady && !SteamVR_LoadLevel.loading)
+        if (GameData.Instance.hackerIsReady && GameData.Instance.masterIsReady && !SteamVR_LoadLevel.loading)
+        {
+            GameData.Instance.hackerIsReady = false;
+            GameData.Instance.masterIsReady = false;
             SteamVR_LoadLevel.Begin("game");
+        }
         text.text = "You still can spent " + points + " Points.";
     }
 
