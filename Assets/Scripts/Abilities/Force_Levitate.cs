@@ -5,39 +5,46 @@ using UnityEngine;
 public class Force_Levitate : AbstractUltimate
 {
     private float startMoveHeight;
+    private GameObject[] lavitatedObj;
+    [Header("Ultimate force levitate")]
+    public float forceStrength;
+    public float range;
 
     protected override void OnGripDown() {
         
         //Check if controllers are ([distance] below the headposition and) nearly rotated 90/-90 degrees around their forward vector
-        if (leftHand.rotation.z <= 105 && leftHand.rotation.z >= 75 && rightHand.rotation.z <= -75 && rightHand.rotation.z >= -105)
+        if (!activated && leftHand.rotation.z <= 105 && leftHand.rotation.z >= 75 && rightHand.rotation.z <= -75 && rightHand.rotation.z >= -105)
         {
-            IsGripDown = true;
+            activated = true;
             startMoveHeight = (leftHand.position.y + rightHand.position.y) / 2;
             //@HackerPlayer: Ultimate wurde erkannt und aktiviert
+            EnableUlti();
             Debug.Log("Ultimate-Tracking started! #For_Lev OnGripDown()");
         }
         else
         {
             //@HackerPlayer: Ultimate wurde abgebrochen. Ein normaler Move soll ausgeführt werden
-            Debug.Log("Ultimate-Tracking failed! #For_Lev OnGripDown()");
+            Debug.Log("Ultimate-Tracking not started! #For_Lev OnGripDown()");
+            //Eventuell nun nichtmehr nötig
         }
-        //--> set UltimateActive (moveHeightStart=transform.position.y)
+        //TODO:
+        //--> set UltimateActive
         //--> unselect selected Enemies
     }
     protected override void OnGripUp() {
 
         float moveHeightEnd = (leftHand.position.y + rightHand.position.y) / 2;
         //Check if the controllers are [distance] higher as the position before OnGripsDown()
-        if (moveHeightEnd - startMoveHeight > 0.5)
+        if (activated && moveHeightEnd - startMoveHeight > 0.5)
         {
             Debug.Log("Ultimate-Tracking successfull! #For_Lev OnGripUp()");
             //--> Do the Levitate! 
-            Collider[] cols = Physics.OverlapSphere(transform.position, 10f);
+            Collider[] cols = Physics.OverlapSphere(transform.position, range);
             foreach (Collider col in cols)
             {
                 if (col.tag == "Enemy")
                 {
-                    col.attachedRigidbody.AddForce(0, 10, 0, ForceMode.Acceleration);
+                    col.attachedRigidbody.AddForce(0, forceStrength, 0, ForceMode.Acceleration);
                     //Enemy-Behaviours disablen?
                 }
             }
@@ -45,9 +52,9 @@ public class Force_Levitate : AbstractUltimate
         else
         {
             Debug.Log("Ultimate-Tracking failed! #For_Lev OnGripUp()");
-            startMoveHeight = 100;
         }
-        IsGripDown = false;
+        DisableUlti();
+        activated = false;
     }
 }
     /*
