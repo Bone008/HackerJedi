@@ -13,6 +13,8 @@ public class HackerProgressionManager : MonoBehaviour
         {
             if (HackerProgression.Instance.GetUnlockedLevel(button.abilityType) >= button.level)
                 button.gameObject.SetActive(false);
+            else
+                button.onTriggered.AddListener(() => TryBuyUpgrade(button));
         }
     }
 

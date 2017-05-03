@@ -53,7 +53,7 @@ Transform:
   m_GameObject: {fileID: 1540959429460008}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4921825820798448}
   m_RootOrder: 0
@@ -65,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1407292760086898}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -1.24, y: -0.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4478717457597538}
@@ -122,8 +122,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20434f94325b3f41a2a03a0d42d74a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoveredColor: {r: 0.5028113, g: 0.9117647, b: 0.8102315, a: 0.366}
   abilityType: 0
   level: 1
+  onTriggered:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!135 &135122032993511858
 SphereCollider:
   m_ObjectHideFlags: 1
