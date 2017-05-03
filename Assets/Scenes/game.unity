@@ -1550,11 +1550,6 @@ Prefab:
       propertyPath: endMarker
       value: 
       objectReference: {fileID: 1279567039}
-    - target: {fileID: 114807295746605488, guid: efaccc3edafe6c64eaf33a00224f69ad,
-        type: 2}
-      propertyPath: lines
-      value: 14
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efaccc3edafe6c64eaf33a00224f69ad, type: 2}
   m_IsPrefabParent: 0
