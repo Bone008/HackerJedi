@@ -12,7 +12,7 @@ public class GatlingUltimate : AbstractUltimate
     private float currentTriggerDownTime;
     private bool triggerDown = false;
 
-    private bool activated = false; // if the actual gun has been pulled out
+    //Verschoben in Oberklasse//private bool activated = false; // if the actual gun has been pulled out
 
     private void Update()
     {
