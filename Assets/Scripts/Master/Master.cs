@@ -102,7 +102,14 @@ public class Master : MonoBehaviour {
         // fill resource for testing purposes
         // TODO remove
         if (Input.GetKeyDown(KeyCode.C)) // C for Cheat
+        {
             spawnResource.ChangeValue(spawnResource.maxValue);
+            suicideRobot.SetActive(true);
+            sniper.SetActive(true);
+            turret.SetActive(true);
+            hackingArea.SetActive(true);
+            firewall.SetActive(true);
+        }
 
         // select cube
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
