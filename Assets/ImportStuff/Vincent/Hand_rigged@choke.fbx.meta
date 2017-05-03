@@ -1,0 +1,1391 @@
+fileFormatVersion: 2
+guid: c3250378054cef34989b4cd2f025ff1f
+timeCreated: 1493841933
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: armor_1
+    100002: Array
+    100004: Array_2
+    100006: Array_3
+    100008: Array_4
+    100010: Array_5
+    100012: Array_6
+    100014: Array_7
+    100016: Cube
+    100018: Cube_1
+    100020: Cube_10
+    100022: Cube_10_2
+    100024: Cube_10_3
+    100026: Cube_10_4
+    100028: Cube_10_5
+    100030: Cube_10_6
+    100032: Cube_10_7
+    100034: Cube_11
+    100036: Cube_11_2
+    100038: Cube_11_3
+    100040: Cube_11_4
+    100042: Cube_11_5
+    100044: Cube_11_6
+    100046: Cube_11_7
+    100048: Cube_12
+    100050: Cube_13
+    100052: Cube_14
+    100054: Cube_15
+    100056: Cube_16
+    100058: Cube_1_2
+    100060: Cube_1_3
+    100062: Cube_1_4
+    100064: Cube_1_5
+    100066: Cube_1_6
+    100068: Cube_1_7
+    100070: Cube_2
+    100072: Cube_2_2
+    100074: Cube_2_3
+    100076: Cube_2_4
+    100078: Cube_2_5
+    100080: Cube_2_6
+    100082: Cube_2_7
+    100084: Cube_2_8
+    100086: Cube_3
+    100088: Cube_3_2
+    100090: Cube_3_3
+    100092: Cube_3_4
+    100094: Cube_3_5
+    100096: Cube_3_6
+    100098: Cube_3_7
+    100100: Cube_4
+    100102: Cube_4_2
+    100104: Cube_4_3
+    100106: Cube_4_4
+    100108: Cube_4_5
+    100110: Cube_4_6
+    100112: Cube_4_7
+    100114: Cube_5
+    100116: Cube_5_2
+    100118: Cube_5_3
+    100120: Cube_5_4
+    100122: Cube_5_5
+    100124: Cube_5_6
+    100126: Cube_5_7
+    100128: Cube_6
+    100130: Cube_6_2
+    100132: Cube_6_3
+    100134: Cube_6_4
+    100136: Cube_6_5
+    100138: Cube_6_6
+    100140: Cube_6_7
+    100142: Cube_7
+    100144: Cube_7_2
+    100146: Cube_7_3
+    100148: Cube_7_4
+    100150: Cube_7_5
+    100152: Cube_7_6
+    100154: Cube_7_7
+    100156: Cube_8
+    100158: Cube_8_2
+    100160: Cube_8_3
+    100162: Cube_8_4
+    100164: Cube_8_5
+    100166: Cube_8_6
+    100168: Cube_8_7
+    100170: Cube_9
+    100172: Cube_9_2
+    100174: Cube_9_3
+    100176: Cube_9_4
+    100178: Cube_9_5
+    100180: Cube_9_6
+    100182: Cube_9_7
+    100184: Cylinder
+    100186: Cylinder_2
+    100188: Cylinder_3
+    100190: Cylinder_4
+    100192: Cylinder_5
+    100194: Cylinder_6
+    100196: Cylinder_7
+    100198: Hand
+    100200: Hand_2
+    100202: Hand_main
+    100204: //RootNode
+    100206: Joint
+    100208: Joint_1
+    100210: Joint_1_2
+    100212: Joint_2
+    100214: Joint_2_2
+    100216: Joint_3
+    100218: Joint_3_2
+    100220: Joint_3_3
+    100222: Joint_3_4
+    100224: Joint_3_5
+    100226: Joint_3_6
+    100228: Joint_4
+    100230: Joint_4_2
+    100232: Joint_4_3
+    100234: Joint_4_4
+    100236: Joint_4_5
+    100238: Joint_4_6
+    100240: Joint_5
+    100242: Joint_5_2
+    100244: Joint_5_3
+    100246: Joint_5_4
+    100248: Ring_Thing
+    100250: Ring_Thing_1
+    100252: Ring_Thing_1_2
+    100254: Ring_Thing_1_3
+    100256: Ring_Thing_2
+    100258: Ring_Thing_3
+    100260: Ring_Thing_4
+    100262: Small_finger_controller
+    100264: Small_finger_controller_1
+    100266: Small_finger_controller_2
+    100268: Small_finger_controller_3
+    100270: Small_finger_controller_b
+    100272: Small_finger_controller_b1
+    100274: Small_finger_controller_b2
+    100276: Small_finger_controller_b3
+    100278: Tube
+    100280: Tube_1
+    100282: Tube_1_2
+    100284: Tube_1_3
+    100286: Tube_1_4
+    100288: Tube_1_5
+    100290: Tube_1_6
+    100292: Tube_1_7
+    100294: Tube_2
+    100296: Tube_2_2
+    100298: Tube_3
+    100300: Tube_3_2
+    100302: Tube_4
+    100304: Tube_5
+    100306: Tube_6
+    100308: Tube_7
+    400000: armor_1
+    400002: Array
+    400004: Array_2
+    400006: Array_3
+    400008: Array_4
+    400010: Array_5
+    400012: Array_6
+    400014: Array_7
+    400016: Cube
+    400018: Cube_1
+    400020: Cube_10
+    400022: Cube_10_2
+    400024: Cube_10_3
+    400026: Cube_10_4
+    400028: Cube_10_5
+    400030: Cube_10_6
+    400032: Cube_10_7
+    400034: Cube_11
+    400036: Cube_11_2
+    400038: Cube_11_3
+    400040: Cube_11_4
+    400042: Cube_11_5
+    400044: Cube_11_6
+    400046: Cube_11_7
+    400048: Cube_12
+    400050: Cube_13
+    400052: Cube_14
+    400054: Cube_15
+    400056: Cube_16
+    400058: Cube_1_2
+    400060: Cube_1_3
+    400062: Cube_1_4
+    400064: Cube_1_5
+    400066: Cube_1_6
+    400068: Cube_1_7
+    400070: Cube_2
+    400072: Cube_2_2
+    400074: Cube_2_3
+    400076: Cube_2_4
+    400078: Cube_2_5
+    400080: Cube_2_6
+    400082: Cube_2_7
+    400084: Cube_2_8
+    400086: Cube_3
+    400088: Cube_3_2
+    400090: Cube_3_3
+    400092: Cube_3_4
+    400094: Cube_3_5
+    400096: Cube_3_6
+    400098: Cube_3_7
+    400100: Cube_4
+    400102: Cube_4_2
+    400104: Cube_4_3
+    400106: Cube_4_4
+    400108: Cube_4_5
+    400110: Cube_4_6
+    400112: Cube_4_7
+    400114: Cube_5
+    400116: Cube_5_2
+    400118: Cube_5_3
+    400120: Cube_5_4
+    400122: Cube_5_5
+    400124: Cube_5_6
+    400126: Cube_5_7
+    400128: Cube_6
+    400130: Cube_6_2
+    400132: Cube_6_3
+    400134: Cube_6_4
+    400136: Cube_6_5
+    400138: Cube_6_6
+    400140: Cube_6_7
+    400142: Cube_7
+    400144: Cube_7_2
+    400146: Cube_7_3
+    400148: Cube_7_4
+    400150: Cube_7_5
+    400152: Cube_7_6
+    400154: Cube_7_7
+    400156: Cube_8
+    400158: Cube_8_2
+    400160: Cube_8_3
+    400162: Cube_8_4
+    400164: Cube_8_5
+    400166: Cube_8_6
+    400168: Cube_8_7
+    400170: Cube_9
+    400172: Cube_9_2
+    400174: Cube_9_3
+    400176: Cube_9_4
+    400178: Cube_9_5
+    400180: Cube_9_6
+    400182: Cube_9_7
+    400184: Cylinder
+    400186: Cylinder_2
+    400188: Cylinder_3
+    400190: Cylinder_4
+    400192: Cylinder_5
+    400194: Cylinder_6
+    400196: Cylinder_7
+    400198: Hand
+    400200: Hand_2
+    400202: Hand_main
+    400204: //RootNode
+    400206: Joint
+    400208: Joint_1
+    400210: Joint_1_2
+    400212: Joint_2
+    400214: Joint_2_2
+    400216: Joint_3
+    400218: Joint_3_2
+    400220: Joint_3_3
+    400222: Joint_3_4
+    400224: Joint_3_5
+    400226: Joint_3_6
+    400228: Joint_4
+    400230: Joint_4_2
+    400232: Joint_4_3
+    400234: Joint_4_4
+    400236: Joint_4_5
+    400238: Joint_4_6
+    400240: Joint_5
+    400242: Joint_5_2
+    400244: Joint_5_3
+    400246: Joint_5_4
+    400248: Ring_Thing
+    400250: Ring_Thing_1
+    400252: Ring_Thing_1_2
+    400254: Ring_Thing_1_3
+    400256: Ring_Thing_2
+    400258: Ring_Thing_3
+    400260: Ring_Thing_4
+    400262: Small_finger_controller
+    400264: Small_finger_controller_1
+    400266: Small_finger_controller_2
+    400268: Small_finger_controller_3
+    400270: Small_finger_controller_b
+    400272: Small_finger_controller_b1
+    400274: Small_finger_controller_b2
+    400276: Small_finger_controller_b3
+    400278: Tube
+    400280: Tube_1
+    400282: Tube_1_2
+    400284: Tube_1_3
+    400286: Tube_1_4
+    400288: Tube_1_5
+    400290: Tube_1_6
+    400292: Tube_1_7
+    400294: Tube_2
+    400296: Tube_2_2
+    400298: Tube_3
+    400300: Tube_3_2
+    400302: Tube_4
+    400304: Tube_5
+    400306: Tube_6
+    400308: Tube_7
+    2300000: Cube
+    2300002: Cube_1
+    2300004: Cube_10
+    2300006: Cube_10_2
+    2300008: Cube_10_3
+    2300010: Cube_10_4
+    2300012: Cube_10_5
+    2300014: Cube_10_6
+    2300016: Cube_10_7
+    2300018: Cube_11
+    2300020: Cube_11_2
+    2300022: Cube_11_3
+    2300024: Cube_11_4
+    2300026: Cube_11_5
+    2300028: Cube_11_6
+    2300030: Cube_11_7
+    2300032: Cube_12
+    2300034: Cube_13
+    2300036: Cube_14
+    2300038: Cube_15
+    2300040: Cube_16
+    2300042: Cube_1_2
+    2300044: Cube_1_3
+    2300046: Cube_1_4
+    2300048: Cube_1_5
+    2300050: Cube_1_6
+    2300052: Cube_1_7
+    2300054: Cube_2
+    2300056: Cube_2_2
+    2300058: Cube_2_3
+    2300060: Cube_2_4
+    2300062: Cube_2_5
+    2300064: Cube_2_6
+    2300066: Cube_2_7
+    2300068: Cube_2_8
+    2300070: Cube_3
+    2300072: Cube_3_2
+    2300074: Cube_3_3
+    2300076: Cube_3_4
+    2300078: Cube_3_5
+    2300080: Cube_3_6
+    2300082: Cube_3_7
+    2300084: Cube_4
+    2300086: Cube_4_2
+    2300088: Cube_4_3
+    2300090: Cube_4_4
+    2300092: Cube_4_5
+    2300094: Cube_4_6
+    2300096: Cube_4_7
+    2300098: Cube_5
+    2300100: Cube_5_2
+    2300102: Cube_5_3
+    2300104: Cube_5_4
+    2300106: Cube_5_5
+    2300108: Cube_5_6
+    2300110: Cube_5_7
+    2300112: Cube_6
+    2300114: Cube_6_2
+    2300116: Cube_6_3
+    2300118: Cube_6_4
+    2300120: Cube_6_5
+    2300122: Cube_6_6
+    2300124: Cube_6_7
+    2300126: Cube_7
+    2300128: Cube_7_2
+    2300130: Cube_7_3
+    2300132: Cube_7_4
+    2300134: Cube_7_5
+    2300136: Cube_7_6
+    2300138: Cube_7_7
+    2300140: Cube_8
+    2300142: Cube_8_2
+    2300144: Cube_8_3
+    2300146: Cube_8_4
+    2300148: Cube_8_5
+    2300150: Cube_8_6
+    2300152: Cube_8_7
+    2300154: Cube_9
+    2300156: Cube_9_2
+    2300158: Cube_9_3
+    2300160: Cube_9_4
+    2300162: Cube_9_5
+    2300164: Cube_9_6
+    2300166: Cube_9_7
+    2300168: Cylinder
+    2300170: Cylinder_2
+    2300172: Cylinder_3
+    2300174: Cylinder_4
+    2300176: Cylinder_5
+    2300178: Cylinder_6
+    2300180: Cylinder_7
+    2300182: Tube
+    2300184: Tube_1
+    2300186: Tube_1_2
+    2300188: Tube_1_3
+    2300190: Tube_1_4
+    2300192: Tube_1_5
+    2300194: Tube_1_6
+    2300196: Tube_1_7
+    2300198: Tube_2
+    2300200: Tube_2_2
+    2300202: Tube_3
+    2300204: Tube_3_2
+    2300206: Tube_4
+    2300208: Tube_5
+    2300210: Tube_6
+    2300212: Tube_7
+    3300000: Cube
+    3300002: Cube_1
+    3300004: Cube_10
+    3300006: Cube_10_2
+    3300008: Cube_10_3
+    3300010: Cube_10_4
+    3300012: Cube_10_5
+    3300014: Cube_10_6
+    3300016: Cube_10_7
+    3300018: Cube_11
+    3300020: Cube_11_2
+    3300022: Cube_11_3
+    3300024: Cube_11_4
+    3300026: Cube_11_5
+    3300028: Cube_11_6
+    3300030: Cube_11_7
+    3300032: Cube_12
+    3300034: Cube_13
+    3300036: Cube_14
+    3300038: Cube_15
+    3300040: Cube_16
+    3300042: Cube_1_2
+    3300044: Cube_1_3
+    3300046: Cube_1_4
+    3300048: Cube_1_5
+    3300050: Cube_1_6
+    3300052: Cube_1_7
+    3300054: Cube_2
+    3300056: Cube_2_2
+    3300058: Cube_2_3
+    3300060: Cube_2_4
+    3300062: Cube_2_5
+    3300064: Cube_2_6
+    3300066: Cube_2_7
+    3300068: Cube_2_8
+    3300070: Cube_3
+    3300072: Cube_3_2
+    3300074: Cube_3_3
+    3300076: Cube_3_4
+    3300078: Cube_3_5
+    3300080: Cube_3_6
+    3300082: Cube_3_7
+    3300084: Cube_4
+    3300086: Cube_4_2
+    3300088: Cube_4_3
+    3300090: Cube_4_4
+    3300092: Cube_4_5
+    3300094: Cube_4_6
+    3300096: Cube_4_7
+    3300098: Cube_5
+    3300100: Cube_5_2
+    3300102: Cube_5_3
+    3300104: Cube_5_4
+    3300106: Cube_5_5
+    3300108: Cube_5_6
+    3300110: Cube_5_7
+    3300112: Cube_6
+    3300114: Cube_6_2
+    3300116: Cube_6_3
+    3300118: Cube_6_4
+    3300120: Cube_6_5
+    3300122: Cube_6_6
+    3300124: Cube_6_7
+    3300126: Cube_7
+    3300128: Cube_7_2
+    3300130: Cube_7_3
+    3300132: Cube_7_4
+    3300134: Cube_7_5
+    3300136: Cube_7_6
+    3300138: Cube_7_7
+    3300140: Cube_8
+    3300142: Cube_8_2
+    3300144: Cube_8_3
+    3300146: Cube_8_4
+    3300148: Cube_8_5
+    3300150: Cube_8_6
+    3300152: Cube_8_7
+    3300154: Cube_9
+    3300156: Cube_9_2
+    3300158: Cube_9_3
+    3300160: Cube_9_4
+    3300162: Cube_9_5
+    3300164: Cube_9_6
+    3300166: Cube_9_7
+    3300168: Cylinder
+    3300170: Cylinder_2
+    3300172: Cylinder_3
+    3300174: Cylinder_4
+    3300176: Cylinder_5
+    3300178: Cylinder_6
+    3300180: Cylinder_7
+    3300182: Tube
+    3300184: Tube_1
+    3300186: Tube_1_2
+    3300188: Tube_1_3
+    3300190: Tube_1_4
+    3300192: Tube_1_5
+    3300194: Tube_1_6
+    3300196: Tube_1_7
+    3300198: Tube_2
+    3300200: Tube_2_2
+    3300202: Tube_3
+    3300204: Tube_3_2
+    3300206: Tube_4
+    3300208: Tube_5
+    3300210: Tube_6
+    3300212: Tube_7
+    4300000: Hand_2
+    4300002: armor_1
+    4300004: Cube_16
+    4300006: Cube_15
+    4300008: Cube_14
+    4300010: Cube_13
+    4300012: Cube_12
+    4300014: Cube_11
+    4300016: Cube_10
+    4300018: Cube_9
+    4300020: Cube_8
+    4300022: Cube_7
+    4300024: Cube_6
+    4300026: Cube_5
+    4300028: Cube_4
+    4300030: Cube_3
+    4300032: Cube_2
+    4300034: Cube_1
+    4300036: Tube_1
+    4300038: Tube
+    4300040: Cylinder
+    4300042: Tube_2
+    4300044: Tube_3
+    4300046: Cube
+    4300048: Cube_2_2
+    4300050: Cube_11_2
+    4300052: Cube_10_2
+    4300054: Cube_9_2
+    4300056: Cube_8_2
+    4300058: Cube_7_2
+    4300060: Cube_6_2
+    4300062: Cube_5_2
+    4300064: Cube_4_2
+    4300066: Cube_3_2
+    4300068: Cube_2_3
+    4300070: Cube_1_2
+    4300072: Tube_1_2
+    4300074: Tube_2_2
+    4300076: Cylinder_2
+    4300078: Cube_11_3
+    4300080: Cube_10_3
+    4300082: Cube_9_3
+    4300084: Cube_8_3
+    4300086: Cube_7_3
+    4300088: Cube_6_3
+    4300090: Cube_5_3
+    4300092: Cube_4_3
+    4300094: Cube_3_3
+    4300096: Cube_2_4
+    4300098: Cube_1_3
+    4300100: Tube_1_3
+    4300102: Tube_3_2
+    4300104: Cylinder_3
+    4300106: Cube_11_4
+    4300108: Cube_10_4
+    4300110: Cube_9_4
+    4300112: Cube_8_4
+    4300114: Cube_7_4
+    4300116: Cube_6_4
+    4300118: Cube_5_4
+    4300120: Cube_4_4
+    4300122: Cube_3_4
+    4300124: Cube_2_5
+    4300126: Cube_1_4
+    4300128: Tube_1_4
+    4300130: Tube_4
+    4300132: Cylinder_4
+    4300134: Cube_11_5
+    4300136: Cube_10_5
+    4300138: Cube_9_5
+    4300140: Cube_8_5
+    4300142: Cube_7_5
+    4300144: Cube_6_5
+    4300146: Cube_5_5
+    4300148: Cube_4_5
+    4300150: Cube_3_5
+    4300152: Cube_2_6
+    4300154: Cube_1_5
+    4300156: Tube_1_5
+    4300158: Tube_5
+    4300160: Cylinder_5
+    4300162: Cube_11_6
+    4300164: Cube_10_6
+    4300166: Cube_9_6
+    4300168: Cube_8_6
+    4300170: Cube_7_6
+    4300172: Cube_6_6
+    4300174: Cube_5_6
+    4300176: Cube_4_6
+    4300178: Cube_3_6
+    4300180: Cube_2_7
+    4300182: Cube_1_6
+    4300184: Tube_1_6
+    4300186: Tube_6
+    4300188: Cylinder_6
+    4300190: Cube_11_7
+    4300192: Cube_10_7
+    4300194: Cube_9_7
+    4300196: Cube_8_7
+    4300198: Cube_7_7
+    4300200: Cube_6_7
+    4300202: Cube_5_7
+    4300204: Cube_4_7
+    4300206: Cube_3_7
+    4300208: Cube_2_8
+    4300210: Cube_1_7
+    4300212: Tube_1_7
+    4300214: Tube_7
+    4300216: Cylinder_7
+    7400000: beginChoke
+    7400002: endChoke
+    9500000: //RootNode
+    13700000: armor_1
+    13700002: Hand_2
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: beginChoke
+      takeName: C4D Animation Take
+      firstFrame: 9
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Hand
+        weight: 1
+      - path: Hand/armor_1
+        weight: 1
+      - path: Hand/Hand_2
+        weight: 1
+      - path: Hand_main
+        weight: 1
+      - path: Hand_main/Joint
+        weight: 1
+      - path: Hand_main/Joint/Joint_1
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Joint_5_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_1_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_2_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_3_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_4_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_5_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_6_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_7_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_8_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_9_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_10_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_11_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Cylinder_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Tube_1_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Tube_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_1_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_2_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_3_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_4_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_5_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_6_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_7_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_8_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_9_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_10_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_11_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Cylinder_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Tube_1_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Tube_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2/Joint_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2/Joint_3/Cube
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2/Joint_3/Joint_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2/Joint_3/Joint_4/Cube_2_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2/Joint_3/Joint_4/Joint_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Joint_5_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_1_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_2_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_3_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_4_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_5_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_6_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_7_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_8_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_9_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_10_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_11_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Cylinder_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Tube_1_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Tube_3_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_1_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_2_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_3_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_4_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_5_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_6_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_7_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_8_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_9_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_10_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_11_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Cylinder_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Tube_1_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Tube_2_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Joint_5_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_1_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_2_8
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_3_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_4_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_5_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_6_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_7_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_8_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_9_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_10_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_11_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Cylinder_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Tube_1_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Tube_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_1_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_2_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_3_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_4_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_5_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_6_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_7_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_8_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_9_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_10_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_11_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Cylinder_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Tube_1_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Tube_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_4_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_4_5/Joint_3_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_4_5/Joint_3_6/Joint_4_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_1
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_8
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_9
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_10
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_11
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_12
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_13
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_14
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_15
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_16
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Cylinder
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Tube
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Tube_1
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Tube_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Tube_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Small_finger_controller
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Small_finger_controller/Small_finger_controller_b
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Small_finger_controller_1
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Small_finger_controller_1/Small_finger_controller_b1
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Small_finger_controller_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Small_finger_controller_2/Small_finger_controller_b2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Small_finger_controller_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Small_finger_controller_3/Small_finger_controller_b3
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: endChoke
+      takeName: C4D Animation Take
+      firstFrame: 72
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Hand
+        weight: 1
+      - path: Hand/armor_1
+        weight: 1
+      - path: Hand/Hand_2
+        weight: 1
+      - path: Hand_main
+        weight: 1
+      - path: Hand_main/Joint
+        weight: 1
+      - path: Hand_main/Joint/Joint_1
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Joint_5_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_1_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_2_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_3_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_4_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_5_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_6_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_7_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_8_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_9_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_10_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Array_5/Cube_11_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Cylinder_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Tube_1_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Joint_4_3/Ring_Thing_1_2/Tube_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_1_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_2_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_3_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_4_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_5_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_6_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_7_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_8_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_9_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_10_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Array_4/Cube_11_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Cylinder_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Tube_1_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_1_2/Joint_3_3/Ring_Thing_3/Tube_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2/Joint_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2/Joint_3/Cube
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2/Joint_3/Joint_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2/Joint_3/Joint_4/Cube_2_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2/Joint_3/Joint_4/Joint_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Joint_5_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_1_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_2_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_3_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_4_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_5_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_6_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_7_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_8_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_9_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_10_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Array_3/Cube_11_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Cylinder_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Tube_1_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Joint_4_2/Ring_Thing_1/Tube_3_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_1_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_2_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_3_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_4_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_5_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_6_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_7_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_8_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_9_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_10_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Array_2/Cube_11_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Cylinder_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Tube_1_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_2_2/Joint_3_2/Ring_Thing_2/Tube_2_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Joint_5_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_1_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_2_8
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_3_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_4_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_5_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_6_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_7_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_8_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_9_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_10_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Array_7/Cube_11_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Cylinder_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Tube_1_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Joint_4_4/Ring_Thing_1_3/Tube_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_1_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_2_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_3_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_4_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_5_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_6_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_7_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_8_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_9_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_10_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Array_6/Cube_11_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Cylinder_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Tube_1_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_3_4/Joint_3_5/Ring_Thing_4/Tube_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_4_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_4_5/Joint_3_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Joint_4_5/Joint_3_6/Joint_4_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_1
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_4
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_5
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_6
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_7
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_8
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_9
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_10
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_11
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_12
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_13
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_14
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_15
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Array/Cube_16
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Cylinder
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Tube
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Tube_1
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Tube_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Ring_Thing/Tube_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Small_finger_controller
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Small_finger_controller/Small_finger_controller_b
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Small_finger_controller_1
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Small_finger_controller_1/Small_finger_controller_b1
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Small_finger_controller_2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Small_finger_controller_2/Small_finger_controller_b2
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Small_finger_controller_3
+        weight: 1
+      - path: Hand_main/Joint/Joint_1/Small_finger_controller_3/Small_finger_controller_b3
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

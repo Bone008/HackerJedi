@@ -6,6 +6,8 @@ public class ForcePushGrab : AbstractAbility {
 
     public float cooldown; // for both
 
+    private Animator animator;
+
     // ==== Force push ====
 
     [Header("Force push")]
@@ -20,7 +22,8 @@ public class ForcePushGrab : AbstractAbility {
 
     private void Start()
     {
-        relationObject = hackerPlayer;
+        relationObject = GameObject.FindGameObjectWithTag("Platform").transform;
+        animator = GetComponentInChildren<Animator>();
     }
 
    
@@ -31,6 +34,8 @@ public class ForcePushGrab : AbstractAbility {
 
         isPushing = true;
         posePosBegin = relationObject.InverseTransformPoint(transform.position);
+
+        animator.SetTrigger("startPush");
     }
 
     protected override void OnTriggerUp()
@@ -47,12 +52,17 @@ public class ForcePushGrab : AbstractAbility {
 
         // if moved less than a threshold, don't accept (prevent accidental trigger presses)
         if (pushDirection.sqrMagnitude < 0.15f * 0.15f)
+        {
+            animator.SetTrigger("cancelPush");
             return;
+        }
 
         // if the movement was towards the head, don't accept it
         //if (posePosBegin.sqrMagnitude > posePosEnd.sqrMagnitude)
         //    return;
         // ^--- note: disabled because I think you should also be able to pull enemies closer with the force
+        
+        animator.SetTrigger("confirmPush");
 
         force(origin, pushDirection);
         playPushAudio();
@@ -184,6 +194,8 @@ public class ForcePushGrab : AbstractAbility {
 
             if (target.IsGrabbed())
                 return; // do not grab twice
+            
+            animator.SetBool("choking", true);
 
             grabbedTarget = target;
             playGrabAudio();
@@ -200,6 +212,8 @@ public class ForcePushGrab : AbstractAbility {
     {
         if (grabbedTarget != null)
         {
+            animator.SetBool("choking", false);
+
             grabbedTarget.setFree();
             grabbedTarget.transform.SetParent(null);
             // let her shoot again
