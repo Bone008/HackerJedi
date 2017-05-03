@@ -32,6 +32,9 @@ public abstract class AbstractAbility : MonoBehaviour
         bool wasDown = IsTriggerDown;
         IsTriggerDown = value;
 
+        if (!gameObject.activeSelf)
+            return;
+
         if (value && !wasDown)
             OnTriggerDown();
         else if (!value && wasDown)
@@ -42,6 +45,9 @@ public abstract class AbstractAbility : MonoBehaviour
     {
         bool wasDown = IsGripDown;
         IsGripDown = value;
+
+        if (!gameObject.activeSelf)
+            return;
 
         if (value && !wasDown)
             OnGripDown();

@@ -177,9 +177,6 @@ public class HackerPlayer : MonoBehaviour
     // called by the concrete input handler when the trigger state has changed
     public void SetTriggerDown(HackerHand hand, bool state)
     {
-        if (ultiActive)
-            return;
-
         var abilityScript = GetEquippedAbilityScript(hand);
         if (abilityScript != null)
             abilityScript.SetTriggerDown(state);
@@ -195,9 +192,6 @@ public class HackerPlayer : MonoBehaviour
     // called by the concrete input handler when the grip state has changed
     public void SetGripDown(HackerHand hand, bool state)
     {
-        if (ultiActive)
-            return;
-
         var abilityScript = GetEquippedAbilityScript(hand);
         if (abilityScript != null)
             abilityScript.SetGripDown(state);
