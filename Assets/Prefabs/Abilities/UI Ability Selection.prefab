@@ -1543,6 +1543,7 @@ MonoBehaviour:
   - {fileID: 1237343732971958, guid: db9215448347dee4e93205859e1ee831, type: 2}
   ultimatePrefabs:
   - {fileID: 1586267167299042, guid: 2067441e4b2cb904d9701d99cca49939, type: 2}
+  - {fileID: 1631783005091186, guid: 1136d7b1fa01c6e49b63a2f9d36cde30, type: 2}
 --- !u!114 &114465409937450686
 MonoBehaviour:
   m_ObjectHideFlags: 1
