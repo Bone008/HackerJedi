@@ -298,20 +298,21 @@ public class Master : MonoBehaviour {
 
                 Vector3 platformPos = platform.transform.position;
                 // find adjacent corners
-                Vector3 next = noSpawnCorners
+                Vector3? next = noSpawnCorners
                     .Where(v => (v - last).sqrMagnitude == bs * bs)
                     .OrderBy(v => (platformPos - v).sqrMagnitude)
+                    .Select(v => new Vector3?(v))
                     .FirstOrDefault();
 
-                if (next == null)
+                if (!next.HasValue)
                 {
                     // FIXME this should not happen
                     //Debug.Log("nope" + last);
                     continue;
                 }
                 
-                sorted.Add(next);
-                noSpawnCorners.Remove(next);
+                sorted.Add(next.Value);
+                noSpawnCorners.Remove(next.Value);
             }
             
             // finish circle
