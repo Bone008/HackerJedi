@@ -25,79 +25,79 @@ public static class Util
     }
 
 
-    public static Coroutine Animate<T>(this MonoBehaviour component, float duration, T from, T to, Func<T, T, float, T> interpolationFunc, Action<T> valueCallback)
+    public static Coroutine Animate<T>(this MonoBehaviour component, float duration, T from, T to, Func<T, T, float, T> interpolationFunc, Action<T> valueCallback, bool useRealtime = false)
     {
-        return Animate(component, duration, progress => valueCallback(interpolationFunc(from, to, progress)));
+        return Animate(component, duration, progress => valueCallback(interpolationFunc(from, to, progress)), useRealtime);
     }
-    public static Coroutine Animate<T>(this MonoBehaviour component, float duration, T from, T to, Func<T, T, float, T> interpolationFunc, AnimationCurve curve, Action<T> valueCallback)
+    public static Coroutine Animate<T>(this MonoBehaviour component, float duration, T from, T to, Func<T, T, float, T> interpolationFunc, AnimationCurve curve, Action<T> valueCallback, bool useRealtime = false)
     {
-        return Animate(component, duration, curve.Evaluate, progress => valueCallback(interpolationFunc(from, to, progress)));
+        return Animate(component, duration, curve.Evaluate, progress => valueCallback(interpolationFunc(from, to, progress)), useRealtime);
     }
-    public static Coroutine Animate<T>(this MonoBehaviour component, float duration, T from, T to, Func<T, T, float, T> interpolationFunc, Func<float, float> easingFunc, Action<T> valueCallback)
+    public static Coroutine Animate<T>(this MonoBehaviour component, float duration, T from, T to, Func<T, T, float, T> interpolationFunc, Func<float, float> easingFunc, Action<T> valueCallback, bool useRealtime = false)
     {
-        return Animate(component, duration, easingFunc, progress => valueCallback(interpolationFunc(from, to, progress)));
-    }
-
-    public static Coroutine AnimateScalar(this MonoBehaviour component, float duration, float from, float to, Action<float> valueCallback)
-    {
-        return Animate(component, duration, progress => valueCallback(Mathf.Lerp(from, to, progress)));
-    }
-    public static Coroutine AnimateScalar(this MonoBehaviour component, float duration, float from, float to, AnimationCurve curve, Action<float> valueCallback)
-    {
-        return Animate(component, duration, curve.Evaluate, progress => valueCallback(Mathf.Lerp(from, to, progress)));
-    }
-    public static Coroutine AnimateScalar(this MonoBehaviour component, float duration, float from, float to, Func<float, float> easingFunc, Action<float> valueCallback)
-    {
-        return Animate(component, duration, easingFunc, progress => valueCallback(Mathf.Lerp(from, to, progress)));
+        return Animate(component, duration, easingFunc, progress => valueCallback(interpolationFunc(from, to, progress)), useRealtime);
     }
 
-    public static Coroutine AnimateVector(this MonoBehaviour component, float duration, Vector3 from, Vector3 to, Action<Vector3> valueCallback)
+    public static Coroutine AnimateScalar(this MonoBehaviour component, float duration, float from, float to, Action<float> valueCallback, bool useRealtime = false)
     {
-        return Animate(component, duration, progress => valueCallback(Vector3.Lerp(from, to, progress)));
+        return Animate(component, duration, progress => valueCallback(Mathf.Lerp(from, to, progress)), useRealtime);
     }
-    public static Coroutine AnimateVector(this MonoBehaviour component, float duration, Vector3 from, Vector3 to, AnimationCurve curve, Action<Vector3> valueCallback)
+    public static Coroutine AnimateScalar(this MonoBehaviour component, float duration, float from, float to, AnimationCurve curve, Action<float> valueCallback, bool useRealtime = false)
     {
-        return Animate(component, duration, curve.Evaluate, progress => valueCallback(Vector3.Lerp(from, to, progress)));
+        return Animate(component, duration, curve.Evaluate, progress => valueCallback(Mathf.Lerp(from, to, progress)), useRealtime);
     }
-    public static Coroutine AnimateVector(this MonoBehaviour component, float duration, Vector3 from, Vector3 to, Func<float, float> easingFunc, Action<Vector3> valueCallback)
+    public static Coroutine AnimateScalar(this MonoBehaviour component, float duration, float from, float to, Func<float, float> easingFunc, Action<float> valueCallback, bool useRealtime = false)
     {
-        return Animate(component, duration, easingFunc, progress => valueCallback(Vector3.Lerp(from, to, progress)));
-    }
-
-    public static Coroutine AnimateQuaternion(this MonoBehaviour component, float duration, Quaternion from, Quaternion to, Action<Quaternion> valueCallback)
-    {
-        return Animate(component, duration, progress => valueCallback(Quaternion.Slerp(from, to, progress)));
-    }
-    public static Coroutine AnimateQuaternion(this MonoBehaviour component, float duration, Quaternion from, Quaternion to, AnimationCurve curve, Action<Quaternion> valueCallback)
-    {
-        return Animate(component, duration, curve.Evaluate, progress => valueCallback(Quaternion.Slerp(from, to, progress)));
-    }
-    public static Coroutine AnimateQuaternion(this MonoBehaviour component, float duration, Quaternion from, Quaternion to, Func<float, float> easingFunc, Action<Quaternion> valueCallback)
-    {
-        return Animate(component, duration, easingFunc, progress => valueCallback(Quaternion.Slerp(from, to, progress)));
+        return Animate(component, duration, easingFunc, progress => valueCallback(Mathf.Lerp(from, to, progress)), useRealtime);
     }
 
-    public static Coroutine Animate(this MonoBehaviour component, float duration, Action<float> progressCallback)
+    public static Coroutine AnimateVector(this MonoBehaviour component, float duration, Vector3 from, Vector3 to, Action<Vector3> valueCallback, bool useRealtime = false)
     {
-        return Animate(component, duration, t => t, progressCallback);
+        return Animate(component, duration, progress => valueCallback(Vector3.Lerp(from, to, progress)), useRealtime);
     }
-    public static Coroutine Animate(this MonoBehaviour component, float duration, AnimationCurve curve, Action<float> progressCallback)
+    public static Coroutine AnimateVector(this MonoBehaviour component, float duration, Vector3 from, Vector3 to, AnimationCurve curve, Action<Vector3> valueCallback, bool useRealtime = false)
     {
-        return component.StartCoroutine(_AnimateCoroutine(duration, curve.Evaluate, progressCallback));
+        return Animate(component, duration, curve.Evaluate, progress => valueCallback(Vector3.Lerp(from, to, progress)), useRealtime);
     }
-    public static Coroutine Animate(this MonoBehaviour component, float duration, Func<float, float> easingFunc, Action<float> progressCallback)
+    public static Coroutine AnimateVector(this MonoBehaviour component, float duration, Vector3 from, Vector3 to, Func<float, float> easingFunc, Action<Vector3> valueCallback, bool useRealtime = false)
     {
-        return component.StartCoroutine(_AnimateCoroutine(duration, easingFunc, progressCallback));
+        return Animate(component, duration, easingFunc, progress => valueCallback(Vector3.Lerp(from, to, progress)), useRealtime);
     }
 
-    private static IEnumerator _AnimateCoroutine(float duration, Func<float, float> easingFunc, Action<float> progressCallback)
+    public static Coroutine AnimateQuaternion(this MonoBehaviour component, float duration, Quaternion from, Quaternion to, Action<Quaternion> valueCallback, bool useRealtime = false)
+    {
+        return Animate(component, duration, progress => valueCallback(Quaternion.Slerp(from, to, progress)), useRealtime);
+    }
+    public static Coroutine AnimateQuaternion(this MonoBehaviour component, float duration, Quaternion from, Quaternion to, AnimationCurve curve, Action<Quaternion> valueCallback, bool useRealtime = false)
+    {
+        return Animate(component, duration, curve.Evaluate, progress => valueCallback(Quaternion.Slerp(from, to, progress)), useRealtime);
+    }
+    public static Coroutine AnimateQuaternion(this MonoBehaviour component, float duration, Quaternion from, Quaternion to, Func<float, float> easingFunc, Action<Quaternion> valueCallback, bool useRealtime = false)
+    {
+        return Animate(component, duration, easingFunc, progress => valueCallback(Quaternion.Slerp(from, to, progress)), useRealtime);
+    }
+
+    public static Coroutine Animate(this MonoBehaviour component, float duration, Action<float> progressCallback, bool useRealtime = false)
+    {
+        return Animate(component, duration, t => t, progressCallback, useRealtime);
+    }
+    public static Coroutine Animate(this MonoBehaviour component, float duration, AnimationCurve curve, Action<float> progressCallback, bool useRealtime = false)
+    {
+        return component.StartCoroutine(_AnimateCoroutine(duration, curve.Evaluate, progressCallback, useRealtime));
+    }
+    public static Coroutine Animate(this MonoBehaviour component, float duration, Func<float, float> easingFunc, Action<float> progressCallback, bool useRealtime = false)
+    {
+        return component.StartCoroutine(_AnimateCoroutine(duration, easingFunc, progressCallback, useRealtime));
+    }
+
+    private static IEnumerator _AnimateCoroutine(float duration, Func<float, float> easingFunc, Action<float> progressCallback, bool realtime)
     {
         float t = 0;
         while(t < duration)
         {
             progressCallback(easingFunc(t / duration));
             yield return null;
-            t += Time.deltaTime;
+            t += (realtime ? Time.unscaledDeltaTime : Time.deltaTime);
         }
         progressCallback(1.0f);
     }
