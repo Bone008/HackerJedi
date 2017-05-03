@@ -1141,6 +1141,38 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 417472177}
+--- !u!21 &426965838
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &437569771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1845,31 +1877,31 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114740182320473880, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
-        type: 2}
-      propertyPath: deathScreenElement
-      value: 
-      objectReference: {fileID: 1731512458}
-    - target: {fileID: 23147199606287196, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 1751555006}
-    - target: {fileID: 33010591806280616, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1325071545}
-    - target: {fileID: 114575063829796266, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
-        type: 2}
-      propertyPath: renderCamera
-      value: 
-      objectReference: {fileID: 1076524487}
     - target: {fileID: 114754560841430948, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
         type: 2}
       propertyPath: nonVRFallback
       value: 
       objectReference: {fileID: 454069645}
+    - target: {fileID: 114740182320473880, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+        type: 2}
+      propertyPath: deathScreenElement
+      value: 
+      objectReference: {fileID: 1731512458}
+    - target: {fileID: 114575063829796266, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+        type: 2}
+      propertyPath: renderCamera
+      value: 
+      objectReference: {fileID: 1076524487}
+    - target: {fileID: 33010591806280616, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1318656053}
+    - target: {fileID: 23147199606287196, guid: 5f7267194f8ec9c4a8dc927ad359c7cc,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 426965838}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f7267194f8ec9c4a8dc927ad359c7cc, type: 2}
   m_IsPrefabParent: 0
@@ -3973,7 +4005,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!43 &1325071545
+--- !u!43 &1318656053
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -5320,38 +5352,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!21 &1751555006
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1755478180
 GameObject:
   m_ObjectHideFlags: 0
