@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class UpgradeLaserPointer : MonoBehaviour
 {
@@ -40,4 +41,10 @@ public class UpgradeLaserPointer : MonoBehaviour
         }
     }
 
+    // called by input handlers
+    public void Activate()
+    {
+        if (aimedAt != null)
+            aimedAt.Activate();
+    }
 }

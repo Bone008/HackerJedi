@@ -16,13 +16,14 @@ public class LaserInteractableButton : MonoBehaviour, ILaserInteractable
 
     public void Activate()
     {
-        // TODO
+        // hack
+        button.onClick.Invoke();
     }
 
     public void SetHovered(bool flag)
     {
-        // TODO no idea if this works
-        if(flag) button.OnPointerEnter(null);
+        // hack
+        if (flag) button.OnPointerEnter(null);
         else button.OnPointerExit(null);
     }
 }

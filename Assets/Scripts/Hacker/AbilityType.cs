@@ -6,6 +6,6 @@ public enum AbilityType
     SimpleGun,
     PulseGun,
     JediForcePush,
-    JediLevitate,
+    JediLevitate, // Obsolete!
     Shield
 }

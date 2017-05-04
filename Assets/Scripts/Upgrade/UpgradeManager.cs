@@ -14,20 +14,18 @@ public class UpgradeManager : MonoBehaviour {
     public GameObject firewall;
     #endregion
 
-    public Text text;
+    public Text levelText;
+    public Text pointsText;
 
     private int points;
-
-    // TODO place logic of "hacker and master both have to press continue" here
+    
     void Start()
     {
         points = 2;
 
         GameData.Instance.hackerIsReady = GameData.Instance.masterIsReady = false;
-        if (!GameData.Instance.viveActive)
-            GameData.Instance.hackerIsReady = true;
 
-        hackerReady();
+        levelText.text = string.Format("Hacker has completed stage {0}!", GameData.Instance.currentLevel);
 
         #region
         if (GameData.Instance.suicideRobotUnlocked)
@@ -45,11 +43,13 @@ public class UpgradeManager : MonoBehaviour {
 
     public void hackerReady()
     {
+        Debug.Log("Upgrade: hacker is ready");
         GameData.Instance.hackerIsReady = true;
     }
 
     public void masterReady()
     {
+        Debug.Log("Upgrade: hacker is ready");
         GameData.Instance.masterIsReady = true;
     }
 
@@ -59,9 +59,10 @@ public class UpgradeManager : MonoBehaviour {
         {
             GameData.Instance.hackerIsReady = false;
             GameData.Instance.masterIsReady = false;
+            GameData.Instance.currentLevel++;
             SteamVR_LoadLevel.Begin("game");
         }
-        text.text = "You still can spend " + points + " Points.";
+        pointsText.text = "You can still spend " + points + " Points.";
     }
 
     public void suicideRobotUnlock()
