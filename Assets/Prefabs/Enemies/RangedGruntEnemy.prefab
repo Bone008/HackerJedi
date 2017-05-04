@@ -1261,7 +1261,7 @@ GameObject:
   - component: {fileID: 114833283124922252}
   - component: {fileID: 114031413345367264}
   - component: {fileID: 114126574662180596}
-  - component: {fileID: 82418465629492418}
+  - component: {fileID: 82944210193333488}
   m_Layer: 9
   m_Name: RangedGruntEnemy
   m_TagString: Enemy
@@ -5233,7 +5233,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!82 &82418465629492418
+--- !u!82 &82944210193333488
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -5300,7 +5300,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -5336,11 +5336,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d4d727c0733acf43b8eabdd20823f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClips:
+  enemyBirthAudio:
   - {fileID: 8300000, guid: 8535a96ae23463048a954b656e750b21, type: 3}
   - {fileID: 8300000, guid: 87c08f0e9eda2c449acb06b6c4ce29ca, type: 3}
   - {fileID: 8300000, guid: 99bcac2c1cb2aa04eb3a4cfda0efdfaa, type: 3}
-  _audio: {fileID: 82418465629492418}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemyDeathAudio:
+  - {fileID: 8300000, guid: cab7be39911e5a747a9d1eb77c96fa91, type: 3}
+  - {fileID: 8300000, guid: 58446b6af0aa3a24ebd83b84e005545b, type: 3}
+  audio: {fileID: 82944210193333488}
+  birthMin: 0
+  birthMax: 5
+  deathMin: 0
+  deathMax: 2
 --- !u!114 &114145417781509536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5422,6 +5431,7 @@ MonoBehaviour:
   abilityType: 1
   needsMirroring: 0
   shootSound: {fileID: 8300000, guid: 80c3d0b378cdcd94a9defe48f4bb0a83, type: 3}
+  emptySound: {fileID: 0}
   projectilePrefab: {fileID: 1072651022596434, guid: d4ba919cba755544aab32a7f05819fea,
     type: 2}
   nozzle: {fileID: 4110653267464652}

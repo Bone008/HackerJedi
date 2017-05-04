@@ -6,6 +6,7 @@ using UnityEngine;
 public class Gun : AbstractAbility {
 
     public AudioClip shootSound;
+    public AudioClip emptySound;
     public GameObject projectilePrefab;
     public Transform nozzle;
     public float magazineEmptyCooldown;
@@ -37,14 +38,29 @@ public class Gun : AbstractAbility {
     protected override void OnTriggerDown()
     {
         if (IsCoolingDown)
+        {
+            if (emptySound != null)
+            {
+                var go = new GameObject("Empty sound");
+                go.transform.position = nozzle.position;
+                var audio = go.AddComponent<AudioSource>();
+                audio.clip = emptySound;
+                audio.volume = 0.3f;
+                audio.Play();
+                this.Delayed(emptySound.length + 0.5f, () => Destroy(go));
+            }
             return;
+        }
+            
 
         lastShotFired = Time.timeSinceLevelLoad;
         shotsFired++;
         if(shotsFired >= magazineSize)
         {
+            
             CooldownFor(magazineEmptyCooldown);
             shotsFired = 0;
+            
         }
 
         var aimRay = GetAimRay(nozzle);
