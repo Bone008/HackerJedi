@@ -382,8 +382,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minValue: 0
-  maxValue: 1000
-  _currentValue: 1000
+  maxValue: 600
+  _currentValue: 600
   onChange:
     m_PersistentCalls:
       m_Calls: []
@@ -446,12 +446,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8eb0a60381a764a87add251a7dfae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  signalLostDuration: 5
   deathExplosion: {fileID: 1862322992109182, guid: 5f01c0a5d11e8034b9b6a7f008a4e490,
     type: 2}
-  explosionLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  healthBarPanel: {fileID: 0}
   signalLostPlayer: {fileID: 0}
   signalLostBackground: {fileID: 0}
   masterCamera: {fileID: 0}
