@@ -12,6 +12,7 @@ public class MenuScript : MonoBehaviour {
 	
     public void startGame()
     {
+        GameData.Instance.currentLevel = 1;
         SceneManager.LoadScene(1);
     }
 
