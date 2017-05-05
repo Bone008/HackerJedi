@@ -54,5 +54,8 @@ MonoBehaviour:
   abilityType: 3
   needsMirroring: 0
   dataFragmentsCost: 5
-  forceStrength: 0
-  range: 0
+  forceStrengthL: 500
+  rangeL: 20
+  forceStrengthG: 40
+  forceLiftG: 20
+  rangeG: 20

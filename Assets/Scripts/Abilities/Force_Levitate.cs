@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Force_Levitate : AbstractUltimate
 {
@@ -31,10 +32,15 @@ public class Force_Levitate : AbstractUltimate
         //--> unselect selected Enemies
     }
     protected override void OnGripUp() {
+        if (!activated)
+            return;
+
+        activated = false;
+        DisableUlti();
 
         float moveHeightEnd = (leftHand.position.y + rightHand.position.y) / 2;
         //Check if the controllers are [distance] higher as the position before OnGripsDown()
-        if (activated && moveHeightEnd - startMoveHeightL > 0.5)
+        if (moveHeightEnd - startMoveHeightL > 0.5)
         {
             Debug.Log("Ultimate-Tracking successfull! #For_Lev OnGripUp()");
             //--> Do the Levitate! 
@@ -45,7 +51,7 @@ public class Force_Levitate : AbstractUltimate
             {
                 if (col.tag == "Enemy")
                 {
-                    col.attachedRigidbody.AddForce(0, forceStrengthL, 0, ForceMode.Acceleration);
+                    this.Delayed(0.1f, () => col.attachedRigidbody.AddForce(0, forceStrengthL, 0, ForceMode.Acceleration));
                     Throwable_OBJ obj=col.gameObject.GetComponent<Throwable_OBJ>();
                     obj.setGrabbed();//Enemy-Behaviours disablen?
                     behaviours[counter] = obj;
@@ -59,14 +65,14 @@ public class Force_Levitate : AbstractUltimate
         {
             Debug.Log("Ultimate-Tracking failed! #For_Lev OnGripUp()");
         }
-        activated = false;
     }
     IEnumerator Reset(Throwable_OBJ[] levitated)
     {
         yield return new WaitForSeconds(9);
         foreach (Throwable_OBJ col in levitated)
         {
-            col.setFree();
+            if(col != null)
+                col.setFree();
         }
     }
 
@@ -137,14 +143,15 @@ public class Force_Levitate : AbstractUltimate
                 forceVec.y = forceLiftG;
 
                 //Setzen von Velocity (Effekt des Wegschleuderns)
-                if (dist < 0.5f)
-                {
-                    Debug.Log("affecting enemy " + forceVec, col.gameObject);
+                Debug.Log("affecting enemy " + forceVec, col.gameObject);
 
-                    Rigidbody rb = col.gameObject.GetComponent<Rigidbody>();
-                    rb.AddForce(forceVec, ForceMode.Impulse);
-                    rb.AddTorque(new Vector3(Random.Range(-2, 2), Random.Range(-2, 2), Random.Range(-2, 2)), ForceMode.Impulse);
-                }
+                Rigidbody rb = col.gameObject.GetComponent<Rigidbody>();
+                rb.AddForce(forceVec, ForceMode.Impulse);
+                rb.AddTorque(new Vector3(Random.Range(-2, 2), Random.Range(-2, 2), Random.Range(-2, 2)), ForceMode.Impulse);
+
+                var nma = col.GetComponentInParent<NavMeshAgent>();
+                if (nma != null)
+                    nma.enabled = false;
             }
         }
     }
