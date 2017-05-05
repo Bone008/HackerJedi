@@ -21,6 +21,8 @@ public class GameData
     public int randomizeWorldinProgress = 0;
     public int levelCount = 3;
     public int currentLevel = 1;
+
+    public bool successfulHack;
     
 
     public static GameData Instance

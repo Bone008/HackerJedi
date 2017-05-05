@@ -47,6 +47,13 @@ public class PauseManager : MonoBehaviour {
         GameData.Instance.hackerIsReady = true;
     }
 
+    public void backToMenu()
+    {
+        GameData.Instance.isPaused = false;
+        Time.timeScale = 1;
+        SteamVR_LoadLevel.Begin("StartMenu");
+    }
+
     void pauseGame()
     {
         if (transitioning)
