@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 5a42fd463b644c6499d9072f76a88001
+timeCreated: 1493974573
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Good Times
+  fontNames:
+  - Good Times
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 1
+  ascentCalculationMode: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
