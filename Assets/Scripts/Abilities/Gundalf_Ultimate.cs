@@ -13,7 +13,7 @@ public class Gundalf_U : AbstractUltimate {
     protected override void OnTriggerDown()
     {
         //Check if controllers are [distance] over the headposition and one higher than the other
-        if (!activated && Vector2.Distance(new Vector2(leftHand.position.x,leftHand.position.z),new Vector2(rightHand.position.x,rightHand.position.z))<0.2)//Headposition und Vergleich fehlt hier noch!!!!
+        if (!activated && Vector2.Distance(new Vector2(leftHand.position.x,leftHand.position.z),new Vector2(rightHand.position.x,rightHand.position.z))<0.1)//Headposition und Vergleich fehlt hier noch!!!!
         {
             activated = true;
             startMoveHeight = (leftHand.position.y + rightHand.position.y) / 2;
@@ -39,7 +39,7 @@ public class Gundalf_U : AbstractUltimate {
         {
             Debug.Log("Ultimate-Tracking successfull! #For_Gun OnTriggerUp()");
             //--> Do Force push! 
-            
+            force();
         }
         else
         {

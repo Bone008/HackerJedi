@@ -22,8 +22,8 @@ VideoClipImporter:
   flipVertical: 0
   flipHorizontal: 0
   importAudio: 0
-  sourceAudioChannelCount: 0200
-  sourceAudioSampleRate: 44ac0000
+  sourceAudioChannelCount: 0000
+  sourceAudioSampleRate: 00000000
   targetSettings:
     0:
       enableTranscoding: 0
