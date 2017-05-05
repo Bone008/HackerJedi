@@ -308,6 +308,7 @@ public class HackerPlayer : MonoBehaviour
         }
 
         // load lose_screen scene
+        GameData.Instance.successfulHack = false;
         SteamVR_LoadLevel.Begin("lose_screen", false, 0.1f);
     }
 

@@ -19,14 +19,11 @@ public class GameData
     public bool viveActive = true;
 
     public int randomizeWorldinProgress = 0;
-    public int levels = 3;
+    public int levelCount = 3;
+    public int currentLevel = 1;
 
-    private GameData()
-    {
-        if (instance != null)
-            return;
-        instance = this;
-    }
+    public bool successfulHack;
+    
 
     public static GameData Instance
     {

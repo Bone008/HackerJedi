@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: c58d66982b6458a469509194df720bb1
+timeCreated: 1493975381
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Sofachrome
+  fontNames:
+  - Sofachrome
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 5245f2538f8030e48921c269d5242f74, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

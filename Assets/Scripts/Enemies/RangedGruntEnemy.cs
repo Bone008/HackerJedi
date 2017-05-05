@@ -20,7 +20,7 @@ public class RangedGruntEnemy : EnemyBase
     private bool recovering, timerRunning;
     private float startTimeResting = 0;
     private int collisions = 0;
-    private ShootPlayer shootPlayer;
+    private ShootPlayer shootPlayer; 
 
     void Start()
     {
@@ -84,8 +84,8 @@ public class RangedGruntEnemy : EnemyBase
 
     public void OnDeath()
     {
-       
         Instantiate(explo, transform.position, transform.rotation);
+        //TODO: Wait for sound to play before object is destroyed
         Destroy(gameObject);
     }
 

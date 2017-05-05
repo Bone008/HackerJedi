@@ -21,8 +21,8 @@ public class TurretMaster : MonoBehaviour
     void Update()
     {
         // rotate turret
-        rotX += Input.GetAxis("Mouse X");
-        rotY -= Input.GetAxis("Mouse Y");
+        rotX += Input.GetAxis("Mouse X") * Time.unscaledDeltaTime * 200.0f;
+        rotY -= Input.GetAxis("Mouse Y") * Time.unscaledDeltaTime * 200.0f;
         rotY = Mathf.Clamp(rotY, camRotYMin, camRotYMax);
         turretBarrel.localRotation = Quaternion.Euler(0, rotX, rotY);
 

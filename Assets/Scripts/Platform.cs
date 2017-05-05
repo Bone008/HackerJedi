@@ -80,15 +80,14 @@ public class Platform : MonoBehaviour {
     {
         level.endMarker.GetComponent<EntranceExitRoomController>().CloseGate(() =>
         {
-            if (GameData.Instance.levels > 0)
+            if (GameData.Instance.currentLevel < GameData.Instance.levelCount)
             {
-                GameData.Instance.randomizeWorldinProgress = GameData.Instance.levels * (level.rows + level.lines);
-                GameData.Instance.levels--;
                 SteamVR_LoadLevel.Begin("inbetween_game");
             }
             else
             {
-                SteamVR_LoadLevel.Begin("win_screen");
+                GameData.Instance.successfulHack = true;
+                SteamVR_LoadLevel.Begin("lose_screen");
             }
         });
 

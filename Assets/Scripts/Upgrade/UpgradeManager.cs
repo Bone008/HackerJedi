@@ -7,49 +7,49 @@ public class UpgradeManager : MonoBehaviour {
 
     [Header("Buttons")]
     #region
-    public GameObject suicideRobot;
-    public GameObject sniper;
-    public GameObject turret;
-    public GameObject hackingArea;
-    public GameObject firewall;
+    public Button suicideRobot;
+    public Button sniper;
+    public Button turret;
+    public Button hackingArea;
+    public Button firewall;
     #endregion
 
-    public Text text;
+    public Text levelText;
+    public Text pointsText;
 
     private int points;
-
-    // TODO place logic of "hacker and master both have to press continue" here
+    
     void Start()
     {
         points = 2;
 
         GameData.Instance.hackerIsReady = GameData.Instance.masterIsReady = false;
-        if (!GameData.Instance.viveActive)
-            GameData.Instance.hackerIsReady = true;
 
-        hackerReady();
+        levelText.text = string.Format("Hacker has completed stage {0}!", GameData.Instance.currentLevel);
 
         #region
         if (GameData.Instance.suicideRobotUnlocked)
-            suicideRobot.SetActive(false);
+            suicideRobot.interactable = false;
         if (GameData.Instance.sniperUnlocked)
-            sniper.SetActive(false);
+            sniper.interactable = false;
         if (GameData.Instance.turretUnlocked)
-            turret.SetActive(false);
+            turret.interactable = false;
         if (GameData.Instance.hackingAreaUnlocked)
-            hackingArea.SetActive(false);
+            hackingArea.interactable = false;
         if (GameData.Instance.firewallUnlocked)
-            firewall.SetActive(false);
+            firewall.interactable = false;
         #endregion
     }
 
     public void hackerReady()
     {
+        Debug.Log("Upgrade: hacker is ready");
         GameData.Instance.hackerIsReady = true;
     }
 
     public void masterReady()
     {
+        Debug.Log("Upgrade: hacker is ready");
         GameData.Instance.masterIsReady = true;
     }
 
@@ -59,9 +59,10 @@ public class UpgradeManager : MonoBehaviour {
         {
             GameData.Instance.hackerIsReady = false;
             GameData.Instance.masterIsReady = false;
+            GameData.Instance.currentLevel++;
             SteamVR_LoadLevel.Begin("game");
         }
-        text.text = "You still can spend " + points + " Points.";
+        pointsText.text = "You can still spend " + points + " Points.";
     }
 
     public void suicideRobotUnlock()
@@ -70,7 +71,7 @@ public class UpgradeManager : MonoBehaviour {
             return;
         points--;
         GameData.Instance.suicideRobotUnlocked = true;
-        suicideRobot.SetActive(false);
+        suicideRobot.interactable = false;
     }
 
     public void sniperUnlock()
@@ -79,7 +80,7 @@ public class UpgradeManager : MonoBehaviour {
             return;
         points--;
         GameData.Instance.sniperUnlocked = true;
-        sniper.SetActive(false);
+        sniper.interactable = false;
     }
 
     public void turretUnlock()
@@ -88,7 +89,7 @@ public class UpgradeManager : MonoBehaviour {
             return;
         points--;
         GameData.Instance.turretUnlocked = true;
-        turret.SetActive(false);
+        turret.interactable = false;
     }
 
     public void hackingAreaUnlock()
@@ -97,7 +98,7 @@ public class UpgradeManager : MonoBehaviour {
             return;
         points--;
         GameData.Instance.hackingAreaUnlocked = true;
-        hackingArea.SetActive(false);
+        hackingArea.interactable = false;
     }
 
     public void firewallUnlock()
@@ -106,6 +107,6 @@ public class UpgradeManager : MonoBehaviour {
             return;
         points--;
         GameData.Instance.firewallUnlocked = true;
-        firewall.SetActive(false);
+        firewall.interactable = false;
     }
 }

@@ -18,12 +18,14 @@ public class HackerProgression
     private int pointsToSpend = 0;
     private Dictionary<AbilityType, int> unlockedLevels = new Dictionary<AbilityType, int>();
 
+    public int PointsToSpend { get { return pointsToSpend; } }
+
     private HackerProgression()
     {
         // initialize for level 1 (maybe do this somewhere else?)
         unlockedLevels.Add(AbilityType.SimpleGun, 1);
-        unlockedLevels.Add(AbilityType.PulseGun, 1); // just for testing
-        unlockedLevels.Add(AbilityType.JediForcePush, 1); // just for testing
+        unlockedLevels.Add(AbilityType.JediForcePush, 1);
+        unlockedLevels.Add(AbilityType.PulseGun, 1);
 
         // for debugging: unlock everything
         unlockedLevels[AbilityType.SimpleGun] = maxLevels[AbilityType.SimpleGun];

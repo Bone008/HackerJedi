@@ -6,7 +6,18 @@ using UnityEngine.Events;
 
 public class AbilityUpgradeElement : MonoBehaviour, ILaserInteractable
 {
+    public enum State
+    {
+        Default,
+        Hovered,
+        Purchased,
+        Disabled,
+    }
+
+    public Renderer sphereRenderer;
     public Color hoveredColor;
+    public Color disabledColor;
+    public Color purchasedColor;
 
     public AbilityType abilityType;
     public int level;
@@ -14,23 +25,46 @@ public class AbilityUpgradeElement : MonoBehaviour, ILaserInteractable
     [HideInInspector]
     public UnityEvent onTriggered = new UnityEvent();
 
-    private Renderer sphereRenderer;
+    private State state;
+    private bool StateIsActive { get { return state == State.Default || state == State.Hovered; } }
+
     private Color initialColor;
 
     private void Start()
     {
-        sphereRenderer = GetComponentInChildren<Renderer>();
         initialColor = sphereRenderer.material.color;
+    }
+
+    public void SetState(State state)
+    {
+        if (this.state == state)
+            return; // no chagne
+
+        Color targetColor;
+        switch(state)
+        {
+            case State.Default: targetColor = initialColor; break;
+            case State.Disabled: targetColor = disabledColor; break;
+            case State.Hovered: targetColor = hoveredColor; break;
+            case State.Purchased: targetColor = purchasedColor; break;
+            default: throw new ArgumentException("unknown state: " + state);
+        }
+        this.state = state;
+
+        this.Animate(0.2f, sphereRenderer.material.color, targetColor, Color.Lerp, c => sphereRenderer.material.color = c);
     }
 
     public void Activate()
     {
+        if (!StateIsActive)
+            return;
+
         onTriggered.Invoke();
     }
 
     public void SetHovered(bool flag)
     {
-        var targetColor = (flag ? hoveredColor : initialColor);
-        this.Animate(0.2f, sphereRenderer.material.color, targetColor, Color.Lerp, c => sphereRenderer.material.color = c);
+        if (StateIsActive)
+            SetState(flag ? State.Hovered : State.Default);
     }
 }

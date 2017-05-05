@@ -24,13 +24,13 @@ public class PauseManager : MonoBehaviour {
 
         if (GameData.Instance.isPaused)
         {
-            if (Input.GetKey("r"))
+            if (Input.GetKeyDown("r"))
                 hackerResumeGame();
-            if (Input.GetKey(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape))
                 masterResumeGame();
             unpauseGame();
         }
-        else if(Input.GetKeyDown(KeyCode.Escape) || GameData.Instance.hackerIsReady)
+        else if((Input.GetKeyDown(KeyCode.Escape) || GameData.Instance.hackerIsReady) && !GameData.Instance.isPaused)
         {
             pauseGame();
         }
@@ -45,6 +45,13 @@ public class PauseManager : MonoBehaviour {
     {
         Debug.Log("Hacker ready");
         GameData.Instance.hackerIsReady = true;
+    }
+
+    public void backToMenu()
+    {
+        GameData.Instance.isPaused = false;
+        Time.timeScale = 1;
+        SteamVR_LoadLevel.Begin("StartMenu");
     }
 
     void pauseGame()
@@ -129,7 +136,7 @@ public class PauseManager : MonoBehaviour {
         {
             textMaster.text = textHacker.text = text1.text = text2.text = text3.text = text4.text = "pause";
         }
-        else if (!GameData.Instance.hackerIsReady || !GameData.Instance.masterIsReady)
+        else if ((!GameData.Instance.hackerIsReady || !GameData.Instance.masterIsReady) && !transitioning)
         {
             if(!GameData.Instance.masterIsReady)
                 textHacker.text = text1.text = text2.text = text3.text = text4.text = "wait for the master";
@@ -145,6 +152,7 @@ public class PauseManager : MonoBehaviour {
 
     IEnumerator continueWarning()
     {
+        GameData.Instance.hackerIsReady = false;
         masterUI.SetActive(false);
         if (!GameData.Instance.viveActive)
             hackerUI.SetActive(false);
