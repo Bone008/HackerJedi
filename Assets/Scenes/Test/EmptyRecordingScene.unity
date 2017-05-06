@@ -1237,9 +1237,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76aaf52d76a5b047aa4850acaa3870e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  on: 0
   startPoint: {fileID: 0}
   endPoint: {fileID: 0}
-  lookAt: {fileID: 115160091}
+  lookAt: {fileID: 0}
   followObject: {fileID: 0}
   cam: {fileID: 439256065}
   moveSpeed: 3
@@ -1247,8 +1248,9 @@ MonoBehaviour:
   fovChangeRate: 1
   followOffset: {x: 0, y: 0, z: 0}
   fovValues: 3000000028000000
+  camDepth: 1
   controls: 0
-  fovChange: 1
+  fovChange: 0
 --- !u!114 &439256062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1316,7 +1318,7 @@ Camera:
     m_Bits: 4294965247
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
   m_TargetEye: 0
   m_HDR: 1
   m_AllowMSAA: 1
