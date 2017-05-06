@@ -5,11 +5,13 @@ using UnityEngine;
 public class RecorderCamScript : MonoBehaviour {
 
     public Transform startPoint, endPoint, lookAt, followObject;
+    public Camera cam;
     public float moveSpeed = 3;
-    public float stoppingDistance;
+    public float stoppingDistance, fovChangeRate;
     public Vector3 followOffset;
+    public int[] fovValues = { 48, 40 };
 
-    public bool controls;
+    public bool controls, fovChange;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +26,7 @@ public class RecorderCamScript : MonoBehaviour {
 	void Update () {
 
         float step = moveSpeed * Time.deltaTime;
+        float fovStep = fovChangeRate * Time.deltaTime;
 
         if (controls)
             ControlManually(step);
@@ -32,14 +35,21 @@ public class RecorderCamScript : MonoBehaviour {
         else if (followObject != null)
             transform.position = followObject.position + followOffset;
 
+        if (fovChange)
+            cam.fieldOfView += fovStep;
+
         if (lookAt != null)
             transform.LookAt(lookAt);
 
         if (Input.GetKeyDown("m"))
             controls = !controls;
 
-        if (Input.GetKeyDown("n"))
+        if (Input.GetKeyDown("n") && startPoint != null)
+        {
             transform.position = startPoint.position;
+            cam.fieldOfView = fovValues[1];
+        }
+            
 
 	}
 

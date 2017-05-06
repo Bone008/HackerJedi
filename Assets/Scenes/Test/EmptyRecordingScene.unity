@@ -1241,10 +1241,14 @@ MonoBehaviour:
   endPoint: {fileID: 0}
   lookAt: {fileID: 115160091}
   followObject: {fileID: 0}
+  cam: {fileID: 439256065}
   moveSpeed: 3
   stoppingDistance: 0
+  fovChangeRate: 1
   followOffset: {x: 0, y: 0, z: 0}
+  fovValues: 3000000028000000
   controls: 0
+  fovChange: 1
 --- !u!114 &439256062
 MonoBehaviour:
   m_ObjectHideFlags: 0
