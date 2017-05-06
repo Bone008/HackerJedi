@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class RecorderCamScript : MonoBehaviour {
 
-    public Transform startPoint, endPoint, lookAt;
+    public Transform startPoint, endPoint, lookAt, followObject;
     public float moveSpeed = 3;
+    public float stoppingDistance;
+    public Vector3 followOffset;
 
     public bool controls;
 
 	// Use this for initialization
-	void Start () {        
+	void Start () {
 
         if (startPoint != null)
             transform.position = startPoint.position;
-
+        else
+            startPoint = transform;
 	}
 	
 	// Update is called once per frame
@@ -23,23 +26,20 @@ public class RecorderCamScript : MonoBehaviour {
         float step = moveSpeed * Time.deltaTime;
 
         if (controls)
-        {
             ControlManually(step);
-        }
-        else
-        {
-            if(endPoint != null)
-                transform.position = Vector3.MoveTowards(transform.position, endPoint.position, step);
-        }
+        else if (endPoint != null && Vector3.Distance(transform.position, endPoint.position) > stoppingDistance)
+            transform.position = Vector3.MoveTowards(transform.position, endPoint.position, step);
+        else if (followObject != null)
+            transform.position = followObject.position + followOffset;
 
         if (lookAt != null)
             transform.LookAt(lookAt);
 
-
         if (Input.GetKeyDown("m"))
             controls = !controls;
 
-
+        if (Input.GetKeyDown("n"))
+            transform.position = startPoint.position;
 
 	}
 
