@@ -316,7 +316,10 @@ public class HackerPlayer : MonoBehaviour
     {
         // TODO remove
         if (Input.GetKeyDown(KeyCode.C))
+        {
             GetComponent<DataFragmentResource>().ChangeValue(100);
+            GetComponent<HealthResource>().ChangeValue(100000);
+        }
     }
 
     private void EnableAbility(HackerHand hand, AbilityType type)

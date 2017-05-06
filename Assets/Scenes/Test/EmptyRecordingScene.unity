@@ -376,7 +376,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 115160090}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 72df3b1a5c12ec944bae0242e2638364, type: 3}
@@ -1002,6 +1002,34 @@ GameObject:
   m_PrefabParentObject: {fileID: 1655546284511010, guid: 4a7250526b553c545a571b5923b9d7c2,
     type: 2}
   m_PrefabInternal: {fileID: 555272216}
+--- !u!1 &346718543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 346718544}
+  m_Layer: 0
+  m_Name: CameraPathStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &346718544
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 346718543}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &404529394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1197,7 +1225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &439256061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1212,15 +1240,41 @@ MonoBehaviour:
   startPoint: {fileID: 0}
   endPoint: {fileID: 0}
   lookAt: {fileID: 115160091}
+  followObject: {fileID: 0}
+  cam: {fileID: 439256065}
   moveSpeed: 3
+  stoppingDistance: 0
+  fovChangeRate: 1
+  followOffset: {x: 0, y: 0, z: 0}
+  fovValues: 3000000028000000
   controls: 0
---- !u!81 &439256062
-AudioListener:
+  fovChange: 1
+--- !u!114 &439256062
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 439256060}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f87e4989c5e703e428df4339d59e2c72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blurShader: {fileID: 4800000, guid: 1855d9636fad3914bacc4a543165c974, type: 3}
+  compositeShader: {fileID: 4800000, guid: e384de4389ba527479054baf0ddb1d3e, type: 3}
+  glowRenderShader: {fileID: 4800000, guid: c04b7cae8accdfb4e9c2648823ff39d7, type: 3}
+  glowLayer:
+    serializedVersion: 2
+    m_Bits: 4294964959
+  renderCamera: {fileID: 1076524487}
+  showCutoutGlow: 0
+  showTransparentGlow: 1
+  glowType: 0
+  fullScreenGlowTint: {r: 1, g: 1, b: 1, a: 0}
+  blurSpread: 0.6
+  blurIterations: 0
+  glowIntensity: 0.57
+  samples: 2
 --- !u!92 &439256063
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1253,17 +1307,17 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 45
+  field of view: 48
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294965247
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 1
-  m_TargetEye: 3
+  m_TargetEye: 0
   m_HDR: 1
   m_AllowMSAA: 1
   m_ForceIntoRT: 0
@@ -1661,6 +1715,11 @@ Prefab:
       propertyPath: song
       value: 
       objectReference: {fileID: 115160093}
+    - target: {fileID: 114033404112131116, guid: efaccc3edafe6c64eaf33a00224f69ad,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efaccc3edafe6c64eaf33a00224f69ad, type: 2}
   m_IsPrefabParent: 0
@@ -1711,6 +1770,10 @@ Prefab:
     - target: {fileID: 1655546284511010, guid: 4a7250526b553c545a571b5923b9d7c2, type: 2}
       propertyPath: m_Name
       value: EntranceRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655546284511010, guid: 4a7250526b553c545a571b5923b9d7c2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a7250526b553c545a571b5923b9d7c2, type: 2}
@@ -2181,6 +2244,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 713660598}
+--- !u!1 &735185181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 735185182}
+  m_Layer: 0
+  m_Name: CameraPathEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &735185182
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 735185181}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &749900212
 GameObject:
   m_ObjectHideFlags: 0
@@ -4594,6 +4685,10 @@ Prefab:
     - target: {fileID: 1655546284511010, guid: 4a7250526b553c545a571b5923b9d7c2, type: 2}
       propertyPath: m_Name
       value: ExitRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1655546284511010, guid: 4a7250526b553c545a571b5923b9d7c2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a7250526b553c545a571b5923b9d7c2, type: 2}

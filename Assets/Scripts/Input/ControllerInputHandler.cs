@@ -34,6 +34,8 @@ public class ControllerInputHandler : MonoBehaviour {
     {
         controller.TriggerClicked -= Controller_TriggerClicked;
         controller.TriggerUnclicked -= Controller_TriggerUnclicked;
+        controller.Gripped -= Controller_Gripped;
+        controller.Ungripped -= Controller_Ungripped;
         controller.PadClicked -= Controller_PadClicked;
         controller.PadTouched -= Controller_PadTouched;
         controller.PadUntouched -= Controller_PadUntouched;

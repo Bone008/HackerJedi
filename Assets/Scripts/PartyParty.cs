@@ -23,8 +23,8 @@ public class PartyParty : MonoBehaviour {
 
     void Update () {
         float t = Time.time * (songBPM / 60.0f);
-        Color c = (((int)t % 2) == 0 ? Color.red : Color.red);
-        blockMaterial.SetColor("_MKGlowColor", Color.Lerp(c, Color.blue, t % 1.0f));
+        Color c = (((int)t % 2) == 0 ? new Vector4(0, 0.5f, 1, 1) : new Vector4(1, 0, 0, 1)); //new Vector4(0, 0.5f, 1, 1);
+        blockMaterial.SetColor("_MKGlowColor", Color.Lerp(c, new Vector4(0.75f, 0f, 1f, 1f)/*Color.red*/, t % 1.0f));
 
         if (Time.timeScale > 0 && song != null)
             song.pitch = Time.timeScale;
