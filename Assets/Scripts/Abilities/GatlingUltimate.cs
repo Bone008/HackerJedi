@@ -11,8 +11,24 @@ public class GatlingUltimate : AbstractUltimate
     public float triggerDownTime = 2.0f;
     private float currentTriggerDownTime;
     private bool triggerDown = false;
+    private Transform relationObj;
+    private float NonVROffset=0;
 
     //Verschoben in Oberklasse//private bool activated = false; // if the actual gun has been pulled out
+
+    private void Start()
+    {
+        try
+        {
+            relationObj = GameObject.FindGameObjectWithTag("Camera (head)").transform;
+        }
+        catch(UnityException){
+            relationObj = GameObject.FindGameObjectWithTag("Platform").transform;
+            NonVROffset = 2;
+            Debug.Log("Second_Try");
+        }
+        Debug.Log("Rel Übergeben");
+    }
 
     private void Update()
     {
@@ -46,14 +62,21 @@ public class GatlingUltimate : AbstractUltimate
             t.position = leftHand.position;
             t.rotation = Quaternion.LookRotation(rightHand.position - leftHand.position);
             t.localScale = new Vector3(0.05f, 0.05f, (rightHand.position - leftHand.position).magnitude * 2);
+            
+            //Gatling_Gun an rechter Hand positionieren und abhängig von linker Hand rotieren
+
+
+
         }
     }
 
     protected override void OnTriggerDown()
     {
         // mark trigger down && start timer
-        if (!activated)
+        if (!activated && leftHand.position.y > relationObj.position.y+NonVROffset && rightHand.position.y > relationObj.position.y+NonVROffset)
         {
+            //Test auf Abstand zu Head fehlt noch (Umsetzung mit NonVR ist noch schwierig)
+            Debug.Log("Geste erkannt");
             triggerDown = true;
             currentTriggerDownTime = triggerDownTime;
         }
