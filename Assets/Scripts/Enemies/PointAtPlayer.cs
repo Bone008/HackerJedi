@@ -45,7 +45,7 @@ public class PointAtPlayer : MonoBehaviour
         
 	    if (Vector3.Angle(selfContext.forward, (player.transform.position - selfContext.position)) < aimingFOV)
 	    {
-            Debug.DrawLine(transform.position, aimPosition);
+            //Debug.DrawLine(transform.position, aimPosition);
             transform.rotation = Quaternion.LookRotation(aimPosition - transform.position) * Quaternion.LookRotation(-forwardDirection) * Quaternion.Euler(0, 90, 0);
 	    }
 	    else
