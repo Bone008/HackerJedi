@@ -15,8 +15,7 @@ public class Platform : MonoBehaviour {
 
     private Vector3 platformOffset = Vector3.up * .6f;
 
-    bool forward;
-
+    private float initialVelocity;
     private float startTime;
     private float journeyLength;
 
@@ -24,13 +23,20 @@ public class Platform : MonoBehaviour {
 
     void Start ()
     {
+        initialVelocity = velocity;
+
         nextRailPart();
         transform.position = startPoint + platformOffset;
-
-	}
+    }
 
     void Update()
     {
+        // cheat
+        if (Input.GetKeyDown(KeyCode.F))
+            velocity = 40;
+        if (Input.GetKeyUp(KeyCode.F))
+            velocity = initialVelocity;
+
         blockedTime -= Time.deltaTime;
 
         // abort if stopped by a obstacle. add deltaTime to have correct Lerp after re-activating
