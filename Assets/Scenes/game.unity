@@ -1128,6 +1128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76aaf52d76a5b047aa4850acaa3870e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  on: 0
   startPoint: {fileID: 0}
   endPoint: {fileID: 0}
   lookAt: {fileID: 115160091}
@@ -1138,6 +1139,7 @@ MonoBehaviour:
   fovChangeRate: 0
   followOffset: {x: 0, y: 0, z: 0}
   fovValues: 3000000028000000
+  camDepth: 1
   controls: 0
   fovChange: 0
 --- !u!81 &439256062
@@ -6155,6 +6157,8 @@ GameObject:
   - component: {fileID: 2051035141}
   - component: {fileID: 2051035143}
   - component: {fileID: 2051035142}
+  - component: {fileID: 2051035144}
+  - component: {fileID: 2051035145}
   m_Layer: 0
   m_Name: Music
   m_TagString: Untagged
@@ -6266,6 +6270,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30759831af78d22479419dfa181479aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2051035144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2051035140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d04cb1ab2569364cabcdaed0228e9e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!169 &2051035145
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2051035140}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0.22727273
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &2063838945
 GameObject:
   m_ObjectHideFlags: 0
