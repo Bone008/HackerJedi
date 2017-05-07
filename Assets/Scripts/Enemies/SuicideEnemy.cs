@@ -28,6 +28,8 @@ public class SuicideEnemy : EnemyBase {
     public float movementSpeed;
     public float startKamikazeDist;
 
+    private Throwable_OBJ throwable;
+
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -39,6 +41,8 @@ public class SuicideEnemy : EnemyBase {
         //    agent.destination = platform.position;
 
         //GetComponent<Renderer>().material.color = color1;
+
+        throwable = GetComponent<Throwable_OBJ>();
     }
 
     private void MoveTowards(Vector3 target)
@@ -55,6 +59,12 @@ public class SuicideEnemy : EnemyBase {
 
     void Update()
     {
+        if (throwable.IsGrabbed())
+        {
+            suicideProgress = SuicideProgress.OnFloor;
+            return;
+        }
+
         switch (suicideProgress)
         {
             case SuicideProgress.OnFloor:
