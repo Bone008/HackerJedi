@@ -32,6 +32,8 @@ public class AbilityUpgradeElement : MonoBehaviour, ILaserInteractable
 
     [Tooltip("location offset when the bubble is clicked once")]
     public Vector3 previewOffset;
+    [Tooltip("minimum Y position of bubble when previewing")]
+    public float previewMinY;
     public float previewTransitionTime1;
     public float previewTransitionTime2;
 
@@ -134,7 +136,10 @@ public class AbilityUpgradeElement : MonoBehaviour, ILaserInteractable
     private IEnumerator OpenPreview()
     {
         // move to foreground
-        yield return this.AnimateVector(previewTransitionTime1, initialPosition, initialPosition + previewOffset, Util.EaseInOut01, p => transform.localPosition = p);
+        Vector3 previewPos = initialPosition + previewOffset;
+        if (previewPos.y < previewMinY)
+            previewPos.y = previewMinY;
+        yield return this.AnimateVector(previewTransitionTime1, initialPosition, previewPos, Util.EaseInOut01, p => transform.localPosition = p);
 
         // show details panel
         detailsCanvas.gameObject.SetActive(true);
@@ -154,7 +159,7 @@ public class AbilityUpgradeElement : MonoBehaviour, ILaserInteractable
         detailsCanvas.gameObject.SetActive(false);
         
         // move to background
-        yield return this.AnimateVector(previewTransitionTime1, initialPosition + previewOffset, initialPosition, Util.EaseInOut01, p => transform.localPosition = p);
+        yield return this.AnimateVector(previewTransitionTime1, transform.localPosition, initialPosition, Util.EaseInOut01, p => transform.localPosition = p);
         
         previewTransition = null;
     }

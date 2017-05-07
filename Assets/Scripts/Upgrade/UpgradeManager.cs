@@ -4,7 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour {
-    
+
+    [Header("Ready texts")]
+    public Text readyHackerText;
+    public Text readyMasterText;
+
     [Header("Buttons")]
     public Button suicideRobot;
     public Button sniper;
@@ -41,12 +45,22 @@ public class UpgradeManager : MonoBehaviour {
     {
         GameData.Instance.hackerIsReady = !GameData.Instance.hackerIsReady;
         Debug.Log("Upgrade: hacker is ready: " + GameData.Instance.hackerIsReady);
+        UpdateReadyTexts();
     }
 
     public void masterToggleReady()
     {
         GameData.Instance.masterIsReady = !GameData.Instance.masterIsReady;
         Debug.Log("Upgrade: master is ready: " + GameData.Instance.masterIsReady);
+        UpdateReadyTexts();
+    }
+
+    private void UpdateReadyTexts()
+    {
+        bool h = GameData.Instance.hackerIsReady;
+        bool m = GameData.Instance.masterIsReady;
+        readyHackerText.text = (h && m ? "Let's go!" : (h ? "wait for master" : "Continue"));
+        readyMasterText.text = (h && m ? "Let's go!" : (m ? "wait for hacker" : "Continue"));
     }
 
     public void Update()

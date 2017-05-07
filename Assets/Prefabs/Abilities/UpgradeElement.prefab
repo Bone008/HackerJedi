@@ -317,6 +317,7 @@ MonoBehaviour:
   detailsDescriptionUI: {fileID: 114031303231436082}
   detailsUnlockUI: {fileID: 114486635405592070}
   previewOffset: {x: 0, y: 0, z: -0.8}
+  previewMinY: 0.3
   previewTransitionTime1: 0.4
   previewTransitionTime2: 0.25
   abilityType: 0
