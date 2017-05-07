@@ -409,7 +409,7 @@ MonoBehaviour:
   abilityType: 1
   needsMirroring: 0
   shootSound: {fileID: 8300000, guid: 145ab21ffaa98064b95f9b9d39c1eaeb, type: 3}
-  emptySound: {fileID: 8300000, guid: 8c6707be4cb84fd46964a6640d3f5e91, type: 3}
+  emptySound: {fileID: 8300000, guid: 04a847bc645cc924caa30a084019242f, type: 3}
   projectilePrefab: {fileID: 1072651022596434, guid: d4ba919cba755544aab32a7f05819fea,
     type: 2}
   nozzle: {fileID: 4254166129595500}

@@ -22,6 +22,7 @@ public class RangedGruntEnemy : EnemyBase
     private int collisions = 0;
     private ShootPlayer shootPlayer; 
 
+    
     void Start()
     {
         // locate player
@@ -86,7 +87,9 @@ public class RangedGruntEnemy : EnemyBase
     {
         Instantiate(explo, transform.position, transform.rotation);
         //TODO: Wait for sound to play before object is destroyed
+        //TODO instantiate sound object
         Destroy(gameObject);
+        
     }
 
     private void handleFunctionalEnemy(float dist)
