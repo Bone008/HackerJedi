@@ -42,16 +42,11 @@ public class AudiomanagerEnemies : MonoBehaviour {
     //Plays sound when enemy dies
     private void sayGoodbye()
     {
-        GameObject soundObj = new GameObject("Enemy Dying");
-        soundObj.transform.position = transform.position;
-        AudioSource sound = soundObj.AddComponent<AudioSource>() as AudioSource;
-        soundObj.AddComponent<KillAudioObject>();
-
         rnd = Random.Range(deathMin, deathMax);
         if (rnd < enemyDeathAudio.Length)
         {
-            sound.clip = enemyDeathAudio[rnd];
-            sound.Play();
+            audio.clip = enemyDeathAudio[rnd];
+            audio.Play();
         }
     }
      

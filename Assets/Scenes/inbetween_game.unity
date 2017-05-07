@@ -2231,8 +2231,6 @@ MonoBehaviour:
   uiLayerMask:
     serializedVersion: 2
     m_Bits: 32
-  acceptSFX: {fileID: 8300000, guid: 867bb9e24d2b1f44789b3caae35e1a87, type: 3}
-  mouserollSFX: {fileID: 8300000, guid: b2d03382b5efb3d40b2ac49fa83739b0, type: 3}
 --- !u!1 &968734106
 GameObject:
   m_ObjectHideFlags: 0
@@ -3692,8 +3690,6 @@ MonoBehaviour:
   uiLayerMask:
     serializedVersion: 2
     m_Bits: 32
-  acceptSFX: {fileID: 8300000, guid: 867bb9e24d2b1f44789b3caae35e1a87, type: 3}
-  mouserollSFX: {fileID: 8300000, guid: b2d03382b5efb3d40b2ac49fa83739b0, type: 3}
 --- !u!1001 &1715065769
 Prefab:
   m_ObjectHideFlags: 0
@@ -4140,8 +4136,6 @@ MonoBehaviour:
   uiLayerMask:
     serializedVersion: 2
     m_Bits: 32
-  acceptSFX: {fileID: 8300000, guid: 867bb9e24d2b1f44789b3caae35e1a87, type: 3}
-  mouserollSFX: {fileID: 8300000, guid: b2d03382b5efb3d40b2ac49fa83739b0, type: 3}
 --- !u!114 &1931052990
 MonoBehaviour:
   m_ObjectHideFlags: 0
