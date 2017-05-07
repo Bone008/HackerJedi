@@ -5488,7 +5488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 114519433697907994}
   hitRange: 15
-  fireDelay: 0.6
+  fireDelay: 0.8
 --- !u!136 &136546178845971964
 CapsuleCollider:
   m_ObjectHideFlags: 1

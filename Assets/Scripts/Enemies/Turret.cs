@@ -48,7 +48,7 @@ public class Turret : EnemyBase
 
         // start time scale before movement finished
         this.Delayed(camTransitionTime - timeScaleTransitionTime,
-            () => this.Animate(timeScaleTransitionTime, p => Time.timeScale = Mathf.Lerp(1.0f, 0.2f, p), true));
+            () => this.Animate(timeScaleTransitionTime, p => Time.timeScale = Mathf.Lerp(1.0f, 0.4f, p), true));
     }
 
     void Update()

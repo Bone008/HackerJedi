@@ -9261,7 +9261,8 @@ MonoBehaviour:
   color2: {r: 0.022058845, g: 0.015084357, b: 0.015084357, a: 0}
   targetHeight: 15
   movementSpeed: 7.5
-  startKamikazeDist: 9
+  startKamikazeDist: 6
+  disablePlatformDuration: 4
 --- !u!114 &114885454486330694
 MonoBehaviour:
   m_ObjectHideFlags: 1

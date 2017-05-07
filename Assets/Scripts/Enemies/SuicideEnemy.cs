@@ -27,6 +27,7 @@ public class SuicideEnemy : EnemyBase {
     public float targetHeight;
     public float movementSpeed;
     public float startKamikazeDist;
+    public float disablePlatformDuration;
 
     private Throwable_OBJ throwable;
 
@@ -109,7 +110,7 @@ public class SuicideEnemy : EnemyBase {
                 if (sqDist <= hitRange * hitRange)
                 {
                     //StopCoroutine(blinkCoroutine);
-                    platform.GetComponent<Platform>().DisableForSec(2.0f);
+                    platform.GetComponent<Platform>().DisableForSec(disablePlatformDuration);
                     Destroy(gameObject);
                     return;
                 }
