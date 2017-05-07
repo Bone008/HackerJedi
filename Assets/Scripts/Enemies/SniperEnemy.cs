@@ -9,7 +9,6 @@ public class SniperEnemy : EnemyBase {
     public Gun weapon;
 
     public VolumetricLineBehavior aimLaser;
-    public VolumetricLineBehavior preFireLaser;
 
     public GameObject nozzle;
     public GameObject eye;
@@ -19,6 +18,9 @@ public class SniperEnemy : EnemyBase {
     private Transform player;
     private CapsuleCollider playerCollider;
     private Platform platform;
+
+    public Color colorNormal;
+    public Color colorPrefire;
     
     private enum SniperMode
     {
@@ -42,6 +44,8 @@ public class SniperEnemy : EnemyBase {
 
         // set weapon to hit player
         weapon.layer = LayerMask.NameToLayer("Hacker");
+
+        aimLaser.LineColor = colorNormal;
     }
 	
 	void Update ()
@@ -59,12 +63,6 @@ public class SniperEnemy : EnemyBase {
 
             // laser the shit out of player
             aimLaser.EndPos = aimLaser.transform.InverseTransformPoint(player.position - new Vector3(0, playerCollider.height / 3, 0));            
-        }
-        else if(currentMode == SniperMode.Fire)
-        {
-            // update start position of prefire laser
-            if (preFireLaser.isActiveAndEnabled)
-                preFireLaser.StartPos = preFireLaser.transform.InverseTransformPoint(eye.transform.position);
         }
     }
 
@@ -87,8 +85,8 @@ public class SniperEnemy : EnemyBase {
             float dist = Vector3.Distance(nozzle.transform.position, player.transform.position);
             float totalTime = (dist / weapon.projectileSpeed) + preAimTime;
             Vector3 preAimPos = player.transform.position - new Vector3(0, playerCollider.height / 3, 0) + totalTime * platform.getVelocity();
-            preFireLaser.gameObject.SetActive(true);
-            preFireLaser.EndPos = preFireLaser.transform.InverseTransformPoint(preAimPos);
+            aimLaser.LineColor = colorPrefire;
+            aimLaser.EndPos = aimLaser.transform.InverseTransformPoint(preAimPos);
 
             // disable auto-rotation of weapon
             PointAtPlayer pap = weapon.gameObject.GetComponent<PointAtPlayer>();
@@ -111,7 +109,7 @@ public class SniperEnemy : EnemyBase {
                 weapon.FireOnce();                             
             });
             this.Delayed(totalTime, () => {
-                preFireLaser.gameObject.SetActive(false);
+                aimLaser.LineColor = colorNormal;
                 pap.enabled = true;
             });
 

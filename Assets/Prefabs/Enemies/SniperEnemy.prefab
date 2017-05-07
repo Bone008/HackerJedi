@@ -1862,24 +1862,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1888363893591596
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4011318880638958}
-  - component: {fileID: 33873454168082668}
-  - component: {fileID: 23234324091935950}
-  - component: {fileID: 114196929905824456}
-  m_Layer: 9
-  m_Name: PreFireLaser
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1906786560182976
 GameObject:
   m_ObjectHideFlags: 1
@@ -2048,19 +2030,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4011318880638958
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1888363893591596}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4606904959285686}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4024715755908590
 Transform:
   m_ObjectHideFlags: 1
@@ -3153,7 +3122,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4059887839297556}
-  - {fileID: 4011318880638958}
   - {fileID: 4789110100831738}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -3411,7 +3379,7 @@ Transform:
   - {fileID: 4708768515731212}
   - {fileID: 4971848914598976}
   m_Father: {fileID: 4606904959285686}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4792129089241334
 Transform:
@@ -4551,38 +4519,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: ee00204d7fc40984fb2d6c89f34be926, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!23 &23234324091935950
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1888363893591596}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 51fdd660edd89cd4da34cb3bbb46f9cf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7227,13 +7163,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1105096873730562}
   m_Mesh: {fileID: 4300112, guid: ae76fab2b9552da43baee7a1bac44578, type: 3}
---- !u!33 &33873454168082668
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1888363893591596}
-  m_Mesh: {fileID: 0}
 --- !u!33 &33899240783080768
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -7367,22 +7296,6 @@ MonoBehaviour:
   magazineSize: 1
   projectileSpeed: 80
   damageAmount: 50
---- !u!114 &114196929905824456
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1888363893591596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0884dceb0d4308c4eb8bc763c8f8deae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_startPos: {x: 0, y: 0, z: 0}
-  m_endPos: {x: 0, y: 0, z: 0}
-  m_setLinePropertiesAtStart: 1
-  m_lineColor: {r: 0.8455882, g: 0.19274436, b: 0.19274436, a: 0}
-  m_lineWidth: 0.1
 --- !u!114 &114202275992707126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7468,10 +7381,11 @@ MonoBehaviour:
   explo: {fileID: 1862322992109182, guid: 5f01c0a5d11e8034b9b6a7f008a4e490, type: 2}
   weapon: {fileID: 114123068927841032}
   aimLaser: {fileID: 114830508458106418}
-  preFireLaser: {fileID: 114196929905824456}
   nozzle: {fileID: 1266098950750994}
   eye: {fileID: 1759201727946498}
   preAimTime: 2
+  colorNormal: {r: 0.8088235, g: 0.7628863, b: 0.14273356, a: 0}
+  colorPrefire: {r: 0.8602941, g: 0.08855967, b: 0.08855967, a: 0}
 --- !u!136 &136960136822444534
 CapsuleCollider:
   m_ObjectHideFlags: 1
