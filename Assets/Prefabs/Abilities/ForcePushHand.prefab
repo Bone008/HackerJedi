@@ -9156,7 +9156,6 @@ MonoBehaviour:
   abilityType: 3
   needsMirroring: 1
   cooldown: 2
-  _player: {fileID: 0}
   forceStrength: 25
   forceLift: 10
   range: 20
@@ -9169,6 +9168,7 @@ MonoBehaviour:
     type: 2}
   grabRange: 20
   aimHitTolerance: 0.5
+  grabLifeDrainPerSecond: 25
   grabAudio: {fileID: 82374629362677266}
 --- !u!120 &120723517647932706
 LineRenderer:

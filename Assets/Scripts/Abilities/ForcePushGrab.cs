@@ -5,7 +5,6 @@ using UnityEngine;
 public class ForcePushGrab : AbstractAbility {
 
     public float cooldown; // for both
-    public GameObject _player;
     private Animator animator;
 
     // ==== Force push ====
@@ -23,7 +22,6 @@ public class ForcePushGrab : AbstractAbility {
     private void Start()
     {
         relationObject = GameObject.FindGameObjectWithTag("Platform").transform;
-        _player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -122,6 +120,7 @@ public class ForcePushGrab : AbstractAbility {
     /// <summary>How far off the aim is allowed to be to still register as a hit.</summary>
     public float grabRange;
     public float aimHitTolerance;
+    public float grabLifeDrainPerSecond;
     private IEnumerator coroutine;
     public AudioSource grabAudio;
     private Throwable_OBJ grabbedTarget = null;
@@ -143,14 +142,6 @@ public class ForcePushGrab : AbstractAbility {
 
         hitOut = null;
         return null;
-    }
-
-    private IEnumerator Drain()
-    {
-        yield return new WaitForSeconds(5);
-        _player.GetComponent<HealthResource>().ChangeValue(grabbedTarget.GetComponent<HealthResource>().currentValue);
-        grabbedTarget.GetComponent<HealthResource>().ChangeValue(-(grabbedTarget.GetComponent<HealthResource>().currentValue));
-        animator.SetBool("choking", false);
     }
 
     void LateUpdate()
@@ -183,7 +174,6 @@ public class ForcePushGrab : AbstractAbility {
             // disable preview while grabbing
             aimPreview.enabled = false;
         }
-
     }
     private void playGrabAudio()
     {
@@ -223,10 +213,16 @@ public class ForcePushGrab : AbstractAbility {
 
     protected override void OnGripUp()
     {
-        if (grabbedTarget != null)
+        animator.SetBool("choking", false);
+
+        if(coroutine != null)
         {
-            animator.SetBool("choking", false);
             StopCoroutine(coroutine);
+            coroutine = null;
+        }
+
+        if (grabbedTarget != null) // note that this can be null when the target was killed while being grabbed
+        {
             grabbedTarget.setFree();
             grabbedTarget.transform.SetParent(null);
             // let her shoot again
@@ -234,6 +230,23 @@ public class ForcePushGrab : AbstractAbility {
             if (shootPlayer != null)
                 shootPlayer.enabled = true;
             grabbedTarget = null;
+        }
+    }
+
+    private IEnumerator Drain()
+    {
+        var targetHealth = grabbedTarget.GetComponent<HealthResource>();
+        if (targetHealth == null)
+            yield break;
+
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+
+            float healAmount = Mathf.Min(targetHealth.currentValue, grabLifeDrainPerSecond);
+            targetHealth.ChangeValue(-grabLifeDrainPerSecond);
+
+            hackerPlayer.GetComponent<HealthResource>().ChangeValue(healAmount);
         }
     }
 
