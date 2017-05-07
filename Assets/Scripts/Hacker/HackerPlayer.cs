@@ -86,6 +86,9 @@ public class HackerPlayer : MonoBehaviour
             var abilityPrefabs = abilitySelectionPrefab.GetComponent<AbilitySelectionWheel>().abilityPrefabs;
             foreach (var prefab in abilityPrefabs)
             {
+                if (HackerProgression.Instance.GetUnlockedLevel(prefab.GetComponent<AbstractAbility>().Type) < 1)
+                    continue;
+
                 var go = Instantiate(prefab, GetHandGO(hand).transform);
                 go.SetActive(false);
 
