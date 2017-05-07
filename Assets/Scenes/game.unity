@@ -369,7 +369,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: {fileID: 1252225517}
   velocity: 0.5
-<<<<<<< HEAD
 --- !u!82 &115160093
 AudioSource:
   m_ObjectHideFlags: 0
@@ -450,8 +449,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-=======
->>>>>>> 72411626b9a38e912a24fbff6907b2ebf6560d5e
 --- !u!1 &176355179
 GameObject:
   m_ObjectHideFlags: 0
