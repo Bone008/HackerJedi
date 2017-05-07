@@ -18,6 +18,8 @@ TagManager:
   - Platform
   - HackerHand
   - Master
+  - MasterEye
+  - Audio
   layers:
   - Default
   - TransparentFX

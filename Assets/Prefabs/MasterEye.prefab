@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 114036691036064898}
   m_Layer: 8
   m_Name: MasterEye
-  m_TagString: Untagged
+  m_TagString: MasterEye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

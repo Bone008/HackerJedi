@@ -5,6 +5,7 @@ using UnityEngine;
 public class TurretMaster : MonoBehaviour
 {
     [HideInInspector]
+    public Transform turret;
     public Transform turretBarrel;
     private Gun gun;
 
@@ -15,16 +16,18 @@ public class TurretMaster : MonoBehaviour
 
     private void OnEnable()
     {
-        gun = turretBarrel.GetComponentInChildren<Gun>();
+        gun = turret.GetComponentInChildren<Gun>();
+        gun.layer = LayerMask.NameToLayer("Hacker");
     }
 
     void Update()
     {
         // rotate turret
         rotX += Input.GetAxis("Mouse X") * Time.unscaledDeltaTime * 200.0f;
-        rotY -= Input.GetAxis("Mouse Y") * Time.unscaledDeltaTime * 200.0f;
+        rotY -= Input.GetAxis("Mouse Y") * Time.unscaledDeltaTime * 100.0f;
         rotY = Mathf.Clamp(rotY, camRotYMin, camRotYMax);
-        turretBarrel.localRotation = Quaternion.Euler(0, rotX, rotY);
+        turret.localRotation = Quaternion.Euler(0, rotX, 0);
+        turretBarrel.localRotation = Quaternion.Euler(rotY, 0, 0);
 
         // single shot
         // TODO

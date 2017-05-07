@@ -3,115 +3,58 @@ using UnityEngine;
 
 public class Turret : EnemyBase
 {
-    public float turretActiveSec = 5.0f;
-    public float timeScaleTransitionTime = 2.0f;
-
-    // turret game objects
-    public Transform barrel;
-    public Transform turretCamTarget;
-
-    // master game objects
     private GameObject masterGO;
     private Canvas masterHUD;
-    private Camera masterCam;
+    private Transform masterCam;
+    private AudioSource audio;
 
-    // modes
-    private enum Mode
-    {
-        MoveCamToTurret,
-        InTurret,
-        MoveCamToEye
-    };
-    private Mode currentMode = Mode.MoveCamToTurret;
+    [Header("Eye transition")]
+    public float eyeTransitionTime;
+    public Transform eyeTarget;
+    private Transform eye;
+    private Animator animator;
 
-    // cam movement
-    public float camTransitionTime;
-    private float camMovementProgress = 0;
-    private float camRotationProgress = 0;
-    private Vector3 initialMasterCamPos;
-    private Quaternion initialMasterCamRot;
-    private Transform initialMasterCamParent;
+    [Header("Timescale transition")]
+    public float timeScaleTransitionTime;
+    public float timeScaleGoal = 0.4f;
+
+    [Header("In Turret")]
+    public float turretActiveSec = 5.0f;
+    public Transform barrel;
 
     void Start()
     {
-        // get gameobjects
+        // get all the gameobjects
         masterGO = GameObject.FindGameObjectWithTag("Master");
         masterHUD = masterGO.GetComponentInChildren<Canvas>();
-        masterCam = masterGO.GetComponentInChildren<Camera>();
-
-        // store initial position of master cam for later
-        initialMasterCamPos = masterCam.transform.position;
-        initialMasterCamRot = masterCam.transform.rotation;
+        Debug.Log(masterHUD);
+        masterCam = masterGO.GetComponentInChildren<Camera>().transform;
+        eye = GameObject.FindGameObjectWithTag("MasterEye").transform;
+        animator = GetComponent<Animator>();
+        audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSource>();
 
         // stop master interaction during animation
         SwitchMasterScripts(false, false);
 
         // start time scale before movement finished
-        this.Delayed(camTransitionTime - timeScaleTransitionTime,
-            () => this.Animate(timeScaleTransitionTime, p => Time.timeScale = Mathf.Lerp(1.0f, 0.4f, p), true));
+        this.Delayed(eyeTransitionTime - timeScaleTransitionTime,
+            () => this.Animate(timeScaleTransitionTime, p =>
+            {
+                Time.timeScale = Mathf.Lerp(1.0f, timeScaleGoal, p);
+                audio.pitch = Time.timeScale;
+            }, true));
+
+        // start everything
+        StartCoroutine(DoTurretStuff());
     }
-
-    void Update()
-    {
-        switch (currentMode)
-        {
-            case Mode.MoveCamToTurret:
-                // move and rotate to turret
-                camMovementProgress += Time.deltaTime;
-                camRotationProgress += Time.deltaTime;
-                masterCam.transform.position = Vector3.Slerp(initialMasterCamPos, turretCamTarget.position, camMovementProgress / camTransitionTime);
-                masterCam.transform.rotation = Quaternion.Slerp(initialMasterCamRot, turretCamTarget.rotation, camRotationProgress / camTransitionTime);
-
-                if (camRotationProgress >= camTransitionTime)
-                {
-                    // store initial parent of cam for later, set barrel as parent
-                    initialMasterCamParent = masterCam.transform.parent;
-                    masterCam.transform.SetParent(turretCamTarget);
-
-                    // switch to turret-master
-                    SwitchMasterScripts(false, true);
-
-                    // disable master again
-                    StartCoroutine(DisableMasterAgain());
-
-                    currentMode = Mode.InTurret;
-                }
-
-                break;
-
-            case Mode.InTurret:
-                break; // TurretMaster handles this
-
-            case Mode.MoveCamToEye:
-                // move and rotate to eye
-                camMovementProgress += Time.deltaTime;
-                camRotationProgress += Time.deltaTime;
-                masterCam.transform.position = Vector3.Slerp(turretCamTarget.position, initialMasterCamPos, camMovementProgress / camTransitionTime);
-                masterCam.transform.rotation = Quaternion.Slerp(turretCamTarget.rotation, initialMasterCamRot, camRotationProgress / camTransitionTime);
-
-                if (camRotationProgress >= camTransitionTime)
-                {
-                    // restore initial parent
-                    masterCam.transform.SetParent(initialMasterCamParent);
-
-                    // switch back to default master
-                    SwitchMasterScripts(true, false);
-
-                    // destroy turret
-                    Destroy(gameObject);
-                    return;
-                }
-
-                break;
-        }
-    }
-
+    
     private void SwitchMasterScripts(bool normal, bool turret)
     {
         // default script
         masterGO.GetComponent<Master>().enabled = normal;
 
         // turret script
+        masterGO.GetComponent<TurretMaster>().turret = transform;
         masterGO.GetComponent<TurretMaster>().turretBarrel = barrel;
         masterGO.GetComponent<TurretMaster>().enabled = turret;
 
@@ -120,17 +63,71 @@ public class Turret : EnemyBase
         Cursor.lockState = turret ? CursorLockMode.Locked : CursorLockMode.None;
     }
 
-    private IEnumerator DisableMasterAgain()
+    private IEnumerator DoTurretStuff()
     {
-        yield return new WaitForSecondsRealtime(turretActiveSec - timeScaleTransitionTime);
+        // set cam parent to eye
+        eye.localRotation = masterCam.localRotation;
+        Transform initialMasterCamParent = masterCam.transform.parent;
+        masterCam.transform.SetParent(eye);
 
-        this.Animate(timeScaleTransitionTime, p => Time.timeScale = Mathf.Lerp(0.2f, 1.0f, p), true);
-        yield return new WaitForSecondsRealtime(2.0f);
+        // move to turret
+        Vector3 initialEyePos = eye.position;
+        Quaternion initialEyeRot = eye.rotation;
+        Vector3 initialEyeScale = eye.localScale;
+        yield return this.Animate(eyeTransitionTime, progress =>
+        {
+            eye.position = Vector3.Lerp(initialEyePos, eyeTarget.position, progress);
+            eye.rotation = Quaternion.Lerp(initialEyeRot, eyeTarget.rotation, progress);
+            eye.localScale = Vector3.Lerp(initialEyeScale, eyeTarget.localScale, progress);
+        }, true);
 
+        // set eye parent
+        Transform initialEyeParent = eye.transform.parent;
+        eye.transform.SetParent(transform);        
+
+        // switch to turret-master
+        SwitchMasterScripts(false, true);
+
+        // disable scripts of eye
+        foreach (var script in eye.GetComponents<MonoBehaviour>())
+            script.enabled = false;
+
+        // in turret
+        yield return new WaitForSecondsRealtime(turretActiveSec);
+
+        // disable any interaction
         SwitchMasterScripts(false, false);
-        camMovementProgress = 0;
-        camRotationProgress = 0;
-        currentMode = Mode.MoveCamToEye;
+
+        // move back again
+        Quaternion midEyeRot = eye.rotation;
+        this.Animate(eyeTransitionTime, progress =>
+        {
+            eye.position = Vector3.Lerp(eyeTarget.position, initialEyePos, progress);
+            eye.rotation = Quaternion.Lerp(midEyeRot, initialEyeRot, progress);
+            eye.localScale = Vector3.Lerp(eyeTarget.localScale, initialEyeScale, progress);
+        }, true);
+
+        // restore timescale
+        yield return new WaitForSecondsRealtime(eyeTransitionTime - timeScaleTransitionTime);
+        yield return this.Animate(timeScaleTransitionTime, p =>
+        {
+            Time.timeScale = Mathf.Lerp(timeScaleGoal, 1.0f, p);
+            audio.pitch = Time.timeScale;
+        }, true);
+
+        // restore initial parent
+        eye.transform.SetParent(initialEyeParent);
+        masterCam.transform.SetParent(initialMasterCamParent);
+
+        // switch back to default master
+        SwitchMasterScripts(true, false);
+
+        // re-enable scripts of eye again
+        foreach (var script in eye.GetComponents<MonoBehaviour>())
+            script.enabled = true;
+
+        // destroy turret
+        Destroy(gameObject);
     }
 
 }

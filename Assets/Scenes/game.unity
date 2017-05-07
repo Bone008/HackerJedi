@@ -3057,16 +3057,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114128137508167322, guid: 3c15011199362fe41a48b53db2e7a76e,
-        type: 2}
-      propertyPath: resourcePanel
-      value: 
-      objectReference: {fileID: 288762381}
-    - target: {fileID: 114546992019984614, guid: 3c15011199362fe41a48b53db2e7a76e,
-        type: 2}
-      propertyPath: raycastOrigin
-      value: 
-      objectReference: {fileID: 1076524487}
     - target: {fileID: 114578446853316228, guid: 3c15011199362fe41a48b53db2e7a76e,
         type: 2}
       propertyPath: signalLostPlayer
@@ -3082,6 +3072,16 @@ Prefab:
       propertyPath: masterCamera
       value: 
       objectReference: {fileID: 1076524487}
+    - target: {fileID: 114546992019984614, guid: 3c15011199362fe41a48b53db2e7a76e,
+        type: 2}
+      propertyPath: raycastOrigin
+      value: 
+      objectReference: {fileID: 1076524487}
+    - target: {fileID: 114128137508167322, guid: 3c15011199362fe41a48b53db2e7a76e,
+        type: 2}
+      propertyPath: resourcePanel
+      value: 
+      objectReference: {fileID: 288762381}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c15011199362fe41a48b53db2e7a76e, type: 2}
   m_IsPrefabParent: 0
@@ -5963,6 +5963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5efe6687640ce84aacf3f6695deeaee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turret: {fileID: 0}
   turretBarrel: {fileID: 0}
   camRotYMin: -60
   camRotYMax: 60
@@ -6160,7 +6161,7 @@ GameObject:
   - component: {fileID: 2051035145}
   m_Layer: 0
   m_Name: Music
-  m_TagString: Untagged
+  m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6572,7 +6573,7 @@ MonoBehaviour:
         m_MethodName: SelectEnemy
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1827913633718456, guid: 00d6984eef8431d4285c3a32e6d30573,
+          m_ObjectArgument: {fileID: 1828915187651954, guid: 1c830c27f2363784a854096cd6be176e,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
