@@ -2679,7 +2679,7 @@ Transform:
   - {fileID: 4656839257124842}
   - {fileID: 4007102256812750}
   m_Father: {fileID: 4852248584011232}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4031498712018342
 Transform:
@@ -3443,8 +3443,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.0271277, y: 0.6555405, z: 0.26683936}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4999043423783370}
+  m_Children: []
   m_Father: {fileID: 4817455535617966}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4505,6 +4504,7 @@ Transform:
   m_LocalPosition: {x: -0.0215, y: -0.0015, z: -0.027}
   m_LocalScale: {x: 0.004880237, y: 0.0048802374, z: 0.0048802374}
   m_Children:
+  - {fileID: 4999043423783370}
   - {fileID: 4022434896353422}
   - {fileID: 4966207386556080}
   m_Father: {fileID: 4695183106430682}
@@ -4735,7 +4735,7 @@ Transform:
   m_Children:
   - {fileID: 4329579608234442}
   m_Father: {fileID: 4852248584011232}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4977571710727274
 Transform:
@@ -4783,11 +4783,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1315690068244826}
-  m_LocalRotation: {x: 0.40944415, y: 0.6363379, z: 0.38641223, w: 0.5273663}
-  m_LocalPosition: {x: 0.41921997, y: -0.045448482, z: -0.13479811}
-  m_LocalScale: {x: 63.97903, y: 63.97899, z: 63.978985}
+  m_LocalRotation: {x: 0.40944412, y: 0.63633794, z: 0.38641226, w: 0.5273663}
+  m_LocalPosition: {x: 15.564875, y: 4.4456286, z: 8.337231}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4416205116294708}
+  m_Father: {fileID: 4852248584011232}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23004197565779102
@@ -9156,6 +9156,7 @@ MonoBehaviour:
   abilityType: 3
   needsMirroring: 1
   cooldown: 2
+  _player: {fileID: 0}
   forceStrength: 25
   forceLift: 10
   range: 20
