@@ -5,7 +5,7 @@ using UnityEngine;
 public class ForcePushGrab : AbstractAbility {
 
     public float cooldown; // for both
-
+    public GameObject _player;
     private Animator animator;
 
     // ==== Force push ====
@@ -23,6 +23,7 @@ public class ForcePushGrab : AbstractAbility {
     private void Start()
     {
         relationObject = GameObject.FindGameObjectWithTag("Platform").transform;
+        _player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponentInChildren<Animator>();
     }
 
@@ -121,8 +122,9 @@ public class ForcePushGrab : AbstractAbility {
     /// <summary>How far off the aim is allowed to be to still register as a hit.</summary>
     public float grabRange;
     public float aimHitTolerance;
-    private Throwable_OBJ grabbedTarget = null;
+    private IEnumerator coroutine;
     public AudioSource grabAudio;
+    private Throwable_OBJ grabbedTarget = null;
 
     private Throwable_OBJ GetAimedAtTarget(out RaycastHit? hitOut)
     {
@@ -141,6 +143,14 @@ public class ForcePushGrab : AbstractAbility {
 
         hitOut = null;
         return null;
+    }
+
+    private IEnumerator Drain()
+    {
+        yield return new WaitForSeconds(5);
+        _player.GetComponent<HealthResource>().ChangeValue(grabbedTarget.GetComponent<HealthResource>().currentValue);
+        grabbedTarget.GetComponent<HealthResource>().ChangeValue(-(grabbedTarget.GetComponent<HealthResource>().currentValue));
+        animator.SetBool("choking", false);
     }
 
     void LateUpdate()
@@ -179,6 +189,7 @@ public class ForcePushGrab : AbstractAbility {
     {
         grabAudio.Play();
     }
+
     protected override void OnGripDown()
     {
         if (IsCoolingDown || isPushing) // don't allow grab while pushing
@@ -201,6 +212,8 @@ public class ForcePushGrab : AbstractAbility {
             playGrabAudio();
             grabbedTarget.transform.SetParent(transform, true);
             grabbedTarget.setGrabbed();
+            coroutine = Drain();
+            StartCoroutine(coroutine);
             // prevent shooting
             var shootPlayer = grabbedTarget.gameObject.GetComponent<ShootPlayer>();
             if (shootPlayer != null)
@@ -213,7 +226,7 @@ public class ForcePushGrab : AbstractAbility {
         if (grabbedTarget != null)
         {
             animator.SetBool("choking", false);
-
+            StopCoroutine(coroutine);
             grabbedTarget.setFree();
             grabbedTarget.transform.SetParent(null);
             // let her shoot again
