@@ -526,7 +526,7 @@ MonoBehaviour:
   abilityType: 2
   needsMirroring: 0
   shootSound: {fileID: 8300000, guid: 5b867c236c719e143914ac59a219511b, type: 3}
-  emptySound: {fileID: 8300000, guid: 903bb52a5ab760e40a9aa4dfc2114102, type: 3}
+  emptySound: {fileID: 8300000, guid: b0d68200a6e52554586e8851caaebebe, type: 3}
   particlePrefab: {fileID: 0}
   nozzle: {fileID: 4254166129595500}
   shootCooldown: 2
