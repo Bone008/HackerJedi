@@ -18,6 +18,8 @@ public class MasterEye : MonoBehaviour {
     private void Start()
     {
         mkGlow = masterCamera.GetComponent<MKGlow>();
+
+        signalLostPlayer.Prepare();
     }
 
     public void OnDeath(HealthResource health)
@@ -26,30 +28,25 @@ public class MasterEye : MonoBehaviour {
         GameObject explosion = Instantiate(deathExplosion, transform.position, Quaternion.identity);
         explosion.layer = LayerMask.NameToLayer("NotVisibleToMaster");
 
-        // start video, enable black background, disable glow, disable health script (-> only 1 ondeath)
+        // start video, enable overlay with render texture, disable glow, disable health script (-> only 1 ondeath)
         signalLostPlayer.Play();
         signalLostBackground.SetActive(true);
-        StartCoroutine(StopGlow());
         health.enabled = false;
+
+        // has to be at end of frame because OnDeath gets called in OnTriggerEnter
+        // and disabling MKGlow destroys some GameObjects and that is not allowed in Collision functions
+        this.Delayed(new WaitForEndOfFrame(), () => mkGlow.enabled = false);
 
         this.Delayed(signalLostDuration, () => 
         {
-            // stop video, disable background, enable glow and health again
-            signalLostPlayer.Stop();
+            // stop video, disable overlay, enable glow and health again
+            signalLostPlayer.Pause();
             signalLostBackground.SetActive(false);
-            mkGlow.enabled = true;
             health.enabled = true;
-
             health.RestoreFullHealth();
-        });
-    }
 
-    private IEnumerator StopGlow()
-    {
-        // has to be here because OnDeath gets called in OnTriggerEnter
-        // and disabling MKGlow destroys some GameObjects and that is not allowed in Collision functions
-        yield return new WaitForEndOfFrame();
-        mkGlow.enabled = false;
+            mkGlow.enabled = true;
+        });
     }
 
 }

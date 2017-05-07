@@ -29,10 +29,10 @@ public class UpgradeLaserPointer : MonoBehaviour
                 if (aimedAt != null)
                     aimedAt.SetHovered(false);
                 newTarget.SetHovered(true);
-                AudioSource.PlayClipAtPoint(mouserollSFX, this.transform.position, 1f);
                 aimedAt = newTarget;
                 line.EndPos = hit.distance * Vector3.forward;
                 
+                AudioSource.PlayClipAtPoint(mouserollSFX, this.transform.position, 1f);
                 Debug.Log("aiming at " + aimedAt);
             }
         }
@@ -48,7 +48,9 @@ public class UpgradeLaserPointer : MonoBehaviour
     public void Activate()
     {
         if (aimedAt != null)
+        {
             AudioSource.PlayClipAtPoint(acceptSFX, this.transform.position, 1f);
             aimedAt.Activate();
+        }
     }
 }

@@ -13,7 +13,8 @@ public class MenuScript : MonoBehaviour {
     public void startGame()
     {
         GameData.Instance.currentLevel = 1;
-        SceneManager.LoadScene(1);
+        if(!SteamVR_LoadLevel.loading)
+            SteamVR_LoadLevel.Begin("game");
     }
 
     public void endGame()
