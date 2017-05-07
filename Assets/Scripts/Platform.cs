@@ -87,7 +87,7 @@ public class Platform : MonoBehaviour {
             else
             {
                 GameData.Instance.successfulHack = true;
-                SteamVR_LoadLevel.Begin("lose_screen");
+                SteamVR_LoadLevel.Begin("end_of_game");
             }
         });
 

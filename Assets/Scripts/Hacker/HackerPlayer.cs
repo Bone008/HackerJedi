@@ -307,9 +307,9 @@ public class HackerPlayer : MonoBehaviour
             yield return 0;
         }
 
-        // load lose_screen scene
+        // load end_of_game scene
         GameData.Instance.successfulHack = false;
-        SteamVR_LoadLevel.Begin("lose_screen", false, 0.1f);
+        SteamVR_LoadLevel.Begin("end_of_game", false, 0.1f);
     }
 
     private void Update()
