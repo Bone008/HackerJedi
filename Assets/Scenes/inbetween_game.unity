@@ -192,7 +192,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 495409115}
-        m_MethodName: hackerReady
+        m_MethodName: hackerToggleReady
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -392,6 +392,7 @@ Transform:
   - {fileID: 753175434}
   - {fileID: 1280457754}
   - {fileID: 1592039186}
+  - {fileID: 431578412}
   - {fileID: 449368909}
   - {fileID: 1555593945}
   - {fileID: 1715065770}
@@ -1041,6 +1042,95 @@ Prefab:
     - {fileID: 114653701328384912, guid: 7dd2836027cb0024ea1e56281b83a9d8, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 7dd2836027cb0024ea1e56281b83a9d8, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &431578411
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 149464125}
+    m_Modifications:
+    - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.463
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.515
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1407292760086898, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
+      propertyPath: m_Name
+      value: Simple3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114271983934330, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: abilityType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114271983934330, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: level
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224551513885967080, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114271983934330, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: detailsName
+      value: Gatling Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114271983934330, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: detailsDescription
+      value: 'Ultimate ability: Fire away at those pesky robots to your heart''s full
+        content.'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &431578412 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e,
+    type: 2}
+  m_PrefabInternal: {fileID: 431578411}
 --- !u!1 &440867682
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,7 +1208,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 495409115}
-        m_MethodName: masterReady
+        m_MethodName: masterToggleReady
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1228,6 +1318,69 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &484323465
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 431578412}
+    m_Modifications:
+    - target: {fileID: 4695723373876256, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.0209
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695723373876256, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695723373876256, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695723373876256, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695723373876256, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695723373876256, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695723373876256, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695723373876256, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695723373876256, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695723373876256, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.6958579
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695723373876256, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.6958579
+      objectReference: {fileID: 0}
+    - target: {fileID: 4695723373876256, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.6958579
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592527875849472, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+      propertyPath: m_Name
+      value: SimpleGun
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114862385317893524, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &495409114
 GameObject:
   m_ObjectHideFlags: 0
@@ -2373,6 +2526,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224551513885967080, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114271983934330, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: detailsName
+      value: Pulse Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114271983934330, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: detailsDescription
+      value: Obliterates enemies in front of its barrel with a huge energy blast.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
   m_IsPrefabParent: 0
@@ -2683,7 +2851,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1407292760086898, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
       propertyPath: m_Name
@@ -2705,6 +2873,22 @@ Prefab:
     - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224551513885967080, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114271983934330, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: detailsName
+      value: Blaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114271983934330, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: detailsDescription
+      value: Semiautomatic laser weapon. Can shoot up to 5 lasers before having to
+        cool down.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
@@ -3288,6 +3472,22 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 224551513885967080, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114271983934330, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: detailsName
+      value: Pulse Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114271983934330, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: detailsDescription
+      value: Obliterates enemies in front of its barrel with a huge energy blast even
+        better.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
   m_IsPrefabParent: 0
@@ -3310,11 +3510,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.335
+      value: -1.09
       objectReference: {fileID: 0}
     - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.418
       objectReference: {fileID: 0}
     - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3338,7 +3538,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1407292760086898, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
       propertyPath: m_Name
@@ -3365,6 +3565,22 @@ Prefab:
     - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224551513885967080, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114271983934330, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: detailsName
+      value: Improved Blaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114271983934330, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: detailsDescription
+      value: Fully automatic laser weapon. Can shoot up to 10 lasers before having
+        to cool down.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
@@ -3758,6 +3974,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224551513885967080, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114271983934330, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: detailsName
+      value: Jedi Powers
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114271983934330, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: detailsDescription
+      value: Use the force to push enemies around or grab them and drain their life
+        to heal yourself.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
   m_IsPrefabParent: 0
@@ -4011,6 +4243,22 @@ Prefab:
     - target: {fileID: 4921825820798448, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224551513885967080, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114271983934330, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: detailsName
+      value: Jedi Powers
+      objectReference: {fileID: 0}
+    - target: {fileID: 114114271983934330, guid: eb848ec30d3923c44908ba65a5e15e6e,
+        type: 2}
+      propertyPath: detailsDescription
+      value: Use the force to push enemies around or grab them and drain their life
+        to heal yourself (now even better!?).
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb848ec30d3923c44908ba65a5e15e6e, type: 2}

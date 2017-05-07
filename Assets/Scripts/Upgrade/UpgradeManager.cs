@@ -4,15 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour {
-
+    
     [Header("Buttons")]
-    #region
     public Button suicideRobot;
     public Button sniper;
     public Button turret;
     public Button hackingArea;
     public Button firewall;
-    #endregion
 
     public Text levelText;
     public Text pointsText;
@@ -27,7 +25,6 @@ public class UpgradeManager : MonoBehaviour {
 
         levelText.text = string.Format("Hacker has completed stage {0}!", GameData.Instance.currentLevel);
 
-        #region
         if (GameData.Instance.suicideRobotUnlocked)
             suicideRobot.interactable = false;
         if (GameData.Instance.sniperUnlocked)
@@ -38,19 +35,18 @@ public class UpgradeManager : MonoBehaviour {
             hackingArea.interactable = false;
         if (GameData.Instance.firewallUnlocked)
             firewall.interactable = false;
-        #endregion
     }
 
-    public void hackerReady()
+    public void hackerToggleReady()
     {
-        Debug.Log("Upgrade: hacker is ready");
-        GameData.Instance.hackerIsReady = true;
+        GameData.Instance.hackerIsReady = !GameData.Instance.hackerIsReady;
+        Debug.Log("Upgrade: hacker is ready: " + GameData.Instance.hackerIsReady);
     }
 
-    public void masterReady()
+    public void masterToggleReady()
     {
-        Debug.Log("Upgrade: hacker is ready");
-        GameData.Instance.masterIsReady = true;
+        GameData.Instance.masterIsReady = !GameData.Instance.masterIsReady;
+        Debug.Log("Upgrade: master is ready: " + GameData.Instance.masterIsReady);
     }
 
     public void Update()

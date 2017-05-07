@@ -8,7 +8,7 @@ public class HackerProgression
 {
     private static readonly Dictionary<AbilityType, int> maxLevels = new Dictionary<AbilityType, int>
     {
-        {AbilityType.SimpleGun, 2},
+        {AbilityType.SimpleGun, 3},
         {AbilityType.JediForcePush, 3},
         {AbilityType.PulseGun, 2},
         // ...
