@@ -18,15 +18,21 @@ public class HealthResource : ResourceBase {
         ChangeValue(maxValue - currentValue);
     }
 
-    public override void ChangeValue(float amount)
+    public override bool ChangeValue(float amount)
     {
-        base.ChangeValue(amount);        
+        bool hasChanged = base.ChangeValue(amount);
 
-        if (onDamage != null && amount < 0)
-            onDamage.Invoke();
+        // notify additional listeners
+        if (hasChanged)
+        {
+            if (onDamage != null && amount < 0)
+                onDamage.Invoke();
 
-        if (onDeath != null && currentValue <= 0)
-            onDeath.Invoke();
+            if (onDeath != null && currentValue <= 0)
+                onDeath.Invoke();
+        }
+
+        return hasChanged;
     }
 
     public override bool SafeChangeValue(float amount)

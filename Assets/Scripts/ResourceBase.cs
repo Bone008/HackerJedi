@@ -37,14 +37,20 @@ public abstract class ResourceBase : MonoBehaviour
     /// Changes the value of the resource by amount. Clips between minValue and maxValue of resource.
     /// </summary>
     /// <param name="amount">the amount of the resource to add</param>
-    public virtual void ChangeValue(float amount)
+    /// <returns>true if the value has been affected by the change, false otherwise</returns>
+    public virtual bool ChangeValue(float amount)
     {
+        float valueBefore = currentValue;
         // change value
         currentValue = Mathf.Clamp(currentValue + amount, minValue, maxValue);
 
+        bool hasChanged = (valueBefore != currentValue);
+
         // notify listeners
-        if (onChange != null)
+        if (hasChanged && onChange != null)
             onChange.Invoke();
+
+        return hasChanged;
     }
 
     /// <summary>
