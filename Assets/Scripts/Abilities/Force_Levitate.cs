@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Force_Levitate : AbstractUltimate
 {
-    private float startMoveHeight;
+    private float startMoveHeightL;
     [Header("Ultimate force levitate")]
-    public float forceStrength;
-    public float range;
+    public float forceStrengthL;
+    public float rangeL;
 
     protected override void OnGripDown() {
 
@@ -15,7 +16,7 @@ public class Force_Levitate : AbstractUltimate
         if (!activated && Vector3.Angle(-leftHand.right, Vector3.down) <= 90 && Vector3.Angle(rightHand.right, Vector3.down) <= 90)
         {
             activated = true;
-            startMoveHeight = (leftHand.position.y + rightHand.position.y) / 2;
+            startMoveHeightL = (leftHand.position.y + rightHand.position.y) / 2;
             //@HackerPlayer: Ultimate wurde erkannt und aktiviert
             EnableUlti();
             Debug.Log("Ultimate-Tracking started! #For_Lev OnGripDown()");
@@ -31,21 +32,26 @@ public class Force_Levitate : AbstractUltimate
         //--> unselect selected Enemies
     }
     protected override void OnGripUp() {
+        if (!activated)
+            return;
+
+        activated = false;
+        DisableUlti();
 
         float moveHeightEnd = (leftHand.position.y + rightHand.position.y) / 2;
         //Check if the controllers are [distance] higher as the position before OnGripsDown()
-        if (activated && moveHeightEnd - startMoveHeight > 0.5)
+        if (moveHeightEnd - startMoveHeightL > 0.5)
         {
             Debug.Log("Ultimate-Tracking successfull! #For_Lev OnGripUp()");
             //--> Do the Levitate! 
-            Collider[] cols = Physics.OverlapSphere(transform.position, range);
+            Collider[] cols = Physics.OverlapSphere(transform.position, rangeL);
             Throwable_OBJ[] behaviours = new Throwable_OBJ[cols.Length];
             int counter = 0;
             foreach (Collider col in cols)
             {
                 if (col.tag == "Enemy")
                 {
-                    col.attachedRigidbody.AddForce(0, forceStrength, 0, ForceMode.Acceleration);
+                    this.Delayed(0.1f, () => col.attachedRigidbody.AddForce(0, forceStrengthL, 0, ForceMode.Acceleration));
                     Throwable_OBJ obj=col.gameObject.GetComponent<Throwable_OBJ>();
                     obj.setGrabbed();//Enemy-Behaviours disablen?
                     behaviours[counter] = obj;
@@ -59,14 +65,94 @@ public class Force_Levitate : AbstractUltimate
         {
             Debug.Log("Ultimate-Tracking failed! #For_Lev OnGripUp()");
         }
-        activated = false;
     }
     IEnumerator Reset(Throwable_OBJ[] levitated)
     {
         yield return new WaitForSeconds(9);
         foreach (Throwable_OBJ col in levitated)
         {
-            col.setFree();
+            if(col != null)
+                col.setFree();
+        }
+    }
+
+    //--------------------------------------------------------------------------------------------------------------------------------------------------------
+    //Shockwave-Ultimate
+    //--------------------------------------------------------------------------------------------------------------------------------------------------------
+    private float startMoveHeightG;
+    [Header("Ultimate force push")]
+    public float forceStrengthG;
+    public float forceLiftG;
+    public float rangeG;
+
+    protected override void OnTriggerDown()
+    {
+        //Check if controllers are [distance] over the headposition and one higher than the other
+        if (!activated && Vector2.Distance(new Vector2(leftHand.position.x, leftHand.position.z), new Vector2(rightHand.position.x, rightHand.position.z)) < 0.1)//Headposition und Vergleich fehlt hier noch!!!!
+        {
+            activated = true;
+            startMoveHeightG = (leftHand.position.y + rightHand.position.y) / 2;
+            //@HackerPlayer: Ultimate wurde erkannt und aktiviert
+            EnableUlti();
+            Debug.Log("Ultimate-Tracking started! #For_Gun OnTriggerDown()");
+        }
+        else
+        {
+            //@HackerPlayer: Ultimate wurde abgebrochen. Ein normaler Move soll ausgeführt werden
+            Debug.Log("Ultimate-Tracking failed! #For_Gun OnTriggerDown()");
+            //Kann evtl entfernt werden
+        }
+        //TODO:
+        //--> set UltimateActive
+        //--> unselect selected Enemies
+    }
+    protected override void OnTriggerUp()
+    {
+        float moveHeightEnd = (leftHand.position.y + rightHand.position.y) / 2;
+        //Check if the controllers are [distance] higher as the position before OnGripsDown()
+        if (activated && moveHeightEnd - startMoveHeightG < 0.5)
+        {
+            Debug.Log("Ultimate-Tracking successfull! #For_Gun OnTriggerUp()");
+            //--> Do Force push! 
+            force();
+        }
+        else
+        {
+            Debug.Log("Ultimate-Tracking failed! #For_Gun OnTriggerUp()");
+        }
+        DisableUlti();
+        activated = false;
+    }
+
+    private void force()
+    {
+        //Gegner in Reichweite (5) werden erkannt
+        Collider[] cols = Physics.OverlapSphere(transform.position, rangeG);//Kann noch abhängig von Handposition gemacht werden
+        foreach (Collider col in cols)
+        {
+            if (col.tag == "Enemy")
+            {
+                //Hilfsvariablen
+                Vector3 enemyPos = col.gameObject.transform.position; //Gegnerposition
+                Vector3 handPos = gameObject.transform.position;     //Handposition
+                float dist = Vector3.Distance(enemyPos, handPos);    //Distanz dazwischen
+
+                Vector3 dir = Vector3.Normalize(enemyPos - handPos);
+                Vector3 forceVec = forceStrengthG * dir * (1 - (dist / rangeG) * (dist / rangeG)); //Gegnerposition relativ zur Hand
+
+                forceVec.y = forceLiftG;
+
+                //Setzen von Velocity (Effekt des Wegschleuderns)
+                Debug.Log("affecting enemy " + forceVec, col.gameObject);
+
+                Rigidbody rb = col.gameObject.GetComponent<Rigidbody>();
+                rb.AddForce(forceVec, ForceMode.Impulse);
+                rb.AddTorque(new Vector3(Random.Range(-2, 2), Random.Range(-2, 2), Random.Range(-2, 2)), ForceMode.Impulse);
+
+                var nma = col.GetComponentInParent<NavMeshAgent>();
+                if (nma != null)
+                    nma.enabled = false;
+            }
         }
     }
 }
