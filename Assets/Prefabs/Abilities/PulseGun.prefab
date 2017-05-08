@@ -529,24 +529,24 @@ MonoBehaviour:
   emptySound: {fileID: 8300000, guid: b0d68200a6e52554586e8851caaebebe, type: 3}
   particlePrefab: {fileID: 0}
   nozzle: {fileID: 4254166129595500}
-  shootCooldown: 2
-  totalAngle: 50
-  maxRange: 10
-  maxDamageAmount: 75
+  shootCooldown: 1.5
+  totalAngle: 42
+  maxRange: 12
+  maxDamageAmount: 150
   damageFalloff:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
       time: 0
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -1.5915843
+      outSlope: -1.5915843
       tangentMode: 0
     - serializedVersion: 2
       time: 1
-      value: 0.19302368
-      inSlope: -1.8030323
-      outSlope: -1.8030323
+      value: 0.25323486
+      inSlope: -1.1360763
+      outSlope: -1.1360763
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

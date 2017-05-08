@@ -29,6 +29,7 @@ public class Force_Levitate : AbstractUltimate
         {
             staffTransform.gameObject.SetActive(true);
             staffTransform.position = (leftHand.position + rightHand.position) / 2;
+            staffTransform.rotation = Quaternion.identity;
             staffMaterial.color = new Color(staffMaterial.color.r, staffMaterial.color.g, staffMaterial.color.b, Util.EaseInOut01(staffAlpha));
         }
         else

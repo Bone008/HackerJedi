@@ -5557,7 +5557,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1072651022596434, guid: d4ba919cba755544aab32a7f05819fea,
     type: 2}
   nozzle: {fileID: 4254166129595500}
-  magazineEmptyCooldown: 1
-  magazineSize: 5
-  projectileSpeed: 40
+  magazineEmptyCooldown: 0.5
+  magazineSize: 6
+  projectileSpeed: 70
   damageAmount: 25

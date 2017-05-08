@@ -102,7 +102,10 @@ public class Platform : MonoBehaviour {
 
     public Vector3 getVelocity()
     {
-        return (endPoint - startPoint).normalized * velocity;
+        if (blockedTime > 0)
+            return Vector3.zero;
+        else
+            return (endPoint - startPoint).normalized * velocity;
     }
 
     public void DisableForSec(float seconds)
