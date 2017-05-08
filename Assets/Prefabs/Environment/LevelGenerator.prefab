@@ -74,5 +74,5 @@ MonoBehaviour:
   rail: []
   randomPresetBlock: 0
   trackRowOffset: 3
-  rows: 14
-  lines: 14
+  rows: 16
+  lines: 16

@@ -644,7 +644,7 @@ ModelImporter:
     13700000: armor_1
     13700002: Hand_2
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 2
     materialSearch: 1
   animations:

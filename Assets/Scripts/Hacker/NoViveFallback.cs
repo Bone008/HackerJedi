@@ -10,7 +10,7 @@ public class NoViveFallback : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-        if(!SteamVR.active)
+        if(SteamVR.instance == null && this.enabled) // Awake is also called for disabled scripts, so we need to check explicitly
         {
             nonVRFallback.SetActive(true);
             GameData.Instance.viveActive = false;

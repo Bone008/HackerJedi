@@ -5344,10 +5344,10 @@ MonoBehaviour:
   - {fileID: 0}
   enemyDeathAudio:
   - {fileID: 8300000, guid: cab7be39911e5a747a9d1eb77c96fa91, type: 3}
-  - {fileID: 8300000, guid: 58446b6af0aa3a24ebd83b84e005545b, type: 3}
+  - {fileID: 8300000, guid: 59b5b455dc053364da5bd680d8453538, type: 3}
   audio: {fileID: 82944210193333488}
   birthMin: 0
-  birthMax: 5
+  birthMax: 4
   deathMin: 0
   deathMax: 2
 --- !u!114 &114145417781509536
@@ -5488,7 +5488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 114519433697907994}
   hitRange: 15
-  fireDelay: 0.6
+  fireDelay: 0.8
 --- !u!136 &136546178845971964
 CapsuleCollider:
   m_ObjectHideFlags: 1

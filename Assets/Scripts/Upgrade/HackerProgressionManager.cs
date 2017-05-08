@@ -20,7 +20,7 @@ public class HackerProgressionManager : MonoBehaviour
 
         // attach event listeners
         foreach (var button in GetComponentsInChildren<AbilityUpgradeElement>())
-            button.onTriggered.AddListener(() => TryBuyUpgrade(button));
+            button.onUnlockClick.AddListener(() => TryBuyUpgrade(button));
     }
 
     private void RefreshUpgradeStates()

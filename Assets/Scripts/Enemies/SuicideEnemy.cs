@@ -27,6 +27,9 @@ public class SuicideEnemy : EnemyBase {
     public float targetHeight;
     public float movementSpeed;
     public float startKamikazeDist;
+    public float disablePlatformDuration;
+
+    private Throwable_OBJ throwable;
 
     void Start()
     {
@@ -39,6 +42,8 @@ public class SuicideEnemy : EnemyBase {
         //    agent.destination = platform.position;
 
         //GetComponent<Renderer>().material.color = color1;
+
+        throwable = GetComponent<Throwable_OBJ>();
     }
 
     private void MoveTowards(Vector3 target)
@@ -55,6 +60,12 @@ public class SuicideEnemy : EnemyBase {
 
     void Update()
     {
+        if (throwable.IsGrabbed())
+        {
+            suicideProgress = SuicideProgress.OnFloor;
+            return;
+        }
+
         switch (suicideProgress)
         {
             case SuicideProgress.OnFloor:
@@ -99,7 +110,7 @@ public class SuicideEnemy : EnemyBase {
                 if (sqDist <= hitRange * hitRange)
                 {
                     //StopCoroutine(blinkCoroutine);
-                    platform.GetComponent<Platform>().DisableForSec(2.0f);
+                    platform.GetComponent<Platform>().DisableForSec(disablePlatformDuration);
                     Destroy(gameObject);
                     return;
                 }

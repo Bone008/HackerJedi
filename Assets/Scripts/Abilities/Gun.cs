@@ -13,7 +13,7 @@ public class Gun : AbstractAbility {
     public int magazineSize;
     public float projectileSpeed;
     public float damageAmount;
-
+    
     [HideInInspector]
     public int? layer = null;
 
@@ -22,8 +22,10 @@ public class Gun : AbstractAbility {
 
     private void Start()
     {
-        if(!layer.HasValue)
-            layer = gameObject.layer;
+        //if(!layer.HasValue)
+        //    layer = gameObject.layer;
+        // ^--- disabled, so projectiles shot by the hacker remain on their preconfigured layer (--> enemies)
+        // this way, the weapon can stay on the default layer, but projectiles are still shot on the enemies layer
     }
 
     private void Update()

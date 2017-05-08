@@ -4,18 +4,29 @@ using UnityEngine;
 
 public class RecorderCamScript : MonoBehaviour {
 
+    public bool on;
+
+
     public Transform startPoint, endPoint, lookAt, followObject;
     public Camera cam;
     public float moveSpeed = 3;
     public float stoppingDistance, fovChangeRate;
     public Vector3 followOffset;
     public int[] fovValues = { 48, 40 };
+    public float camDepth = 1;
 
     public bool controls, fovChange;
 
 	// Use this for initialization
 	void Start () {
 
+        cam.depth = camDepth;
+
+        if (on)
+            cam.enabled = true;
+        else
+            cam.enabled = false;
+        
         if (startPoint != null)
             transform.position = startPoint.position;
         else
@@ -40,6 +51,9 @@ public class RecorderCamScript : MonoBehaviour {
 
         if (lookAt != null)
             transform.LookAt(lookAt);
+
+        if (Input.GetKeyDown("j"))
+            cam.enabled = !cam.enabled;
 
         if (Input.GetKeyDown("m"))
             controls = !controls;

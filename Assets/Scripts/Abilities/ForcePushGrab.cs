@@ -5,7 +5,6 @@ using UnityEngine;
 public class ForcePushGrab : AbstractAbility {
 
     public float cooldown; // for both
-
     private Animator animator;
 
     // ==== Force push ====
@@ -121,8 +120,11 @@ public class ForcePushGrab : AbstractAbility {
     /// <summary>How far off the aim is allowed to be to still register as a hit.</summary>
     public float grabRange;
     public float aimHitTolerance;
-    private Throwable_OBJ grabbedTarget = null;
+    public float grabLifeDrainPerSecond;
+    private IEnumerator coroutine;
     public AudioSource grabAudio;
+    public AudioSource drainAudio;
+    private Throwable_OBJ grabbedTarget = null;
 
     private Throwable_OBJ GetAimedAtTarget(out RaycastHit? hitOut)
     {
@@ -173,12 +175,13 @@ public class ForcePushGrab : AbstractAbility {
             // disable preview while grabbing
             aimPreview.enabled = false;
         }
-
     }
     private void playGrabAudio()
     {
         grabAudio.Play();
     }
+
+
     protected override void OnGripDown()
     {
         if (IsCoolingDown || isPushing) // don't allow grab while pushing
@@ -201,6 +204,8 @@ public class ForcePushGrab : AbstractAbility {
             playGrabAudio();
             grabbedTarget.transform.SetParent(transform, true);
             grabbedTarget.setGrabbed();
+            coroutine = Drain();
+            StartCoroutine(coroutine);
             // prevent shooting
             var shootPlayer = grabbedTarget.gameObject.GetComponent<ShootPlayer>();
             if (shootPlayer != null)
@@ -210,10 +215,16 @@ public class ForcePushGrab : AbstractAbility {
 
     protected override void OnGripUp()
     {
-        if (grabbedTarget != null)
-        {
-            animator.SetBool("choking", false);
+        animator.SetBool("choking", false);
 
+        if(coroutine != null)
+        {
+            StopCoroutine(coroutine);
+            coroutine = null;
+        }
+
+        if (grabbedTarget != null) // note that this can be null when the target was killed while being grabbed
+        {
             grabbedTarget.setFree();
             grabbedTarget.transform.SetParent(null);
             // let her shoot again
@@ -221,6 +232,24 @@ public class ForcePushGrab : AbstractAbility {
             if (shootPlayer != null)
                 shootPlayer.enabled = true;
             grabbedTarget = null;
+        }
+    }
+
+    private IEnumerator Drain()
+    {
+        var targetHealth = grabbedTarget.GetComponent<HealthResource>();
+        if (targetHealth == null)
+            yield break;
+
+        while (true)
+        {
+            
+            yield return new WaitForSeconds(1);
+            drainAudio.Play();
+            float healAmount = Mathf.Min(targetHealth.currentValue, grabLifeDrainPerSecond);
+            targetHealth.ChangeValue(-grabLifeDrainPerSecond);
+
+            hackerPlayer.GetComponent<HealthResource>().ChangeValue(healAmount);
         }
     }
 

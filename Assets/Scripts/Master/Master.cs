@@ -284,7 +284,7 @@ public class Master : MonoBehaviour {
             return;
 
         // get enemy base script
-        EnemyBase enemyBase = enemyPrefab.GetComponent<EnemyBase>();
+        EnemyBase enemyBase = enemyPrefab.GetComponentInChildren<EnemyBase>();
         Debug.Assert(enemyBase != null);
 
         // check if too close to platform
@@ -360,7 +360,7 @@ public class Master : MonoBehaviour {
         // highlight blocks in no-spawn zone
         if (enemyPrefab != null)
         {
-            EnemyBase enemyBase = enemyPrefab.GetComponent<EnemyBase>();
+            EnemyBase enemyBase = enemyPrefab.GetComponentInChildren<EnemyBase>();
             float bs = level.blockSize;
             float hs = level.blockSize / 2;
             float targetY = hs + 0.2f;

@@ -86,6 +86,9 @@ public class HackerPlayer : MonoBehaviour
             var abilityPrefabs = abilitySelectionPrefab.GetComponent<AbilitySelectionWheel>().abilityPrefabs;
             foreach (var prefab in abilityPrefabs)
             {
+                if (HackerProgression.Instance.GetUnlockedLevel(prefab.GetComponent<AbstractAbility>().Type) < 1)
+                    continue;
+
                 var go = Instantiate(prefab, GetHandGO(hand).transform);
                 go.SetActive(false);
 
@@ -307,9 +310,9 @@ public class HackerPlayer : MonoBehaviour
             yield return 0;
         }
 
-        // load lose_screen scene
+        // load end_of_game scene
         GameData.Instance.successfulHack = false;
-        SteamVR_LoadLevel.Begin("lose_screen", false, 0.1f);
+        SteamVR_LoadLevel.Begin("end_of_game", false, 0.1f);
     }
 
     private void Update()
