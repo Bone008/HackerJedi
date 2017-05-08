@@ -1,28 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(AudioLowPassFilter))]
 
 public class AudioMixer : MonoBehaviour {
-    
-	
-	// Update is called once per frame
-	void Update () {
-    
-        
-	}
 
-    private void OnLevelWasLoaded(int level)
+    private void Start()
     {
-        if (level == 2)
-        {
-            GetComponent<AudioLowPassFilter>().cutoffFrequency = 666f;
-        }
-        if (level == 1)
+        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+    }
+
+    private void SceneManager_sceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "game")
         {
             GetComponent<AudioLowPassFilter>().cutoffFrequency = 5000f;
         }
+        else
+        {
+            GetComponent<AudioLowPassFilter>().cutoffFrequency = 666f;
+        }
     }
+
 }
