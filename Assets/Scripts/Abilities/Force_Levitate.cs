@@ -10,6 +10,31 @@ public class Force_Levitate : AbstractUltimate
     public float forceStrengthL;
     public float rangeL;
 
+    private float staffAlpha = 0;
+    private Material staffMaterial;
+
+    private void Start()
+    {
+        staffMaterial = staffTransform.GetComponentInChildren<Renderer>().material;
+    }
+
+    private void LateUpdate()
+    {
+        bool canPush = activated || CanStartForcePush();
+
+        float alphaDir = (canPush ? 1 : -1);
+        staffAlpha = Mathf.Clamp01(staffAlpha + alphaDir * Time.deltaTime * 3.0f);
+
+        if(staffAlpha > 0)
+        {
+            staffTransform.gameObject.SetActive(true);
+            staffTransform.position = (leftHand.position + rightHand.position) / 2;
+            staffMaterial.color = new Color(staffMaterial.color.r, staffMaterial.color.g, staffMaterial.color.b, Util.EaseInOut01(staffAlpha));
+        }
+        else
+            staffTransform.gameObject.SetActive(false);
+    }
+
     protected override void OnGripDown() {
 
         //Check if controllers are ([distance] below the headposition and) nearly rotated 90/-90 degrees around their forward vector
@@ -40,7 +65,7 @@ public class Force_Levitate : AbstractUltimate
 
         float moveHeightEnd = (leftHand.position.y + rightHand.position.y) / 2;
         //Check if the controllers are [distance] higher as the position before OnGripsDown()
-        if (moveHeightEnd - startMoveHeightL > 0.5)
+        if (moveHeightEnd - startMoveHeightL > 0.3f)
         {
             Debug.Log("Ultimate-Tracking successfull! #For_Lev OnGripUp()");
             //--> Do the Levitate! 
@@ -81,14 +106,24 @@ public class Force_Levitate : AbstractUltimate
     //--------------------------------------------------------------------------------------------------------------------------------------------------------
     private float startMoveHeightG;
     [Header("Ultimate force push")]
+    public Transform staffTransform;
+    public GameObject shockwavePrefab;
     public float forceStrengthG;
     public float forceLiftG;
     public float rangeG;
 
+    private bool CanStartForcePush()
+    {
+        return !activated && Vector2.Distance(
+            new Vector2(leftHand.position.x, leftHand.position.z),
+            new Vector2(rightHand.position.x, rightHand.position.z)
+            ) < 0.1f;
+    }
+
     protected override void OnTriggerDown()
     {
         //Check if controllers are [distance] over the headposition and one higher than the other
-        if (!activated && Vector2.Distance(new Vector2(leftHand.position.x, leftHand.position.z), new Vector2(rightHand.position.x, rightHand.position.z)) < 0.1)//Headposition und Vergleich fehlt hier noch!!!!
+        if (CanStartForcePush())
         {
             activated = true;
             startMoveHeightG = (leftHand.position.y + rightHand.position.y) / 2;
@@ -110,11 +145,16 @@ public class Force_Levitate : AbstractUltimate
     {
         float moveHeightEnd = (leftHand.position.y + rightHand.position.y) / 2;
         //Check if the controllers are [distance] higher as the position before OnGripsDown()
-        if (activated && moveHeightEnd - startMoveHeightG < 0.5)
+        if (activated && moveHeightEnd - startMoveHeightG < 0.3f)
         {
             Debug.Log("Ultimate-Tracking successfull! #For_Gun OnTriggerUp()");
             //--> Do Force push! 
             force();
+
+            // shockwave
+            var shockwavePos = transform.position;
+            shockwavePos.y = hackerPlayer.position.y - hackerPlayer.localPosition.y + 0.2f;
+            Instantiate(shockwavePrefab, shockwavePos, Quaternion.identity);
         }
         else
         {
