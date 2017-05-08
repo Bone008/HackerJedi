@@ -9,7 +9,7 @@ public class HackerProgression
     private static readonly Dictionary<AbilityType, int> maxLevels = new Dictionary<AbilityType, int>
     {
         {AbilityType.SimpleGun, 3},
-        {AbilityType.JediForcePush, 3},
+        {AbilityType.JediForcePush, 2},
         {AbilityType.PulseGun, 2},
         {AbilityType.Shield, 2},
         // ...
@@ -31,7 +31,7 @@ public class HackerProgression
 
         // for debugging: unlock everything
         //unlockedLevels[AbilityType.SimpleGun] = maxLevels[AbilityType.SimpleGun];
-        //unlockedLevels[AbilityType.JediForcePush] = maxLevels[AbilityType.JediForcePush];
+        unlockedLevels[AbilityType.JediForcePush] = maxLevels[AbilityType.JediForcePush];
         //unlockedLevels[AbilityType.PulseGun] = maxLevels[AbilityType.PulseGun];
     }
 
