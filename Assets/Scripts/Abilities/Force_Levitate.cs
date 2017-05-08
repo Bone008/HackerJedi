@@ -132,6 +132,9 @@ public class Force_Levitate : AbstractUltimate
         {
             if (col.tag == "Enemy")
             {
+                var nma = col.GetComponentInParent<NavMeshAgent>();
+                if (nma != null)
+                    nma.enabled = false;
                 //Hilfsvariablen
                 Vector3 enemyPos = col.gameObject.transform.position; //Gegnerposition
                 Vector3 handPos = gameObject.transform.position;     //Handposition
@@ -149,9 +152,6 @@ public class Force_Levitate : AbstractUltimate
                 rb.AddForce(forceVec, ForceMode.Impulse);
                 rb.AddTorque(new Vector3(Random.Range(-2, 2), Random.Range(-2, 2), Random.Range(-2, 2)), ForceMode.Impulse);
 
-                var nma = col.GetComponentInParent<NavMeshAgent>();
-                if (nma != null)
-                    nma.enabled = false;
             }
         }
     }
