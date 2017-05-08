@@ -123,6 +123,7 @@ public class ForcePushGrab : AbstractAbility {
     public float grabLifeDrainPerSecond;
     private IEnumerator coroutine;
     public AudioSource grabAudio;
+    public AudioSource drainAudio;
     private Throwable_OBJ grabbedTarget = null;
 
     private Throwable_OBJ GetAimedAtTarget(out RaycastHit? hitOut)
@@ -179,6 +180,7 @@ public class ForcePushGrab : AbstractAbility {
     {
         grabAudio.Play();
     }
+
 
     protected override void OnGripDown()
     {
@@ -241,8 +243,9 @@ public class ForcePushGrab : AbstractAbility {
 
         while (true)
         {
+            
             yield return new WaitForSeconds(1);
-
+            drainAudio.Play();
             float healAmount = Mathf.Min(targetHealth.currentValue, grabLifeDrainPerSecond);
             targetHealth.ChangeValue(-grabLifeDrainPerSecond);
 
