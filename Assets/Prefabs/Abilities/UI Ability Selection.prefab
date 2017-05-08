@@ -10146,7 +10146,7 @@ MonoBehaviour:
   selectionSphereMultiplier: 0.1
   initAnimationDuration: 0.15
   abilityPrefabs:
-  - {fileID: 1592527875849472, guid: 68921e643628709439a17ba67b7906c2, type: 2}
+  - {fileID: 1592527875849472, guid: 06126b9c20732a840afe522ba59bbdd0, type: 2}
   - {fileID: 1592527875849472, guid: 7dd2836027cb0024ea1e56281b83a9d8, type: 2}
   - {fileID: 1237343732971958, guid: db9215448347dee4e93205859e1ee831, type: 2}
   ultimatePrefabs:
@@ -10257,7 +10257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e155c47d1878b4085b0491cc0c10c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityType: 4
+  abilityType: 5
 --- !u!120 &120278076889108636
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -10387,7 +10387,7 @@ SphereCollider:
   m_GameObject: {fileID: 1489658034606368}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
