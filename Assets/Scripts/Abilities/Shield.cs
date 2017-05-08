@@ -26,19 +26,30 @@ public class Shield : AbstractAbility
         if (isActive)
         {
             energy -= drainRate * Time.deltaTime;
+
+            if(energy <= 0)
+            {
+                isActive = false;
+                isRecovering = true;
+                this.AnimateVector(0.1f, new Vector3(0.15f, 0.15f, 0.15f), Vector3.zero, Util.EaseInOut01, v => shieldTransform.transform.localScale = v);
+                isActive = false;
+            }
         }
 
     }
 
     protected override void OnTriggerDown()
     {
-        this.AnimateVector(0.1f, Vector3.zero, new Vector3(0.15f, 0.15f, 0.15f), Util.EaseInOut01, v => shieldTransform.transform.localScale = v);
-
+        if (!isRecovering)
+        {
+            this.AnimateVector(0.1f, Vector3.zero, new Vector3(0.15f, 0.15f, 0.15f), Util.EaseInOut01, v => shieldTransform.transform.localScale = v);
+            isActive = true;
+        }
     }
 
     protected override void OnTriggerUp()
     {
         this.AnimateVector(0.1f,new Vector3(0.15f, 0.15f, 0.15f), Vector3.zero, Util.EaseInOut01, v => shieldTransform.transform.localScale = v);
-        
+        isActive = false;
     }
 }

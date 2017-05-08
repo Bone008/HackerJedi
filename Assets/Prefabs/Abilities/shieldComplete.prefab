@@ -1631,6 +1631,6 @@ MonoBehaviour:
   abilityType: 5
   needsMirroring: 0
   energy: 100
-  drainRate: 2
+  drainRate: 20
   cooldown: 10
   shieldTransform: {fileID: 1937119532704954}
