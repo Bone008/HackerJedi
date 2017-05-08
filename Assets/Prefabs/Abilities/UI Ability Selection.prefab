@@ -10149,6 +10149,7 @@ MonoBehaviour:
   - {fileID: 1592527875849472, guid: 06126b9c20732a840afe522ba59bbdd0, type: 2}
   - {fileID: 1592527875849472, guid: 7dd2836027cb0024ea1e56281b83a9d8, type: 2}
   - {fileID: 1237343732971958, guid: db9215448347dee4e93205859e1ee831, type: 2}
+  - {fileID: 1700818868231874, guid: 50b30e8b7ebc86c4ab84ca2426ba9962, type: 2}
   ultimatePrefabs:
   - {fileID: 1586267167299042, guid: 2067441e4b2cb904d9701d99cca49939, type: 2}
   - {fileID: 1631783005091186, guid: 1136d7b1fa01c6e49b63a2f9d36cde30, type: 2}
