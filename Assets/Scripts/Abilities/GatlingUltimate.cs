@@ -80,7 +80,7 @@ public class GatlingUltimate : AbstractUltimate
             //Gatling_Gun an linker Hand positionieren und abhängig von rechter Hand rotieren
             if (Vector3.Distance(relationObj.position, leftHand.position) > Vector3.Distance(relationObj.position, rightHand.position)&&relationObj.position.y-transform.position.y>0.3)
             {
-                transform.Translate(Vector3.Slerp(transform.position, leftHand.position - Vector3.up * 0.2f, Time.deltaTime));//anzupassen
+                transform.Translate(Vector3.Slerp(transform.position, leftHand.position - Vector3.up * 0.2f, Time.deltaTime),Space.Self);//anzupassen
                 t.transform.localRotation = Quaternion.LookRotation(Vector3.Slerp(leftHand.position - rightHand.position, transform.eulerAngles, Time.deltaTime));
             }
             if (currentTriggerDownTime <= 0)
@@ -102,6 +102,7 @@ public class GatlingUltimate : AbstractUltimate
             Debug.Log("Geste erkannt");
             triggerDown = true;
             currentTriggerDownTime = triggerDownTime;
+            transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 
@@ -120,7 +121,10 @@ public class GatlingUltimate : AbstractUltimate
         if (active)
             EnableUlti();
         else
+        {
             DisableUlti();
+            transform.GetChild(0).gameObject.SetActive(false);
+        }
 
         // en/disable old weapons
         // TODO fix and move to AbstractUltimate
