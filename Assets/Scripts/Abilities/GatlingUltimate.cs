@@ -6,13 +6,17 @@ using UnityEngine;
 public class GatlingUltimate : AbstractUltimate
 {
     public float activationDuration = 10.0f;
-
+    public GameObject projectilePrefab;
+    public float projectileSpeed;
+    public float damageAmount;
     // hacker has to hold triggers down this amount of time
     public float triggerDownTime = 2.0f;
     private float currentTriggerDownTime;
     private bool triggerDown = false;
     private Transform relationObj;
-    private float NonVROffset=0;
+    private float nonVROffset=0;
+    private GameObject rotating;
+    private float cooldown=0;
 
     //Verschoben in Oberklasse//private bool activated = false; // if the actual gun has been pulled out
 
@@ -24,7 +28,7 @@ public class GatlingUltimate : AbstractUltimate
         }
         catch(UnityException){
             relationObj = GameObject.FindGameObjectWithTag("Platform").transform;
-            NonVROffset = 2;
+            nonVROffset = 2;
             Debug.Log("Second_Try");
         }
         Debug.Log("Rel Übergeben");
@@ -46,10 +50,21 @@ public class GatlingUltimate : AbstractUltimate
             this.Delayed(activationDuration, () => SwitchActive(false));
         }
 
-        // TODO
+        // TODO: In process
         if (activated)
         {
+            cooldown -= Time.deltaTime;
             // shoot
+            if (cooldown <= 0&&Vector3.Distance(leftHand.position,rightHand.position)<=0.3)
+            {
+                cooldown = 2;
+                GameObject projectile = GameObject.Instantiate(projectilePrefab, transform.position, transform.rotation);//Position muss noch angepasst werden
+                projectile.GetComponent<Rigidbody>().velocity = transform.eulerAngles * projectileSpeed;
+                Debug.Log("Layer has to be changed!");
+
+                // store damage amount of gun in projectile
+                projectile.GetComponent<Projectile>().damageAmount = damageAmount;
+            }
         }
     }
 
@@ -59,21 +74,29 @@ public class GatlingUltimate : AbstractUltimate
         if(activated)
         {
             var t = transform.GetChild(0);
-            t.position = leftHand.position;
-            t.rotation = Quaternion.LookRotation(rightHand.position - leftHand.position);
-            t.localScale = new Vector3(0.05f, 0.05f, (rightHand.position - leftHand.position).magnitude * 2);
-            
-            //Gatling_Gun an rechter Hand positionieren und abhängig von linker Hand rotieren
-
-
-
+            //t.position = leftHand.position;
+            //t.rotation = Quaternion.LookRotation(rightHand.position - leftHand.position);
+            //t.localScale = new Vector3(0.05f, 0.05f, (rightHand.position - leftHand.position).magnitude * 2);
+            //Gatling_Gun an linker Hand positionieren und abhängig von rechter Hand rotieren
+            if (Vector3.Distance(relationObj.position, leftHand.position) > Vector3.Distance(relationObj.position, rightHand.position)&&relationObj.position.y-transform.position.y>0.3)
+            {
+                transform.Translate(Vector3.Slerp(transform.position, leftHand.position - new Vector3(0, 0.2f, 0), Time.deltaTime));//anzupassen
+                t.transform.localRotation = Quaternion.LookRotation(Vector3.Slerp(leftHand.position - rightHand.position, transform.eulerAngles, Time.deltaTime));
+            }
+            if (currentTriggerDownTime <= 0)
+            {
+                transform.position = leftHand.position - Vector3.up;
+                currentTriggerDownTime += 1;
+            }
+            //Laufrotation
+            t.transform.GetChild(0).transform.Rotate(new Vector3(1, 0, 0));
         }
     }
 
     protected override void OnTriggerDown()
     {
         // mark trigger down && start timer
-        if (!activated && leftHand.position.y > relationObj.position.y+NonVROffset && rightHand.position.y > relationObj.position.y+NonVROffset)
+        if (!activated && leftHand.position.y > relationObj.position.y+nonVROffset && rightHand.position.y > relationObj.position.y+nonVROffset)
         {
             //Test auf Abstand zu Head fehlt noch (Umsetzung mit NonVR ist noch schwierig)
             Debug.Log("Geste erkannt");

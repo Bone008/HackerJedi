@@ -51,7 +51,7 @@ public class Force_Levitate : AbstractUltimate
             {
                 if (col.tag == "Enemy")
                 {
-                    this.Delayed(0.1f, () => col.attachedRigidbody.AddForce(0, forceStrengthL, 0, ForceMode.Acceleration));
+                    this.Delayed(0.1f, () => col.attachedRigidbody.AddRelativeForce(0, forceStrengthL, 0, ForceMode.Acceleration));
                     Throwable_OBJ obj=col.gameObject.GetComponent<Throwable_OBJ>();
                     obj.setGrabbed();//Enemy-Behaviours disablen?
                     behaviours[counter] = obj;
