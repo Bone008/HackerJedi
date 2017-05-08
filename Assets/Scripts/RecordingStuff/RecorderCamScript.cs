@@ -18,15 +18,19 @@ public class RecorderCamScript : MonoBehaviour {
 
     public bool controls, fovChange;
 
+    private bool manRotate;
+
 	// Use this for initialization
 	void Start () {
 
         cam.depth = camDepth;
 
-        if (on)
-            cam.enabled = true;
+        cam.enabled = on;
+
+        if (lookAt != null)
+            manRotate = false;
         else
-            cam.enabled = false;
+            manRotate = true;        
         
         if (startPoint != null)
             transform.position = startPoint.position;
@@ -50,7 +54,7 @@ public class RecorderCamScript : MonoBehaviour {
         if (fovChange)
             cam.fieldOfView += fovStep;
 
-        if (lookAt != null)
+        if (lookAt != null && !manRotate)
             transform.LookAt(lookAt);
 
         if (Input.GetKeyDown("j"))
@@ -58,6 +62,9 @@ public class RecorderCamScript : MonoBehaviour {
 
         if (Input.GetKeyDown("m"))
             controls = !controls;
+
+        if (Input.GetKeyDown("k"))
+            manRotate = !manRotate;
 
         if (Input.GetKeyDown("n") && startPoint != null)
         {
@@ -89,10 +96,10 @@ public class RecorderCamScript : MonoBehaviour {
         if (Input.GetKey(KeyCode.Keypad1))
             transform.position += transform.up * step;
 
-        if (Input.GetKey(KeyCode.Keypad2))
+        if (Input.GetKey(KeyCode.Keypad2) && manRotate)
             transform.Rotate(0, -rotateSpeed * Time.deltaTime, 0);
 
-        if (Input.GetKey(KeyCode.Keypad3))
+        if (Input.GetKey(KeyCode.Keypad3) && manRotate)
             transform.Rotate(0, rotateSpeed * Time.deltaTime, 0);
 
     }
