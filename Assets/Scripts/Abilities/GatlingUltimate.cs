@@ -102,6 +102,7 @@ public class GatlingUltimate : AbstractUltimate
             Debug.Log("Geste erkannt");
             triggerDown = true;
             currentTriggerDownTime = triggerDownTime;
+            transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 
@@ -120,7 +121,10 @@ public class GatlingUltimate : AbstractUltimate
         if (active)
             EnableUlti();
         else
+        {
             DisableUlti();
+            transform.GetChild(0).gameObject.SetActive(false);
+        }
 
         // en/disable old weapons
         // TODO fix and move to AbstractUltimate
