@@ -11,6 +11,7 @@ public class HackerProgression
         {AbilityType.SimpleGun, 3},
         {AbilityType.JediForcePush, 3},
         {AbilityType.PulseGun, 2},
+        {AbilityType.Shield, 2},
         // ...
     };
 
@@ -26,6 +27,7 @@ public class HackerProgression
         unlockedLevels.Add(AbilityType.SimpleGun, 1);
         unlockedLevels.Add(AbilityType.JediForcePush, 1);
         unlockedLevels.Add(AbilityType.PulseGun, 1);
+        unlockedLevels.Add(AbilityType.Shield, 1);
 
         // for debugging: unlock everything
         //unlockedLevels[AbilityType.SimpleGun] = maxLevels[AbilityType.SimpleGun];

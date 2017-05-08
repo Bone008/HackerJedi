@@ -1628,8 +1628,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83d307cb457cfd4fb95455863f3d920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityType: 0
+  abilityType: 5
   needsMirroring: 0
   energy: 100
   drainRate: 2
   cooldown: 10
+  shieldTransform: {fileID: 1937119532704954}
