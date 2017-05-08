@@ -279,7 +279,8 @@ MonoBehaviour:
   needsMirroring: 0
   dataFragmentsCost: 5
   activationDuration: 10
-  projectilePrefab: {fileID: 0}
-  projectileSpeed: 0
-  damageAmount: 0
+  projectilePrefab: {fileID: 1072651022596434, guid: d4ba919cba755544aab32a7f05819fea,
+    type: 2}
+  projectileSpeed: 10
+  damageAmount: 10
   triggerDownTime: 2
