@@ -130,6 +130,7 @@ public class AbilityUpgradeElement : MonoBehaviour, ILaserInteractable
         {
             // confirm buy
             onUnlockClick.Invoke();
+            Activate(); // close it
         }
     }
 
