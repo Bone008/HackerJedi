@@ -17,11 +17,11 @@ public class AudioMixer : MonoBehaviour {
     {
         if (scene.name == "game")
         {
-            GetComponent<AudioLowPassFilter>().cutoffFrequency = 5000f;
+            GetComponent<AudioLowPassFilter>().enabled = false;
         }
         else
         {
-            GetComponent<AudioLowPassFilter>().cutoffFrequency = 666f;
+            GetComponent<AudioLowPassFilter>().enabled = true;
         }
     }
 

@@ -10,6 +10,7 @@ public class RecorderCamScript : MonoBehaviour {
     public Transform startPoint, endPoint, lookAt, followObject;
     public Camera cam;
     public float moveSpeed = 3;
+    public float rotateSpeed;
     public float stoppingDistance, fovChangeRate;
     public Vector3 followOffset;
     public int[] fovValues = { 48, 40 };
@@ -87,6 +88,12 @@ public class RecorderCamScript : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.Keypad1))
             transform.position += transform.up * step;
+
+        if (Input.GetKey(KeyCode.Keypad2))
+            transform.Rotate(0, -rotateSpeed * Time.deltaTime, 0);
+
+        if (Input.GetKey(KeyCode.Keypad3))
+            transform.Rotate(0, rotateSpeed * Time.deltaTime, 0);
 
     }
 }

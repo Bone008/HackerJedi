@@ -68,7 +68,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294965247
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -105,6 +105,7 @@ MonoBehaviour:
   followObject: {fileID: 0}
   cam: {fileID: 20938657668538182}
   moveSpeed: 3
+  rotateSpeed: 15
   stoppingDistance: 0
   fovChangeRate: 1
   followOffset: {x: 0, y: 0, z: 0}
@@ -129,7 +130,7 @@ MonoBehaviour:
   glowLayer:
     serializedVersion: 2
     m_Bits: 4294964959
-  renderCamera: {fileID: 0}
+  renderCamera: {fileID: 20938657668538182}
   showCutoutGlow: 0
   showTransparentGlow: 1
   glowType: 0
