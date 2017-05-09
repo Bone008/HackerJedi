@@ -21,6 +21,9 @@ public class Projectile : MonoBehaviour {
         if (collider.GetComponentInParent<Gun>() != null)
             return;
 
+        if (collider.GetComponent<ShieldPanel>() != null)
+            return;
+
         HealthResource health = collider.gameObject.GetComponentInParent<HealthResource>();
         if (health != null)
             health.ChangeValue(-damageAmount);

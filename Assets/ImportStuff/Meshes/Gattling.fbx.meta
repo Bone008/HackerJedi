@@ -1,23 +1,17 @@
 fileFormatVersion: 2
 guid: 8dfa96599ffa70c47985fc46a622c99e
-timeCreated: 1494249946
+timeCreated: 1494340536
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Camera
-    100002: //RootNode
-    100004: Gattling
-    100006: Lamp
-    100008: Lauf
-    400000: Camera
-    400002: //RootNode
-    400004: Gattling
-    400006: Lamp
-    400008: Lauf
-    2300000: Gattling
+    100000: //RootNode
+    100002: Lauf
+    400000: //RootNode
+    400002: Lauf
+    2300000: //RootNode
     2300002: Lauf
-    3300000: Gattling
+    3300000: //RootNode
     3300002: Lauf
     4300000: Gattling
     4300002: Lauf

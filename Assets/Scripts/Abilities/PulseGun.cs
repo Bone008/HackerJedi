@@ -41,7 +41,7 @@ public class PulseGun : AbstractAbility {
                 audio.clip = emptySound;
                 audio.volume = 0.3f;
                 audio.Play();
-                this.Delayed(emptySound.length + 0.5f, () => Destroy(go));
+                Destroy(go, emptySound.length + 0.2f);
             }
             return;
         }
@@ -118,9 +118,8 @@ public class PulseGun : AbstractAbility {
     {
         float maxLineWidth = lineScript.LineWidth;
 
+        Destroy(lineScript.gameObject, 0.07f + 0.15f); // this is executed even when pulse gun script is disabled
         yield return this.AnimateScalar(0.07f, 0, maxLineWidth, v => lineScript.LineWidth = v);
         yield return this.AnimateScalar(0.15f, maxLineWidth, 0, v => lineScript.LineWidth = v);
-        
-        Destroy(lineScript.gameObject);
     }
 }
