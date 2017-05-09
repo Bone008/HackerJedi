@@ -87,6 +87,10 @@ public class HackerProgression
         return true;
     }
 
+    public void UnlockEverything()
+    {
+        unlockedLevels = new Dictionary<AbilityType, int>(maxLevels);
+    }
 
 
 

@@ -17,6 +17,13 @@ public class MenuScript : MonoBehaviour {
             SteamVR_LoadLevel.Begin("game");
     }
 
+    public void startUnlocked()
+    {
+        GameData.Instance.UnlockEverything();
+        HackerProgression.Instance.UnlockEverything();
+        startGame();
+    }
+
     public void endGame()
     {
         Application.Quit();

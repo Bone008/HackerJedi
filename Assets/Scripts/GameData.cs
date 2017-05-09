@@ -36,4 +36,13 @@ public class GameData
             return instance;
         }
     }
+
+    public void UnlockEverything()
+    {
+        suicideRobotUnlocked = true;
+        sniperUnlocked = true;
+        turretUnlocked = true;
+        hackingAreaUnlocked = true;
+        firewallUnlocked = true;
+    }
 }
