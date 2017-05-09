@@ -50,6 +50,14 @@ public class HackerPlayer : MonoBehaviour
         EquipAbility(HackerHand.Right, initialAbilityRight);
         
         deathScreenElement.SetActive(false);
+
+
+        // haptic feedback on damage
+        GetComponent<HealthResource>().onDamage.AddListener(() =>
+        {
+            TriggerHapticFeedback(HackerHand.Left, 0.6f, 0.2f);
+            TriggerHapticFeedback(HackerHand.Right, 0.6f, 0.2f);
+        });
     }
 
     /// <summary>Call this to make the controller vibrate. Strength is between 0 and 1, duration is in seconds.</summary>

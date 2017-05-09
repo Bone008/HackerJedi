@@ -24,6 +24,7 @@ public class Master : MonoBehaviour {
     public LevelGenerator level;
     public GameObject noSpawnZone;
     public Material obstacleNoSpawnZoneMaterial;
+    public Text spawnResourceText;
     private SpawnResource spawnResource;
     private Dictionary<int, GameObject> placedObstacles = new Dictionary<int, GameObject>();
     private GameObject enemyPrefab = null;
@@ -78,6 +79,7 @@ public class Master : MonoBehaviour {
 
         // get spawn resource
         spawnResource = GetComponent<SpawnResource>();
+        spawnResource.onChange.AddListener(() => spawnResourceText.text = spawnResource.currentValue + " $");
 
         // get material of master rail
         defaultRailMaterial = level.rail[0].GetChild(1).GetComponent<Renderer>().material;
