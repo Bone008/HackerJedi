@@ -8,6 +8,7 @@ public class HealthResource : ResourceBase {
     
     public UnityEvent onDamage;
     public UnityEvent onDeath;
+    public AudioClip[] playerHit;
 
     void Start () {
         RestoreFullHealth();
@@ -17,6 +18,13 @@ public class HealthResource : ResourceBase {
     {
         ChangeValue(maxValue - currentValue);
     }
+
+    /*public void playAudio()
+    {
+        var rnd = UnityEngine.Random.Range(0, 2);
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        AudioSource.PlayClipAtPoint(playerHit[rnd], player.transform.position, 1f);
+    }*/
 
     public override bool ChangeValue(float amount)
     {

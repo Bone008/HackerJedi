@@ -20,6 +20,11 @@ public class PulseGun : AbstractAbility {
     //public Color volumetricLineColor;
     public Material volumetricLineMaterial;
 
+    [Header("Level 2")]
+    public float totalAngleLevel2;
+    public float maxRangeLevel2;
+    public float maxDamageLevel2;
+
     [HideInInspector]
     public int? layer = null;
 
@@ -27,6 +32,16 @@ public class PulseGun : AbstractAbility {
     {
         if(!layer.HasValue)
             layer = gameObject.layer;
+    }
+
+    public override void ConfigureForLevel(int level)
+    {
+        if(level > 1)
+        {
+            totalAngle = totalAngleLevel2;
+            maxRange = maxRangeLevel2;
+            maxDamageAmount = maxDamageLevel2;
+        }
     }
 
     protected override void OnTriggerDown()

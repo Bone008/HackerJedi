@@ -1499,6 +1499,7 @@ MonoBehaviour:
   drainRate: 25
   cooldown: 5
   shieldTransform: {fileID: 1709404232747562}
+  maxEnergyLevel2: 350
 --- !u!114 &114516815953320940
 MonoBehaviour:
   m_ObjectHideFlags: 1
