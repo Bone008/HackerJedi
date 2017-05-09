@@ -345,7 +345,9 @@ public class Master : MonoBehaviour {
 
     private bool InNoSpawnZone(EnemyBase enemyBase, Vector3 position)
     {
-        return ((platform.transform.position - position).sqrMagnitude < enemyBase.minPlatformSpawnDist * enemyBase.minPlatformSpawnDist);
+        Vector3 direction = platform.transform.position - position;
+        direction.y = 0;
+        return (direction.sqrMagnitude < enemyBase.minPlatformSpawnDist * enemyBase.minPlatformSpawnDist);
     }
 
     private IEnumerator AutoUpdateNoSpawnZone()
@@ -448,8 +450,8 @@ public class Master : MonoBehaviour {
                     //Debug.Log("nope" + last);
                     continue;
                 }
-
-                sorted.Add(next.Value);
+                if (!sorted.Exists(v => (next.Value - v).sqrMagnitude <= 0.1))
+                    sorted.Add(next.Value);
                 noSpawnCorners.Remove(next.Value);
             }
 
