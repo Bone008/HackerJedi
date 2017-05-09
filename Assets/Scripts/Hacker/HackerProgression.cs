@@ -32,6 +32,8 @@ public class HackerProgression
 
     private HackerProgression()
     {
+        Reset();
+
         // for debugging: unlock everything
         //unlockedLevels[AbilityType.SimpleGun] = maxLevels[AbilityType.SimpleGun];
         unlockedLevels[AbilityType.JediForcePush] = maxLevels[AbilityType.JediForcePush];
