@@ -63,7 +63,8 @@ public class Gun : AbstractAbility {
             shotsFired = 0;
 
             // haptic feedback
-            hackerPlayerScript.TriggerHapticFeedback(hand, 0.3f, 0.25f);
+            if(hackerPlayerScript != null)
+                hackerPlayerScript.TriggerHapticFeedback(hand, 0.3f, 0.25f);
         }
 
         var aimRay = GetAimRay(nozzle);

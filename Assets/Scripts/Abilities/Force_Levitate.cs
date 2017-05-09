@@ -127,15 +127,17 @@ public class Force_Levitate : AbstractUltimate
     {
         float moveHeightEnd = (leftHand.position.y + rightHand.position.y) / 2;
         //Check if the controllers are [distance] higher as the position before OnGripsDown()
-        if (activated && moveHeightEnd - startMoveHeightG < 0.3f)
+        if (activated && moveHeightEnd - startMoveHeightG < -0.3f)
         {
             Debug.Log("Ultimate-Tracking successfull! #For_Gun OnTriggerUp()");
             //--> Do Force push! 
             force();
 
             // shockwave
-            var shockwavePos = transform.position;
-            shockwavePos.y = hackerPlayer.position.y - hackerPlayer.localPosition.y + 0.2f;
+            var shockwavePos = staffTransform.position;
+            var platform = GameObject.FindGameObjectWithTag("Platform");
+            if(platform != null)
+                shockwavePos.y = platform.transform.position.y + 0.2f;
             Instantiate(shockwavePrefab, shockwavePos, Quaternion.identity);
         }
         else
