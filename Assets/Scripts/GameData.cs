@@ -10,6 +10,7 @@ public class GameData
     public bool hackerIsReady;
     public bool masterIsReady;
 
+    public bool betterRangedGruntUnlocked = false;
     public bool suicideRobotUnlocked = false;
     public bool sniperUnlocked = false;
     public bool turretUnlocked = false;
@@ -39,6 +40,7 @@ public class GameData
 
     public void UnlockEverything()
     {
+        betterRangedGruntUnlocked = true;
         suicideRobotUnlocked = true;
         sniperUnlocked = true;
         turretUnlocked = true;

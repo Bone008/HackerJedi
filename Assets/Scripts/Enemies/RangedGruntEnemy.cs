@@ -20,9 +20,12 @@ public class RangedGruntEnemy : EnemyBase
     private bool recovering, timerRunning;
     private float startTimeResting = 0;
     private int collisions = 0;
-    private ShootPlayer shootPlayer; 
+    private bool shootingEnabled = true;
 
-    
+    [Header("Upgrade")]
+    public GameObject leftGun;
+    public PointAtPlayer pap;
+
     void Start()
     {
         // locate player
@@ -43,10 +46,15 @@ public class RangedGruntEnemy : EnemyBase
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = true;
 
-        shootPlayer = GetComponent<ShootPlayer>();
-
         if (agent.isOnNavMesh)
-            agent.destination = goal.position;              
+            agent.destination = goal.position;
+
+        // activated 2nd gun if upgrade
+        if (GameData.Instance.betterRangedGruntUnlocked)
+        {
+            leftGun.SetActive(true);
+            pap.enabled = true;
+        }
     }
 
     void Update()
@@ -54,8 +62,7 @@ public class RangedGruntEnemy : EnemyBase
         
         if (agent.enabled)
         {
-            if (!shootPlayer.enabled)
-                shootPlayer.enabled = true;
+            SetShootingEnabled(true);
 
             //Handle enemy in functional state and on navmesh
             float dist = Vector3.Distance(transform.position, goal.position);
@@ -66,8 +73,7 @@ public class RangedGruntEnemy : EnemyBase
         }
         else
         {
-            if (shootPlayer.enabled)
-                shootPlayer.enabled = false;
+            SetShootingEnabled(false);
 
             //Handle enemy in non-functional state and/or off navmesh
             handleDisabledEnemy();
@@ -90,6 +96,16 @@ public class RangedGruntEnemy : EnemyBase
         //TODO instantiate sound object
         Destroy(gameObject);
         
+    }
+
+    public void SetShootingEnabled(bool enabled)
+    {
+        if (shootingEnabled != enabled)
+        {
+            foreach (var gun in GetComponentsInChildren<Gun>())
+                gun.enabled = enabled;
+            shootingEnabled = enabled;
+        }
     }
 
     private void handleFunctionalEnemy(float dist)
