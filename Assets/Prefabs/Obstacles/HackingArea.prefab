@@ -14449,6 +14449,8 @@ MonoBehaviour:
   defaultColor: {r: 0.17647058, g: 0.7058823, b: 0.17647058, a: 0.722}
   hackingColor: {r: 0.5588235, g: 0.09039791, b: 0.09039791, a: 0.641}
   colorTransitionMultiplier: 3
+  finish: {fileID: 8300000, guid: 93901e7ef84be1a4689eaf77cf14b93a, type: 3}
+  cancel: {fileID: 8300000, guid: 14365b8de549c9c468d20fc3664690c8, type: 3}
   noiceAnimator: {fileID: 95774916113430940}
   progressStatusText: {fileID: 114768933677237008}
   progressBar: {fileID: 224598446219343302}

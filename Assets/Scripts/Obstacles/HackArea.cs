@@ -10,6 +10,8 @@ public class HackArea : MonoBehaviour {
     public Color hackingColor = Color.red;
     private Color targetColor;
     public float colorTransitionMultiplier;
+    public AudioClip finish;
+    public AudioClip cancel;
 
     public Animator noiceAnimator;
 
@@ -58,8 +60,8 @@ public class HackArea : MonoBehaviour {
         {
             targetColor = hackingColor;
             targetColor.a = 0;
-
             progressStatusText.text = "ACCESS GRANTED";
+            
 
             if (deathCoroutine == null)
                 deathCoroutine = StartCoroutine(Deathded());
@@ -96,7 +98,7 @@ public class HackArea : MonoBehaviour {
             hackerController = null;
             targetColor = defaultColor;
             timeRemaining = timeToHack;
-
+            AudioSource.PlayClipAtPoint(cancel, this.transform.position, 0.8f);
             progressStatusText.text = "Hack me!";
             UpdateProgress();
         }
@@ -112,6 +114,7 @@ public class HackArea : MonoBehaviour {
 
     private IEnumerator Deathded()
     {
+        AudioSource.PlayClipAtPoint(finish, this.transform.position, 0.8f);
         // start animation
         noiceAnimator.Play("Reverse");
 
