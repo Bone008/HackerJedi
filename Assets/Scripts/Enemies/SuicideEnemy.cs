@@ -13,8 +13,6 @@ public class SuicideEnemy : EnemyBase {
 
     private new Rigidbody rigidbody;
 
-    //private Coroutine blinkCoroutine;
-
     private enum SuicideProgress
     {
         OnFloor,
@@ -36,13 +34,7 @@ public class SuicideEnemy : EnemyBase {
         rigidbody = GetComponent<Rigidbody>();
 
         platform = GameObject.FindGameObjectWithTag("Platform").transform;
-        //agent = GetComponent<NavMeshAgent>();
-
-        //if (agent.isOnNavMesh)
-        //    agent.destination = platform.position;
-
-        //GetComponent<Renderer>().material.color = color1;
-
+       
         throwable = GetComponent<Throwable_OBJ>();
     }
 
@@ -97,10 +89,6 @@ public class SuicideEnemy : EnemyBase {
                 break;
 
             case SuicideProgress.Kamikaze:
-                // start blinking
-                //if (blinkCoroutine == null)
-                //    blinkCoroutine = StartCoroutine(StartBlinking());
-
                 // fly towards player
                 targetPosition = platform.position;
                 MoveTowards(targetPosition);
@@ -109,8 +97,8 @@ public class SuicideEnemy : EnemyBase {
                 float sqDist = (platform.position - transform.position).sqrMagnitude;
                 if (sqDist <= hitRange * hitRange)
                 {
-                    //StopCoroutine(blinkCoroutine);
                     platform.GetComponent<Platform>().DisableForSec(disablePlatformDuration);
+                    Instantiate(explo, transform.position, transform.rotation);
                     Destroy(gameObject);
                     return;
                 }
@@ -126,16 +114,5 @@ public class SuicideEnemy : EnemyBase {
         Instantiate(explo, transform.position, transform.rotation);
         Destroy(gameObject);
     }
-
-    //private IEnumerator StartBlinking()
-    //{
-    //    Renderer r = GetComponent<Renderer>();
-    //    while (true)
-    //    {
-    //        r.material.color = color2;
-    //        yield return new WaitForSeconds(0.4f);
-    //        r.material.color = color1;
-    //        yield return new WaitForSeconds(0.4f);
-    //    }
-    //}
+    
 }
