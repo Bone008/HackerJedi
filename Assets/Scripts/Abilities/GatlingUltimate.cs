@@ -78,18 +78,20 @@ public class GatlingUltimate : AbstractUltimate
             //t.rotation = Quaternion.LookRotation(rightHand.position - leftHand.position);
             //t.localScale = new Vector3(0.05f, 0.05f, (rightHand.position - leftHand.position).magnitude * 2);
             //Gatling_Gun an linker Hand positionieren und abhängig von rechter Hand rotieren
-            if (Vector3.Distance(relationObj.position, leftHand.position) > Vector3.Distance(relationObj.position, rightHand.position)&&relationObj.position.y-transform.position.y>0.3)
+            if (Vector3.Distance(relationObj.position, leftHand.position) > Vector3.Distance(relationObj.position, rightHand.position)/*&&relationObj.position.y-transform.position.y>0.3*/)
             {
-                transform.Translate(Vector3.Slerp(transform.position, leftHand.position - Vector3.up * 0.2f, Time.deltaTime),Space.Self);//anzupassen
+                t.position = leftHand.position;
+                //Funktioniert nicht:
+                //transform.Translate(Vector3.Slerp(transform.position, leftHand.position - Vector3.up * 0.2f, Time.deltaTime),Space.Self);//anzupassen
                 t.transform.localRotation = Quaternion.LookRotation(Vector3.Slerp(leftHand.position - rightHand.position, transform.eulerAngles, Time.deltaTime));
             }
-            if (currentTriggerDownTime <= 0)
-            {
-                transform.position = leftHand.position - Vector3.up*0.2f;
-                currentTriggerDownTime += 1;
-            }
+            //if (currentTriggerDownTime <= 0)
+            //{
+            //    transform.position = leftHand.position - Vector3.up*0.2f;
+            //    currentTriggerDownTime += 1;
+            //}
             //Laufrotation
-            t.transform.GetChild(0).transform.Rotate(new Vector3(1, 0, 0));
+            t.transform.GetChild(0).transform.Rotate(new Vector3(3, 0, 0));
         }
     }
 
