@@ -21,10 +21,16 @@ public class Levitate_Reset : MonoBehaviour {
     IEnumerator Reset(Throwable_OBJ[] levitated)
     {
         yield return new WaitForSeconds(9);
+        int counter = 0;
         foreach (Throwable_OBJ col in levitated)
         {
-            if(col != null)
+            if (col != null)
+            {
                 col.setFree();
+                counter++;
+            }
         }
+        Debug.Log(counter);
+        Debug.Log("All Objects reseted!");
     }
 }

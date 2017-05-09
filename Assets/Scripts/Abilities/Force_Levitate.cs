@@ -80,13 +80,39 @@ public class Force_Levitate : AbstractUltimate
             }
             ActivateEffect<Levitate_Reset>(10).init(behaviours);
 
-            DisableUlti();
+            //DisableUlti();
         }
         else
         {
             Debug.Log("Ultimate-Tracking failed! #For_Lev OnGripUp()");
         }
     }
+    //private bool testing = false;
+    //private void TestMethod()
+    //{
+    //    if (testing)
+    //    {
+    //        return;
+    //    }
+    //    testing = true;
+    //    Debug.LogWarning("Testcode is activated! #For_Lev LateUpdate()");
+    //    //--> Do the Levitate! 
+    //    Collider[] cols = Physics.OverlapSphere(transform.position, rangeL);
+    //    Throwable_OBJ[] behaviours = new Throwable_OBJ[cols.Length];
+    //    int counter = 0;
+    //    foreach (Collider col in cols)
+    //    {
+    //        if (col.tag == "Enemy")
+    //        {
+    //            this.Delayed(0.1f, () => col.attachedRigidbody.AddRelativeForce(0, forceStrengthL, 0, ForceMode.Acceleration));
+    //            Throwable_OBJ obj = col.gameObject.GetComponent<Throwable_OBJ>();
+    //            obj.setGrabbed();//Enemy-Behaviours disablen?
+    //            behaviours[counter] = obj;
+    //        }
+    //        counter++;
+    //    }
+    //    ActivateEffect<Levitate_Reset>(15).init(behaviours);
+    //}
 
     //--------------------------------------------------------------------------------------------------------------------------------------------------------
     //Shockwave-Ultimate
