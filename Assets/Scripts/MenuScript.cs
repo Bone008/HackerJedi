@@ -7,7 +7,7 @@ public class MenuScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        HackerProgression.Instance.Reset();
 	}
 	
     public void startGame()
