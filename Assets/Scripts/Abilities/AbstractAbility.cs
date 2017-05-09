@@ -6,8 +6,12 @@ public abstract class AbstractAbility : MonoBehaviour
     public AbilityType abilityType; // to be set by inspector
     public bool needsMirroring;
 
-    /// <summary>The transform of the main player (the head camera of the hacker, also the GO tagged "Player").</summary>
+    /// <summary>the transform of the main player (the head camera of the hacker, also the GO tagged "Player")</summary>
     protected Transform hackerPlayer;
+    /// <summary>the HackerPlayer script of the main player</summary>
+    protected HackerPlayer hackerPlayerScript;
+    /// <summary>the hand that this ability is bound to, DO NOT USE FOR ULTIMATES!</summary>
+    protected HackerHand hand;
 
     public AbilityType Type { get { return abilityType; } }
 
@@ -38,9 +42,11 @@ public abstract class AbstractAbility : MonoBehaviour
     }
 
 
-    public void InitHackerPlayer(Transform hackerPlayer)
+    public void InitHackerPlayer(HackerPlayer script, HackerHand hand)
     {
-        this.hackerPlayer = hackerPlayer;
+        this.hackerPlayer = script.transform;
+        this.hackerPlayerScript = script;
+        this.hand = hand;
     }
 
     public void SetTriggerDown(bool value)

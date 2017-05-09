@@ -8,6 +8,9 @@ public enum HackerHand { Left = 0, Right = 1 }
 
 public class HackerPlayer : MonoBehaviour
 {
+    /// <summary>Event for controllers to bind to. First parameter is the hand, second parameter is the strength (between 0 and 1), third parameter is the duration in seconds.</summary>
+    public event Action<HackerHand, float, float> HapticFeedback;
+
     public GameObject fullHacker;
 
     public GameObject[] handGameObjects = new GameObject[2];
@@ -49,6 +52,12 @@ public class HackerPlayer : MonoBehaviour
         deathScreenElement.SetActive(false);
     }
 
+    /// <summary>Call this to make the controller vibrate. Strength is between 0 and 1, duration is in seconds.</summary>
+    public void TriggerHapticFeedback(HackerHand hand, float strength, float duration)
+    {
+        if (HapticFeedback != null)
+            HapticFeedback(hand, strength, duration);
+    }
 
     public GameObject GetHandGO(HackerHand hand)
     {
@@ -93,7 +102,7 @@ public class HackerPlayer : MonoBehaviour
                 go.SetActive(false);
 
                 var abilityScript = go.GetComponent<AbstractAbility>();
-                abilityScript.InitHackerPlayer(transform);
+                abilityScript.InitHackerPlayer(this, hand);
 
                 if (abilityScript.needsMirroring && hand == HackerHand.Left)
                     // mirror along X axis
@@ -117,7 +126,7 @@ public class HackerPlayer : MonoBehaviour
             go.SetActive(false);
 
             var ult = go.GetComponent<AbstractUltimate>();
-            ult.InitHackerPlayer(transform);
+            ult.InitHackerPlayer(this, (HackerHand)999);
             ult.InitHands(GetHandGO(HackerHand.Left).transform, GetHandGO(HackerHand.Right).transform);
 
             allUltimateGOs.Add(ult.Type, go);
