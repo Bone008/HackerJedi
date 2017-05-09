@@ -15,6 +15,8 @@ public class MasterEye : MonoBehaviour {
     public Camera masterCamera;
     private MKGlow mkGlow;
 
+    public Master master;
+
     private void Start()
     {
         mkGlow = masterCamera.GetComponent<MKGlow>();
@@ -44,6 +46,7 @@ public class MasterEye : MonoBehaviour {
 
         this.Delayed(signalLostDuration, () => 
         {
+            master.enabled = false;
             // stop video, disable overlay, enable glow and restore health
             signalLostPlayer.Pause();
             signalLostBackground.SetActive(false);
@@ -51,6 +54,7 @@ public class MasterEye : MonoBehaviour {
             health.RestoreFullHealth();
 
             mkGlow.enabled = true;
+            master.enabled = true;
 
             // expand eye
             this.AnimateVector(0.3f, Vector3.zero, initialScale, Util.EaseInOut01, s => transform.localScale = s);

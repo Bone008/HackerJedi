@@ -18,19 +18,22 @@ public class TurretMaster : MonoBehaviour
     {
         gun = turret.GetComponentInChildren<Gun>();
         gun.layer = LayerMask.NameToLayer("Hacker");
+
+        // set initial rotation
+        rotX = turret.localRotation.eulerAngles.y - 30; // dont ask
+        rotY = turretBarrel.localRotation.eulerAngles.x;
     }
 
     void Update()
     {
         // rotate turret
         rotX += Input.GetAxis("Mouse X") * Time.unscaledDeltaTime * 200.0f;
-        rotY -= Input.GetAxis("Mouse Y") * Time.unscaledDeltaTime * 100.0f;
+        rotY += Input.GetAxis("Mouse Y") * Time.unscaledDeltaTime * 100.0f;
         rotY = Mathf.Clamp(rotY, camRotYMin, camRotYMax);
         turret.localRotation = Quaternion.Euler(0, rotX, 0);
         turretBarrel.localRotation = Quaternion.Euler(rotY, 0, 0);
 
         // single shot
-        // TODO
         if (Util.InputGetAxisDown("Fire1") == true)
             gun.FireOnce();
     }

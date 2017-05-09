@@ -8,10 +8,12 @@ public class Turret : EnemyBase
     private Transform masterCam;
     private AudioSource audio;
     public AudioClip turretArrival;
+    private GameObject platform;
 
     [Header("Eye transition")]
     public float eyeTransitionTime;
     public Transform eyeTarget;
+    public Transform camTarget;
     private Transform eye;
     private Animator animator;
 
@@ -33,6 +35,7 @@ public class Turret : EnemyBase
         eye = GameObject.FindGameObjectWithTag("MasterEye").transform;
         animator = GetComponent<Animator>();
         audio = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSource>();
+        platform = GameObject.FindGameObjectWithTag("Platform");
 
         // stop master interaction during animation
         SwitchMasterScripts(false, false);
@@ -55,10 +58,20 @@ public class Turret : EnemyBase
                 audio.pitch = Time.timeScale;
             }, true));
 
+        // rotate towards player
+        transform.LookAt(platform.transform, new Vector3(0, 1, 0));
+
         // start everything
         StartCoroutine(DoTurretStuff());
     }
-    
+
+    private void OnDestroy()
+    {
+        // reset time scale
+        Time.timeScale = 1;
+        audio.pitch = 1;
+    }
+
     private void SwitchMasterScripts(bool normal, bool turret)
     {
         // default script
@@ -77,28 +90,35 @@ public class Turret : EnemyBase
     private IEnumerator DoTurretStuff()
     {
         // set cam parent to eye
-        eye.localRotation = masterCam.localRotation;
-        Transform initialMasterCamParent = masterCam.transform.parent;
-        masterCam.transform.SetParent(eye);
+        //eye.localRotation = masterCam.localRotation;
+        //Transform initialMasterCamParent = masterCam.transform.parent;
+        //masterCam.transform.SetParent(eye);
 
         // move to turret
         Vector3 initialEyePos = eye.position;
         Quaternion initialEyeRot = eye.rotation;
         Vector3 initialEyeScale = eye.localScale;
+        Vector3 initialCamPos = masterCam.position;
+        Quaternion initialCamRot = masterCam.rotation;
         yield return this.Animate(eyeTransitionTime, progress =>
         {
             eye.position = Vector3.Lerp(initialEyePos, eyeTarget.position, progress);
             eye.rotation = Quaternion.Lerp(initialEyeRot, eyeTarget.rotation, progress);
             eye.localScale = Vector3.Lerp(initialEyeScale, eyeTarget.localScale, progress);
+            masterCam.position = Vector3.Lerp(initialCamPos, camTarget.position, progress);
+            masterCam.rotation = Quaternion.Lerp(initialCamRot, camTarget.rotation, progress);
         }, true);
 
-        // set eye parent
+        // set eye and cam parent
         Transform initialEyeParent = eye.transform.parent;
-        eye.transform.SetParent(transform);        
+        eye.transform.SetParent(transform, true);
+        Transform initialMasterCamParent = masterCam.transform.parent;
+        masterCam.transform.SetParent(barrel, true);
+        masterCam.localRotation = Quaternion.Euler(0, -180, 0); // dont ask
 
         // switch to turret-master
         SwitchMasterScripts(false, true);
-
+        
         // disable scripts of eye
         foreach (var script in eye.GetComponents<MonoBehaviour>())
             script.enabled = false;
@@ -111,11 +131,14 @@ public class Turret : EnemyBase
 
         // move back again
         Quaternion midEyeRot = eye.rotation;
+        Quaternion midCamRot = masterCam.rotation;
         this.Animate(eyeTransitionTime, progress =>
         {
             eye.position = Vector3.Lerp(eyeTarget.position, initialEyePos, progress);
             eye.rotation = Quaternion.Lerp(midEyeRot, initialEyeRot, progress);
             eye.localScale = Vector3.Lerp(eyeTarget.localScale, initialEyeScale, progress);
+            masterCam.position = Vector3.Lerp(camTarget.position, initialCamPos, progress);
+            masterCam.rotation = Quaternion.Lerp(midCamRot, initialCamRot, progress);
         }, true);
 
         // restore timescale
@@ -127,8 +150,8 @@ public class Turret : EnemyBase
         }, true);
 
         // restore initial parent
-        eye.transform.SetParent(initialEyeParent);
-        masterCam.transform.SetParent(initialMasterCamParent);
+        eye.transform.SetParent(initialEyeParent, true);
+        masterCam.transform.SetParent(initialMasterCamParent, true);
 
         // switch back to default master
         SwitchMasterScripts(true, false);
