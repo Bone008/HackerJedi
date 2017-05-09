@@ -9,6 +9,9 @@ public class Gun : AbstractAbility {
     public AudioClip emptySound;
     public GameObject projectilePrefab;
     public Transform nozzle;
+    public bool fullyAutomatic;
+    [Tooltip("only relevant when fully automatic is true")]
+    public float automaticFireRate;
     public float magazineEmptyCooldown;
     public int magazineSize;
     public float projectileSpeed;
@@ -28,8 +31,24 @@ public class Gun : AbstractAbility {
         // this way, the weapon can stay on the default layer, but projectiles are still shot on the enemies layer
     }
 
+    public override void ConfigureForLevel(int level)
+    {
+        if(level > 1)
+        {
+            fullyAutomatic = true;
+            magazineSize = 10;
+            magazineEmptyCooldown = 1;
+        }
+    }
+
     private void Update()
     {
+        if(fullyAutomatic && IsTriggerDown && !IsCoolingDown && Time.timeSinceLevelLoad - lastShotFired >= automaticFireRate)
+        {
+            FireShot();
+        }
+
+
         // if the "magazine" has been partially emptied and no shots have been fired for one entire cooldown duration, reset magazine
         if(shotsFired > 0 && Time.timeSinceLevelLoad - lastShotFired >= magazineEmptyCooldown)
         {
@@ -53,8 +72,13 @@ public class Gun : AbstractAbility {
             }
             return;
         }
-            
 
+        if (!fullyAutomatic)
+            FireShot();
+    }
+
+    private void FireShot()
+    {
         lastShotFired = Time.timeSinceLevelLoad;
         shotsFired++;
         if(shotsFired >= magazineSize)

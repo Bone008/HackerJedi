@@ -223,11 +223,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 1
   needsMirroring: 0
-  dataFragmentsCost: 5
+  dataFragmentsCost: 50
   activationDuration: 10
   projectilePrefab: {fileID: 1072651022596434, guid: d4ba919cba755544aab32a7f05819fea,
     type: 2}
   projectileSpeed: 70
   damageAmount: 50
-  triggerDownTime: 2
+  triggerDownTime: 1.4
   gatlingSound: {fileID: 8300000, guid: a7ecd6dd109553e42a72ca4267b213e4, type: 3}
