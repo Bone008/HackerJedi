@@ -23,7 +23,9 @@ public class GameData
     public int currentLevel = 1;
 
     public bool successfulHack;
-    
+
+    public int hackerDiff = 2;
+    public int masterDiff = 2;
 
     public static GameData Instance
     {
