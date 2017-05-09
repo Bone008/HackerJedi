@@ -828,6 +828,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1534836683727398
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4825716405468954}
+  m_Layer: 0
+  m_Name: CamGoal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1535493619521542
 GameObject:
   m_ObjectHideFlags: 1
@@ -2609,7 +2624,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1011128430233880}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.26000002, y: 2.945, z: 0.43}
+  m_LocalPosition: {x: 0.04, y: 2.66, z: 0.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4795748012869628}
@@ -3126,16 +3141,17 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1801833460438318}
-  m_LocalRotation: {x: 0, y: 0.25881907, z: -0, w: 0.9659259}
+  m_LocalRotation: {x: 0, y: 0.9659259, z: -0, w: -0.25881898}
   m_LocalPosition: {x: -0.5273045, y: -1.49, z: 0.54424185}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4292618739809638}
   - {fileID: 4569497634066198}
   - {fileID: 4543721635900700}
+  - {fileID: 4825716405468954}
   m_Father: {fileID: 4027245073387700}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 210, z: 0}
 --- !u!4 &4824501459379294
 Transform:
   m_ObjectHideFlags: 1
@@ -3149,6 +3165,19 @@ Transform:
   m_Father: {fileID: 4560960932970972}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4825716405468954
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1534836683727398}
+  m_LocalRotation: {x: 0, y: 0.9659258, z: 0, w: 0.2588191}
+  m_LocalPosition: {x: 1.38, y: 3.026, z: -2.41}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4795748012869628}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 150, z: 0}
 --- !u!4 &4846865513355546
 Transform:
   m_ObjectHideFlags: 1
@@ -6787,8 +6816,9 @@ MonoBehaviour:
   placingCost: 200
   minPlatformSpawnDist: 21
   turretArrival: {fileID: 8300000, guid: 5a751bf63b6a6304f9654ffc2931b9cd, type: 3}
-  eyeTransitionTime: 2.5
+  eyeTransitionTime: 2.7
   eyeTarget: {fileID: 4543721635900700}
+  camTarget: {fileID: 4825716405468954}
   timeScaleTransitionTime: 2
   timeScaleGoal: 0.4
   turretActiveSec: 8
