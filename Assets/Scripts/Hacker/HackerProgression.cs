@@ -21,14 +21,17 @@ public class HackerProgression
 
     public int PointsToSpend { get { return pointsToSpend; } }
 
-    private HackerProgression()
+    public void Reset()
     {
-        // initialize for level 1 (maybe do this somewhere else?)
+        unlockedLevels.Clear();
         unlockedLevels.Add(AbilityType.SimpleGun, 1);
         unlockedLevels.Add(AbilityType.JediForcePush, 1);
         unlockedLevels.Add(AbilityType.PulseGun, 1);
         unlockedLevels.Add(AbilityType.Shield, 1);
+    }
 
+    private HackerProgression()
+    {
         // for debugging: unlock everything
         //unlockedLevels[AbilityType.SimpleGun] = maxLevels[AbilityType.SimpleGun];
         unlockedLevels[AbilityType.JediForcePush] = maxLevels[AbilityType.JediForcePush];
