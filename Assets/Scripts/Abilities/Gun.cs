@@ -59,10 +59,11 @@ public class Gun : AbstractAbility {
         shotsFired++;
         if(shotsFired >= magazineSize)
         {
-            
             CooldownFor(magazineEmptyCooldown);
             shotsFired = 0;
-            
+
+            // haptic feedback
+            hackerPlayerScript.TriggerHapticFeedback(hand, 0.3f, 0.25f);
         }
 
         var aimRay = GetAimRay(nozzle);
