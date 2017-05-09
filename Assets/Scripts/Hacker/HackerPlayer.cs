@@ -125,12 +125,13 @@ public class HackerPlayer : MonoBehaviour
     private void SpawnUltimateInstances()
     {
         var ultimateRoot = new GameObject("Ultimates");
-        ultimateRoot.transform.SetParent(transform);
+        ultimateRoot.transform.SetParent(transform, false);
 
         var ultimatePrefabs = abilitySelectionPrefab.GetComponent<AbilitySelectionWheel>().ultimatePrefabs;
         foreach (var prefab in ultimatePrefabs)
         {
-            var go = Instantiate(prefab, Vector3.zero, Quaternion.identity, ultimateRoot.transform);
+            var go = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+            go.transform.SetParent(ultimateRoot.transform, false);
             go.SetActive(false);
 
             var ult = go.GetComponent<AbstractUltimate>();
