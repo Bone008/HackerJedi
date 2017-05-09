@@ -14,18 +14,21 @@ public class SniperEnemy : EnemyBase {
     public GameObject eye;
 
     public float preAimTime = 2.0f;
+    public float preFireTime = 2.0f;
+    public float cooldownTime = 2.0f;
 
     private Transform player;
     private CapsuleCollider playerCollider;
     private Platform platform;
 
-    public Color colorNormal;
-    public Color colorPrefire;
+    public Color colorPreaim;
+    public Color colorShoot;
     
     private enum SniperMode
     {
-        DirectlyAimAtPlayer,
-        Fire
+        Preaim,
+        PrepareToFire,
+        Cooldown
     };
     private SniperMode currentMode;
 
@@ -38,14 +41,15 @@ public class SniperEnemy : EnemyBase {
 
         // get platform
         platform = GameObject.FindGameObjectWithTag("Platform").GetComponent<Platform>();
-
-        // start sniper coroutine
-        StartCoroutine(DoSniperStuff());
-
+        
         // set weapon to hit player
         weapon.layer = LayerMask.NameToLayer("Hacker");
 
-        aimLaser.LineColor = colorNormal;
+        // set default color
+        aimLaser.LineColor = colorPreaim;
+
+        // start sniper coroutine
+        StartCoroutine(DoSniperStuff());        
     }
 	
 	void Update ()
@@ -53,17 +57,23 @@ public class SniperEnemy : EnemyBase {
         // startposition of aimlaser is always the weapon
         aimLaser.StartPos = aimLaser.transform.InverseTransformPoint(weapon.transform.position);
 
-        if (currentMode == SniperMode.DirectlyAimAtPlayer)
+        if (currentMode == SniperMode.Preaim || currentMode == SniperMode.Cooldown)
         {
-            // rotate body towards player around y axis
-            Vector3 bodyToPlayer = player.position - transform.position;
-            bodyToPlayer.y = 0;
-            Quaternion bodyRotation = Quaternion.LookRotation(bodyToPlayer);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, bodyRotation, 2);
-
-            // laser the shit out of player
-            aimLaser.EndPos = aimLaser.transform.InverseTransformPoint(player.position - new Vector3(0, playerCollider.height / 3, 0));            
+            // set preaim position
+            float dist = Vector3.Distance(nozzle.transform.position, player.transform.position);
+            float totalTime = (dist / weapon.projectileSpeed) + preFireTime;
+            Vector3 preAimPos = player.transform.position - new Vector3(0, playerCollider.height / 3, 0) + totalTime * platform.getVelocity();
+            aimLaser.EndPos = (aimLaser.transform.InverseTransformPoint(preAimPos) - aimLaser.StartPos) * 10;
         }
+        
+        // rotate body towards player around y axis
+        Vector3 bodyToPlayer = player.position - transform.position;
+        bodyToPlayer.y = 0;
+        Quaternion bodyRotation = Quaternion.LookRotation(bodyToPlayer);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, bodyRotation, 2);
+
+        // rotate weapon to follow laser
+        weapon.transform.rotation = Quaternion.LookRotation(aimLaser.transform.TransformPoint(aimLaser.EndPos) - weapon.transform.position);
     }
 
     public void OnDeath()
@@ -76,44 +86,25 @@ public class SniperEnemy : EnemyBase {
     {
         while (true)
         {
-            currentMode = SniperMode.DirectlyAimAtPlayer;
-            // stuff in update()
-            yield return new WaitForSeconds(3.0f);
-            currentMode = SniperMode.Fire;
+            // == Preaim ==
+            currentMode = SniperMode.Preaim;
+            aimLaser.LineColor = colorPreaim;
+            yield return new WaitForEndOfFrame(); // wait for update of endpos of laser before enabling again
+            aimLaser.gameObject.SetActive(true);
+            yield return new WaitForSeconds(preAimTime);
 
-            // set preAimLaser position
-            float dist = Vector3.Distance(nozzle.transform.position, player.transform.position);
-            float totalTime = (dist / weapon.projectileSpeed) + preAimTime;
-            Vector3 preAimPos = player.transform.position - new Vector3(0, playerCollider.height / 3, 0) + totalTime * platform.getVelocity();
-            aimLaser.LineColor = colorPrefire;
-            aimLaser.EndPos = aimLaser.transform.InverseTransformPoint(preAimPos);
-
-            // disable auto-rotation of weapon
-            PointAtPlayer pap = weapon.gameObject.GetComponent<PointAtPlayer>();
-            pap.enabled = false;
-
-            // smooth animate weapon rotation and laser between current pos and hit pos
-            Quaternion initialRotation = weapon.transform.rotation;
-            Quaternion targetRotation = Quaternion.LookRotation(preAimPos - weapon.transform.position);
-            Vector3 initialPos = aimLaser.EndPos;
-            Vector3 targetPos = preAimPos;
-            this.Animate(preAimTime, progress =>
+            // == Prepare to Fire
+            currentMode = SniperMode.PrepareToFire;
+            aimLaser.LineColor = colorShoot;
+            yield return this.Delayed(preFireTime, () =>
             {
-                weapon.transform.rotation = Quaternion.Lerp(initialRotation, targetRotation, progress);
-                aimLaser.EndPos = Vector3.Lerp(initialPos, aimLaser.transform.InverseTransformPoint(targetPos), progress);
+                // == Fire ==
+                currentMode = SniperMode.Cooldown;
+                weapon.FireOnce();
+                aimLaser.gameObject.SetActive(false);
             });
 
-            // fire after time has passed, disable laser, enable auto-rotation again
-            this.Delayed(preAimTime, () =>
-            {
-                weapon.FireOnce();                             
-            });
-            this.Delayed(totalTime, () => {
-                aimLaser.LineColor = colorNormal;
-                pap.enabled = true;
-            });
-
-            yield return new WaitForSeconds(totalTime);
+            yield return new WaitForSeconds(cooldownTime);
         }
     }
     

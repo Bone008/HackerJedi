@@ -1803,7 +1803,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4971848914598976}
   - component: {fileID: 114123068927841032}
-  - component: {fileID: 114088066042582544}
   m_Layer: 9
   m_Name: Sniper
   m_TagString: Untagged
@@ -7259,21 +7258,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.13, y: 0.53, z: 0.58}
   m_Center: {x: -0.81, y: 0, z: 0}
---- !u!114 &114088066042582544
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1858700222859862}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd4e71dd86e6c7c44bf0ea8c1a110960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aimingFOV: 360
-  bulletVelocity: 80
-  selfContext: {fileID: 4971848914598976}
-  forwardDirection: {x: 1, y: 0, z: 0}
 --- !u!114 &114123068927841032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7292,10 +7276,15 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1072651022596434, guid: d4ba919cba755544aab32a7f05819fea,
     type: 2}
   nozzle: {fileID: 4700758664460542}
+  fullyAutomatic: 0
+  automaticFireRate: 0
   magazineEmptyCooldown: 4
   magazineSize: 1
   projectileSpeed: 80
   damageAmount: 50
+  magazineEmptyCooldownLevel2: 0
+  magazineSizeLevel2: 0
+  damageLevel2: 0
 --- !u!114 &114202275992707126
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7337,6 +7326,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  playerHit: []
 --- !u!114 &114557677822700208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7384,8 +7374,8 @@ MonoBehaviour:
   nozzle: {fileID: 1266098950750994}
   eye: {fileID: 1759201727946498}
   preAimTime: 2
-  colorNormal: {r: 0.8088235, g: 0.7628863, b: 0.14273356, a: 0}
-  colorPrefire: {r: 0.8602941, g: 0.08855967, b: 0.08855967, a: 0}
+  colorPreaim: {r: 0.8161765, g: 0.71692735, b: 0.16203505, a: 0}
+  colorShoot: {r: 0.78676474, g: 0.115700714, b: 0.115700714, a: 0}
 --- !u!136 &136960136822444534
 CapsuleCollider:
   m_ObjectHideFlags: 1
