@@ -7,6 +7,7 @@ public class Turret : EnemyBase
     private Canvas masterHUD;
     private Transform masterCam;
     private AudioSource audio;
+    public AudioClip turretArrival;
 
     [Header("Eye transition")]
     public float eyeTransitionTime;
@@ -35,7 +36,17 @@ public class Turret : EnemyBase
 
         // stop master interaction during animation
         SwitchMasterScripts(false, false);
-
+        //AudioSource.PlayClipAtPoint(turretArrival, this.transform.position, 1f);
+        if (turretArrival != null)
+        {
+            var go = new GameObject("Turret Arrival");
+            go.transform.position = this.transform.position;
+            var audio = go.AddComponent<AudioSource>();
+            audio.clip = turretArrival;
+            audio.volume = 1f;
+            audio.Play();
+            this.Delayed(turretArrival.length + 0.5f, () => Destroy(go));
+        }
         // start time scale before movement finished
         this.Delayed(eyeTransitionTime - timeScaleTransitionTime,
             () => this.Animate(timeScaleTransitionTime, p =>

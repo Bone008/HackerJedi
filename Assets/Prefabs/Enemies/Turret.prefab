@@ -6786,6 +6786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placingCost: 200
   minPlatformSpawnDist: 21
+  turretArrival: {fileID: 8300000, guid: 5a751bf63b6a6304f9654ffc2931b9cd, type: 3}
   eyeTransitionTime: 2.5
   eyeTarget: {fileID: 4543721635900700}
   timeScaleTransitionTime: 2

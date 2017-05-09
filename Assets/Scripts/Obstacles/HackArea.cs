@@ -98,7 +98,7 @@ public class HackArea : MonoBehaviour {
             hackerController = null;
             targetColor = defaultColor;
             timeRemaining = timeToHack;
-            AudioSource.PlayClipAtPoint(cancel, this.transform.position, 0.8f);
+            AudioSource.PlayClipAtPoint(cancel, this.transform.position, 1f);
             progressStatusText.text = "Hack me!";
             UpdateProgress();
         }
@@ -114,7 +114,7 @@ public class HackArea : MonoBehaviour {
 
     private IEnumerator Deathded()
     {
-        AudioSource.PlayClipAtPoint(finish, this.transform.position, 0.8f);
+        AudioSource.PlayClipAtPoint(finish, this.transform.position, 1f);
         // start animation
         noiceAnimator.Play("Reverse");
 
