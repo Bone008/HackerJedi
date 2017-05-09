@@ -10,7 +10,7 @@ public class GatlingUltimate : AbstractUltimate
     public float projectileSpeed;
     public float damageAmount;
     // hacker has to hold triggers down this amount of time
-    public float triggerDownTime = 2.0f;
+    public float triggerDownTime = 1.4f;
     private float currentTriggerDownTime;
     private bool triggerDown = false;
     private Transform relationObj;

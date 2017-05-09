@@ -229,5 +229,5 @@ MonoBehaviour:
     type: 2}
   projectileSpeed: 70
   damageAmount: 50
-  triggerDownTime: 2
+  triggerDownTime: 1.4
   gatlingSound: {fileID: 8300000, guid: a7ecd6dd109553e42a72ca4267b213e4, type: 3}
