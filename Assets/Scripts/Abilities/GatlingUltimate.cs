@@ -56,17 +56,27 @@ public class GatlingUltimate : AbstractUltimate
             cooldown -= Time.deltaTime;
             Debug.Log(cooldown);
             // shoot
-            if (cooldown <= 0&&Vector3.Distance(leftHand.position,rightHand.position)<=0.3)
+            if (cooldown <= 0&&Vector3.Distance(leftHand.position,rightHand.position)<=0.4f)
             {
                 cooldown = 0.1f;
                 GameObject projectile = GameObject.Instantiate(projectilePrefab, transform.GetChild(1).transform.position, transform.rotation);
-                AudioSource.PlayClipAtPoint(gatlingSound, this.transform.position, 1f);
                 //Position muss noch angepasst werden
                 projectile.GetComponent<Rigidbody>().velocity = transform.forward * projectileSpeed;
-                projectile.layer = LayerMask.NameToLayer("Hacker");
+                projectile.layer = LayerMask.NameToLayer("Enemies");
 
                 // store damage amount of gun in projectile
                 projectile.GetComponent<Projectile>().damageAmount = damageAmount;
+
+
+                //AudioSource.PlayClipAtPoint(gatlingSound, this.transform.position, 1f);
+                var go = new GameObject("Shoot sound");
+                go.transform.position = transform.position;
+                var audio = go.AddComponent<AudioSource>();
+                audio.clip = gatlingSound;
+                audio.volume = 1;
+                audio.pitch = UnityEngine.Random.Range(0.95f, 1.05f);
+                audio.Play();
+                Destroy(go, gatlingSound.length + 0.1f);
             }
         }
     }
