@@ -21,6 +21,9 @@ public class Shield : AbstractAbility
     private bool isRecovering = false;
     private float lastUpdateTime;
 
+    [Header("Level 2")]
+    public float maxEnergyLevel2;
+
     private void Start()
     {
         energy = GetComponent<ShieldEnergyResource>();
@@ -33,6 +36,16 @@ public class Shield : AbstractAbility
         initialPanelColor = energyPanelImage.color;
 
         lastUpdateTime = Time.time;
+    }
+
+    public override void ConfigureForLevel(int level)
+    {
+        if (level > 1)
+        {
+            var energy = GetComponent<ShieldEnergyResource>(); // Start has not been called yet
+            energy.maxValue = maxEnergyLevel2;
+            energy.ChangeValue(energy.maxValue);
+        }
     }
 
     public void AbsorbDamage(float damage)

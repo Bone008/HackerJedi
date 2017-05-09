@@ -16,7 +16,12 @@ public class Gun : AbstractAbility {
     public int magazineSize;
     public float projectileSpeed;
     public float damageAmount;
-    
+
+    [Header("Level 2")]
+    public float magazineEmptyCooldownLevel2;
+    public int magazineSizeLevel2;
+    public float damageLevel2;
+
     [HideInInspector]
     public int? layer = null;
 
@@ -36,8 +41,9 @@ public class Gun : AbstractAbility {
         if(level > 1)
         {
             fullyAutomatic = true;
-            magazineSize = 10;
-            magazineEmptyCooldown = 1;
+            magazineEmptyCooldown = magazineEmptyCooldownLevel2;
+            magazineSize = magazineSizeLevel2;
+            damageAmount = damageLevel2;
         }
     }
 

@@ -25,7 +25,13 @@ public class ForcePushGrab : AbstractAbility {
         animator = GetComponentInChildren<Animator>();
     }
 
-   
+    public override void ConfigureForLevel(int level)
+    {
+        if (level > 1)
+            grabEnabled = true;
+    }
+
+
     protected override void OnTriggerDown()
     {
         if (IsCoolingDown || grabbedTarget != null) // don't allow push while grabbing
@@ -112,6 +118,8 @@ public class ForcePushGrab : AbstractAbility {
 
     // ==== Force grab ====
 
+    private bool grabEnabled = false; // only enable level 2+
+
     [Header("Force grab")]
     public Transform nozzle;
     public LineRenderer aimPreview;
@@ -147,6 +155,9 @@ public class ForcePushGrab : AbstractAbility {
 
     void LateUpdate()
     {
+        if (!grabEnabled)
+            return;
+
         if (grabbedTarget == null && !IsCoolingDown && !isPushing)
         {
             RaycastHit? hit;
@@ -184,7 +195,7 @@ public class ForcePushGrab : AbstractAbility {
 
     protected override void OnGripDown()
     {
-        if (IsCoolingDown || isPushing) // don't allow grab while pushing
+        if (!grabEnabled || IsCoolingDown || isPushing) // don't allow grab while pushing
             return;
 
         if (grabbedTarget == null)
@@ -215,6 +226,9 @@ public class ForcePushGrab : AbstractAbility {
 
     protected override void OnGripUp()
     {
+        if (!grabEnabled)
+            return;
+
         animator.SetBool("choking", false);
 
         if(coroutine != null)

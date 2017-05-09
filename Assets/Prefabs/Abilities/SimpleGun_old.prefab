@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4695723373876256}
   - component: {fileID: 114862385317893524}
   m_Layer: 0
-  m_Name: SimpleGun
+  m_Name: SimpleGun_old
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,3 +163,6 @@ MonoBehaviour:
   magazineSize: 6
   projectileSpeed: 70
   damageAmount: 25
+  magazineEmptyCooldownLevel2: 1
+  magazineSizeLevel2: 10
+  damageLevel2: 33

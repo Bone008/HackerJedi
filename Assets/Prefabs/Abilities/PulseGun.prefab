@@ -531,8 +531,8 @@ MonoBehaviour:
   nozzle: {fileID: 4254166129595500}
   shootCooldown: 1.5
   totalAngle: 42
-  maxRange: 12
-  maxDamageAmount: 150
+  maxRange: 11
+  maxDamageAmount: 120
   damageFalloff:
     serializedVersion: 2
     m_Curve:
@@ -556,6 +556,9 @@ MonoBehaviour:
     m_Bits: 512
   volumetricLineMaterial: {fileID: 2100000, guid: 123af45927adbb14fa7f12821c8bbee6,
     type: 2}
+  totalAngleLevel2: 42
+  maxRangeLevel2: 15
+  maxDamageLevel2: 170
 --- !u!136 &136545121566104394
 CapsuleCollider:
   m_ObjectHideFlags: 1
