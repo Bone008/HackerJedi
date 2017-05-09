@@ -277,7 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 1
   needsMirroring: 0
-  dataFragmentsCost: 5
+  dataFragmentsCost: 50
   activationDuration: 10
   projectilePrefab: {fileID: 1072651022596434, guid: d4ba919cba755544aab32a7f05819fea,
     type: 2}

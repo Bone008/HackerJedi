@@ -111,6 +111,7 @@ public class HackerPlayer : MonoBehaviour
 
                 var abilityScript = go.GetComponent<AbstractAbility>();
                 abilityScript.InitHackerPlayer(this, hand);
+                abilityScript.ConfigureForLevel(HackerProgression.Instance.GetUnlockedLevel(abilityScript.Type));
 
                 if (abilityScript.needsMirroring && hand == HackerHand.Left)
                     // mirror along X axis

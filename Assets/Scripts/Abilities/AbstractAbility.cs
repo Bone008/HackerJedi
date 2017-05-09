@@ -30,6 +30,7 @@ public abstract class AbstractAbility : MonoBehaviour
     protected virtual void OnGripDown() { }
     protected virtual void OnGripUp() { }
 
+    public virtual void ConfigureForLevel(int level) { }
 
     protected virtual void OnDisable()
     {
