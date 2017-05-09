@@ -17,6 +17,7 @@ public class GatlingUltimate : AbstractUltimate
     private float nonVROffset=0;
     private GameObject rotating;
     private float cooldown=0;
+    public AudioClip gatlingSound;
 
     //Verschoben in Oberklasse//private bool activated = false; // if the actual gun has been pulled out
 
@@ -58,7 +59,9 @@ public class GatlingUltimate : AbstractUltimate
             if (cooldown <= 0&&Vector3.Distance(leftHand.position,rightHand.position)<=0.3)
             {
                 cooldown = 0.1f;
-                GameObject projectile = GameObject.Instantiate(projectilePrefab, transform.GetChild(1).transform.position, transform.rotation);//Position muss noch angepasst werden
+                GameObject projectile = GameObject.Instantiate(projectilePrefab, transform.GetChild(1).transform.position, transform.rotation);
+                AudioSource.PlayClipAtPoint(gatlingSound, this.transform.position, 1f);
+                //Position muss noch angepasst werden
                 projectile.GetComponent<Rigidbody>().velocity = transform.forward * projectileSpeed;
                 projectile.layer = LayerMask.NameToLayer("Hacker");
 
