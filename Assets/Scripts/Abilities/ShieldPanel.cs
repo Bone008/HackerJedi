@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class ShieldPanel : MonoBehaviour
 {
+    public Shield shield;
 
     public Transform[] panels;
     public Color highlightColor;
@@ -19,17 +20,15 @@ public class ShieldPanel : MonoBehaviour
         myCollider = GetComponent<Collider>();
         initialColor = panels[0].GetComponent<Renderer>().sharedMaterial.GetColor("_EmissionColor");
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("collision!");
-    }
+    
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("test: " + other.name + "; " + other.gameObject.name, other);
         var projectile = other.GetComponent<Projectile>();
         if (projectile != null)
         {
+            // damage shield
+            shield.AbsorbDamage(projectile.damageAmount);
+
             // this kills the projectile
             Destroy(other.gameObject);
 
