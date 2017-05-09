@@ -2988,6 +2988,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114128137508167322, guid: 3c15011199362fe41a48b53db2e7a76e,
+        type: 2}
+      propertyPath: resourcePanel
+      value: 
+      objectReference: {fileID: 288762381}
+    - target: {fileID: 114546992019984614, guid: 3c15011199362fe41a48b53db2e7a76e,
+        type: 2}
+      propertyPath: raycastOrigin
+      value: 
+      objectReference: {fileID: 1076524487}
     - target: {fileID: 114578446853316228, guid: 3c15011199362fe41a48b53db2e7a76e,
         type: 2}
       propertyPath: signalLostPlayer
@@ -3003,16 +3013,11 @@ Prefab:
       propertyPath: masterCamera
       value: 
       objectReference: {fileID: 1076524487}
-    - target: {fileID: 114546992019984614, guid: 3c15011199362fe41a48b53db2e7a76e,
+    - target: {fileID: 114578446853316228, guid: 3c15011199362fe41a48b53db2e7a76e,
         type: 2}
-      propertyPath: raycastOrigin
+      propertyPath: master
       value: 
-      objectReference: {fileID: 1076524487}
-    - target: {fileID: 114128137508167322, guid: 3c15011199362fe41a48b53db2e7a76e,
-        type: 2}
-      propertyPath: resourcePanel
-      value: 
-      objectReference: {fileID: 288762381}
+      objectReference: {fileID: 1983452648}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c15011199362fe41a48b53db2e7a76e, type: 2}
   m_IsPrefabParent: 0

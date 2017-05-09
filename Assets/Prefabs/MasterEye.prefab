@@ -452,6 +452,7 @@ MonoBehaviour:
   signalLostPlayer: {fileID: 0}
   signalLostBackground: {fileID: 0}
   masterCamera: {fileID: 0}
+  master: {fileID: 0}
 --- !u!135 &135638497619236618
 SphereCollider:
   m_ObjectHideFlags: 1
