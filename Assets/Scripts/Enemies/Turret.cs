@@ -64,7 +64,14 @@ public class Turret : EnemyBase
         // start everything
         StartCoroutine(DoTurretStuff());
     }
-    
+
+    private void OnDestroy()
+    {
+        // reset time scale
+        Time.timeScale = 1;
+        audio.pitch = 1;
+    }
+
     private void SwitchMasterScripts(bool normal, bool turret)
     {
         // default script
