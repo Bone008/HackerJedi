@@ -5567,6 +5567,8 @@ MonoBehaviour:
   stoppingDistance: 10
   floorTime: 2
   recoveryMovementSpeed: 7
+  damageMinSpeed: 15
+  fallingDamageMultiplier: 0.75
   bounds: {x: 20, y: 0, z: 20}
   explo: {fileID: 1862322992109182, guid: 5f01c0a5d11e8034b9b6a7f008a4e490, type: 2}
   leftGun: {fileID: 1733620884468038}
