@@ -178,7 +178,7 @@ public class LevelGenerator : MonoBehaviour
         track = new GameObject[rows, lines];
         numPassedRails = 0;
         createTrack();
-        randomizeWorld(GameData.Instance.randomizeWorldinProgress);
+        randomizeWorld(GameData.Instance.randomizeWorldFactor);
     }
     
     // Update is called once per frame
