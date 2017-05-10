@@ -7493,8 +7493,10 @@ MonoBehaviour:
   nozzle: {fileID: 1266098950750994}
   eye: {fileID: 1759201727946498}
   preAimTime: 2
-  colorNormal: {r: 0.8088235, g: 0.7628863, b: 0.14273356, a: 0}
-  colorPrefire: {r: 0.8602941, g: 0.08855967, b: 0.08855967, a: 0}
+  preFireTime: 2
+  cooldownTime: 2
+  colorPreaim: {r: 0.8602941, g: 0.81405115, b: 0.18977073, a: 0}
+  colorShoot: {r: 0.875, g: 0.11580883, b: 0.11580883, a: 0}
 --- !u!136 &136960136822444534
 CapsuleCollider:
   m_ObjectHideFlags: 1
