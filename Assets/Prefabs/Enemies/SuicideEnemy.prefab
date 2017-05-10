@@ -9259,7 +9259,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -9359,7 +9359,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placingCost: 30
   minPlatformSpawnDist: 24
-  explo: {fileID: 1366398070322746, guid: cc44c10135eaa924ba7370056bd1b93a, type: 2}
+  explo: {fileID: 1862322992109182, guid: 5f01c0a5d11e8034b9b6a7f008a4e490, type: 2}
+  kamikazeExplo: {fileID: 1366398070322746, guid: cc44c10135eaa924ba7370056bd1b93a,
+    type: 2}
   hitRange: 3
   color1: {r: 0.7647059, g: 0.14057094, b: 0.14057094, a: 0}
   color2: {r: 0.022058845, g: 0.015084357, b: 0.015084357, a: 0}

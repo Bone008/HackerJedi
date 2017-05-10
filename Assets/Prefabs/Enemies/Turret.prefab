@@ -6836,7 +6836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 0
   needsMirroring: 0
-  shootSound: {fileID: 8300000, guid: 23d3f9f317c61cb419a568a5bef566fb, type: 3}
+  shootSound: {fileID: 8300000, guid: a7ecd6dd109553e42a72ca4267b213e4, type: 3}
   emptySound: {fileID: 0}
   projectilePrefab: {fileID: 1072651022596434, guid: d4ba919cba755544aab32a7f05819fea,
     type: 2}

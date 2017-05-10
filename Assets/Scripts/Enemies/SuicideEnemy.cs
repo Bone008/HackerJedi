@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class SuicideEnemy : EnemyBase {
 
     public GameObject explo;
+    public GameObject kamikazeExplo;
     public float hitRange;
     private Transform platform;
     public Color color1;
@@ -106,7 +107,7 @@ public class SuicideEnemy : EnemyBase {
                     audio.Play();
                     this.Delayed(exploSound.length + 0.2f, () => Destroy(go));
                     platform.GetComponent<Platform>().DisableForSec(disablePlatformDuration);
-                    Instantiate(explo, transform.position, transform.rotation);
+                    Instantiate(kamikazeExplo, transform.position, transform.rotation);
                     Destroy(gameObject);
                     return;
                 }

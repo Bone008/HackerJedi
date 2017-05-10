@@ -31,6 +31,7 @@ public class MenuScript : MonoBehaviour {
     {
         GameData.Instance.firewallUnlocked = b;
         GameData.Instance.hackingAreaUnlocked = b;
+        GameData.Instance.fragmentationSawUnlocked = b;
         GameData.Instance.sniperUnlocked = b;
         GameData.Instance.suicideRobotUnlocked = b;
         GameData.Instance.turretUnlocked = b;
