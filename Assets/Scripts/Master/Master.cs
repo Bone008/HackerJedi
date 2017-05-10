@@ -182,7 +182,7 @@ public class Master : MonoBehaviour {
 
             foreach(Transform s in selected)
             {
-                if (s == null || s.parent == null)
+                if (s == null || s.parent == null || !s.parent.tag.Equals("RoomBlock"))
                     return;
 
                 if (snapCoroutines.ContainsKey(s.parent))
@@ -206,6 +206,9 @@ public class Master : MonoBehaviour {
         {
             foreach (Transform s in selected)
             {
+                if (!s.parent.tag.Equals("RoomBlock"))
+                    continue;
+
                 Transform parent = s.parent.transform;
                 float y = parent.position.y + mouseDragDiff;
                 y = Mathf.Max(blockMinYValue, y);
