@@ -57,16 +57,16 @@ public class RecorderCamScript : MonoBehaviour {
         if (lookAt != null && !manRotate)
             transform.LookAt(lookAt);
 
-        if (Input.GetKeyDown("j"))
+        if (GameData.Instance.cheatingMode && Input.GetKeyDown("j"))
             cam.enabled = !cam.enabled;
 
-        if (Input.GetKeyDown("m"))
+        if (GameData.Instance.cheatingMode && Input.GetKeyDown("m"))
             controls = !controls;
 
-        if (Input.GetKeyDown("k"))
+        if (GameData.Instance.cheatingMode && Input.GetKeyDown("k"))
             manRotate = !manRotate;
 
-        if (Input.GetKeyDown("n") && startPoint != null)
+        if (GameData.Instance.cheatingMode && Input.GetKeyDown("n") && startPoint != null)
         {
             transform.position = startPoint.position;
             cam.fieldOfView = fovValues[1];

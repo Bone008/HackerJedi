@@ -32,9 +32,9 @@ public class Platform : MonoBehaviour {
     void Update()
     {
         // cheat
-        if (Input.GetKeyDown(KeyCode.F))
+        if (GameData.Instance.cheatingMode && Input.GetKeyDown(KeyCode.F))
             velocity = 40;
-        if (Input.GetKeyUp(KeyCode.F))
+        if (GameData.Instance.cheatingMode && Input.GetKeyUp(KeyCode.F))
             velocity = initialVelocity;
 
         blockedTime -= Time.deltaTime;

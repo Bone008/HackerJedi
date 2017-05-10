@@ -184,11 +184,11 @@ public class LevelGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("l"))
+        if (GameData.Instance.cheatingMode && Input.GetKeyDown("l"))
         {
             clearWorld();
         }
-        if (Input.GetKeyUp("l"))
+        if (GameData.Instance.cheatingMode && Input.GetKeyUp("l"))
             createTrack();
     }
 }

@@ -336,8 +336,7 @@ public class HackerPlayer : MonoBehaviour
 
     private void Update()
     {
-        // TODO remove
-        if (Input.GetKeyDown(KeyCode.C))
+        if (GameData.Instance.cheatingMode && Input.GetKeyDown(KeyCode.C))
         {
             GetComponent<DataFragmentResource>().ChangeValue(100);
             GetComponent<HealthResource>().ChangeValue(100000);

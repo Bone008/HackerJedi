@@ -28,6 +28,8 @@ public class GameData
     public float hackerDiff = 1;
     public float masterDiff = 1;
 
+    public bool cheatingMode = false;
+
     public static GameData Instance
     {
         get
