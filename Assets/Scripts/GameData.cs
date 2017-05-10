@@ -16,6 +16,7 @@ public class GameData
     public bool turretUnlocked = false;
     public bool hackingAreaUnlocked = false;
     public bool firewallUnlocked = false;
+    public bool fragmentationSawUnlocked = false;
 
     public bool viveActive = true;
 
@@ -48,5 +49,6 @@ public class GameData
         turretUnlocked = true;
         hackingAreaUnlocked = true;
         firewallUnlocked = true;
+        fragmentationSawUnlocked = true;
     }
 }

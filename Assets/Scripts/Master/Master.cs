@@ -110,6 +110,8 @@ public class Master : MonoBehaviour {
             hackingArea.SetActive(true);
         if (GameData.Instance.firewallUnlocked && !firewall.activeSelf)
             firewall.SetActive(true);
+        if (GameData.Instance.fragmentationSawUnlocked && !fragmentation_Saw.activeSelf)
+            fragmentation_Saw.SetActive(true);
         #endregion
 
         // start no spawn zone

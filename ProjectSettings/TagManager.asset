@@ -20,6 +20,7 @@ TagManager:
   - Master
   - MasterEye
   - Audio
+  - GateBlock
   layers:
   - Default
   - TransparentFX
