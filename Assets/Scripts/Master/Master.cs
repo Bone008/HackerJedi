@@ -84,6 +84,17 @@ public class Master : MonoBehaviour {
         // get material of master rail
         defaultRailMaterial = level.rail[0].GetChild(1).GetComponent<Renderer>().material;
         
+        // stop blinking of lifted blocks
+        for (int i = 0; i < level.world.GetLength(0); i++)
+        {
+            for (int u = 0; u < level.world.GetLength(1); u++)
+            {
+                var block = level.world[i, u].transform;
+                if (block.position.y > blockMinYValue && block.tag.Equals("RoomBlock"))
+                    SetBlockMaterial(block, liftedBlockMaterial);
+            }
+        }
+
         // unlocked units and obstacles
         #region
         if (GameData.Instance.suicideRobotUnlocked && !suicideRobot.activeSelf)
