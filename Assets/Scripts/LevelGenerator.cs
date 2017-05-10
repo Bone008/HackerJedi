@@ -71,7 +71,7 @@ public class LevelGenerator : MonoBehaviour
         world[p - 1, lines - 1].tag = "GateBlock";
         foreach (Transform t in world[p - 1, lines - 1].transform)
             t.tag = "GateBlock";
-        world[initialP + 1, 0].tag = "GateBlock";
+        world[p + 1, lines - 1].tag = "GateBlock";
         foreach (Transform t in world[p + 1, lines - 1].transform)
             t.tag = "GateBlock";
     }
