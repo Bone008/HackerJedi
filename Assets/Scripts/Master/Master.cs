@@ -25,6 +25,8 @@ public class Master : MonoBehaviour {
     public GameObject noSpawnZone;
     public Material obstacleNoSpawnZoneMaterial;
     public Text spawnResourceText;
+    public Text didntWorkMessage;
+    private Coroutine didntWorkCoroutine;
     private SpawnResource spawnResource;
     private Dictionary<int, GameObject> placedObstacles = new Dictionary<int, GameObject>();
     private GameObject enemyPrefab = null;
@@ -313,7 +315,10 @@ public class Master : MonoBehaviour {
         //    offsetY = -enemyCollider.bounds.min.y;
 
         if (enemyPrefab == null)
+        {
+            SpawnError("No enemy selected!");
             return;
+        }
 
         // get enemy base script
         EnemyBase enemyBase = enemyPrefab.GetComponentInChildren<EnemyBase>();
@@ -321,12 +326,17 @@ public class Master : MonoBehaviour {
 
         // check if too close to platform
         if (InNoSpawnZone(enemyBase, ground.transform.position))
+        {
+            SpawnError("Too close!");
             return;
+        }
 
         // buy enemy
         float cost = enemyBase.placingCost;
         if (spawnResource.SafeChangeValue(-cost))
             Instantiate(enemyPrefab, ground.transform.position + new Vector3(0, ground.GetComponent<Renderer>().bounds.size.y, 0) /*+ Vector3.up * offsetY*/, Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0));
+        else
+            SpawnError("Not enough money!");
     }
 
     private void CreateObstacleOn(Transform rail)
@@ -336,7 +346,10 @@ public class Master : MonoBehaviour {
 
         // dont put obstacles behind or inside the platform
         if (clickedIndex <= level.numPassedRails)
+        {
+            SpawnError("Cannot place behind platform!");
             return;
+        }
 
         // dont put obstacles on already existing obstacles
         if (placedObstacles.ContainsKey(clickedIndex))
@@ -345,7 +358,10 @@ public class Master : MonoBehaviour {
             if (obstacle == null)
                 placedObstacles.Remove(clickedIndex); // stored obstacle has been destroyed
             else
+            {
+                SpawnError("Cannot place on obstacle!");
                 return;
+            }
         }
 
         // get direction between rail blocks
@@ -354,7 +370,10 @@ public class Master : MonoBehaviour {
         Quaternion platformDirection = Quaternion.LookRotation(currentPosition - lastPosition);
 
         if (obstaclePrefab == null)
+        {
+            SpawnError("No obstacle selected");
             return;
+        }
 
         // get obstacle base
         ObstacleBase obstacleBase = obstaclePrefab.GetComponent<ObstacleBase>();
@@ -362,7 +381,10 @@ public class Master : MonoBehaviour {
 
         // check if too close to platform
         if ((clickedIndex - level.numPassedRails) < obstacleBase.minPlatformSpawnDist)
+        {
+            SpawnError("Too close!");
             return;
+        }
 
         // buy obstacle
         float cost = obstacleBase.placingCost;
@@ -370,6 +392,10 @@ public class Master : MonoBehaviour {
         {
             GameObject placed = Instantiate(obstaclePrefab, rail.position, platformDirection);
             placedObstacles.Add(clickedIndex, placed);
+        }
+        else
+        {
+            SpawnError("Not enough money!");
         }
     }
 
@@ -387,6 +413,23 @@ public class Master : MonoBehaviour {
             UpdateNoSpawnZone();
             yield return new WaitForSeconds(1);
         }
+    }
+
+    private void SpawnError(string message)
+    {
+        if (didntWorkCoroutine != null)
+            StopCoroutine(didntWorkCoroutine);
+
+        didntWorkCoroutine = StartCoroutine(SpawnErrorCoroutine(message));
+    }
+
+    private IEnumerator SpawnErrorCoroutine(string message)
+    {
+        didntWorkMessage.text = message;
+        didntWorkMessage.transform.parent.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(2.0f);
+        didntWorkMessage.transform.parent.gameObject.SetActive(false);
+        didntWorkCoroutine = null;
     }
 
     private void UpdateNoSpawnZone()
