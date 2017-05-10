@@ -26,6 +26,7 @@ public class SuicideEnemy : EnemyBase {
     public float movementSpeed;
     public float startKamikazeDist;
     public float disablePlatformDuration;
+    public AudioClip exploSound;
 
     private Throwable_OBJ throwable;
 
@@ -97,6 +98,13 @@ public class SuicideEnemy : EnemyBase {
                 float sqDist = (platform.position - transform.position).sqrMagnitude;
                 if (sqDist <= hitRange * hitRange)
                 {
+                    var go = new GameObject("Explo Sound");
+                    go.transform.position = this.transform.position;
+                    var audio = go.AddComponent<AudioSource>();
+                    audio.clip = exploSound;
+                    audio.pitch = Random.Range(0.8f, 1.2f);
+                    audio.Play();
+                    this.Delayed(exploSound.length + 0.2f, () => Destroy(go));
                     platform.GetComponent<Platform>().DisableForSec(disablePlatformDuration);
                     Instantiate(explo, transform.position, transform.rotation);
                     Destroy(gameObject);

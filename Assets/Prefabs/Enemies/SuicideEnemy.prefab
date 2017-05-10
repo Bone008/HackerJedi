@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 114554841759199340}
   - component: {fileID: 114152793400993310}
   - component: {fileID: 114896246382433022}
+  - component: {fileID: 82371699091212826}
+  - component: {fileID: 114489062363216758}
   m_Layer: 9
   m_Name: SuicideEnemy
   m_TagString: Enemy
@@ -9190,6 +9192,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1, y: 0.4, z: 1}
   m_Center: {x: -1.1, y: -0.17, z: 0}
+--- !u!82 &82371699091212826
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1003776771868634}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114088130351801460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9243,6 +9325,27 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   playerHit: []
+--- !u!114 &114489062363216758
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1003776771868634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4d727c0733acf43b8eabdd20823f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyBirthAudio:
+  - {fileID: 8300000, guid: 7a1724f94e2114c4dbca01d385b26fd2, type: 3}
+  enemyDeathAudio:
+  - {fileID: 8300000, guid: cab7be39911e5a747a9d1eb77c96fa91, type: 3}
+  - {fileID: 8300000, guid: 59b5b455dc053364da5bd680d8453538, type: 3}
+  audio: {fileID: 82371699091212826}
+  birthMin: 0
+  birthMax: 0
+  deathMin: 0
+  deathMax: 2
 --- !u!114 &114554841759199340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9264,6 +9367,7 @@ MonoBehaviour:
   movementSpeed: 7.5
   startKamikazeDist: 6
   disablePlatformDuration: 4
+  exploSound: {fileID: 8300000, guid: 8351b163d5001af4b9ce4e4fb711ce77, type: 3}
 --- !u!114 &114885454486330694
 MonoBehaviour:
   m_ObjectHideFlags: 1
