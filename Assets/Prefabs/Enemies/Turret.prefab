@@ -6836,12 +6836,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 0
   needsMirroring: 0
-  shootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: 23d3f9f317c61cb419a568a5bef566fb, type: 3}
   emptySound: {fileID: 0}
   projectilePrefab: {fileID: 1072651022596434, guid: d4ba919cba755544aab32a7f05819fea,
     type: 2}
   nozzle: {fileID: 4167007153347584}
+  fullyAutomatic: 0
+  automaticFireRate: 0
   magazineEmptyCooldown: 0
   magazineSize: 9001
   projectileSpeed: 30
   damageAmount: 30
+  magazineEmptyCooldownLevel2: 0
+  magazineSizeLevel2: 0
+  damageLevel2: 0
