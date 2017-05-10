@@ -8,23 +8,41 @@ public class BalancingScript : MonoBehaviour {
     GameObject master;
 
 	// Use this for initialization
-	void Start () {
+	void Awake() {
         hacker = GameObject.FindGameObjectWithTag("Player");
-        master = GameObject.FindGameObjectWithTag("MasterEye");
+        master = GameObject.FindGameObjectWithTag("Master");
 
-        if(GameData.Instance.hackerDiff == 0) //easy
+        if(GameData.Instance.hackerDiff == 0)
+        {
             hacker.GetComponent<HealthResource>().maxValue = 1000;
-        else if(GameData.Instance.hackerDiff == 2) //hard
-            hacker.GetComponent<HealthResource>().maxValue = 300;
-        else //normal
+            //Debug.Log("Hacker: Easy");
+        }
+        else if(GameData.Instance.hackerDiff == 1)
+        {
             hacker.GetComponent<HealthResource>().maxValue = 500;
+            //Debug.Log("Hacker: Normal");
+        }
+        else if (GameData.Instance.hackerDiff == 2)
+        {
+            hacker.GetComponent<HealthResource>().maxValue = 300;
+            //Debug.Log("Hacker: Hard");
+        }
 
 
-        if(GameData.Instance.masterDiff == 0) //easy
+        if (GameData.Instance.masterDiff ==  0)
+        {
             master.GetComponent<Regenerative>().intervalS = .5f;
-        else if(GameData.Instance.masterDiff == 2) // hard
-            master.GetComponent<Regenerative>().intervalS = 2;
-        else //normal
+            //Debug.Log("Master: Easy");
+        }
+        else if (GameData.Instance.masterDiff == 1)
+        {
             master.GetComponent<Regenerative>().intervalS = 1;
+            //Debug.Log("Master: Normal");
+        }
+        else if (GameData.Instance.masterDiff == 2)
+        {
+            master.GetComponent<Regenerative>().intervalS = 2;
+            //Debug.Log("Master: Hard");
+        }
     }
 }

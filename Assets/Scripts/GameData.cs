@@ -19,14 +19,14 @@ public class GameData
 
     public bool viveActive = true;
 
-    public int randomizeWorldinProgress = 0;
+    public int randomizeWorldFactor = 0;
     public int levelCount = 3;
     public int currentLevel = 1;
 
     public bool successfulHack;
 
-    public int hackerDiff = 2;
-    public int masterDiff = 2;
+    public float hackerDiff = 1;
+    public float masterDiff = 1;
 
     public static GameData Instance
     {
