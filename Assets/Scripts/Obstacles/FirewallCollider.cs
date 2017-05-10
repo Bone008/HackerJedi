@@ -14,10 +14,10 @@ public class FirewallCollider : MonoBehaviour {
         {
             player.GetComponent<HealthResource>().ChangeValue(-damageAmount);
 
-            if (transform.parent.childCount == 1)
-                Destroy(transform.parent.parent.gameObject);
-            else
-                Destroy(gameObject);
+            //if (transform.parent.childCount == 1)
+            //    Destroy(transform.parent.parent.gameObject);
+            //else
+            //    Destroy(gameObject);
         }
     }
 }
