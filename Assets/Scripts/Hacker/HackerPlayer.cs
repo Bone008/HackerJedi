@@ -244,6 +244,10 @@ public class HackerPlayer : MonoBehaviour
         var go = Instantiate(abilitySelectionPrefab);
         go.transform.SetParent(GetHandGO(hand).transform, false);
         selectionWheels[(int)hand] = go.GetComponent<AbilitySelectionWheel>();
+
+        if(hand == HackerHand.Left)
+            // mirror along X axis
+            go.transform.localScale = new Vector3(-go.transform.localScale.x, go.transform.localScale.y, go.transform.localScale.z);
     }
 
     public void CloseAbilitySelectionWheel(HackerHand hand)
@@ -262,6 +266,10 @@ public class HackerPlayer : MonoBehaviour
         AbilitySelectionWheel wheel = selectionWheels[(int)hand];
         if (wheel == null)
             return; // not open
+
+        if (hand == HackerHand.Left)
+            // mirror input
+            position.x = -position.x;
 
         wheel.SetPreviewPosition(position);
     }
@@ -336,8 +344,7 @@ public class HackerPlayer : MonoBehaviour
 
     private void Update()
     {
-        // TODO remove
-        if (Input.GetKeyDown(KeyCode.C))
+        if (GameData.Instance.cheatingMode && Input.GetKeyDown(KeyCode.C))
         {
             GetComponent<DataFragmentResource>().ChangeValue(100);
             GetComponent<HealthResource>().ChangeValue(100000);

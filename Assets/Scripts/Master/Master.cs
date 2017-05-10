@@ -117,9 +117,15 @@ public class Master : MonoBehaviour {
 
     void Update()
     {
+        // toggle cheating mode
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            GameData.Instance.cheatingMode = !GameData.Instance.cheatingMode;
+            Debug.Log("Cheating mode enabled: " + GameData.Instance.cheatingMode);
+        }
+
         // fill resource for testing purposes
-        // TODO remove
-        if (Input.GetKeyDown(KeyCode.C)) // C for Cheat
+        if (GameData.Instance.cheatingMode && Input.GetKeyDown(KeyCode.C)) // C for Cheat
         {
             spawnResource.ChangeValue(spawnResource.maxValue);
             suicideRobot.SetActive(true);
