@@ -7328,7 +7328,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -7369,7 +7369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityType: 0
   needsMirroring: 0
-  shootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: 7d031ed0691f9b94699d6182546b9f16, type: 3}
   emptySound: {fileID: 0}
   projectilePrefab: {fileID: 1072651022596434, guid: d4ba919cba755544aab32a7f05819fea,
     type: 2}
