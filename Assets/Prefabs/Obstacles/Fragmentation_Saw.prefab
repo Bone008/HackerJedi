@@ -458,5 +458,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c72d30adf35d1114ba294595f7b98c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placingCost: 50
+  placingCost: 100
   minPlatformSpawnDist: 5
