@@ -10,6 +10,7 @@ public class GameData
     public bool hackerIsReady;
     public bool masterIsReady;
 
+    public bool betterRangedGruntUnlocked = false;
     public bool suicideRobotUnlocked = false;
     public bool sniperUnlocked = false;
     public bool turretUnlocked = false;
@@ -18,14 +19,14 @@ public class GameData
 
     public bool viveActive = true;
 
-    public int randomizeWorldinProgress = 0;
+    public int randomizeWorldFactor = 0;
     public int levelCount = 3;
     public int currentLevel = 1;
 
     public bool successfulHack;
 
-    public int hackerDiff = 2;
-    public int masterDiff = 2;
+    public float hackerDiff = 1;
+    public float masterDiff = 1;
 
     public static GameData Instance
     {
@@ -35,5 +36,15 @@ public class GameData
                 instance = new GameData();
             return instance;
         }
+    }
+
+    public void UnlockEverything()
+    {
+        betterRangedGruntUnlocked = true;
+        suicideRobotUnlocked = true;
+        sniperUnlocked = true;
+        turretUnlocked = true;
+        hackingAreaUnlocked = true;
+        firewallUnlocked = true;
     }
 }

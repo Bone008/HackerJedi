@@ -9242,6 +9242,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  playerHit: []
 --- !u!114 &114554841759199340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9255,7 +9256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placingCost: 30
   minPlatformSpawnDist: 24
-  explo: {fileID: 1862322992109182, guid: 5f01c0a5d11e8034b9b6a7f008a4e490, type: 2}
+  explo: {fileID: 1579930662461254, guid: efa4c5a819cf8544ca0b57e61d05c2ce, type: 2}
   hitRange: 3
   color1: {r: 0.7647059, g: 0.14057094, b: 0.14057094, a: 0}
   color2: {r: 0.022058845, g: 0.015084357, b: 0.015084357, a: 0}

@@ -6515,6 +6515,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d04cb1ab2569364cabcdaed0228e9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duration: 2
+  low: 666
+  high: 22000
 --- !u!169 &2051035145
 AudioLowPassFilter:
   m_ObjectHideFlags: 0

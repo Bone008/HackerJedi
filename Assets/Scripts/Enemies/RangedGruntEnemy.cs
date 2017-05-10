@@ -8,7 +8,7 @@ public class RangedGruntEnemy : EnemyBase
     public float newTargetPosThreshhold = 1f;
     public float rotationSpeed = 5f;
     public Vector3 offset = new Vector3(.5f, 1.533333f, .5f);
-    public float hitRange, stoppingDistance, floorTime, recoveryMovementSpeed;
+    public float hitRange, stoppingDistance, floorTime, recoveryMovementSpeed, damageMinSpeed, fallingDamageMultiplier;
     public Vector3 bounds;
 
     public GameObject explo;
@@ -17,12 +17,16 @@ public class RangedGruntEnemy : EnemyBase
     private Vector3 oldPos;
     private NavMeshAgent agent;
     private Rigidbody rb;
+    private HealthResource health;
     private bool recovering, timerRunning;
     private float startTimeResting = 0;
     private int collisions = 0;
-    private ShootPlayer shootPlayer; 
+    private bool shootingEnabled = true;
 
-    
+    [Header("Upgrade")]
+    public GameObject leftGun;
+    public PointAtPlayer pap;
+
     void Start()
     {
         // locate player
@@ -35,6 +39,7 @@ public class RangedGruntEnemy : EnemyBase
         }
 
         rb = GetComponent<Rigidbody>();
+        health = GetComponent<HealthResource>();
        
         recovering = false;
         timerRunning = false;
@@ -43,10 +48,15 @@ public class RangedGruntEnemy : EnemyBase
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = true;
 
-        shootPlayer = GetComponent<ShootPlayer>();
-
         if (agent.isOnNavMesh)
-            agent.destination = goal.position;              
+            agent.destination = goal.position;
+
+        // activated 2nd gun if upgrade
+        if (GameData.Instance.betterRangedGruntUnlocked)
+        {
+            leftGun.SetActive(true);
+            pap.enabled = true;
+        }
     }
 
     void Update()
@@ -54,8 +64,7 @@ public class RangedGruntEnemy : EnemyBase
         
         if (agent.enabled)
         {
-            if (!shootPlayer.enabled)
-                shootPlayer.enabled = true;
+            SetShootingEnabled(true);
 
             //Handle enemy in functional state and on navmesh
             float dist = Vector3.Distance(transform.position, goal.position);
@@ -66,8 +75,7 @@ public class RangedGruntEnemy : EnemyBase
         }
         else
         {
-            if (shootPlayer.enabled)
-                shootPlayer.enabled = false;
+            SetShootingEnabled(false);
 
             //Handle enemy in non-functional state and/or off navmesh
             handleDisabledEnemy();
@@ -92,13 +100,30 @@ public class RangedGruntEnemy : EnemyBase
         
     }
 
+    public void SetShootingEnabled(bool enabled)
+    {
+        if (shootingEnabled != enabled)
+        {
+            foreach (var gun in GetComponentsInChildren<Gun>())
+                gun.enabled = enabled;
+            shootingEnabled = enabled;
+        }
+    }
+
     private void handleFunctionalEnemy(float dist)
     {
-        //Stop enemy if close enough
-        if (dist < stoppingDistance && !agent.isStopped)
+        //Stop enemy if close enough and has line of sight
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, goal.position - transform.position, out hit, 100.0f))
         {
-            agent.isStopped = true;
+            if (dist < stoppingDistance && !agent.isStopped && hit.collider.CompareTag("Player"))
+            {
+                agent.isStopped = true;
+            }
         }
+            
+
+        
 
         //follow player if distance too big
         if (dist > hitRange && agent.isStopped)
@@ -201,6 +226,16 @@ public class RangedGruntEnemy : EnemyBase
     void OnCollisionEnter(Collision collision)
     {
         collisions++;
+
+        if (health != null)
+        {
+            float absVelocity = Mathf.Abs(Vector3.Magnitude(collision.relativeVelocity));
+            if (absVelocity > damageMinSpeed)
+            {
+                health.ChangeValue(-absVelocity * fallingDamageMultiplier);
+                print("damaged for " + -absVelocity * fallingDamageMultiplier + " with speed " + absVelocity);
+            }
+        }
     }
 
     private void OnCollisionExit(Collision collision)

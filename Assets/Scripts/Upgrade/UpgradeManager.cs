@@ -10,6 +10,7 @@ public class UpgradeManager : MonoBehaviour {
     public Text readyMasterText;
 
     [Header("Buttons")]
+    public Button gruntUpgrade;
     public Button suicideRobot;
     public Button sniper;
     public Button turret;
@@ -73,6 +74,15 @@ public class UpgradeManager : MonoBehaviour {
             SteamVR_LoadLevel.Begin("game");
         }
         pointsText.text = "You can still spend " + points + " Points.";
+    }
+
+    public void gruntUpgradeUnlock()
+    {
+        if (points <= 0)
+            return;
+        points--;
+        GameData.Instance.betterRangedGruntUnlocked = true;
+        gruntUpgrade.interactable = false;
     }
 
     public void suicideRobotUnlock()
