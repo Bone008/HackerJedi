@@ -72,8 +72,8 @@ GameObject:
   - component: {fileID: 33384959212713112}
   - component: {fileID: 23047745724141096}
   - component: {fileID: 114379036264233156}
-  - component: {fileID: 65471288707602772}
   - component: {fileID: 54132217864693438}
+  - component: {fileID: 64448055012877954}
   m_Layer: 0
   m_Name: "S\xE4geblatt"
   m_TagString: Untagged
@@ -409,18 +409,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65471288707602772
-BoxCollider:
+--- !u!64 &64448055012877954
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1802086108352712}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0017474754, y: 0.028514832, z: 0.028514838}
-  m_Center: {x: 5.820766e-11, y: 0, z: 0.000000002793968}
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300008, guid: 716493580815c29458d75ed19a12a716, type: 3}
 --- !u!114 &114379036264233156
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -444,7 +446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec611a9d96d54004b9e07de329d056e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upperPoint: 5.3
+  upperPoint: 4.5
   lowerPoint: 1.5
   speed: 0.05
 --- !u!114 &114844515623502046
