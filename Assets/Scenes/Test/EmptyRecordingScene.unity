@@ -5974,6 +5974,7 @@ MonoBehaviour:
   noSpawnZone: {fileID: 960314958}
   obstacleNoSpawnZoneMaterial: {fileID: 2100000, guid: 11295538329642542a3a23323d0c3359,
     type: 2}
+  spawnResourceText: {fileID: 0}
   blockMinYValue: 0
   blockMaxYValue: 6
   blockSpeed: 5
@@ -6058,8 +6059,8 @@ MonoBehaviour:
   placeables:
   - {fileID: 114821068849930648, guid: 70efab91ba193b8489773003a458bbbd, type: 2}
   - {fileID: 114554841759199340, guid: a1f998f9efb17044f8a53ffd517e7bbd, type: 2}
-  - {fileID: 114842019041414612, guid: 34497e48055e50049a9262cd042314b7, type: 2}
-  - {fileID: 114784065641063944, guid: 00d6984eef8431d4285c3a32e6d30573, type: 2}
+  - {fileID: 114879069309986082, guid: 5f55874ba25ef1e498fe5bf1c8afea3c, type: 2}
+  - {fileID: 114537097049591300, guid: 1c830c27f2363784a854096cd6be176e, type: 2}
   - {fileID: 114453571974680356, guid: 602571d73300bdc4f859f372ccb1b219, type: 2}
   - {fileID: 114267576068504142, guid: fde4eafb297a474419c7a693f36bf472, type: 2}
 --- !u!1 &2004106372
