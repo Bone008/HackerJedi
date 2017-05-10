@@ -444,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec611a9d96d54004b9e07de329d056e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upperPoint: 4.5
+  upperPoint: 5.3
   lowerPoint: 1.5
   speed: 0.05
 --- !u!114 &114844515623502046
