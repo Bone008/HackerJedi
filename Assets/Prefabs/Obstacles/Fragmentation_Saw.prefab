@@ -152,8 +152,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1880576148290282}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 1.9989371, y: 3.0000024, z: -1.8}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: 2, y: 3.92, z: -1.8}
+  m_LocalScale: {x: 99.99999, y: 100, z: 130.53067}
   m_Children: []
   m_Father: {fileID: 4016336448313920}
   m_RootOrder: 1
@@ -178,8 +178,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1280508585986326}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -1.9989353, y: 3.0000024, z: -1.8}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: -2, y: 3.92, z: -1.8}
+  m_LocalScale: {x: 99.99999, y: 100, z: 130.53067}
   m_Children: []
   m_Father: {fileID: 4016336448313920}
   m_RootOrder: 2
@@ -416,12 +416,12 @@ MeshCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1802086108352712}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 1
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
+  m_InflateMesh: 1
+  m_SkinWidth: 0.08
   m_Mesh: {fileID: 4300008, guid: 716493580815c29458d75ed19a12a716, type: 3}
 --- !u!114 &114379036264233156
 MonoBehaviour:
@@ -446,9 +446,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec611a9d96d54004b9e07de329d056e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upperPoint: 4.5
+  upperPoint: 6
   lowerPoint: 1.5
-  speed: 0.05
+  speed: 2
 --- !u!114 &114844515623502046
 MonoBehaviour:
   m_ObjectHideFlags: 1

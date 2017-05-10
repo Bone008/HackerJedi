@@ -21,12 +21,12 @@ public class Fragmentation_Saw : MonoBehaviour {
 
         if (up)
         {
-            transform.Translate(0, 0, speed);//Vector3.Slerp(transform.position, new Vector3(transform.position.x, upperPoint, transform.position.z), Time.deltaTime));
+            transform.Translate(0, 0, speed * Time.deltaTime);//Vector3.Slerp(transform.position, new Vector3(transform.position.x, upperPoint, transform.position.z), Time.deltaTime));
         }
         else
         {
-            transform.Translate(0, 0, -speed);//Vector3.Slerp(transform.position, new Vector3(transform.position.x, lowerPoint, transform.position.z), Time.deltaTime));
+            transform.Translate(0, 0, -speed * Time.deltaTime);//Vector3.Slerp(transform.position, new Vector3(transform.position.x, lowerPoint, transform.position.z), Time.deltaTime));
         }
-        transform.GetChild(1).Rotate(-5, 0, 0);
+        transform.GetChild(1).Rotate(-360 * Time.deltaTime, 0, 0);
 	}
 }
