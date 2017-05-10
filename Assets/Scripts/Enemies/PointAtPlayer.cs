@@ -16,11 +16,13 @@ public class PointAtPlayer : MonoBehaviour
     private Platform platform;
 
     private Quaternion initialLocalRotation;
+    private bool isLefty;
 
 	// Use this for initialization
 	void Start ()
 	{
         initialLocalRotation = transform.localRotation;
+        isLefty = (selfContext.InverseTransformPoint(transform.position).x < 0);
 
         player = GameObject.FindWithTag("Player");
         // if there is no player, there is no meaning to our life
@@ -46,7 +48,12 @@ public class PointAtPlayer : MonoBehaviour
 	    if (Vector3.Angle(selfContext.forward, (player.transform.position - selfContext.position)) < aimingFOV)
 	    {
             //Debug.DrawLine(transform.position, aimPosition);
-            transform.rotation = Quaternion.LookRotation(aimPosition - transform.position) * Quaternion.LookRotation(-forwardDirection) * Quaternion.Euler(0, 90, 0);
+
+            selfContext.InverseTransformPoint(transform.position);
+
+            transform.rotation = Quaternion.LookRotation(aimPosition - transform.position)
+                * Quaternion.LookRotation(-forwardDirection)
+                * Quaternion.Euler(0, (isLefty ? -90 : 90), 0);
 	    }
 	    else
 	    {
