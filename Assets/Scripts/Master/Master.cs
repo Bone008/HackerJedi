@@ -61,7 +61,7 @@ public class Master : MonoBehaviour {
     public GameObject firewall;
     #endregion
 
-    private Transform selected;
+    private HashSet<Transform> selected = new HashSet<Transform>();
 
     void Start()
     {
@@ -117,44 +117,51 @@ public class Master : MonoBehaviour {
         }
 
         // select cube
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || (Input.GetMouseButton(1) && Input.GetKey(KeyCode.LeftShift)))
         {
-            selected = null;
+            // clear if not multidrag
+            if (!(Input.GetMouseButton(1) && Input.GetKey(KeyCode.LeftShift)))
+                selected.Clear();
+
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                // get aimed-for object via Raycast, prevent onclick when pressing buton
+                // get aimed-for object via Raycast, prevent onclick when pressing button
                 RaycastHit hit;
                 Ray ray = masterCamera.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, raycastLayermask.value))
                 {
-                    selected = hit.transform;
+                    selected.Add(hit.transform);
                 }
             }
         }
 
         // spawn enemy
-        if (selected != null && Input.GetMouseButtonDown(0))
+        if (selected.Count == 1 && Input.GetMouseButtonDown(0))
         {
-            if (selected.tag.Equals("RoomBlock"))
-                CreateEnemyAbove(selected.gameObject);
-            else if (selected.tag.Equals("RailBlock"))
-                CreateObstacleOn(selected);
+            var s = selected.First();
+            if (s.tag.Equals("RoomBlock"))
+                CreateEnemyAbove(s.gameObject);
+            else if (s.tag.Equals("RailBlock"))
+                CreateObstacleOn(s);
         }
 
         // start dragging
-        if (Input.GetMouseButtonDown(1) && selected != null && selected.tag.Equals("RoomBlock"))
+        if (selected.Count > 0 && ((Input.GetMouseButtonDown(1) && !Input.GetKey(KeyCode.LeftShift)) || (Input.GetMouseButton(1) && Input.GetKeyUp(KeyCode.LeftShift))))
         {
-            SetBlockMaterial(selected.parent, liftedBlockMaterial);
-
             currentlyDragging = true;
 
-            if(snapCoroutines.ContainsKey(selected.parent))
+            foreach (Transform s in selected.Where(t => t.tag.Equals("RoomBlock")))
             {
-                Coroutine existing = snapCoroutines[selected.parent];
-                if(existing != null)
-                    StopCoroutine(existing);
-                snapCoroutines.Remove(selected.parent);
-            }
+                SetBlockMaterial(s.parent, liftedBlockMaterial);
+
+                if (snapCoroutines.ContainsKey(s.parent))
+                {
+                    Coroutine existing = snapCoroutines[s.parent];
+                    if (existing != null)
+                        StopCoroutine(existing);
+                    snapCoroutines.Remove(s.parent);
+                }
+            }            
         }
 
         // stop dragging
@@ -162,36 +169,45 @@ public class Master : MonoBehaviour {
         {
             currentlyDragging = false;
 
-            if (selected == null || selected.parent == null)
-                return;
-
-            if (snapCoroutines.ContainsKey(selected.parent))
+            foreach(Transform s in selected)
             {
-                Coroutine existing = snapCoroutines[selected.parent];
-                if (existing != null)
-                    StopCoroutine(existing);
-                snapCoroutines.Remove(selected.parent);
+                if (s == null || s.parent == null)
+                    return;
+
+                if (snapCoroutines.ContainsKey(s.parent))
+                {
+                    Coroutine existing = snapCoroutines[s.parent];
+                    if (existing != null)
+                        StopCoroutine(existing);
+                    snapCoroutines.Remove(s.parent);
+                }
+
+                snapCoroutines.Add(s.parent, StartCoroutine(SnapToGrid(s.parent)));
             }
 
-            snapCoroutines.Add(selected.parent, StartCoroutine(SnapToGrid(selected.parent)));
+            selected.Clear();
         }
 
         // move blocks
         Vector2 newMousePosition = Input.mousePosition;
         float mouseDragDiff = blockSpeed * (newMousePosition.y - oldMousePosition.y) * Time.deltaTime;
-        if (selected && currentlyDragging)        {
-            Transform parent = selected.parent.transform;
-            float y = parent.position.y + mouseDragDiff;
-            y = Mathf.Max(blockMinYValue, y);
-            y = Mathf.Min(blockMaxYValue, y);
-            parent.position = new Vector3(
-                parent.position.x,
-                y,
-                parent.position.z
-            );
+        if (selected.Count > 0 && currentlyDragging)
+        {
+            foreach (Transform s in selected)
+            {
+                Transform parent = s.parent.transform;
+                float y = parent.position.y + mouseDragDiff;
+                y = Mathf.Max(blockMinYValue, y);
+                y = Mathf.Min(blockMaxYValue, y);
+                parent.position = new Vector3(
+                    parent.position.x,
+                    y,
+                    parent.position.z
+                );
+            }
         }
         oldMousePosition = newMousePosition;
-        
+
         // move master
         float input = Input.GetAxis(movementInputAxis);
         if (input != 0)
@@ -205,11 +221,11 @@ public class Master : MonoBehaviour {
         }
 
         // move laser
-        if (selected != null && currentlyDragging)
+        if (selected.Count > 0 && currentlyDragging)
         {
             //laserBeam.SetPosition(0, laserStart.position);
             //laserBeam.SetPosition(1, selected.position);
-            laserBeam.SetStartAndEndPoints(laserBeam.transform.InverseTransformPoint(laserStart.position), laserBeam.transform.InverseTransformPoint(selected.position));
+            laserBeam.SetStartAndEndPoints(laserBeam.transform.InverseTransformPoint(laserStart.position), laserBeam.transform.InverseTransformPoint(selected.First().position));
 
             if(!laserBeam.gameObject.activeSelf)
             {
