@@ -24,7 +24,8 @@ public class LevelGenerator : MonoBehaviour
     public int rows;
     public int lines;
     public GameObject[,] world;
-    public GameObject[,] track;
+    //public GameObject[,] track;
+    private int p, initialP;
     
     public void clearWorld()
     {
@@ -59,6 +60,20 @@ public class LevelGenerator : MonoBehaviour
                 }
             }
         }
+
+        world[initialP - 1, 0].tag = "GateBlock";
+        foreach (Transform t in world[initialP - 1, 0].transform)
+            t.tag = "GateBlock";
+        world[initialP + 1, 0].tag = "GateBlock";
+        foreach (Transform t in world[initialP + 1, 0].transform)
+            t.tag = "GateBlock";
+
+        world[p - 1, lines - 1].tag = "GateBlock";
+        foreach (Transform t in world[p - 1, lines - 1].transform)
+            t.tag = "GateBlock";
+        world[initialP + 1, 0].tag = "GateBlock";
+        foreach (Transform t in world[p + 1, lines - 1].transform)
+            t.tag = "GateBlock";
     }
 
     void randomizeWorld(int r)
@@ -118,8 +133,8 @@ public class LevelGenerator : MonoBehaviour
 
     public void createTrack()
     {
-        int initialP = Random.Range(trackRowOffset, rows - trackRowOffset);
-        int p = initialP;
+        initialP = Random.Range(trackRowOffset, rows - trackRowOffset);
+        p = initialP;
         int direction = 0;
         int prevDirection;
         int sideway;
@@ -175,7 +190,7 @@ public class LevelGenerator : MonoBehaviour
     private void Awake()
     {
         world = new GameObject[rows, lines];
-        track = new GameObject[rows, lines];
+        //track = new GameObject[rows, lines];
         numPassedRails = 0;
         createTrack();
         randomizeWorld(GameData.Instance.randomizeWorldFactor);
