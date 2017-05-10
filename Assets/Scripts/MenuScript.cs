@@ -55,12 +55,12 @@ public class MenuScript : MonoBehaviour {
         if (t.isOn)
         {
             HackerProgression.Instance.UnlockAll();
-            Debug.Log("Unlock");
+            //Debug.Log("Unlock");
         }
         else
         {
             HackerProgression.Instance.Reset();
-            Debug.Log("Lock");
+            //Debug.Log("Lock");
         }
 
         masterSkillsAllOnOff(t.isOn);

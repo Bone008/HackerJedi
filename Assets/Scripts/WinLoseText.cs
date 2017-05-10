@@ -14,17 +14,17 @@ public class WinLoseText : MonoBehaviour {
         Cursor.lockState = CursorLockMode.None;
         if (GameData.Instance.successfulHack)
         {
-            text.text = "the HackerJedi hacked the system with great force";
+            text.text = ""; // covered by bluescreen
             text.color = new Color(255,0,0,255);
-            textH.text = "You hacked the s#!t out of the Master !";
+            textH.text = "Access granted\nYou eliminated Rogue A.I. and saved the world.";
             textH.color = new Color(0, 255, 0, 255);
             bluescreen.SetActive(true);
         }
         else
         {
-            text.text = "Virus successfully moved to quarantine!";
+            text.text = "The  intruder  was  successfully  moved  to  quarantine.";
             text.color = new Color(0, 255, 0, 255);
-            textH.text = "a meaningfull message to the loser";
+            textH.text = "Access  denied\nYour  hacking  attempt  failed.";
             textH.color = new Color(255, 0, 0, 255);
             bluescreen.SetActive(false);
         }

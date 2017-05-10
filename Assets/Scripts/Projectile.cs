@@ -24,6 +24,10 @@ public class Projectile : MonoBehaviour {
         if (collider.GetComponent<ShieldPanel>() != null)
             return;
 
+        // we are allowed to cross the streams
+        if (collider.GetComponent<Projectile>() != null)
+            return;
+
         HealthResource health = collider.gameObject.GetComponentInParent<HealthResource>();
         if (health != null)
             health.ChangeValue(-damageAmount);
