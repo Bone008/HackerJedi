@@ -61,6 +61,7 @@ public class Master : MonoBehaviour {
     public GameObject turret;
     public GameObject hackingArea;
     public GameObject firewall;
+    public GameObject fragmentation_Saw;
     #endregion
 
     private HashSet<Transform> selected = new HashSet<Transform>();
@@ -133,6 +134,7 @@ public class Master : MonoBehaviour {
             turret.SetActive(true);
             hackingArea.SetActive(true);
             firewall.SetActive(true);
+            fragmentation_Saw.SetActive(true);
         }
 
         // select cube
