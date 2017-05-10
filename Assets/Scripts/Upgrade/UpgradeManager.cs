@@ -16,6 +16,7 @@ public class UpgradeManager : MonoBehaviour {
     public Button turret;
     public Button hackingArea;
     public Button firewall;
+    public Button fragmentationSaw;
 
     public Text levelText;
     public Text pointsText;
@@ -40,6 +41,8 @@ public class UpgradeManager : MonoBehaviour {
             hackingArea.interactable = false;
         if (GameData.Instance.firewallUnlocked)
             firewall.interactable = false;
+        if (GameData.Instance.fragmentationSawUnlocked)
+            fragmentationSaw.interactable = false;
     }
 
     public void hackerToggleReady()
@@ -128,5 +131,14 @@ public class UpgradeManager : MonoBehaviour {
         points--;
         GameData.Instance.firewallUnlocked = true;
         firewall.interactable = false;
+    }
+
+    public void fragmentationSawUnlock()
+    {
+        if (points == 0)
+            return;
+        points--;
+        GameData.Instance.fragmentationSawUnlocked = true;
+        fragmentationSaw.interactable = false;
     }
 }
