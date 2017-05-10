@@ -23,6 +23,8 @@ public class MenuScript : MonoBehaviour {
         setHackerDiff();
         setMasterDiff();
         GameData.Instance.levelCount = 3;
+        fullEquip();
+        randWorld();
 	}
 
     void masterSkillsAllOnOff(bool b)
@@ -37,9 +39,15 @@ public class MenuScript : MonoBehaviour {
     public void randWorld()
     {
         if (tW.isOn)
+        {
             GameData.Instance.randomizeWorldFactor = 0;
+            //Debug.Log("Flat");
+        }
         else
+        {
             GameData.Instance.randomizeWorldFactor = 8;
+            //Debug.Log("Random");
+        }
     }
 
     public void fullEquip()
