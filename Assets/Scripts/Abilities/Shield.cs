@@ -20,6 +20,7 @@ public class Shield : AbstractAbility
     private bool isActive = false;
     private bool isRecovering = false;
     private float lastUpdateTime;
+    public AudioClip shieldDown;
 
     [Header("Level 2")]
     public float maxEnergyLevel2;
@@ -60,6 +61,7 @@ public class Shield : AbstractAbility
         {
             isActive = false;
             isRecovering = true;
+            AudioSource.PlayClipAtPoint(shieldDown, this.transform.position, 1f);
             this.AnimateVector(0.1f, initialScale, Vector3.zero, Util.EaseInOut01, v => shieldTransform.transform.localScale = v);
             energyPanelImage.color = Color.red;
         }
