@@ -382,8 +382,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minValue: 0
-  maxValue: 600
-  _currentValue: 600
+  maxValue: 1000
+  _currentValue: 1000
   onChange:
     m_PersistentCalls:
       m_Calls: []
@@ -422,6 +422,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  playerHit: []
 --- !u!114 &114546992019984614
 MonoBehaviour:
   m_ObjectHideFlags: 1

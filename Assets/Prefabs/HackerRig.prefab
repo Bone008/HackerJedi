@@ -61,7 +61,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1082088343039178
 GameObject:
   m_ObjectHideFlags: 1
@@ -222,7 +222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1480236697501744
 GameObject:
   m_ObjectHideFlags: 1
@@ -273,7 +273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1761215752952578
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1860755945617448
 GameObject:
   m_ObjectHideFlags: 1
@@ -729,6 +729,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  playerHit: []
 --- !u!114 &114122392495690734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -747,14 +748,14 @@ MonoBehaviour:
   size: 0
   color: {r: 0, g: 1, b: 1, a: 1}
   vertices:
-  - {x: 1.4499997, y: 0.01, z: -0.8000002}
-  - {x: -1.4499997, y: 0.01, z: -0.8000002}
-  - {x: -1.4499997, y: 0.01, z: 0.8000002}
-  - {x: 1.4499997, y: 0.01, z: 0.8000002}
-  - {x: 1.5999997, y: 0.01, z: -0.95000017}
-  - {x: -1.5999997, y: 0.01, z: -0.95000017}
-  - {x: -1.5999997, y: 0.01, z: 0.95000017}
-  - {x: 1.5999997, y: 0.01, z: 0.95000017}
+  - {x: 1.2499999, y: 0.01, z: -0.80000013}
+  - {x: -1.2499999, y: 0.01, z: -0.80000013}
+  - {x: -1.2499999, y: 0.01, z: 0.80000013}
+  - {x: 1.2499999, y: 0.01, z: 0.80000013}
+  - {x: 1.3999999, y: 0.01, z: -0.95000017}
+  - {x: -1.3999999, y: 0.01, z: -0.95000017}
+  - {x: -1.3999999, y: 0.01, z: 0.95000017}
+  - {x: 1.3999999, y: 0.01, z: 0.95000017}
 --- !u!114 &114197632554708476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -985,7 +986,7 @@ MonoBehaviour:
   glowLayer:
     serializedVersion: 2
     m_Bits: 4294965247
-  renderCamera: {fileID: 0}
+  renderCamera: {fileID: 20269471111188440}
   showCutoutGlow: 0
   showTransparentGlow: 1
   glowType: 0
@@ -1173,7 +1174,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1420807209672550}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aba87cef0f0bec6469d42530006bcd9c, type: 3}
   m_Name: 
@@ -1252,7 +1253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a8621f6cfd99348b57934f45698387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intervalS: 0.5
+  intervalS: 0.25
   amountPerInterval: 5
   resourceToRegenerate: {fileID: 114087012830672056}
 --- !u!114 &114930166804486656

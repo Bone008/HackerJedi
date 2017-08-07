@@ -260,7 +260,7 @@ public class ForcePushGrab : AbstractAbility {
             
             yield return new WaitForSeconds(1);
             drainAudio.Play();
-            float healAmount = Mathf.Min(targetHealth.currentValue, grabLifeDrainPerSecond);
+            float healAmount = Mathf.Min(targetHealth.currentValue, 2 * grabLifeDrainPerSecond);
             targetHealth.ChangeValue(-grabLifeDrainPerSecond);
 
             hackerPlayer.GetComponent<HealthResource>().ChangeValue(healAmount);

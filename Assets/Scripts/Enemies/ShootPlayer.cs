@@ -39,7 +39,10 @@ public class ShootPlayer : MonoBehaviour {
     {
         while (true)
         {
-            gun.FireOnce();
+			var t = transform.GetComponentInParent<Throwable_OBJ>();
+			if (!t.IsGrabbed()) {
+				gun.FireOnce ();
+			}
             yield return new WaitForSeconds(fireDelay);
         }
     }

@@ -1475,8 +1475,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minValue: 0
-  maxValue: 100
-  _currentValue: 100
+  maxValue: 70
+  _currentValue: 70
   onChange:
     m_PersistentCalls:
       m_Calls: []
